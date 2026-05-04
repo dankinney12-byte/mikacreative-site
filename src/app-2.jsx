@@ -82,7 +82,7 @@ function BookingFlow({ service, onClose }) {
   const [card, setCard] = useState({ number: '', exp: '', cvc: '', zip: '' });
   const [processing, setProcessing] = useState(false);
   const [discountInput, setDiscountInput] = useState('');
-  const [appliedCode, setAppliedCode] = useState(null); // { code, kind, value, label } or null
+  const [appliedCode, setAppliedCode] = useState(null);
   const [discountError, setDiscountError] = useState('');
 
   // Pricing math
@@ -149,132 +149,57 @@ function BookingFlow({ service, onClose }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
 
-  const inputStyle = {
-    width: '100%',
-    padding: '13px 16px',
-    border: '2px solid var(--ink)',
-    borderRadius: 12,
-    fontSize: 15,
-    fontFamily: 'inherit',
-    background: 'var(--bg)',
-    boxSizing: 'border-box',
-    outline: 'none',
-  };
-
   return (
     <div
+      className="booking-overlay"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-      style={{
-        position: 'fixed', inset: 0, zIndex: 100,
-        background: 'rgba(31, 27, 22, 0.55)',
-        backdropFilter: 'blur(4px)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: 24,
-        animation: 'fade-in 0.2s ease',
-      }}
     >
-      <div style={{
-        background: 'var(--bg)',
-        border: '2px solid var(--ink)',
-        borderRadius: 28,
-        boxShadow: '8px 8px 0 var(--ink)',
-        width: '100%',
-        maxWidth: 920,
-        maxHeight: '92vh',
-        overflow: 'hidden',
-        display: 'grid',
-        gridTemplateColumns: '320px 1fr',
-        animation: 'slide-up 0.25s ease',
-      }}>
+      <div className="booking-modal">
         {/* LEFT: service summary */}
-        <aside style={{
-          background: service.color,
-          padding: 32,
-          display: 'flex', flexDirection: 'column', gap: 20,
-          borderRight: '2px solid var(--ink)',
-        }}>
-          <span className="tag" style={{ background: 'var(--bg)', alignSelf: 'flex-start' }}>
+        <aside className="booking-aside" style={{ background: service.color }}>
+          <span className="tag booking-aside-tag" style={{ background: 'var(--bg)', alignSelf: 'flex-start' }}>
             {service.tag}
           </span>
-          <h3 className="display" style={{
-            fontSize: 38, margin: 0, letterSpacing: '-0.02em', lineHeight: 1,
-          }}>
+          <h3 className="display booking-aside-title">
             {service.title}
           </h3>
-          <div style={{ fontSize: 14, lineHeight: 1.5 }}>
+          <div className="booking-aside-blurb">
             {service.blurb}
           </div>
 
-          <div style={{
-            marginTop: 'auto',
-            paddingTop: 20,
-            borderTop: '1.5px dashed var(--ink)',
-          }}>
-            <div className="mono" style={{ fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 6 }}>
-              Total
-            </div>
+          <div className="booking-aside-total">
+            <div className="mono booking-aside-total-eyebrow">Total</div>
             {appliedCode ? (
               <>
-                <div style={{
-                  fontSize: 18, fontWeight: 500,
-                  textDecoration: 'line-through',
-                  opacity: 0.55, lineHeight: 1,
-                  marginBottom: 4,
-                }}>
-                  {fmtMoney(basePrice)}
-                </div>
-                <div className="display" style={{ fontSize: 44, lineHeight: 1, color: 'var(--ink)' }}>
-                  {fmtMoney(finalPrice)}
-                </div>
-                <div className="mono" style={{
-                  fontSize: 11, marginTop: 8, fontWeight: 600,
-                  display: 'inline-block',
-                  background: 'var(--ink)', color: service.color,
-                  padding: '4px 8px', borderRadius: 6,
-                  letterSpacing: '0.08em', textTransform: 'uppercase',
-                }}>
+                <div className="booking-aside-total-strike">{fmtMoney(basePrice)}</div>
+                <div className="display booking-aside-total-amount">{fmtMoney(finalPrice)}</div>
+                <div className="mono booking-aside-total-discount" style={{ color: service.color }}>
                   {appliedCode.code} −{fmtMoney(discountAmount)}
                 </div>
               </>
             ) : (
               <>
-                <div className="display" style={{ fontSize: 44, lineHeight: 1 }}>
-                  {service.price}
-                </div>
-                <div className="mono" style={{ fontSize: 11, marginTop: 6, opacity: 0.75 }}>
-                  {service.sub}
-                </div>
+                <div className="display booking-aside-total-amount">{service.price}</div>
+                <div className="mono booking-aside-total-sub">{service.sub}</div>
               </>
             )}
           </div>
         </aside>
 
         {/* RIGHT: flow */}
-        <div style={{ display: 'flex', flexDirection: 'column', maxHeight: '92vh' }}>
+        <div className="booking-main">
           {/* Header */}
-          <header style={{
-            padding: '20px 28px',
-            borderBottom: '2px solid var(--ink)',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            gap: 12,
-          }}>
+          <header className="booking-header">
             <Stepper step={step} />
             <button
               onClick={onClose}
               aria-label="Close"
-              style={{
-                width: 36, height: 36, borderRadius: '50%',
-                border: '2px solid var(--ink)',
-                background: 'var(--bg)',
-                cursor: 'pointer', fontSize: 18, lineHeight: 1,
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'inherit',
-              }}
+              className="booking-close"
             >×</button>
           </header>
 
           {/* Body */}
-          <div style={{ padding: '28px 28px 24px', overflowY: 'auto', flex: 1 }}>
+          <div className="booking-body">
             {step === 1 && (
               <CalendarStep
                 viewDate={viewDate} setViewDate={setViewDate}
@@ -287,14 +212,12 @@ function BookingFlow({ service, onClose }) {
             {step === 2 && (
               <DetailsStep
                 details={details} setDetails={setDetails}
-                inputStyle={inputStyle}
                 selectedDay={selectedDay} selectedTime={selectedTime}
               />
             )}
             {step === 3 && (
               <PaymentStep
                 card={card} setCard={setCard}
-                inputStyle={inputStyle}
                 price={service.price}
                 processing={processing}
                 basePrice={basePrice}
@@ -323,13 +246,7 @@ function BookingFlow({ service, onClose }) {
 
           {/* Footer */}
           {step !== 4 && (
-            <footer style={{
-              padding: '18px 28px',
-              borderTop: '2px solid var(--ink)',
-              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-              gap: 12,
-              background: 'var(--bg-alt)',
-            }}>
+            <footer className="booking-footer">
               <button
                 onClick={() => step > 1 ? setStep(step - 1) : onClose()}
                 className="btn ghost sm"
@@ -389,36 +306,22 @@ function BookingFlow({ service, onClose }) {
 function Stepper({ step }) {
   const steps = ['Date & time', 'Your details', 'Payment', 'Confirmed'];
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+    <div className="booking-stepper">
       {steps.map((label, i) => {
         const n = i + 1;
         const active = n === step;
         const done = n < step;
+        const stateClass = done ? 'is-done' : (active ? 'is-active' : '');
         return (
           <React.Fragment key={i}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{
-                width: 24, height: 24, borderRadius: '50%',
-                border: '2px solid var(--ink)',
-                background: done ? 'var(--ink)' : (active ? 'var(--c2)' : 'var(--bg)'),
-                color: done ? 'var(--bg)' : 'var(--ink)',
-                fontSize: 11, fontWeight: 700,
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'var(--mono)',
-              }}>
+            <div className={`booking-stepper-step ${stateClass}`}>
+              <span className="booking-stepper-num mono">
                 {done ? '✓' : n}
               </span>
-              <span className="mono" style={{
-                fontSize: 11,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                fontWeight: active ? 700 : 500,
-                opacity: active ? 1 : 0.55,
-                whiteSpace: 'nowrap',
-              }}>{label}</span>
+              <span className="mono booking-stepper-label">{label}</span>
             </div>
             {i < steps.length - 1 && (
-              <span style={{ width: 16, height: 1.5, background: 'var(--ink)', opacity: 0.3 }}/>
+              <span className="booking-stepper-divider" />
             )}
           </React.Fragment>
         );
@@ -449,19 +352,10 @@ function CalendarStep({
         All times are Central. Audits run Monday–Friday.
       </p>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1.1fr 0.9fr',
-        gap: 20,
-      }}>
+      <div className="booking-cal-grid">
         {/* Calendar */}
-        <div style={{
-          background: 'var(--card)',
-          border: '2px solid var(--ink)',
-          borderRadius: 16,
-          padding: 16,
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+        <div className="booking-cal-pane">
+          <div className="booking-cal-monthbar">
             <button
               onClick={() => {
                 const next = new Date(viewDate); next.setMonth(next.getMonth() - 1);
@@ -469,9 +363,9 @@ function CalendarStep({
                     (next.getFullYear() === today.getFullYear() && next.getMonth() < today.getMonth())) return;
                 setViewDate(next);
               }}
-              style={{ ...arrowBtnStyle }}
+              className="booking-cal-arrow"
             >‹</button>
-            <div className="display" style={{ fontSize: 18, letterSpacing: '-0.01em' }}>
+            <div className="display booking-cal-month-label">
               {fmtMonth(viewDate)}
             </div>
             <button
@@ -479,24 +373,17 @@ function CalendarStep({
                 const next = new Date(viewDate); next.setMonth(next.getMonth() + 1);
                 setViewDate(next);
               }}
-              style={{ ...arrowBtnStyle }}
+              className="booking-cal-arrow"
             >›</button>
           </div>
 
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)',
-            gap: 4, marginBottom: 6,
-          }}>
+          <div className="booking-cal-dow">
             {['S','M','T','W','T','F','S'].map((d, i) => (
-              <div key={i} className="mono" style={{
-                fontSize: 10, textAlign: 'center',
-                color: 'var(--ink-soft)', letterSpacing: '0.1em',
-                padding: '6px 0',
-              }}>{d}</div>
+              <div key={i} className="mono booking-cal-dow-cell">{d}</div>
             ))}
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4 }}>
+          <div className="booking-cal-days">
             {cells.map((d, i) => {
               if (!d) return <div key={i} />;
               const avail = isDayAvailable(d);
@@ -506,19 +393,14 @@ function CalendarStep({
                   key={i}
                   disabled={!avail}
                   onClick={() => setSelectedDay(d)}
+                  className="booking-cal-day"
                   style={{
-                    aspectRatio: '1 / 1',
                     border: sel ? '2px solid var(--ink)' : '1.5px solid transparent',
                     background: sel ? 'var(--c2)' : (avail ? 'var(--bg-alt)' : 'transparent'),
                     color: avail ? 'var(--ink)' : 'var(--ink-soft)',
-                    borderRadius: 10,
-                    fontSize: 14,
                     fontWeight: sel ? 700 : 500,
                     cursor: avail ? 'pointer' : 'not-allowed',
                     opacity: avail ? 1 : 0.35,
-                    fontFamily: 'inherit',
-                    transition: 'all 0.15s',
-                    position: 'relative',
                   }}
                   onMouseOver={(e) => { if (avail && !sel) e.currentTarget.style.background = 'var(--c2)'; }}
                   onMouseOut={(e) => { if (avail && !sel) e.currentTarget.style.background = 'var(--bg-alt)'; }}
@@ -529,7 +411,7 @@ function CalendarStep({
             })}
           </div>
 
-          <div style={{ display: 'flex', gap: 14, marginTop: 14, paddingTop: 12, borderTop: '1px dashed var(--ink-soft)' }}>
+          <div className="booking-cal-legend">
             <Legend swatch="var(--bg-alt)" label="Available" />
             <Legend swatch="var(--c2)" label="Selected" />
             <Legend swatch="transparent" label="Booked" dim />
@@ -537,41 +419,19 @@ function CalendarStep({
         </div>
 
         {/* Times */}
-        <div style={{
-          background: 'var(--card)',
-          border: '2px solid var(--ink)',
-          borderRadius: 16,
-          padding: 16,
-          display: 'flex', flexDirection: 'column',
-        }}>
-          <div className="mono" style={{
-            fontSize: 11, letterSpacing: '0.12em',
-            textTransform: 'uppercase', color: 'var(--ink-soft)',
-            marginBottom: 10,
-          }}>
+        <div className="booking-cal-pane booking-cal-pane-times">
+          <div className="mono booking-times-eyebrow">
             {selectedDay ? fmtDay(selectedDay) : 'Pick a date first'}
           </div>
 
           {!selectedDay && (
-            <div style={{
-              flex: 1,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: 'var(--ink-soft)', fontSize: 13, textAlign: 'center',
-              padding: 20,
-              border: '1.5px dashed var(--ink-soft)',
-              borderRadius: 12,
-              opacity: 0.6,
-            }}>
+            <div className="booking-times-empty">
               Select a day on the left to see open times.
             </div>
           )}
 
           {selectedDay && (
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: 8,
-            }}>
+            <div className="booking-times-grid">
               {TIMES.map((t) => {
                 const avail = availableTimes.includes(t);
                 const sel = selectedTime === t;
@@ -580,18 +440,13 @@ function CalendarStep({
                     key={t}
                     disabled={!avail}
                     onClick={() => setSelectedTime(t)}
+                    className="booking-time"
                     style={{
-                      padding: '12px 8px',
-                      border: '1.5px solid var(--ink)',
                       background: sel ? 'var(--ink)' : 'var(--bg)',
                       color: sel ? 'var(--bg)' : 'var(--ink)',
-                      borderRadius: 10,
-                      fontSize: 13, fontWeight: 600,
                       cursor: avail ? 'pointer' : 'not-allowed',
                       opacity: avail ? 1 : 0.35,
-                      fontFamily: 'inherit',
                       textDecoration: avail ? 'none' : 'line-through',
-                      transition: 'all 0.15s',
                     }}
                   >
                     {t}
@@ -619,17 +474,8 @@ function Legend({ swatch, label, dim }) {
   );
 }
 
-const arrowBtnStyle = {
-  width: 32, height: 32, borderRadius: 8,
-  border: '1.5px solid var(--ink)',
-  background: 'var(--bg)', cursor: 'pointer',
-  fontSize: 18, lineHeight: 1,
-  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-  fontFamily: 'inherit',
-};
-
 // ---- Step 2: Details ----
-function DetailsStep({ details, setDetails, inputStyle, selectedDay, selectedTime }) {
+function DetailsStep({ details, setDetails, selectedDay, selectedTime }) {
   const u = (k, v) => setDetails(d => ({ ...d, [k]: v }));
   return (
     <div>
@@ -640,18 +486,18 @@ function DetailsStep({ details, setDetails, inputStyle, selectedDay, selectedTim
         Booking <strong>{fmtDay(selectedDay)} at {selectedTime} CT</strong>. The more context you give me, the more useful your audit will be.
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+      <div className="booking-details-grid">
         <Field label="Name">
-          <input style={inputStyle} value={details.name} onChange={(e) => u('name', e.target.value)} placeholder="Jane Doe"/>
+          <input className="booking-form-input" value={details.name} onChange={(e) => u('name', e.target.value)} placeholder="Jane Doe"/>
         </Field>
         <Field label="Email">
-          <input style={inputStyle} type="email" value={details.email} onChange={(e) => u('email', e.target.value)} placeholder="jane@example.com"/>
+          <input className="booking-form-input" type="email" value={details.email} onChange={(e) => u('email', e.target.value)} placeholder="jane@example.com"/>
         </Field>
         <Field label="Instagram handle">
-          <input style={inputStyle} value={details.handle} onChange={(e) => u('handle', e.target.value)} placeholder="@yourhandle"/>
+          <input className="booking-form-input" value={details.handle} onChange={(e) => u('handle', e.target.value)} placeholder="@yourhandle"/>
         </Field>
         <Field label="Current followers">
-          <select style={inputStyle} value={details.followers} onChange={(e) => u('followers', e.target.value)}>
+          <select className="booking-form-input" value={details.followers} onChange={(e) => u('followers', e.target.value)}>
             <option>0–5K</option>
             <option>5K–25K</option>
             <option>25K–100K</option>
@@ -659,15 +505,15 @@ function DetailsStep({ details, setDetails, inputStyle, selectedDay, selectedTim
             <option>500K+</option>
           </select>
         </Field>
-        <div style={{ gridColumn: '1 / -1' }}>
+        <div className="booking-details-grid-full">
           <Field label="What's your #1 goal?">
-            <input style={inputStyle} value={details.goal} onChange={(e) => u('goal', e.target.value)} placeholder="e.g. break 25K, land a brand deal, figure out why my reels stopped performing"/>
+            <input className="booking-form-input" value={details.goal} onChange={(e) => u('goal', e.target.value)} placeholder="e.g. break 25K, land a brand deal, figure out why my reels stopped performing"/>
           </Field>
         </div>
-        <div style={{ gridColumn: '1 / -1' }}>
+        <div className="booking-details-grid-full">
           <Field label="Anything else I should know? (optional)">
             <textarea
-              style={{ ...inputStyle, minHeight: 80, resize: 'vertical', fontFamily: 'inherit' }}
+              className="booking-form-input booking-form-textarea"
               value={details.notes}
               onChange={(e) => u('notes', e.target.value)}
               placeholder="Stuck spots, recent flops, niche shifts, anything that'll help me dig in."
@@ -682,11 +528,7 @@ function DetailsStep({ details, setDetails, inputStyle, selectedDay, selectedTim
 function Field({ label, children }) {
   return (
     <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-      <span className="mono" style={{
-        fontSize: 11, letterSpacing: '0.12em',
-        textTransform: 'uppercase', color: 'var(--ink-soft)',
-        fontWeight: 600,
-      }}>{label}</span>
+      <span className="mono booking-form-label" style={{ marginBottom: 0 }}>{label}</span>
       {children}
     </label>
   );
@@ -694,7 +536,7 @@ function Field({ label, children }) {
 
 // ---- Step 3: Payment ----
 function PaymentStep({
-  card, setCard, inputStyle, price, processing,
+  card, setCard, price, processing,
   basePrice, finalPrice, appliedCode, discountAmount,
   discountInput, setDiscountInput, applyDiscount, removeDiscount, discountError,
 }) {
@@ -708,10 +550,10 @@ function PaymentStep({
         Secure checkout — you'll be charged <strong>{fmtMoney(finalPrice)}</strong> when you confirm. Questions? <a href="mailto:hi@mikacreative.co" style={{ color: 'var(--ink)', textDecoration: 'underline' }}>Email me before you book.</a>
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 14, maxWidth: 480 }}>
+      <div className="booking-pay-form">
         <Field label="Card number">
           <input
-            style={inputStyle}
+            className="booking-form-input"
             value={card.number}
             onChange={(e) => {
               const v = e.target.value.replace(/[^\d]/g, '').slice(0, 16);
@@ -722,10 +564,10 @@ function PaymentStep({
             inputMode="numeric"
           />
         </Field>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14 }}>
+        <div className="booking-pay-row-3">
           <Field label="Expiry">
             <input
-              style={inputStyle}
+              className="booking-form-input"
               value={card.exp}
               onChange={(e) => {
                 let v = e.target.value.replace(/[^\d]/g, '').slice(0, 4);
@@ -738,7 +580,7 @@ function PaymentStep({
           </Field>
           <Field label="CVC">
             <input
-              style={inputStyle}
+              className="booking-form-input"
               value={card.cvc}
               onChange={(e) => u('cvc', e.target.value.replace(/[^\d]/g, '').slice(0, 4))}
               placeholder="123"
@@ -747,7 +589,7 @@ function PaymentStep({
           </Field>
           <Field label="ZIP">
             <input
-              style={inputStyle}
+              className="booking-form-input"
               value={card.zip}
               onChange={(e) => u('zip', e.target.value.replace(/[^\d]/g, '').slice(0, 5))}
               placeholder="12345"
@@ -757,14 +599,7 @@ function PaymentStep({
         </div>
       </div>
 
-      <div style={{
-        marginTop: 20,
-        padding: '16px 18px',
-        background: 'var(--bg-alt)',
-        border: '1.5px dashed var(--ink)',
-        borderRadius: 12,
-        maxWidth: 480,
-      }}>
+      <div className="booking-discount-box">
         <div className="mono" style={{
           fontSize: 11, letterSpacing: '0.12em',
           textTransform: 'uppercase', fontWeight: 600,
@@ -811,8 +646,8 @@ function PaymentStep({
           <>
             <div style={{ display: 'flex', gap: 8 }}>
               <input
+                className="booking-form-input"
                 style={{
-                  ...inputStyle,
                   flex: 1,
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
@@ -928,6 +763,7 @@ function ConfirmedStep({ service, day, time, email }) {
         padding: '20px 24px',
         boxShadow: '4px 4px 0 var(--ink)',
         minWidth: 320,
+        maxWidth: '100%',
       }}>
         <Row k="Service" v={service.title}/>
         <Row k="Date" v={day ? fmtDay(day) : ''}/>

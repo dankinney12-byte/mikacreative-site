@@ -63,56 +63,49 @@ function Wordmark({
 function Nav({
   onOpenQuiz
 }) {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
   return /*#__PURE__*/React.createElement("nav", {
-    style: {
-      position: 'sticky',
-      top: 0,
-      zIndex: 50,
-      background: 'var(--bg)',
-      borderBottom: '2px solid var(--ink)'
-    }
+    className: "nav"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "container",
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      height: 76
-    }
+    className: "container nav-inner"
   }, /*#__PURE__*/React.createElement("a", {
     href: "#top",
-    style: {
-      textDecoration: 'none'
-    }
+    className: "nav-logo",
+    onClick: close
   }, /*#__PURE__*/React.createElement(Wordmark, {
     size: 34
+  })), /*#__PURE__*/React.createElement("button", {
+    className: `nav-toggle ${open ? 'is-open' : ''}`,
+    "aria-label": "Toggle menu",
+    "aria-expanded": open,
+    onClick: () => setOpen(!open)
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "nav-toggle-line"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "nav-toggle-line"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "nav-toggle-line"
   })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 32
-    }
+    className: `nav-links ${open ? 'is-open' : ''}`
   }, /*#__PURE__*/React.createElement("a", {
     href: "#services",
     className: "link",
-    style: {
-      borderBottom: 'none'
-    }
+    onClick: close
   }, "Work with me"), /*#__PURE__*/React.createElement("a", {
     href: "#about",
     className: "link",
-    style: {
-      borderBottom: 'none'
-    }
+    onClick: close
   }, "About"), /*#__PURE__*/React.createElement("a", {
     href: "#speaking",
     className: "link",
-    style: {
-      borderBottom: 'none'
-    }
+    onClick: close
   }, "Speaking"), /*#__PURE__*/React.createElement("button", {
     className: "btn sm",
-    onClick: onOpenQuiz
+    onClick: () => {
+      close();
+      onOpenQuiz();
+    }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 16
@@ -130,20 +123,11 @@ function HeroBigType({
   const audit = SERVICES.find(s => s.id === 'audit');
   return /*#__PURE__*/React.createElement("section", {
     id: "top",
-    style: {
-      paddingTop: 64,
-      paddingBottom: 32
-    }
+    className: "hero"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 12,
-      marginBottom: 32,
-      flexWrap: 'wrap'
-    }
+    className: "hero-tags"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag"
   }, "@_joytothefood_ \xB7 440K"), /*#__PURE__*/React.createElement("span", {
@@ -152,12 +136,7 @@ function HeroBigType({
       background: 'var(--c2)'
     }
   }, "1,001 to 440K in 24 months")), /*#__PURE__*/React.createElement("h1", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(60px, 9.5vw, 156px)',
-      margin: 0,
-      letterSpacing: '-0.025em'
-    }
+    className: "display hero-headline"
   }, "instagram", /*#__PURE__*/React.createElement("br", null), "that ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
@@ -167,50 +146,22 @@ function HeroBigType({
       color: 'var(--c3)'
     }
   }, "works.")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1.2fr 1fr',
-      gap: 48,
-      marginTop: 48,
-      alignItems: 'end'
-    }
+    className: "hero-grid"
   }, /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 22,
-      lineHeight: 1.4,
-      margin: 0,
-      maxWidth: 640,
-      color: 'var(--ink-soft)'
-    }
+    className: "hero-body"
   }, "I'm Mika - engineer turned food creator. I grew ", /*#__PURE__*/React.createElement("span", {
     className: "mono",
     style: {
-      fontSize: 18
+      fontSize: '0.85em'
     }
   }, "@_joytothefood_"), " from 1,001 to 440K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "I'll show you exactly what moved the needle."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 14,
-      alignItems: 'flex-start'
-    }
+    className: "hero-cta-stack"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
     onClick: () => onBook && onBook(audit)
   }, "Book your audit \u2014 $950 \u2192"), /*#__PURE__*/React.createElement("button", {
     onClick: onOpenQuiz,
-    className: "link",
-    style: {
-      fontSize: 14,
-      background: 'none',
-      border: 'none',
-      borderBottom: '2px dotted var(--ink)',
-      padding: 0,
-      paddingBottom: 1,
-      cursor: 'pointer',
-      fontFamily: 'inherit',
-      fontWeight: 600
-    }
+    className: "hero-cta-quiz"
   }, "not sure yet? take the 30-sec quiz")))));
 }
 function HeroImageGrid({
@@ -243,38 +194,21 @@ function HeroImageGrid({
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(5, 1fr)',
-      gap: 14,
-      height: 280,
-      marginBottom: 56
-    }
+    className: "hero-photos"
   }, photos.map((p, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     className: "photo",
     style: {
-      background: p.c,
-      transform: i % 2 ? 'translateY(12px)' : 'translateY(-8px)',
-      border: '2px solid var(--ink)'
+      background: p.c
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "label"
   }, p.label)))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      textAlign: 'center',
-      maxWidth: 980,
-      margin: '0 auto'
-    }
+    className: "hero-image-grid-content"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, "@_joytothefood_ \xB7 440k followers \xB7 5.1M monthly views"), /*#__PURE__*/React.createElement("h1", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(56px, 8vw, 128px)',
-      margin: '20px 0 28px',
-      letterSpacing: '-0.025em'
-    }
+    className: "display hero-image-grid-headline"
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
@@ -284,29 +218,15 @@ function HeroImageGrid({
       color: 'var(--c3)'
     }
   }, "actually"), " works."), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 20,
-      lineHeight: 1.4,
-      color: 'var(--ink-soft)',
-      maxWidth: 620,
-      margin: '0 auto 32px'
-    }
+    className: "hero-image-grid-sub"
   }, "I grew @_joytothefood_ from 1K to 440K in 24 months, in the current algorithm, in a saturated niche. I'll show you how."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 16,
-      justifyContent: 'center',
-      flexWrap: 'wrap'
-    }
+    className: "hero-image-grid-cta"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
     onClick: () => onBook && onBook(audit)
   }, "Book your audit \u2014 $950"), /*#__PURE__*/React.createElement("button", {
     onClick: onOpenQuiz,
-    className: "btn ghost",
-    style: {
-      fontFamily: 'inherit'
-    }
+    className: "btn ghost"
   }, "Not sure? Take the quiz")))));
 }
 
@@ -330,44 +250,23 @@ function ProofBar() {
     num: '3',
     label: 'podcast features'
   }];
+  const colors = ['var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)', 'var(--c5)'];
   return /*#__PURE__*/React.createElement("section", {
-    style: {
-      padding: '48px 0',
-      borderTop: '2px solid var(--ink)',
-      borderBottom: '2px solid var(--ink)',
-      background: 'var(--bg)'
-    }
+    className: "proof-bar"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(5, 1fr)',
-      gap: 32
-    }
+    className: "proof-bar-grid"
   }, stats.map((s, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
-    style: {
-      borderLeft: i === 0 ? 'none' : '1.5px solid var(--ink)',
-      paddingLeft: i === 0 ? 0 : 24
-    }
+    className: "proof-bar-stat"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "display",
+    className: "display proof-bar-num",
     style: {
-      fontSize: 'clamp(40px, 5vw, 64px)',
-      lineHeight: 1,
-      color: ['var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)', 'var(--c5)'][i],
-      letterSpacing: '-0.02em'
+      color: colors[i]
     }
   }, s.num), /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      marginTop: 8,
-      textTransform: 'uppercase',
-      letterSpacing: '0.1em',
-      color: 'var(--ink-soft)'
-    }
+    className: "mono proof-bar-label"
   }, s.label))))));
 }
 
@@ -475,17 +374,11 @@ function ServiceCard({
   const isComingSoon = s.comingSoon;
   const isAvailable = s.available;
   return /*#__PURE__*/React.createElement("div", {
-    className: "card",
+    className: `card service-card ${featured ? 'featured' : ''}`,
     style: {
-      padding: featured ? 40 : 32,
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 18,
-      position: 'relative',
       background: featured ? s.color : 'var(--card)',
       opacity: isComingSoon ? 0.55 : 1,
-      filter: isComingSoon ? 'grayscale(0.7)' : 'none',
-      transition: 'opacity 0.25s, filter 0.25s'
+      filter: isComingSoon ? 'grayscale(0.7)' : 'none'
     },
     onMouseEnter: e => {
       if (isComingSoon) {
@@ -500,149 +393,48 @@ function ServiceCard({
       }
     }
   }, isComingSoon && /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'absolute',
-      top: featured ? 20 : 16,
-      right: featured ? 20 : 16,
-      background: 'var(--ink)',
-      color: 'var(--bg)',
-      fontSize: 10,
-      fontFamily: 'var(--mono)',
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase',
-      padding: '6px 10px',
-      borderRadius: 999,
-      fontWeight: 700,
-      zIndex: 2
-    }
+    className: "service-card-badge coming-soon"
   }, "Coming soon"), isAvailable && /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'absolute',
-      top: featured ? 20 : 16,
-      right: featured ? 20 : 16,
-      background: '#1a8870',
-      color: 'white',
-      fontSize: 10,
-      fontFamily: 'var(--mono)',
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase',
-      padding: '6px 10px',
-      borderRadius: 999,
-      fontWeight: 700,
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: 6,
-      zIndex: 2
-    }
+    className: "service-card-badge available"
   }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      width: 6,
-      height: 6,
-      borderRadius: '50%',
-      background: 'white',
-      animation: 'pulse 2s infinite'
-    }
+    className: "service-card-badge-pulse"
   }), "Available now"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
-      gap: 16,
-      paddingRight: 110
-    }
+    className: "service-card-tag-row"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
       background: featured ? 'var(--bg)' : s.color
     }
   }, s.tag)), !isComingSoon && /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'baseline',
-      gap: 12,
-      flexWrap: 'wrap'
-    }
+    className: "service-card-price-row"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "display",
-    style: {
-      fontSize: featured ? 40 : 30,
-      lineHeight: 1
-    }
+    className: "display service-card-price"
   }, s.price), s.sub && /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      color: featured ? 'var(--ink)' : 'var(--ink-soft)',
-      opacity: 0.8
-    }
+    className: "mono service-card-price-sub"
   }, s.sub)), /*#__PURE__*/React.createElement("h3", {
-    className: "display",
-    style: {
-      fontSize: featured ? 52 : 34,
-      margin: 0,
-      letterSpacing: '-0.02em',
-      lineHeight: 1
-    }
+    className: "display service-card-title"
   }, s.title, s.subtitle && /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: '0.5em',
-      color: featured ? 'var(--ink)' : 'var(--ink-soft)',
-      marginTop: 6,
-      opacity: 0.75
-    }
+    className: "service-card-subtitle"
   }, s.subtitle)), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: featured ? 17 : 14,
-      lineHeight: 1.5,
-      margin: 0,
-      color: featured ? 'var(--ink)' : 'var(--ink-soft)'
-    }
+    className: "service-card-blurb"
   }, s.blurb), /*#__PURE__*/React.createElement("ul", {
-    style: {
-      listStyle: 'none',
-      padding: 0,
-      margin: 0,
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 8
-    }
+    className: "service-card-bullets"
   }, s.bullets.map((b, i) => /*#__PURE__*/React.createElement("li", {
     key: i,
-    style: {
-      display: 'flex',
-      gap: 10,
-      fontSize: 13.5,
-      alignItems: 'center'
-    }
+    className: "service-card-bullet"
   }, /*#__PURE__*/React.createElement("span", {
+    className: "service-card-check",
     style: {
-      width: 18,
-      height: 18,
-      borderRadius: '50%',
       background: featured ? 'var(--ink)' : s.color,
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: featured ? s.color : 'var(--ink)',
-      fontSize: 11,
-      fontWeight: 700,
-      flexShrink: 0
+      color: featured ? s.color : 'var(--ink)'
     }
   }, "\u2713"), b))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 'auto',
-      paddingTop: 8
-    }
+    className: "service-card-cta-wrap"
   }, isComingSoon ? /*#__PURE__*/React.createElement("div", {
-    className: "mono",
+    className: "mono service-card-coming-note",
     style: {
-      fontSize: 11,
-      letterSpacing: '0.16em',
-      textTransform: 'uppercase',
       color: featured ? 'var(--ink)' : 'var(--ink-soft)',
-      padding: '14px 0 4px',
-      borderTop: featured ? '1.5px dashed var(--ink)' : '1.5px dashed var(--ink-soft)',
-      opacity: 0.7
+      borderTop: featured ? '1.5px dashed var(--ink)' : '1.5px dashed var(--ink-soft)'
     }
   }, "Launching soon") : /*#__PURE__*/React.createElement("button", {
     className: "btn sm",
@@ -659,58 +451,28 @@ function Services({
 }) {
   return /*#__PURE__*/React.createElement("section", {
     id: "services",
-    style: {
-      padding: '120px 0 80px',
-      background: 'var(--bg-alt)',
-      borderTop: '2px solid var(--ink)',
-      borderBottom: '2px solid var(--ink)'
-    }
+    className: "services"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-end',
-      marginBottom: 56,
-      gap: 40,
-      flexWrap: 'wrap'
-    }
+    className: "services-header"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      maxWidth: 760
-    }
+    className: "services-header-text"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, "work with me"), /*#__PURE__*/React.createElement("h2", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(48px, 6vw, 88px)',
-      margin: '16px 0 16px',
-      letterSpacing: '-0.02em'
-    }
+    className: "display services-headline"
   }, "two ways to ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
   }, "start.")), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 18,
-      lineHeight: 1.5,
-      color: 'var(--ink-soft)',
-      margin: 0,
-      maxWidth: 580
-    }
+    className: "services-sub"
   }, "Both include a full audit. One includes me in your corner while you implement.")), /*#__PURE__*/React.createElement("button", {
     className: "btn",
     onClick: onOpenQuiz
   }, "Curious if it's right for you? Take the quiz \u2192")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: 24,
-      marginBottom: 32
-    }
+    className: "services-grid"
   }, /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'audit'),
     featured: true,
@@ -720,34 +482,13 @@ function Services({
     featured: true,
     onBook: onBook
   })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 16,
-      margin: '48px 0 24px'
-    }
+    className: "services-divider"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      letterSpacing: '0.15em',
-      textTransform: 'uppercase',
-      fontWeight: 600,
-      color: 'var(--ink-soft)'
-    }
+    className: "mono services-divider-label"
   }, "Coming soon"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1,
-      height: 1.5,
-      background: 'var(--ink)',
-      opacity: 0.15
-    }
+    className: "services-divider-line"
   })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: 24
-    }
+    className: "services-grid"
   }, /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'mastermind'),
     onBook: onBook
@@ -763,120 +504,62 @@ function Services({
 function About() {
   return /*#__PURE__*/React.createElement("section", {
     id: "about",
-    style: {
-      padding: '120px 0'
-    }
+    className: "about"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1.2fr',
-      gap: 64,
-      alignItems: 'center'
-    }
+    className: "about-grid"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 14
-    }
+    className: "about-photos"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "photo",
+    className: "photo about-photo-main",
     style: {
-      aspectRatio: '4/5',
-      background: 'var(--c4)',
-      boxShadow: '8px 8px 0 var(--ink)',
-      border: '2px solid var(--ink)'
+      background: 'var(--c4)'
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "label"
   }, "brand photo \xB7 mika")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 14
-    }
+    className: "about-photo-grid"
   }, /*#__PURE__*/React.createElement("div", {
     className: "photo",
     style: {
-      aspectRatio: '1',
-      background: 'var(--c2)',
-      border: '2px solid var(--ink)'
+      background: 'var(--c2)'
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "label"
   }, "mika + dan")), /*#__PURE__*/React.createElement("div", {
     className: "photo",
     style: {
-      aspectRatio: '1',
-      background: 'var(--c5)',
-      border: '2px solid var(--ink)'
+      background: 'var(--c5)'
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "label"
   }, "filming BTS")))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, "about"), /*#__PURE__*/React.createElement("h2", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(44px, 5.5vw, 76px)',
-      margin: '16px 0 24px',
-      letterSpacing: '-0.02em',
-      lineHeight: 0.95
-    }
+    className: "display about-headline"
   }, "hi, I'm ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
   }, "mika.")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 18,
-      lineHeight: 1.55,
-      color: 'var(--ink-soft)',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 16,
-      maxWidth: 560
-    }
-  }, /*#__PURE__*/React.createElement("p", {
-    style: {
-      margin: 0
-    }
-  }, "I grew up in ", /*#__PURE__*/React.createElement("strong", {
+    className: "about-text"
+  }, /*#__PURE__*/React.createElement("p", null, "I grew up in ", /*#__PURE__*/React.createElement("strong", {
     style: {
       color: 'var(--ink)'
     }
-  }, "Yosemite"), ". Studied engineering. Worked corporate. Quit twice. Once to backpack Southeast Asia with my husband Dan, once to road trip the Southwest."), /*#__PURE__*/React.createElement("p", {
-    style: {
-      margin: 0
-    }
-  }, "We started ", /*#__PURE__*/React.createElement("strong", {
+  }, "Yosemite"), ". Studied engineering. Worked corporate. Quit twice. Once to backpack Southeast Asia with my husband Dan, once to road trip the Southwest."), /*#__PURE__*/React.createElement("p", null, "We started ", /*#__PURE__*/React.createElement("strong", {
     style: {
       color: 'var(--ink)'
     }
   }, "Joy to the Food"), " from my kitchen in Minneapolis. In two years it went from 1,001 followers to 440K. Now we run it from wherever we want, with a toddler underfoot."), /*#__PURE__*/React.createElement("p", {
-    style: {
-      margin: 0,
-      fontSize: 22,
-      color: 'var(--ink)',
-      fontWeight: 600
-    }
+    className: "about-text-emph"
   }, "My philosophy: ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c3)'
     }
-  }, "engineer the life you want.")), /*#__PURE__*/React.createElement("p", {
-    style: {
-      margin: 0
-    }
-  }, "I treat Instagram like a system, not a guessing game. Hooks, content pillars, AI workflows, revenue streams. All engineered, all repeatable. That's what I teach.")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 32,
-      display: 'flex',
-      gap: 12,
-      flexWrap: 'wrap'
-    }
+  }, "engineer the life you want.")), /*#__PURE__*/React.createElement("p", null, "I treat Instagram like a system, not a guessing game. Hooks, content pillars, AI workflows, revenue streams. All engineered, all repeatable. That's what I teach.")), /*#__PURE__*/React.createElement("div", {
+    className: "about-stickers"
   }, /*#__PURE__*/React.createElement("span", {
     className: "sticker",
     style: {
@@ -910,108 +593,46 @@ function About() {
 function Freebie() {
   return /*#__PURE__*/React.createElement("section", {
     id: "freebie",
-    style: {
-      padding: '120px 0'
-    }
+    className: "freebie"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "card",
-    style: {
-      padding: '0',
-      overflow: 'hidden',
-      display: 'grid',
-      gridTemplateColumns: '1.1fr 1fr',
-      background: 'var(--c2)'
-    }
+    className: "card freebie-card"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '56px'
-    }
+    className: "freebie-content"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
       background: 'var(--bg)'
     }
   }, "Free download"), /*#__PURE__*/React.createElement("h2", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(40px, 5vw, 64px)',
-      margin: '20px 0 16px',
-      letterSpacing: '-0.02em'
-    }
+    className: "display freebie-headline"
   }, "the hook formula", /*#__PURE__*/React.createElement("br", null), "that got me to ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
   }, "440K.")), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 18,
-      lineHeight: 1.5,
-      marginBottom: 28,
-      maxWidth: 480
-    }
+    className: "freebie-sub"
   }, "The exact hook stacking method I use on every reel. 12 page PDF. No newsletter, no sales sequence. Drop your email, get the file."), /*#__PURE__*/React.createElement("form", {
-    style: {
-      display: 'flex',
-      gap: 10,
-      flexWrap: 'wrap',
-      maxWidth: 480
-    },
+    className: "freebie-form",
     onSubmit: e => e.preventDefault()
   }, /*#__PURE__*/React.createElement("input", {
     type: "email",
     placeholder: "your@email.com",
-    style: {
-      flex: 1,
-      minWidth: 240,
-      padding: '14px 20px',
-      border: '2px solid var(--ink)',
-      borderRadius: 999,
-      fontSize: 15,
-      fontFamily: 'inherit',
-      background: 'var(--bg)'
-    }
+    className: "freebie-input"
   }), /*#__PURE__*/React.createElement("button", {
     type: "submit",
     className: "btn"
   }, "Send it \u2192")), /*#__PURE__*/React.createElement("p", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      marginTop: 14,
-      opacity: 0.6
-    }
+    className: "mono freebie-disclaimer"
   }, "One and done delivery. I don't run a newsletter.")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'relative',
-      background: 'var(--c1)',
-      borderLeft: '2px solid var(--ink)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 40
-    }
+    className: "freebie-visual"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "photo",
-    style: {
-      width: '70%',
-      aspectRatio: '3/4',
-      background: 'var(--bg)',
-      transform: 'rotate(-4deg)',
-      boxShadow: '8px 8px 0 var(--ink)'
-    }
+    className: "photo freebie-pdf"
   }, /*#__PURE__*/React.createElement("span", {
     className: "label"
   }, "PDF cover preview")), /*#__PURE__*/React.createElement("div", {
-    className: "sticker",
-    style: {
-      position: 'absolute',
-      top: 36,
-      right: 36,
-      transform: 'rotate(8deg)',
-      background: 'var(--c3)'
-    }
+    className: "sticker freebie-sticker"
   }, "free \xB7 12 pages")))));
 }
 
@@ -1026,18 +647,11 @@ const TESTIMONIALS = [{
 function Testimonials() {
   const t = TESTIMONIALS[0];
   return /*#__PURE__*/React.createElement("section", {
-    style: {
-      padding: '120px 0',
-      background: 'var(--ink)',
-      color: 'var(--bg)'
-    }
+    className: "testimonials"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginBottom: 56,
-      maxWidth: 880
-    }
+    className: "testimonials-header"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow",
     style: {
@@ -1052,86 +666,30 @@ function Testimonials() {
       marginRight: 10
     }
   }), "What folks are saying"), /*#__PURE__*/React.createElement("h2", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(48px, 6vw, 88px)',
-      margin: '16px 0 0',
-      letterSpacing: '-0.02em'
-    }
+    className: "display testimonials-headline"
   }, "cracked the ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
   }, "code."))), /*#__PURE__*/React.createElement("div", {
+    className: "testimonial-card",
     style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1.6fr',
-      gap: 0,
-      alignItems: 'stretch',
-      background: t.color,
-      color: 'var(--ink)',
-      border: '2px solid var(--bg)',
-      borderRadius: 32,
-      overflow: 'hidden',
-      boxShadow: '8px 8px 0 var(--c1)'
+      background: t.color
     }
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '48px 40px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      background: 'rgba(0,0,0,0.04)',
-      borderRight: '2px solid var(--ink)',
-      gap: 24
-    }
+    className: "testimonial-mark-side"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(120px, 16vw, 220px)',
-      lineHeight: 0.7,
-      letterSpacing: '-0.05em',
-      color: 'var(--ink)'
-    }
+    className: "display testimonial-mark"
   }, "\""), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      fontSize: 22,
-      marginBottom: 4
-    }
+    className: "testimonial-name"
   }, t.name), /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase',
-      opacity: 0.65,
-      fontWeight: 600
-    }
+    className: "mono testimonial-role"
   }, "Fellow food creator"))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '48px 48px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center'
-    }
+    className: "testimonial-quote-side"
   }, /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 'clamp(20px, 2vw, 26px)',
-      lineHeight: 1.45,
-      margin: 0,
-      fontWeight: 500,
-      fontFamily: 'inherit'
-    }
+    className: "testimonial-quote"
   }, t.quote))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 32,
-      display: 'flex',
-      alignItems: 'center',
-      gap: 12,
-      color: 'var(--c2)',
-      fontSize: 13
-    }
+    className: "testimonials-note"
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontFamily: 'var(--mono)',
@@ -1160,41 +718,11 @@ function BookingForm() {
     ...f,
     [k]: v
   }));
-  const inputStyle = {
-    width: '100%',
-    padding: '12px 16px',
-    border: '2px solid var(--ink)',
-    borderRadius: 14,
-    fontSize: 14,
-    fontFamily: 'inherit',
-    background: 'var(--bg)',
-    boxSizing: 'border-box'
-  };
-  const labelStyle = {
-    fontSize: 11,
-    fontFamily: 'DM Mono, monospace',
-    textTransform: 'uppercase',
-    letterSpacing: '0.1em',
-    color: 'var(--ink-soft)',
-    marginBottom: 6,
-    display: 'block'
-  };
   if (submitted) {
     return /*#__PURE__*/React.createElement("div", {
-      style: {
-        padding: 28,
-        background: 'var(--c3)',
-        border: '2px solid var(--ink)',
-        borderRadius: 20,
-        boxShadow: '4px 4px 0 var(--ink)'
-      }
+      className: "booking-form-success"
     }, /*#__PURE__*/React.createElement("h4", {
-      className: "display",
-      style: {
-        fontSize: 32,
-        margin: '0 0 8px',
-        letterSpacing: '-0.02em'
-      }
+      className: "display booking-form-success-title"
     }, "got it!"), /*#__PURE__*/React.createElement("p", {
       style: {
         fontSize: 14,
@@ -1204,99 +732,62 @@ function BookingForm() {
     }, "I'll be in touch within 48 hours. Looking forward to it."));
   }
   return /*#__PURE__*/React.createElement("form", {
+    className: "booking-form",
     onSubmit: e => {
       e.preventDefault();
       setSubmitted(true);
-    },
-    style: {
-      display: 'grid',
-      gap: 14,
-      padding: 24,
-      background: 'var(--bg)',
-      border: '2px solid var(--ink)',
-      borderRadius: 20,
-      boxShadow: '4px 4px 0 var(--ink)'
     }
   }, /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase',
-      color: 'var(--ink-soft)'
-    }
+    className: "mono booking-form-eyebrow"
   }, "booking inquiry"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 12
-    }
+    className: "booking-form-row-2"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
-    style: labelStyle
+    className: "booking-form-label"
   }, "your name"), /*#__PURE__*/React.createElement("input", {
     required: true,
-    style: inputStyle,
+    className: "booking-form-input",
     value: form.name,
     onChange: e => update('name', e.target.value)
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
-    style: labelStyle
+    className: "booking-form-label"
   }, "email"), /*#__PURE__*/React.createElement("input", {
     required: true,
     type: "email",
-    style: inputStyle,
+    className: "booking-form-input",
     value: form.email,
     onChange: e => update('email', e.target.value)
   }))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1.3fr 1fr',
-      gap: 12
-    }
+    className: "booking-form-row-asym"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
-    style: labelStyle
+    className: "booking-form-label"
   }, "company / podcast / event"), /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: form.org,
     onChange: e => update('org', e.target.value)
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
-    style: labelStyle
+    className: "booking-form-label"
   }, "date (approx)"), /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: form.date,
     onChange: e => update('date', e.target.value),
     placeholder: "e.g. June 2026"
   }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
-    style: labelStyle
+    className: "booking-form-label"
   }, "type"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 8,
-      flexWrap: 'wrap'
-    }
+    className: "booking-form-types"
   }, ['Conference', 'Podcast', 'Workshop', 'Other'].map(t => /*#__PURE__*/React.createElement("button", {
     type: "button",
     key: t,
     onClick: () => update('type', t),
+    className: "booking-form-type",
     style: {
-      padding: '8px 14px',
-      border: '2px solid var(--ink)',
-      borderRadius: 999,
-      background: form.type === t ? 'var(--c5)' : 'var(--bg)',
-      fontFamily: 'inherit',
-      fontSize: 13,
-      fontWeight: 600,
-      cursor: 'pointer'
+      background: form.type === t ? 'var(--c5)' : 'var(--bg)'
     }
   }, t)))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
-    style: labelStyle
+    className: "booking-form-label"
   }, "tell me about it"), /*#__PURE__*/React.createElement("textarea", {
     rows: 3,
-    style: {
-      ...inputStyle,
-      resize: 'vertical',
-      minHeight: 80,
-      fontFamily: 'inherit'
-    },
+    className: "booking-form-input booking-form-textarea",
     value: form.message,
     onChange: e => update('message', e.target.value),
     placeholder: "Audience size, topic ideas, format, anything else"
@@ -1308,95 +799,46 @@ function BookingForm() {
 function Speaking() {
   return /*#__PURE__*/React.createElement("section", {
     id: "speaking",
-    style: {
-      padding: '120px 0',
-      background: 'var(--bg-alt)',
-      borderTop: '2px solid var(--ink)',
-      borderBottom: '2px solid var(--ink)'
-    }
+    className: "speaking"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1.3fr',
-      gap: 64,
-      alignItems: 'flex-start'
-    }
+    className: "speaking-grid"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, "speaking & media"), /*#__PURE__*/React.createElement("h2", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(40px, 5vw, 72px)',
-      margin: '16px 0 24px',
-      letterSpacing: '-0.02em',
-      lineHeight: 0.95
-    }
+    className: "display speaking-headline"
   }, "book me to ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c5)'
     }
   }, "speak.")), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 17,
-      lineHeight: 1.5,
-      color: 'var(--ink-soft)',
-      marginBottom: 28
-    }
+    className: "speaking-sub"
   }, "I've spoken to hundreds of food creators at conferences and on podcasts. It's truly my passion and I'd love to share it with your audience."), /*#__PURE__*/React.createElement(BookingForm, null)), /*#__PURE__*/React.createElement("div", {
-    className: "card",
-    style: {
-      padding: 40,
-      background: 'var(--c5)'
-    }
+    className: "card speaking-talk-card"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
       background: 'var(--bg)'
     }
   }, "Signature talk"), /*#__PURE__*/React.createElement("h3", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(32px, 4vw, 52px)',
-      margin: '20px 0 20px',
-      letterSpacing: '-0.02em',
-      lineHeight: 1
-    }
+    className: "display speaking-talk-title"
   }, "Instagram That Actually Works:", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--bg)'
     }
   }, "Hooks, Revenue & AI")), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 15.5,
-      lineHeight: 1.55,
-      margin: 0,
-      marginBottom: 20
-    }
+    className: "speaking-talk-body"
   }, "Most food creators are working harder than they need to and monetizing less than they should. Not because their content is bad, but because they haven't found the strategy yet."), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 15.5,
-      lineHeight: 1.55,
-      margin: 0,
-      marginBottom: 20
-    }
+    className: "speaking-talk-body"
   }, "This session covers the three levers that actually move the needle: hooks that stop the scroll, a content system built for multiple revenue streams, and AI workflows that let a small team operate like a big one."), /*#__PURE__*/React.createElement("p", {
+    className: "speaking-talk-body",
     style: {
-      fontSize: 15.5,
-      lineHeight: 1.55,
-      margin: 0,
-      fontWeight: 600
+      fontWeight: 600,
+      marginBottom: 0
     }
   }, "You'll leave with a roadmap. Not inspiration. Something you can use Monday morning."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 28,
-      paddingTop: 20,
-      borderTop: '2px solid var(--ink)',
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: 8
-    }
+    className: "speaking-talk-tags"
   }, ['hook stacking', 'carousel formula', 'AI prompts', 'monetization', 'small team workflow'].map(t => /*#__PURE__*/React.createElement("span", {
     key: t,
     className: "tag",
@@ -1418,27 +860,16 @@ function ContactCTA({
   const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
   return /*#__PURE__*/React.createElement("section", {
     id: "contact",
-    style: {
-      padding: '120px 0 80px'
-    }
+    className: "contact-cta"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "container",
-    style: {
-      textAlign: 'center'
-    }
+    className: "container contact-cta-inner"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow",
     style: {
       justifyContent: 'center'
     }
   }, "let's go"), /*#__PURE__*/React.createElement("h2", {
-    className: "display",
-    style: {
-      fontSize: 'clamp(64px, 10vw, 180px)',
-      margin: '20px 0 32px',
-      letterSpacing: '-0.03em',
-      lineHeight: 0.92
-    }
+    className: "display contact-cta-headline"
   }, "done ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
@@ -1448,34 +879,16 @@ function ContactCTA({
       color: 'var(--c3)'
     }
   }, "fix that.")), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 22,
-      maxWidth: 720,
-      margin: '0 auto 40px',
-      color: 'var(--ink-soft)',
-      lineHeight: 1.4
-    }
+    className: "contact-cta-sub"
   }, "Book an audit and in 5 days you'll have a written plan, a recorded walkthrough, and zero guesswork. Add pre-post reviews and I'll be in your corner while you put it into practice."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 16,
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      marginBottom: 20
-    }
+    className: "contact-cta-btns"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "btn alt",
-    onClick: () => onBook && onBook(audit),
-    style: {
-      fontSize: 18,
-      padding: '20px 36px'
-    }
+    className: "btn alt contact-cta-btn",
+    onClick: () => onBook && onBook(audit)
   }, "\u2726 Book The Audit \u2014 $950"), /*#__PURE__*/React.createElement("button", {
-    className: "btn",
+    className: "btn contact-cta-btn",
     onClick: () => onBook && onBook(auditPlus),
     style: {
-      fontSize: 18,
-      padding: '20px 36px',
       background: 'var(--c4)'
     }
   }, "Book Audit + Reviews \u2014 $1,100")), /*#__PURE__*/React.createElement("a", {
@@ -1487,45 +900,21 @@ function ContactCTA({
       borderBottom: '1.5px dotted var(--ink-soft)'
     }
   }, "Or just email me")), /*#__PURE__*/React.createElement("footer", {
-    style: {
-      borderTop: '2px solid var(--ink)',
-      marginTop: 100,
-      paddingTop: 32
-    }
+    className: "site-footer"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "container",
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      gap: 16
-    }
+    className: "container site-footer-inner"
   }, /*#__PURE__*/React.createElement(Wordmark, {
     size: 28
   }), /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 12,
-      color: 'var(--ink-soft)'
-    }
+    className: "mono site-footer-meta"
   }, "\xA9 2026 mika creative \xB7 for food creators who mean it"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 16
-    }
+    className: "site-footer-links"
   }, /*#__PURE__*/React.createElement("a", {
     href: "https://instagram.com/_joytothefood_",
-    className: "link",
-    style: {
-      fontSize: 13
-    }
+    className: "link"
   }, "@_joytothefood_"), /*#__PURE__*/React.createElement("a", {
-    href: "#",
-    className: "link",
-    style: {
-      fontSize: 13
-    }
+    href: "mailto:hi@mikacreative.co",
+    className: "link"
   }, "Email")))));
 }
 
@@ -1544,26 +933,7 @@ function QuizWidget({
   if (!open) {
     return /*#__PURE__*/React.createElement("button", {
       onClick: () => setOpen(true),
-      style: {
-        position: 'fixed',
-        bottom: 24,
-        right: 24,
-        zIndex: 100,
-        background: 'var(--ink)',
-        color: 'var(--bg)',
-        border: '2px solid var(--ink)',
-        borderRadius: 999,
-        padding: '14px 20px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 10,
-        fontFamily: 'DM Sans',
-        fontWeight: 600,
-        fontSize: 14,
-        cursor: 'pointer',
-        boxShadow: '4px 4px 0 var(--c1)',
-        transition: 'transform 0.15s, box-shadow 0.15s'
-      },
+      className: "quiz-fab",
       onMouseEnter: e => {
         e.currentTarget.style.transform = 'translate(-2px, -2px)';
         e.currentTarget.style.boxShadow = '6px 6px 0 var(--c1)';
@@ -1573,13 +943,7 @@ function QuizWidget({
         e.currentTarget.style.boxShadow = '4px 4px 0 var(--c1)';
       }
     }, /*#__PURE__*/React.createElement("span", {
-      style: {
-        width: 10,
-        height: 10,
-        borderRadius: '50%',
-        background: 'var(--c2)',
-        animation: 'pulse 1.6s ease-in-out infinite'
-      }
+      className: "quiz-fab-pulse"
     }), "Find your fit ", /*#__PURE__*/React.createElement("span", {
       style: {
         opacity: 0.6
@@ -1587,64 +951,18 @@ function QuizWidget({
     }, "\xB7 30s"));
   }
   return /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'fixed',
-      bottom: 24,
-      right: 24,
-      zIndex: 100,
-      width: 'min(460px, calc(100vw - 48px))',
-      background: 'var(--bg)',
-      border: '2px solid var(--ink)',
-      borderRadius: 28,
-      boxShadow: '8px 8px 0 var(--ink)',
-      overflow: 'hidden',
-      animation: 'slide-up 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2)'
-    }
+    className: "quiz-widget"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 20px',
-      background: 'var(--ink)',
-      color: 'var(--bg)',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }
+    className: "quiz-header"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 10
-    }
+    className: "quiz-header-info"
   }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      width: 8,
-      height: 8,
-      borderRadius: '50%',
-      background: 'var(--c3)',
-      animation: 'pulse 1.6s ease-in-out infinite'
-    }
+    className: "quiz-header-pulse"
   }), /*#__PURE__*/React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase'
-    }
+    className: "mono quiz-header-label"
   }, step === 'intro' ? 'Quick quiz · 1 question' : 'Your match')), /*#__PURE__*/React.createElement("button", {
     onClick: () => setOpen(false),
-    style: {
-      background: 'none',
-      border: 'none',
-      color: 'var(--bg)',
-      fontSize: 18,
-      cursor: 'pointer',
-      padding: 0,
-      width: 24,
-      height: 24,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }
+    className: "quiz-close"
   }, "\xD7")), step === 'intro' && /*#__PURE__*/React.createElement(QuizIntro, {
     onChoose: setStep
   }), step === 'result-grow' && /*#__PURE__*/React.createElement(QuizResultGrow, {
@@ -1665,34 +983,17 @@ function QuizIntro({
   onChoose
 }) {
   return /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: 28
-    }
+    className: "quiz-body"
   }, /*#__PURE__*/React.createElement("h3", {
-    className: "display",
-    style: {
-      fontSize: 32,
-      margin: '0 0 8px',
-      letterSpacing: '-0.02em',
-      lineHeight: 1.05
-    }
+    className: "display quiz-body-title"
   }, "which one is ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
   }, "you"), "?"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 13,
-      color: 'var(--ink-soft)',
-      margin: '0 0 20px',
-      lineHeight: 1.4
-    }
+    className: "quiz-body-sub"
   }, "Pick the one that sounds the most like your situation right now."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 12
-    }
+    className: "quiz-options"
   }, /*#__PURE__*/React.createElement(QuizOption, {
     color: "var(--c3)",
     icon: "\uD83C\uDF31",
@@ -1716,19 +1017,7 @@ function QuizOption({
 }) {
   return /*#__PURE__*/React.createElement("button", {
     onClick: onClick,
-    style: {
-      textAlign: 'left',
-      padding: '14px 16px',
-      background: 'var(--bg)',
-      border: '2px solid var(--ink)',
-      borderRadius: 18,
-      cursor: 'pointer',
-      display: 'flex',
-      gap: 14,
-      alignItems: 'flex-start',
-      fontFamily: 'inherit',
-      transition: 'transform 0.12s, box-shadow 0.12s, background 0.12s'
-    },
+    className: "quiz-option",
     onMouseEnter: e => {
       e.currentTarget.style.background = color;
       e.currentTarget.style.transform = 'translate(-2px, -2px)';
@@ -1740,30 +1029,14 @@ function QuizOption({
       e.currentTarget.style.boxShadow = 'none';
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "quiz-option-icon",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: '50%',
-      background: color,
-      border: '2px solid var(--ink)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: 18,
-      flexShrink: 0
+      background: color
     }
   }, icon), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      fontSize: 14.5,
-      marginBottom: 2
-    }
+    className: "quiz-option-title"
   }, title), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: 'var(--ink-soft)',
-      lineHeight: 1.35
-    }
+    className: "quiz-option-sub"
   }, sub)));
 }
 function QuizResultGrow({
@@ -1773,9 +1046,7 @@ function QuizResultGrow({
   const audit = SERVICES.find(s => s.id === 'audit');
   const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
   return /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: 28
-    }
+    className: "quiz-body"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
@@ -1783,23 +1054,19 @@ function QuizResultGrow({
       fontSize: 10
     }
   }, "You = grower"), /*#__PURE__*/React.createElement("h3", {
-    className: "display",
+    className: "display quiz-body-title",
     style: {
       fontSize: 28,
-      margin: '12px 0 8px',
-      letterSpacing: '-0.02em',
-      lineHeight: 1.05
+      marginTop: 12
     }
   }, "start with an ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
   }, "audit.")), /*#__PURE__*/React.createElement("p", {
+    className: "quiz-body-sub",
     style: {
-      fontSize: 13,
-      color: 'var(--ink-soft)',
-      margin: '0 0 16px',
-      lineHeight: 1.4
+      marginBottom: 16
     }
   }, "Under 25K is fixable. An audit shows you exactly what's holding your account back \u2014 and what to do about it first."), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1829,18 +1096,7 @@ function QuizResultGrow({
     items: ['In Your Pocket Day', 'The Mastermind']
   }), /*#__PURE__*/React.createElement("button", {
     onClick: onReset,
-    className: "mono",
-    style: {
-      marginTop: 16,
-      background: 'none',
-      border: 'none',
-      cursor: 'pointer',
-      fontSize: 11,
-      color: 'var(--ink-soft)',
-      textTransform: 'uppercase',
-      letterSpacing: '0.08em',
-      padding: 0
-    }
+    className: "mono quiz-retake"
   }, "\u2190 retake"));
 }
 function QuizResultMonetize({
@@ -1850,9 +1106,7 @@ function QuizResultMonetize({
   const audit = SERVICES.find(s => s.id === 'audit');
   const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
   return /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: 28
-    }
+    className: "quiz-body"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
@@ -1860,23 +1114,19 @@ function QuizResultMonetize({
       fontSize: 10
     }
   }, "You = earner"), /*#__PURE__*/React.createElement("h3", {
-    className: "display",
+    className: "display quiz-body-title",
     style: {
       fontSize: 28,
-      margin: '12px 0 8px',
-      letterSpacing: '-0.02em',
-      lineHeight: 1.05
+      marginTop: 12
     }
   }, "start with an ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
   }, "audit.")), /*#__PURE__*/React.createElement("p", {
+    className: "quiz-body-sub",
     style: {
-      fontSize: 13,
-      color: 'var(--ink-soft)',
-      margin: '0 0 16px',
-      lineHeight: 1.4
+      marginBottom: 16
     }
   }, "You have the audience. The audit shows you exactly where revenue should already be coming from \u2014 and why it isn't yet."), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1906,18 +1156,7 @@ function QuizResultMonetize({
     items: ['The Mastermind', 'In Your Pocket Day']
   }), /*#__PURE__*/React.createElement("button", {
     onClick: onReset,
-    className: "mono",
-    style: {
-      marginTop: 16,
-      background: 'none',
-      border: 'none',
-      cursor: 'pointer',
-      fontSize: 11,
-      color: 'var(--ink-soft)',
-      textTransform: 'uppercase',
-      letterSpacing: '0.08em',
-      padding: 0
-    }
+    className: "mono quiz-retake"
   }, "\u2190 retake"));
 }
 function ComingSoonNote({
@@ -1949,9 +1188,6 @@ function ComingSoonNote({
     }
   }, items.join(' · ')));
 }
-function QuizResultHandsOff_REMOVED() {
-  return null;
-}
 function ResultCard({
   color,
   step,
@@ -1968,23 +1204,7 @@ function ResultCard({
     href
   };
   return /*#__PURE__*/React.createElement(Tag, _extends({}, props, {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 12,
-      padding: '12px 14px',
-      background: 'var(--bg)',
-      border: '2px solid var(--ink)',
-      borderRadius: 14,
-      textDecoration: 'none',
-      color: 'inherit',
-      transition: 'transform 0.12s, background 0.12s',
-      cursor: 'pointer',
-      fontFamily: 'inherit',
-      textAlign: 'left',
-      width: '100%',
-      boxShadow: '3px 3px 0 var(--ink)'
-    },
+    className: "quiz-result-card",
     onMouseEnter: e => {
       e.currentTarget.style.background = color;
       e.currentTarget.style.transform = 'translate(-1px, -1px)';
@@ -1996,31 +1216,18 @@ function ResultCard({
       e.currentTarget.style.boxShadow = '3px 3px 0 var(--ink)';
     }
   }), /*#__PURE__*/React.createElement("span", {
-    className: "mono",
+    className: "mono quiz-result-step-pill",
     style: {
-      background: color,
-      color: 'var(--ink)',
-      border: '1.5px solid var(--ink)',
-      padding: '4px 8px',
-      borderRadius: 6,
-      fontSize: 10,
-      fontWeight: 600
+      background: color
     }
   }, step), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1
     }
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      fontSize: 14
-    }
+    className: "quiz-result-card-title"
   }, title), /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      color: 'var(--ink-soft)'
-    }
+    className: "mono quiz-result-card-sub"
   }, price)), /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 18
@@ -2161,7 +1368,7 @@ function BookingFlow({
   });
   const [processing, setProcessing] = useState(false);
   const [discountInput, setDiscountInput] = useState('');
-  const [appliedCode, setAppliedCode] = useState(null); // { code, kind, value, label } or null
+  const [appliedCode, setAppliedCode] = useState(null);
   const [discountError, setDiscountError] = useState('');
 
   // Pricing math
@@ -2218,172 +1425,57 @@ function BookingFlow({
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
-  const inputStyle = {
-    width: '100%',
-    padding: '13px 16px',
-    border: '2px solid var(--ink)',
-    borderRadius: 12,
-    fontSize: 15,
-    fontFamily: 'inherit',
-    background: 'var(--bg)',
-    boxSizing: 'border-box',
-    outline: 'none'
-  };
   return /*#__PURE__*/React.createElement("div", {
+    className: "booking-overlay",
     onClick: e => {
       if (e.target === e.currentTarget) onClose();
-    },
-    style: {
-      position: 'fixed',
-      inset: 0,
-      zIndex: 100,
-      background: 'rgba(31, 27, 22, 0.55)',
-      backdropFilter: 'blur(4px)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 24,
-      animation: 'fade-in 0.2s ease'
     }
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'var(--bg)',
-      border: '2px solid var(--ink)',
-      borderRadius: 28,
-      boxShadow: '8px 8px 0 var(--ink)',
-      width: '100%',
-      maxWidth: 920,
-      maxHeight: '92vh',
-      overflow: 'hidden',
-      display: 'grid',
-      gridTemplateColumns: '320px 1fr',
-      animation: 'slide-up 0.25s ease'
-    }
+    className: "booking-modal"
   }, /*#__PURE__*/React.createElement("aside", {
+    className: "booking-aside",
     style: {
-      background: service.color,
-      padding: 32,
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 20,
-      borderRight: '2px solid var(--ink)'
+      background: service.color
     }
   }, /*#__PURE__*/React.createElement("span", {
-    className: "tag",
+    className: "tag booking-aside-tag",
     style: {
       background: 'var(--bg)',
       alignSelf: 'flex-start'
     }
   }, service.tag), /*#__PURE__*/React.createElement("h3", {
-    className: "display",
-    style: {
-      fontSize: 38,
-      margin: 0,
-      letterSpacing: '-0.02em',
-      lineHeight: 1
-    }
+    className: "display booking-aside-title"
   }, service.title), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 14,
-      lineHeight: 1.5
-    }
+    className: "booking-aside-blurb"
   }, service.blurb), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 'auto',
-      paddingTop: 20,
-      borderTop: '1.5px dashed var(--ink)'
-    }
+    className: "booking-aside-total"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      letterSpacing: '0.15em',
-      textTransform: 'uppercase',
-      marginBottom: 6
-    }
+    className: "mono booking-aside-total-eyebrow"
   }, "Total"), appliedCode ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 18,
-      fontWeight: 500,
-      textDecoration: 'line-through',
-      opacity: 0.55,
-      lineHeight: 1,
-      marginBottom: 4
-    }
+    className: "booking-aside-total-strike"
   }, fmtMoney(basePrice)), /*#__PURE__*/React.createElement("div", {
-    className: "display",
-    style: {
-      fontSize: 44,
-      lineHeight: 1,
-      color: 'var(--ink)'
-    }
+    className: "display booking-aside-total-amount"
   }, fmtMoney(finalPrice)), /*#__PURE__*/React.createElement("div", {
-    className: "mono",
+    className: "mono booking-aside-total-discount",
     style: {
-      fontSize: 11,
-      marginTop: 8,
-      fontWeight: 600,
-      display: 'inline-block',
-      background: 'var(--ink)',
-      color: service.color,
-      padding: '4px 8px',
-      borderRadius: 6,
-      letterSpacing: '0.08em',
-      textTransform: 'uppercase'
+      color: service.color
     }
   }, appliedCode.code, " \u2212", fmtMoney(discountAmount))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    className: "display",
-    style: {
-      fontSize: 44,
-      lineHeight: 1
-    }
+    className: "display booking-aside-total-amount"
   }, service.price), /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      marginTop: 6,
-      opacity: 0.75
-    }
+    className: "mono booking-aside-total-sub"
   }, service.sub)))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      flexDirection: 'column',
-      maxHeight: '92vh'
-    }
+    className: "booking-main"
   }, /*#__PURE__*/React.createElement("header", {
-    style: {
-      padding: '20px 28px',
-      borderBottom: '2px solid var(--ink)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      gap: 12
-    }
+    className: "booking-header"
   }, /*#__PURE__*/React.createElement(Stepper, {
     step: step
   }), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
-    style: {
-      width: 36,
-      height: 36,
-      borderRadius: '50%',
-      border: '2px solid var(--ink)',
-      background: 'var(--bg)',
-      cursor: 'pointer',
-      fontSize: 18,
-      lineHeight: 1,
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: 'inherit'
-    }
+    className: "booking-close"
   }, "\xD7")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '28px 28px 24px',
-      overflowY: 'auto',
-      flex: 1
-    }
+    className: "booking-body"
   }, step === 1 && /*#__PURE__*/React.createElement(CalendarStep, {
     viewDate: viewDate,
     setViewDate: setViewDate,
@@ -2399,13 +1491,11 @@ function BookingFlow({
   }), step === 2 && /*#__PURE__*/React.createElement(DetailsStep, {
     details: details,
     setDetails: setDetails,
-    inputStyle: inputStyle,
     selectedDay: selectedDay,
     selectedTime: selectedTime
   }), step === 3 && /*#__PURE__*/React.createElement(PaymentStep, {
     card: card,
     setCard: setCard,
-    inputStyle: inputStyle,
     price: service.price,
     processing: processing,
     basePrice: basePrice,
@@ -2427,15 +1517,7 @@ function BookingFlow({
     appliedCode: appliedCode,
     discountAmount: discountAmount
   })), step !== 4 && /*#__PURE__*/React.createElement("footer", {
-    style: {
-      padding: '18px 28px',
-      borderTop: '2px solid var(--ink)',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      gap: 12,
-      background: 'var(--bg-alt)'
-    }
+    className: "booking-footer"
   }, /*#__PURE__*/React.createElement("button", {
     onClick: () => step > 1 ? setStep(step - 1) : onClose(),
     className: "btn ghost sm",
@@ -2476,56 +1558,22 @@ function Stepper({
 }) {
   const steps = ['Date & time', 'Your details', 'Payment', 'Confirmed'];
   return /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 10,
-      flexWrap: 'wrap'
-    }
+    className: "booking-stepper"
   }, steps.map((label, i) => {
     const n = i + 1;
     const active = n === step;
     const done = n < step;
+    const stateClass = done ? 'is-done' : active ? 'is-active' : '';
     return /*#__PURE__*/React.createElement(React.Fragment, {
       key: i
     }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8
-      }
+      className: `booking-stepper-step ${stateClass}`
     }, /*#__PURE__*/React.createElement("span", {
-      style: {
-        width: 24,
-        height: 24,
-        borderRadius: '50%',
-        border: '2px solid var(--ink)',
-        background: done ? 'var(--ink)' : active ? 'var(--c2)' : 'var(--bg)',
-        color: done ? 'var(--bg)' : 'var(--ink)',
-        fontSize: 11,
-        fontWeight: 700,
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'var(--mono)'
-      }
+      className: "booking-stepper-num mono"
     }, done ? '✓' : n), /*#__PURE__*/React.createElement("span", {
-      className: "mono",
-      style: {
-        fontSize: 11,
-        letterSpacing: '0.1em',
-        textTransform: 'uppercase',
-        fontWeight: active ? 700 : 500,
-        opacity: active ? 1 : 0.55,
-        whiteSpace: 'nowrap'
-      }
+      className: "mono booking-stepper-label"
     }, label)), i < steps.length - 1 && /*#__PURE__*/React.createElement("span", {
-      style: {
-        width: 16,
-        height: 1.5,
-        background: 'var(--ink)',
-        opacity: 0.3
-      }
+      className: "booking-stepper-divider"
     }));
   }));
 }
@@ -2565,25 +1613,11 @@ function CalendarStep({
       opacity: 0.85
     }
   }, "All times are Central. Audits run Monday\u2013Friday."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1.1fr 0.9fr',
-      gap: 20
-    }
+    className: "booking-cal-grid"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'var(--card)',
-      border: '2px solid var(--ink)',
-      borderRadius: 16,
-      padding: 16
-    }
+    className: "booking-cal-pane"
   }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: 12
-    }
+    className: "booking-cal-monthbar"
   }, /*#__PURE__*/React.createElement("button", {
     onClick: () => {
       const next = new Date(viewDate);
@@ -2591,47 +1625,23 @@ function CalendarStep({
       if (next.getFullYear() < today.getFullYear() || next.getFullYear() === today.getFullYear() && next.getMonth() < today.getMonth()) return;
       setViewDate(next);
     },
-    style: {
-      ...arrowBtnStyle
-    }
+    className: "booking-cal-arrow"
   }, "\u2039"), /*#__PURE__*/React.createElement("div", {
-    className: "display",
-    style: {
-      fontSize: 18,
-      letterSpacing: '-0.01em'
-    }
+    className: "display booking-cal-month-label"
   }, fmtMonth(viewDate)), /*#__PURE__*/React.createElement("button", {
     onClick: () => {
       const next = new Date(viewDate);
       next.setMonth(next.getMonth() + 1);
       setViewDate(next);
     },
-    style: {
-      ...arrowBtnStyle
-    }
+    className: "booking-cal-arrow"
   }, "\u203A")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(7, 1fr)',
-      gap: 4,
-      marginBottom: 6
-    }
+    className: "booking-cal-dow"
   }, ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
-    className: "mono",
-    style: {
-      fontSize: 10,
-      textAlign: 'center',
-      color: 'var(--ink-soft)',
-      letterSpacing: '0.1em',
-      padding: '6px 0'
-    }
+    className: "mono booking-cal-dow-cell"
   }, d))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(7, 1fr)',
-      gap: 4
-    }
+    className: "booking-cal-days"
   }, cells.map((d, i) => {
     if (!d) return /*#__PURE__*/React.createElement("div", {
       key: i
@@ -2642,19 +1652,14 @@ function CalendarStep({
       key: i,
       disabled: !avail,
       onClick: () => setSelectedDay(d),
+      className: "booking-cal-day",
       style: {
-        aspectRatio: '1 / 1',
         border: sel ? '2px solid var(--ink)' : '1.5px solid transparent',
         background: sel ? 'var(--c2)' : avail ? 'var(--bg-alt)' : 'transparent',
         color: avail ? 'var(--ink)' : 'var(--ink-soft)',
-        borderRadius: 10,
-        fontSize: 14,
         fontWeight: sel ? 700 : 500,
         cursor: avail ? 'pointer' : 'not-allowed',
-        opacity: avail ? 1 : 0.35,
-        fontFamily: 'inherit',
-        transition: 'all 0.15s',
-        position: 'relative'
+        opacity: avail ? 1 : 0.35
       },
       onMouseOver: e => {
         if (avail && !sel) e.currentTarget.style.background = 'var(--c2)';
@@ -2664,13 +1669,7 @@ function CalendarStep({
       }
     }, d.getDate());
   })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 14,
-      marginTop: 14,
-      paddingTop: 12,
-      borderTop: '1px dashed var(--ink-soft)'
-    }
+    className: "booking-cal-legend"
   }, /*#__PURE__*/React.createElement(Legend, {
     swatch: "var(--bg-alt)",
     label: "Available"
@@ -2682,43 +1681,13 @@ function CalendarStep({
     label: "Booked",
     dim: true
   }))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'var(--card)',
-      border: '2px solid var(--ink)',
-      borderRadius: 16,
-      padding: 16,
-      display: 'flex',
-      flexDirection: 'column'
-    }
+    className: "booking-cal-pane booking-cal-pane-times"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase',
-      color: 'var(--ink-soft)',
-      marginBottom: 10
-    }
+    className: "mono booking-times-eyebrow"
   }, selectedDay ? fmtDay(selectedDay) : 'Pick a date first'), !selectedDay && /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: 'var(--ink-soft)',
-      fontSize: 13,
-      textAlign: 'center',
-      padding: 20,
-      border: '1.5px dashed var(--ink-soft)',
-      borderRadius: 12,
-      opacity: 0.6
-    }
+    className: "booking-times-empty"
   }, "Select a day on the left to see open times."), selectedDay && /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 8
-    }
+    className: "booking-times-grid"
   }, TIMES.map(t => {
     const avail = availableTimes.includes(t);
     const sel = selectedTime === t;
@@ -2726,19 +1695,13 @@ function CalendarStep({
       key: t,
       disabled: !avail,
       onClick: () => setSelectedTime(t),
+      className: "booking-time",
       style: {
-        padding: '12px 8px',
-        border: '1.5px solid var(--ink)',
         background: sel ? 'var(--ink)' : 'var(--bg)',
         color: sel ? 'var(--bg)' : 'var(--ink)',
-        borderRadius: 10,
-        fontSize: 13,
-        fontWeight: 600,
         cursor: avail ? 'pointer' : 'not-allowed',
         opacity: avail ? 1 : 0.35,
-        fontFamily: 'inherit',
-        textDecoration: avail ? 'none' : 'line-through',
-        transition: 'all 0.15s'
+        textDecoration: avail ? 'none' : 'line-through'
       }
     }, t);
   })))));
@@ -2773,26 +1736,11 @@ function Legend({
     }
   }, label));
 }
-const arrowBtnStyle = {
-  width: 32,
-  height: 32,
-  borderRadius: 8,
-  border: '1.5px solid var(--ink)',
-  background: 'var(--bg)',
-  cursor: 'pointer',
-  fontSize: 18,
-  lineHeight: 1,
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontFamily: 'inherit'
-};
 
 // ---- Step 2: Details ----
 function DetailsStep({
   details,
   setDetails,
-  inputStyle,
   selectedDay,
   selectedTime
 }) {
@@ -2814,22 +1762,18 @@ function DetailsStep({
       margin: '0 0 20px'
     }
   }, "Booking ", /*#__PURE__*/React.createElement("strong", null, fmtDay(selectedDay), " at ", selectedTime, " CT"), ". The more context you give me, the more useful your audit will be."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 14
-    }
+    className: "booking-details-grid"
   }, /*#__PURE__*/React.createElement(Field, {
     label: "Name"
   }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: details.name,
     onChange: e => u('name', e.target.value),
     placeholder: "Jane Doe"
   })), /*#__PURE__*/React.createElement(Field, {
     label: "Email"
   }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     type: "email",
     value: details.email,
     onChange: e => u('email', e.target.value),
@@ -2837,40 +1781,31 @@ function DetailsStep({
   })), /*#__PURE__*/React.createElement(Field, {
     label: "Instagram handle"
   }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: details.handle,
     onChange: e => u('handle', e.target.value),
     placeholder: "@yourhandle"
   })), /*#__PURE__*/React.createElement(Field, {
     label: "Current followers"
   }, /*#__PURE__*/React.createElement("select", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: details.followers,
     onChange: e => u('followers', e.target.value)
   }, /*#__PURE__*/React.createElement("option", null, "0\u20135K"), /*#__PURE__*/React.createElement("option", null, "5K\u201325K"), /*#__PURE__*/React.createElement("option", null, "25K\u2013100K"), /*#__PURE__*/React.createElement("option", null, "100K\u2013500K"), /*#__PURE__*/React.createElement("option", null, "500K+"))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      gridColumn: '1 / -1'
-    }
+    className: "booking-details-grid-full"
   }, /*#__PURE__*/React.createElement(Field, {
     label: "What's your #1 goal?"
   }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: details.goal,
     onChange: e => u('goal', e.target.value),
     placeholder: "e.g. break 25K, land a brand deal, figure out why my reels stopped performing"
   }))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      gridColumn: '1 / -1'
-    }
+    className: "booking-details-grid-full"
   }, /*#__PURE__*/React.createElement(Field, {
     label: "Anything else I should know? (optional)"
   }, /*#__PURE__*/React.createElement("textarea", {
-    style: {
-      ...inputStyle,
-      minHeight: 80,
-      resize: 'vertical',
-      fontFamily: 'inherit'
-    },
+    className: "booking-form-input booking-form-textarea",
     value: details.notes,
     onChange: e => u('notes', e.target.value),
     placeholder: "Stuck spots, recent flops, niche shifts, anything that'll help me dig in."
@@ -2887,13 +1822,9 @@ function Field({
       gap: 6
     }
   }, /*#__PURE__*/React.createElement("span", {
-    className: "mono",
+    className: "mono booking-form-label",
     style: {
-      fontSize: 11,
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase',
-      color: 'var(--ink-soft)',
-      fontWeight: 600
+      marginBottom: 0
     }
   }, label), children);
 }
@@ -2902,7 +1833,6 @@ function Field({
 function PaymentStep({
   card,
   setCard,
-  inputStyle,
   price,
   processing,
   basePrice,
@@ -2939,16 +1869,11 @@ function PaymentStep({
       textDecoration: 'underline'
     }
   }, "Email me before you book.")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr',
-      gap: 14,
-      maxWidth: 480
-    }
+    className: "booking-pay-form"
   }, /*#__PURE__*/React.createElement(Field, {
     label: "Card number"
   }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: card.number,
     onChange: e => {
       const v = e.target.value.replace(/[^\d]/g, '').slice(0, 16);
@@ -2958,15 +1883,11 @@ function PaymentStep({
     placeholder: "1234 5678 9012 3456",
     inputMode: "numeric"
   })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
-      gap: 14
-    }
+    className: "booking-pay-row-3"
   }, /*#__PURE__*/React.createElement(Field, {
     label: "Expiry"
   }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: card.exp,
     onChange: e => {
       let v = e.target.value.replace(/[^\d]/g, '').slice(0, 4);
@@ -2978,7 +1899,7 @@ function PaymentStep({
   })), /*#__PURE__*/React.createElement(Field, {
     label: "CVC"
   }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: card.cvc,
     onChange: e => u('cvc', e.target.value.replace(/[^\d]/g, '').slice(0, 4)),
     placeholder: "123",
@@ -2986,20 +1907,13 @@ function PaymentStep({
   })), /*#__PURE__*/React.createElement(Field, {
     label: "ZIP"
   }, /*#__PURE__*/React.createElement("input", {
-    style: inputStyle,
+    className: "booking-form-input",
     value: card.zip,
     onChange: e => u('zip', e.target.value.replace(/[^\d]/g, '').slice(0, 5)),
     placeholder: "12345",
     inputMode: "numeric"
   })))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 20,
-      padding: '16px 18px',
-      background: 'var(--bg-alt)',
-      border: '1.5px dashed var(--ink)',
-      borderRadius: 12,
-      maxWidth: 480
-    }
+    className: "booking-discount-box"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mono",
     style: {
@@ -3069,8 +1983,8 @@ function PaymentStep({
       gap: 8
     }
   }, /*#__PURE__*/React.createElement("input", {
+    className: "booking-form-input",
     style: {
-      ...inputStyle,
       flex: 1,
       textTransform: 'uppercase',
       letterSpacing: '0.08em',
@@ -3214,7 +2128,8 @@ function ConfirmedStep({
       borderRadius: 16,
       padding: '20px 24px',
       boxShadow: '4px 4px 0 var(--ink)',
-      minWidth: 320
+      minWidth: 320,
+      maxWidth: '100%'
     }
   }, /*#__PURE__*/React.createElement(Row, {
     k: "Service",
