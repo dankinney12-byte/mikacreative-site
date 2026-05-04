@@ -1456,7 +1456,7 @@ function ConfirmedMessage({
     className: "display booking-confirmed-title"
   }, "you're booked!"), /*#__PURE__*/React.createElement("p", {
     className: "booking-confirmed-sub"
-  }, "Confirmation is on its way to your inbox, plus a calendar invite. I'll DM you within 24 hrs from ", /*#__PURE__*/React.createElement("strong", null, "@mika.creative"), " with what to send me before our session."), /*#__PURE__*/React.createElement("button", {
+  }, "Confirmation is on its way to your inbox, plus a calendar invite. I'll email you within 24 hrs from ", /*#__PURE__*/React.createElement("strong", null, "mika@joytothefood.com"), " with what to send me before our session."), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     className: "btn"
   }, "Close"));

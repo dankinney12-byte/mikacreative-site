@@ -156,7 +156,7 @@ function ConfirmedMessage({ service, onClose }) {
       <h3 className="display booking-confirmed-title">you're booked!</h3>
       <p className="booking-confirmed-sub">
         Confirmation is on its way to your inbox, plus a calendar invite.
-        I'll DM you within 24 hrs from <strong>@mika.creative</strong> with
+        I'll email you within 24 hrs from <strong>mika@joytothefood.com</strong> with
         what to send me before our session.
       </p>
       <button onClick={onClose} className="btn">Close</button>
