@@ -407,15 +407,15 @@ function About() {
       <div className="container">
         <div className="about-grid">
           <div className="about-photos">
-            <div className="photo about-photo-main" style={{ background: 'var(--c4)' }}>
-              <span className="label">brand photo · mika</span>
+            <div className="photo has-image about-photo-main">
+              <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
             </div>
             <div className="about-photo-grid">
-              <div className="photo" style={{ background: 'var(--c2)' }}>
-                <span className="label">mika + dan</span>
+              <div className="photo has-image">
+                <img src="images/dan-mika-about.webp" alt="Mika and Dan" className="photo-img" loading="lazy" />
               </div>
-              <div className="photo" style={{ background: 'var(--c5)' }}>
-                <span className="label">filming BTS</span>
+              <div className="photo has-image">
+                <img src="images/filming-photo.png" alt="Mika filming behind the scenes" className="photo-img" loading="lazy" />
               </div>
             </div>
           </div>

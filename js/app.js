@@ -512,29 +512,29 @@ function About() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "about-photos"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "photo about-photo-main",
-    style: {
-      background: 'var(--c4)'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "label"
-  }, "brand photo \xB7 mika")), /*#__PURE__*/React.createElement("div", {
+    className: "photo has-image about-photo-main"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "images/mika-headshot.jpg",
+    alt: "Mika Kinney",
+    className: "photo-img",
+    loading: "lazy"
+  })), /*#__PURE__*/React.createElement("div", {
     className: "about-photo-grid"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "photo",
-    style: {
-      background: 'var(--c2)'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "label"
-  }, "mika + dan")), /*#__PURE__*/React.createElement("div", {
-    className: "photo",
-    style: {
-      background: 'var(--c5)'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "label"
-  }, "filming BTS")))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "photo has-image"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "images/dan-mika-about.webp",
+    alt: "Mika and Dan",
+    className: "photo-img",
+    loading: "lazy"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "photo has-image"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "images/filming-photo.png",
+    alt: "Mika filming behind the scenes",
+    className: "photo-img",
+    loading: "lazy"
+  })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
   }, "about"), /*#__PURE__*/React.createElement("h2", {
     className: "display about-headline"
