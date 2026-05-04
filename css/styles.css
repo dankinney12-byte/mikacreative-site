@@ -945,6 +945,12 @@ section { scroll-margin-top: 80px; }
   border-right: 2px solid var(--ink);
   gap: 24px;
 }
+/* When the card uses an avatar (instead of the giant `"` mark), center the
+   cluster so avatar + name/role sit as one tight group — `space-between`
+   was sized for the 220px mark and leaves a big gap with a 140px avatar. */
+.testimonial-mark-side:has(.testimonial-avatar) {
+  justify-content: center;
+}
 .testimonial-mark {
   font-size: clamp(120px, 16vw, 220px);
   line-height: 0.7;
@@ -952,11 +958,11 @@ section { scroll-margin-top: 80px; }
   color: var(--ink);
 }
 .testimonial-avatar {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   border: 2.5px solid var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
   object-fit: cover;
   display: block;
   background: var(--bg);
