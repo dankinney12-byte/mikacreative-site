@@ -1,0 +1,18 @@
+{
+  "name": "mikacreative-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Marketing site for MIKA creative — Instagram coaching for food bloggers.",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node server.mjs"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "jsdom": "^29.1.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}
