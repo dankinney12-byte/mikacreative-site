@@ -640,12 +640,17 @@ function Freebie() {
 // TESTIMONIALS
 // ============================================================
 const TESTIMONIALS = [{
+  quote: "Mika Kinney spoke to my mastermind group and instantly lit a fire under every single person on the call. Her approach to Instagram growth is not just inspiring, it's incredibly actionable. She is deep in the details, testing what works in real time, and it shows. Our group walked away with clarity, excitement and a desire to grow their accounts. Mika truly knows her stuff and delivers it in a way that makes you want to take action immediately.",
+  name: "Megan Porta",
+  role: "Food creator · Pip & Ebby · Eat Blog Talk podcast",
+  color: 'var(--c3)'
+}, {
   quote: "I cannot stop talking about WHAT A FREAKIN INSPIRATION you are!!! I have SO SO SO enjoyed seeing your journey over the years, and seeing you absolutely CRUSH it here on IG. You have totally cracked the code!!!",
   name: "Lindsey",
+  role: "Fellow food creator",
   color: 'var(--c2)'
 }];
 function Testimonials() {
-  const t = TESTIMONIALS[0];
   return /*#__PURE__*/React.createElement("section", {
     className: "testimonials"
   }, /*#__PURE__*/React.createElement("div", {
@@ -672,6 +677,9 @@ function Testimonials() {
       color: 'var(--c1)'
     }
   }, "code."))), /*#__PURE__*/React.createElement("div", {
+    className: "testimonials-stack"
+  }, TESTIMONIALS.map((t, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
     className: "testimonial-card",
     style: {
       background: t.color
@@ -684,11 +692,11 @@ function Testimonials() {
     className: "testimonial-name"
   }, t.name), /*#__PURE__*/React.createElement("div", {
     className: "mono testimonial-role"
-  }, "Fellow food creator"))), /*#__PURE__*/React.createElement("div", {
+  }, t.role))), /*#__PURE__*/React.createElement("div", {
     className: "testimonial-quote-side"
   }, /*#__PURE__*/React.createElement("p", {
     className: "testimonial-quote"
-  }, t.quote))), /*#__PURE__*/React.createElement("div", {
+  }, t.quote))))), /*#__PURE__*/React.createElement("div", {
     className: "testimonials-note"
   }, /*#__PURE__*/React.createElement("span", {
     style: {

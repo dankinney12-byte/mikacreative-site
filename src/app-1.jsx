@@ -499,14 +499,20 @@ function Freebie() {
 // ============================================================
 const TESTIMONIALS = [
   {
+    quote: "Mika Kinney spoke to my mastermind group and instantly lit a fire under every single person on the call. Her approach to Instagram growth is not just inspiring, it's incredibly actionable. She is deep in the details, testing what works in real time, and it shows. Our group walked away with clarity, excitement and a desire to grow their accounts. Mika truly knows her stuff and delivers it in a way that makes you want to take action immediately.",
+    name: "Megan Porta",
+    role: "Food creator · Pip & Ebby · Eat Blog Talk podcast",
+    color: 'var(--c3)',
+  },
+  {
     quote: "I cannot stop talking about WHAT A FREAKIN INSPIRATION you are!!! I have SO SO SO enjoyed seeing your journey over the years, and seeing you absolutely CRUSH it here on IG. You have totally cracked the code!!!",
     name: "Lindsey",
+    role: "Fellow food creator",
     color: 'var(--c2)',
   },
 ];
 
 function Testimonials() {
-  const t = TESTIMONIALS[0];
   return (
     <section className="testimonials">
       <div className="container">
@@ -520,17 +526,21 @@ function Testimonials() {
           </h2>
         </div>
 
-        <div className="testimonial-card" style={{ background: t.color }}>
-          <div className="testimonial-mark-side">
-            <div className="display testimonial-mark">"</div>
-            <div>
-              <div className="testimonial-name">{t.name}</div>
-              <div className="mono testimonial-role">Fellow food creator</div>
+        <div className="testimonials-stack">
+          {TESTIMONIALS.map((t, i) => (
+            <div key={i} className="testimonial-card" style={{ background: t.color }}>
+              <div className="testimonial-mark-side">
+                <div className="display testimonial-mark">"</div>
+                <div>
+                  <div className="testimonial-name">{t.name}</div>
+                  <div className="mono testimonial-role">{t.role}</div>
+                </div>
+              </div>
+              <div className="testimonial-quote-side">
+                <p className="testimonial-quote">{t.quote}</p>
+              </div>
             </div>
-          </div>
-          <div className="testimonial-quote-side">
-            <p className="testimonial-quote">{t.quote}</p>
-          </div>
+          ))}
         </div>
 
         <div className="testimonials-note">
