@@ -1242,25 +1242,6 @@ section { scroll-margin-top: 80px; }
   margin-top: 6px;
   opacity: 0.75;
 }
-.booking-aside-total-strike {
-  font-size: 18px;
-  font-weight: 500;
-  text-decoration: line-through;
-  opacity: 0.55;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.booking-aside-total-discount {
-  font-size: 11px;
-  margin-top: 8px;
-  font-weight: 600;
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: var(--ink);
-}
 .booking-main {
   display: flex;
   flex-direction: column;
@@ -1287,200 +1268,61 @@ section { scroll-margin-top: 80px; }
   font-family: inherit;
   flex-shrink: 0;
 }
-.booking-body {
-  padding: 28px;
-  overflow-y: auto;
-  flex: 1;
-}
-.booking-footer {
-  padding: 18px 28px;
-  border-top: 2px solid var(--ink);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  background: var(--bg-alt);
-}
-
-/* Stepper */
-.booking-stepper {
-  display: flex; align-items: center;
-  gap: 10px; flex-wrap: wrap;
-  min-width: 0;
-}
-.booking-stepper-step {
-  display: flex; align-items: center;
-  gap: 8px;
-}
-.booking-stepper-num {
-  width: 24px; height: 24px;
-  border-radius: 50%;
-  border: 2px solid var(--ink);
-  background: var(--bg);
-  color: var(--ink);
-  font-size: 11px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'DM Mono', monospace;
-  flex-shrink: 0;
-}
-.booking-stepper-step.is-done .booking-stepper-num {
-  background: var(--ink);
-  color: var(--bg);
-}
-.booking-stepper-step.is-active .booking-stepper-num {
-  background: var(--c2);
-}
-.booking-stepper-label {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  font-weight: 500;
-  opacity: 0.55;
-}
-.booking-stepper-step.is-active .booking-stepper-label {
-  font-weight: 700;
-  opacity: 1;
-}
-.booking-stepper-divider {
-  width: 16px; height: 1.5px;
-  background: var(--ink);
-  opacity: 0.3;
-}
-
-/* Calendar step */
-.booking-cal-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 20px;
-}
-.booking-cal-pane {
-  background: var(--card);
-  border: 2px solid var(--ink);
-  border-radius: 16px;
-  padding: 16px;
-}
-.booking-cal-pane-times {
-  display: flex; flex-direction: column;
-}
-.booking-cal-monthbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.booking-cal-arrow {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  border: 1.5px solid var(--ink);
-  background: var(--bg);
-  cursor: pointer;
-  font-size: 18px; line-height: 1;
-  display: inline-flex;
-  align-items: center; justify-content: center;
-  font-family: inherit;
-}
-.booking-cal-month-label {
-  font-size: 18px;
-  letter-spacing: -0.01em;
-}
-.booking-cal-dow {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  margin-bottom: 6px;
-}
-.booking-cal-dow-cell {
-  font-size: 10px;
-  text-align: center;
-  color: var(--ink-soft);
-  letter-spacing: 0.1em;
-  padding: 6px 0;
-}
-.booking-cal-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-.booking-cal-day {
-  aspect-ratio: 1 / 1;
-  border-radius: 10px;
-  font-size: 14px;
-  font-family: inherit;
-  transition: all 0.15s;
-  position: relative;
-}
-.booking-cal-legend {
-  display: flex; gap: 14px;
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--ink-soft);
-}
-.booking-times-eyebrow {
+/* Cal.com embed slot — fills the right side of the modal */
+.booking-embed-eyebrow {
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  margin-bottom: 10px;
+  font-weight: 600;
 }
-.booking-times-empty {
+.booking-embed {
   flex: 1;
+  min-height: 600px;
+  background: var(--bg);
+  overflow: hidden;
+}
+.booking-embed iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+  display: block;
+}
+
+/* Branded confirmation shown after Cal reports bookingSuccessful */
+.booking-confirmed {
+  flex: 1;
+  text-align: center;
+  padding: 56px 28px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 16px;
+}
+.booking-confirmed-check {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+.booking-confirmed-title {
+  font-size: 36px;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+.booking-confirmed-sub {
+  font-size: 15px;
   color: var(--ink-soft);
-  font-size: 13px;
-  text-align: center;
-  padding: 20px;
-  border: 1.5px dashed var(--ink-soft);
-  border-radius: 12px;
-  opacity: 0.6;
-}
-.booking-times-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-.booking-time {
-  padding: 12px 8px;
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: inherit;
-  transition: all 0.15s;
-}
-
-/* Details step */
-.booking-details-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.booking-details-grid-full { grid-column: 1 / -1; }
-
-/* Payment step */
-.booking-pay-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  max-width: 480px;
-}
-.booking-pay-row-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 14px;
-}
-.booking-discount-box {
-  margin-top: 20px;
-  padding: 16px 18px;
-  background: var(--bg-alt);
-  border: 1.5px dashed var(--ink);
-  border-radius: 12px;
-  max-width: 480px;
+  max-width: 440px;
+  margin: 0;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
@@ -1519,45 +1361,11 @@ section { scroll-margin-top: 80px; }
   .booking-aside-total-eyebrow,
   .booking-aside-total-sub { display: none; }
   .booking-aside-total-amount { font-size: 24px; }
-  .booking-aside-total-strike {
-    font-size: 13px;
-    margin-bottom: 2px;
-    text-align: right;
-  }
-  .booking-aside-total-discount {
-    font-size: 9px;
-    padding: 3px 6px;
-    margin-top: 4px;
-  }
   .booking-main { max-height: none; }
   .booking-header { padding: 14px 20px; }
-  .booking-body { padding: 20px; }
-  .booking-footer { padding: 14px 20px; }
-  .booking-cal-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-  .booking-times-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .booking-details-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .booking-pay-row-3 {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  /* Stepper: hide labels for non-active steps + dividers on mobile */
-  .booking-stepper-step:not(.is-active) .booking-stepper-label { display: none; }
-  .booking-stepper-divider { width: 8px; }
-}
-
-@media (max-width: 480px) {
-  .booking-pay-row-3 {
-    grid-template-columns: 1fr 1fr;
-  }
-  .booking-pay-row-3 > :last-child { grid-column: 1 / -1; }
+  .booking-embed { min-height: 540px; }
+  .booking-confirmed { padding: 40px 24px; }
+  .booking-confirmed-title { font-size: 30px; }
 }
 
 /* === QUIZ FAB & WIDGET === */

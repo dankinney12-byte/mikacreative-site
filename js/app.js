@@ -1260,141 +1260,67 @@ Object.assign(window, {
 /* global React */
 var {
   useState,
-  useMemo,
-  useEffect
+  useEffect,
+  useRef
 } = React;
 
 // ============================================================
 // BOOKING FLOW
-// 4 steps: calendar → time → details → payment → confirmed
+// Wraps Cal.com's inline embed in a branded modal.
+// The aside (service summary + price) is ours; the calendar /
+// scheduling / Stripe payment / intake fields are all Cal.com.
 // ============================================================
 
-// Discount codes — add real ones here, or wire to Stripe Coupons later.
-// `kind: 'percent'` takes a number 0–100; `kind: 'flat'` takes a dollar amount.
-const DISCOUNT_CODES = {
-  VIP10: {
-    kind: 'percent',
-    value: 10,
-    label: '10% off — VIP'
-  },
-  EARLY100: {
-    kind: 'flat',
-    value: 100,
-    label: '$100 off — early bird'
-  },
-  FRIEND: {
-    kind: 'percent',
-    value: 20,
-    label: '20% off — friend rate'
-  }
+// service.id  →  cal.com path
+const CAL_LINKS = {
+  'audit': 'mikacreative/the-audit',
+  'audit-plus': 'mikacreative/the-auditplus'
 };
-function parsePrice(str) {
-  // "$950" or "$950/audit" → 950
-  const m = String(str || '').match(/\$?([\d,]+)/);
-  return m ? parseInt(m[1].replace(/,/g, ''), 10) : 0;
-}
-function fmtMoney(n) {
-  return '$' + n.toLocaleString('en-US');
-}
-const TIMES = ['9:00 AM', '10:00 AM', '11:30 AM', '1:00 PM', '2:30 PM', '4:00 PM'];
 
-// Pretend availability — some days/times are blocked
-function isDayAvailable(d) {
-  if (!d) return false;
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  if (d < today) return false;
-  // Skip Sundays (0) and Saturdays (6)
-  const dow = d.getDay();
-  if (dow === 0 || dow === 6) return false;
-  // Pretend a few random days are full
-  const dayNum = d.getDate();
-  if ([3, 11, 17, 24].includes(dayNum)) return false;
-  return true;
-}
-function getTimesForDay(d) {
-  // Pretend some times are taken on different days
-  if (!d) return [];
-  const dayNum = d.getDate();
-  return TIMES.filter((_, i) => (dayNum + i) % 5 !== 0);
-}
-function fmtMonth(date) {
-  return date.toLocaleString('en-US', {
-    month: 'long',
-    year: 'numeric'
-  });
-}
-function fmtDay(date) {
-  return date.toLocaleString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric'
-  });
-}
-function buildMonthGrid(year, month) {
-  const first = new Date(year, month, 1);
-  const startDow = first.getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const cells = [];
-  for (let i = 0; i < startDow; i++) cells.push(null);
-  for (let d = 1; d <= daysInMonth; d++) cells.push(new Date(year, month, d));
-  while (cells.length % 7 !== 0) cells.push(null);
-  return cells;
+// Standard Cal.com embed loader IIFE. Lazy: only attaches the
+// app.cal.com script when first invoked. Safe to call repeatedly.
+function ensureCalLoaded() {
+  if (typeof window === 'undefined') return;
+  if (window.Cal && window.Cal.loaded) return;
+  (function (C, A, L) {
+    const p = function (a, ar) {
+      a.q.push(ar);
+    };
+    const d = C.document;
+    C.Cal = C.Cal || function () {
+      const cal = C.Cal;
+      const ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement('script')).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () {
+          p(api, arguments);
+        };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === 'string') {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ['initNamespace', namespace]);
+        } else {
+          p(cal, ar);
+        }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, 'https://app.cal.com/embed/embed.js', 'init');
 }
 function BookingFlow({
   service,
   onClose
 }) {
-  const [step, setStep] = useState(1); // 1 cal, 2 details, 3 pay, 4 done
-  const [viewDate, setViewDate] = useState(() => {
-    const d = new Date();
-    return new Date(d.getFullYear(), d.getMonth(), 1);
-  });
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
-  const [details, setDetails] = useState({
-    name: '',
-    email: '',
-    handle: '',
-    followers: '0–5K',
-    goal: '',
-    notes: ''
-  });
-  const [card, setCard] = useState({
-    number: '',
-    exp: '',
-    cvc: '',
-    zip: ''
-  });
-  const [processing, setProcessing] = useState(false);
-  const [discountInput, setDiscountInput] = useState('');
-  const [appliedCode, setAppliedCode] = useState(null);
-  const [discountError, setDiscountError] = useState('');
-
-  // Pricing math
-  const basePrice = service ? parsePrice(service.price) : 0;
-  const discountAmount = appliedCode ? appliedCode.kind === 'percent' ? Math.round(basePrice * appliedCode.value / 100) : Math.min(appliedCode.value, basePrice) : 0;
-  const finalPrice = Math.max(0, basePrice - discountAmount);
-  function applyDiscount() {
-    const code = discountInput.trim().toUpperCase();
-    if (!code) return;
-    const found = DISCOUNT_CODES[code];
-    if (!found) {
-      setDiscountError("That code isn't valid.");
-      setAppliedCode(null);
-      return;
-    }
-    setAppliedCode({
-      code,
-      ...found
-    });
-    setDiscountError('');
-  }
-  function removeDiscount() {
-    setAppliedCode(null);
-    setDiscountInput('');
-    setDiscountError('');
-  }
+  const [confirmed, setConfirmed] = useState(false);
+  const containerRef = useRef(null);
 
   // Lock body scroll while open
   useEffect(() => {
@@ -1403,21 +1329,8 @@ function BookingFlow({
       document.body.style.overflow = '';
     };
   }, []);
-  if (!service) return null;
-  const cells = useMemo(() => buildMonthGrid(viewDate.getFullYear(), viewDate.getMonth()), [viewDate]);
-  const availableTimes = selectedDay ? getTimesForDay(selectedDay) : [];
-  const canProceedStep1 = selectedDay && selectedTime;
-  const canProceedStep2 = details.name && details.email && details.handle;
-  const canProceedStep3 = card.number.replace(/\s/g, '').length >= 15 && card.exp.length >= 4 && card.cvc.length >= 3;
-  function handlePay() {
-    setProcessing(true);
-    setTimeout(() => {
-      setProcessing(false);
-      setStep(4);
-    }, 1600);
-  }
 
-  // Allow closing with Esc
+  // Esc to close
   useEffect(() => {
     function onKey(e) {
       if (e.key === 'Escape') onClose();
@@ -1425,6 +1338,61 @@ function BookingFlow({
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
+
+  // Initialize the Cal.com inline embed once the modal is mounted.
+  useEffect(() => {
+    if (!service) return;
+    const calLink = CAL_LINKS[service.id];
+    if (!calLink || !containerRef.current) return;
+    ensureCalLoaded();
+    const namespace = service.id;
+    const Cal = window.Cal;
+    Cal('init', namespace, {
+      origin: 'https://cal.com'
+    });
+    Cal.ns[namespace]('inline', {
+      elementOrSelector: containerRef.current,
+      calLink: calLink,
+      config: {
+        layout: 'month_view',
+        theme: 'light'
+      }
+    });
+    Cal.ns[namespace]('ui', {
+      hideEventTypeDetails: true,
+      // we already show service details in the aside
+      theme: 'light',
+      cssVarsPerTheme: {
+        light: {
+          'cal-brand': '#1F1B16',
+          // ink (matches site primary buttons)
+          'cal-brand-emphasis': '#FF6B6B',
+          // coral accent
+          'cal-text': '#1F1B16',
+          'cal-text-emphasis': '#1F1B16',
+          'cal-bg': '#FBF7F0',
+          // site bg
+          'cal-bg-emphasis': '#F4ECDD',
+          // site bg-alt
+          'cal-border': '#1F1B16',
+          'cal-border-emphasis': '#1F1B16'
+        }
+      }
+    });
+
+    // Branded confirmation when Cal reports a successful booking.
+    // The event has shipped under two names; listen for both to be safe.
+    const onSuccess = () => setConfirmed(true);
+    Cal.ns[namespace]('on', {
+      action: 'bookingSuccessfulV2',
+      callback: onSuccess
+    });
+    Cal.ns[namespace]('on', {
+      action: 'bookingSuccessful',
+      callback: onSuccess
+    });
+  }, [service]);
+  if (!service) return null;
   return /*#__PURE__*/React.createElement("div", {
     className: "booking-overlay",
     onClick: e => {
@@ -1451,734 +1419,47 @@ function BookingFlow({
     className: "booking-aside-total"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mono booking-aside-total-eyebrow"
-  }, "Total"), appliedCode ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    className: "booking-aside-total-strike"
-  }, fmtMoney(basePrice)), /*#__PURE__*/React.createElement("div", {
-    className: "display booking-aside-total-amount"
-  }, fmtMoney(finalPrice)), /*#__PURE__*/React.createElement("div", {
-    className: "mono booking-aside-total-discount",
-    style: {
-      color: service.color
-    }
-  }, appliedCode.code, " \u2212", fmtMoney(discountAmount))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  }, "Total"), /*#__PURE__*/React.createElement("div", {
     className: "display booking-aside-total-amount"
   }, service.price), /*#__PURE__*/React.createElement("div", {
     className: "mono booking-aside-total-sub"
-  }, service.sub)))), /*#__PURE__*/React.createElement("div", {
+  }, service.sub))), /*#__PURE__*/React.createElement("div", {
     className: "booking-main"
   }, /*#__PURE__*/React.createElement("header", {
     className: "booking-header"
-  }, /*#__PURE__*/React.createElement(Stepper, {
-    step: step
-  }), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-embed-eyebrow"
+  }, confirmed ? "✓ You're booked" : 'Pick a date & time'), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
     className: "booking-close"
-  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
-    className: "booking-body"
-  }, step === 1 && /*#__PURE__*/React.createElement(CalendarStep, {
-    viewDate: viewDate,
-    setViewDate: setViewDate,
-    cells: cells,
-    selectedDay: selectedDay,
-    setSelectedDay: d => {
-      setSelectedDay(d);
-      setSelectedTime(null);
-    },
-    selectedTime: selectedTime,
-    setSelectedTime: setSelectedTime,
-    availableTimes: availableTimes
-  }), step === 2 && /*#__PURE__*/React.createElement(DetailsStep, {
-    details: details,
-    setDetails: setDetails,
-    selectedDay: selectedDay,
-    selectedTime: selectedTime
-  }), step === 3 && /*#__PURE__*/React.createElement(PaymentStep, {
-    card: card,
-    setCard: setCard,
-    price: service.price,
-    processing: processing,
-    basePrice: basePrice,
-    finalPrice: finalPrice,
-    appliedCode: appliedCode,
-    discountAmount: discountAmount,
-    discountInput: discountInput,
-    setDiscountInput: setDiscountInput,
-    applyDiscount: applyDiscount,
-    removeDiscount: removeDiscount,
-    discountError: discountError
-  }), step === 4 && /*#__PURE__*/React.createElement(ConfirmedStep, {
+  }, "\xD7")), confirmed ? /*#__PURE__*/React.createElement(ConfirmedMessage, {
     service: service,
-    day: selectedDay,
-    time: selectedTime,
-    email: details.email,
-    basePrice: basePrice,
-    finalPrice: finalPrice,
-    appliedCode: appliedCode,
-    discountAmount: discountAmount
-  })), step !== 4 && /*#__PURE__*/React.createElement("footer", {
-    className: "booking-footer"
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: () => step > 1 ? setStep(step - 1) : onClose(),
-    className: "btn ghost sm",
-    style: {
-      background: 'transparent',
-      boxShadow: 'none'
-    }
-  }, "\u2190 ", step === 1 ? 'Cancel' : 'Back'), step === 1 && /*#__PURE__*/React.createElement("button", {
-    className: "btn sm",
-    disabled: !canProceedStep1,
-    onClick: () => setStep(2),
-    style: {
-      opacity: canProceedStep1 ? 1 : 0.4,
-      cursor: canProceedStep1 ? 'pointer' : 'not-allowed'
-    }
-  }, "Continue \u2192"), step === 2 && /*#__PURE__*/React.createElement("button", {
-    className: "btn sm",
-    disabled: !canProceedStep2,
-    onClick: () => setStep(3),
-    style: {
-      opacity: canProceedStep2 ? 1 : 0.4,
-      cursor: canProceedStep2 ? 'pointer' : 'not-allowed'
-    }
-  }, "next: payment \u2192"), step === 3 && /*#__PURE__*/React.createElement("button", {
-    className: "btn sm",
-    disabled: !canProceedStep3 || processing,
-    onClick: handlePay,
-    style: {
-      opacity: canProceedStep3 && !processing ? 1 : 0.4,
-      cursor: canProceedStep3 && !processing ? 'pointer' : 'not-allowed'
-    }
-  }, processing ? 'Processing…' : `Pay ${fmtMoney(finalPrice)} →`)))));
+    onClose: onClose
+  }) : /*#__PURE__*/React.createElement("div", {
+    ref: containerRef,
+    className: "booking-embed"
+  }))));
 }
-
-// ---- Stepper ----
-function Stepper({
-  step
-}) {
-  const steps = ['Date & time', 'Your details', 'Payment', 'Confirmed'];
-  return /*#__PURE__*/React.createElement("div", {
-    className: "booking-stepper"
-  }, steps.map((label, i) => {
-    const n = i + 1;
-    const active = n === step;
-    const done = n < step;
-    const stateClass = done ? 'is-done' : active ? 'is-active' : '';
-    return /*#__PURE__*/React.createElement(React.Fragment, {
-      key: i
-    }, /*#__PURE__*/React.createElement("div", {
-      className: `booking-stepper-step ${stateClass}`
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "booking-stepper-num mono"
-    }, done ? '✓' : n), /*#__PURE__*/React.createElement("span", {
-      className: "mono booking-stepper-label"
-    }, label)), i < steps.length - 1 && /*#__PURE__*/React.createElement("span", {
-      className: "booking-stepper-divider"
-    }));
-  }));
-}
-
-// ---- Step 1: Calendar ----
-function CalendarStep({
-  viewDate,
-  setViewDate,
-  cells,
-  selectedDay,
-  setSelectedDay,
-  selectedTime,
-  setSelectedTime,
-  availableTimes
-}) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const sameDay = (a, b) => a && b && a.getTime() === b.getTime();
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
-    className: "display",
-    style: {
-      fontSize: 28,
-      margin: '0 0 4px',
-      letterSpacing: '-0.02em'
-    }
-  }, "Pick a date & time"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 14,
-      color: 'var(--ink-soft)',
-      margin: '0 0 8px'
-    }
-  }, "Choose which audit you're booking \u2014 ", /*#__PURE__*/React.createElement("strong", null, "The Audit ($950)"), " or ", /*#__PURE__*/React.createElement("strong", null, "Audit + Pre-Post Reviews ($1,100)"), ". You'll select at checkout."), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 13,
-      color: 'var(--ink-soft)',
-      margin: '0 0 20px',
-      opacity: 0.85
-    }
-  }, "All times are Central. Audits run Monday\u2013Friday."), /*#__PURE__*/React.createElement("div", {
-    className: "booking-cal-grid"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "booking-cal-pane"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "booking-cal-monthbar"
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: () => {
-      const next = new Date(viewDate);
-      next.setMonth(next.getMonth() - 1);
-      if (next.getFullYear() < today.getFullYear() || next.getFullYear() === today.getFullYear() && next.getMonth() < today.getMonth()) return;
-      setViewDate(next);
-    },
-    className: "booking-cal-arrow"
-  }, "\u2039"), /*#__PURE__*/React.createElement("div", {
-    className: "display booking-cal-month-label"
-  }, fmtMonth(viewDate)), /*#__PURE__*/React.createElement("button", {
-    onClick: () => {
-      const next = new Date(viewDate);
-      next.setMonth(next.getMonth() + 1);
-      setViewDate(next);
-    },
-    className: "booking-cal-arrow"
-  }, "\u203A")), /*#__PURE__*/React.createElement("div", {
-    className: "booking-cal-dow"
-  }, ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => /*#__PURE__*/React.createElement("div", {
-    key: i,
-    className: "mono booking-cal-dow-cell"
-  }, d))), /*#__PURE__*/React.createElement("div", {
-    className: "booking-cal-days"
-  }, cells.map((d, i) => {
-    if (!d) return /*#__PURE__*/React.createElement("div", {
-      key: i
-    });
-    const avail = isDayAvailable(d);
-    const sel = sameDay(d, selectedDay);
-    return /*#__PURE__*/React.createElement("button", {
-      key: i,
-      disabled: !avail,
-      onClick: () => setSelectedDay(d),
-      className: "booking-cal-day",
-      style: {
-        border: sel ? '2px solid var(--ink)' : '1.5px solid transparent',
-        background: sel ? 'var(--c2)' : avail ? 'var(--bg-alt)' : 'transparent',
-        color: avail ? 'var(--ink)' : 'var(--ink-soft)',
-        fontWeight: sel ? 700 : 500,
-        cursor: avail ? 'pointer' : 'not-allowed',
-        opacity: avail ? 1 : 0.35
-      },
-      onMouseOver: e => {
-        if (avail && !sel) e.currentTarget.style.background = 'var(--c2)';
-      },
-      onMouseOut: e => {
-        if (avail && !sel) e.currentTarget.style.background = 'var(--bg-alt)';
-      }
-    }, d.getDate());
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "booking-cal-legend"
-  }, /*#__PURE__*/React.createElement(Legend, {
-    swatch: "var(--bg-alt)",
-    label: "Available"
-  }), /*#__PURE__*/React.createElement(Legend, {
-    swatch: "var(--c2)",
-    label: "Selected"
-  }), /*#__PURE__*/React.createElement(Legend, {
-    swatch: "transparent",
-    label: "Booked",
-    dim: true
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "booking-cal-pane booking-cal-pane-times"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "mono booking-times-eyebrow"
-  }, selectedDay ? fmtDay(selectedDay) : 'Pick a date first'), !selectedDay && /*#__PURE__*/React.createElement("div", {
-    className: "booking-times-empty"
-  }, "Select a day on the left to see open times."), selectedDay && /*#__PURE__*/React.createElement("div", {
-    className: "booking-times-grid"
-  }, TIMES.map(t => {
-    const avail = availableTimes.includes(t);
-    const sel = selectedTime === t;
-    return /*#__PURE__*/React.createElement("button", {
-      key: t,
-      disabled: !avail,
-      onClick: () => setSelectedTime(t),
-      className: "booking-time",
-      style: {
-        background: sel ? 'var(--ink)' : 'var(--bg)',
-        color: sel ? 'var(--bg)' : 'var(--ink)',
-        cursor: avail ? 'pointer' : 'not-allowed',
-        opacity: avail ? 1 : 0.35,
-        textDecoration: avail ? 'none' : 'line-through'
-      }
-    }, t);
-  })))));
-}
-function Legend({
-  swatch,
-  label,
-  dim
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: 6,
-      fontSize: 11,
-      color: 'var(--ink-soft)',
-      opacity: dim ? 0.5 : 1
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      width: 12,
-      height: 12,
-      borderRadius: 4,
-      background: swatch,
-      border: '1.5px solid var(--ink)'
-    }
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "mono",
-    style: {
-      letterSpacing: '0.08em',
-      textTransform: 'uppercase'
-    }
-  }, label));
-}
-
-// ---- Step 2: Details ----
-function DetailsStep({
-  details,
-  setDetails,
-  selectedDay,
-  selectedTime
-}) {
-  const u = (k, v) => setDetails(d => ({
-    ...d,
-    [k]: v
-  }));
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
-    className: "display",
-    style: {
-      fontSize: 28,
-      margin: '0 0 4px',
-      letterSpacing: '-0.02em'
-    }
-  }, "before we dig in"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 14,
-      color: 'var(--ink-soft)',
-      margin: '0 0 20px'
-    }
-  }, "Booking ", /*#__PURE__*/React.createElement("strong", null, fmtDay(selectedDay), " at ", selectedTime, " CT"), ". The more context you give me, the more useful your audit will be."), /*#__PURE__*/React.createElement("div", {
-    className: "booking-details-grid"
-  }, /*#__PURE__*/React.createElement(Field, {
-    label: "Name"
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "booking-form-input",
-    value: details.name,
-    onChange: e => u('name', e.target.value),
-    placeholder: "Jane Doe"
-  })), /*#__PURE__*/React.createElement(Field, {
-    label: "Email"
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "booking-form-input",
-    type: "email",
-    value: details.email,
-    onChange: e => u('email', e.target.value),
-    placeholder: "jane@example.com"
-  })), /*#__PURE__*/React.createElement(Field, {
-    label: "Instagram handle"
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "booking-form-input",
-    value: details.handle,
-    onChange: e => u('handle', e.target.value),
-    placeholder: "@yourhandle"
-  })), /*#__PURE__*/React.createElement(Field, {
-    label: "Current followers"
-  }, /*#__PURE__*/React.createElement("select", {
-    className: "booking-form-input",
-    value: details.followers,
-    onChange: e => u('followers', e.target.value)
-  }, /*#__PURE__*/React.createElement("option", null, "0\u20135K"), /*#__PURE__*/React.createElement("option", null, "5K\u201325K"), /*#__PURE__*/React.createElement("option", null, "25K\u2013100K"), /*#__PURE__*/React.createElement("option", null, "100K\u2013500K"), /*#__PURE__*/React.createElement("option", null, "500K+"))), /*#__PURE__*/React.createElement("div", {
-    className: "booking-details-grid-full"
-  }, /*#__PURE__*/React.createElement(Field, {
-    label: "What's your #1 goal?"
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "booking-form-input",
-    value: details.goal,
-    onChange: e => u('goal', e.target.value),
-    placeholder: "e.g. break 25K, land a brand deal, figure out why my reels stopped performing"
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "booking-details-grid-full"
-  }, /*#__PURE__*/React.createElement(Field, {
-    label: "Anything else I should know? (optional)"
-  }, /*#__PURE__*/React.createElement("textarea", {
-    className: "booking-form-input booking-form-textarea",
-    value: details.notes,
-    onChange: e => u('notes', e.target.value),
-    placeholder: "Stuck spots, recent flops, niche shifts, anything that'll help me dig in."
-  })))));
-}
-function Field({
-  label,
-  children
-}) {
-  return /*#__PURE__*/React.createElement("label", {
-    style: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 6
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "mono booking-form-label",
-    style: {
-      marginBottom: 0
-    }
-  }, label), children);
-}
-
-// ---- Step 3: Payment ----
-function PaymentStep({
-  card,
-  setCard,
-  price,
-  processing,
-  basePrice,
-  finalPrice,
-  appliedCode,
-  discountAmount,
-  discountInput,
-  setDiscountInput,
-  applyDiscount,
-  removeDiscount,
-  discountError
-}) {
-  const u = (k, v) => setCard(c => ({
-    ...c,
-    [k]: v
-  }));
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
-    className: "display",
-    style: {
-      fontSize: 28,
-      margin: '0 0 4px',
-      letterSpacing: '-0.02em'
-    }
-  }, "Payment"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 14,
-      color: 'var(--ink-soft)',
-      margin: '0 0 20px'
-    }
-  }, "Secure checkout \u2014 you'll be charged ", /*#__PURE__*/React.createElement("strong", null, fmtMoney(finalPrice)), " when you confirm. Questions? ", /*#__PURE__*/React.createElement("a", {
-    href: "mailto:hi@mikacreative.co",
-    style: {
-      color: 'var(--ink)',
-      textDecoration: 'underline'
-    }
-  }, "Email me before you book.")), /*#__PURE__*/React.createElement("div", {
-    className: "booking-pay-form"
-  }, /*#__PURE__*/React.createElement(Field, {
-    label: "Card number"
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "booking-form-input",
-    value: card.number,
-    onChange: e => {
-      const v = e.target.value.replace(/[^\d]/g, '').slice(0, 16);
-      const f = v.replace(/(\d{4})(?=\d)/g, '$1 ');
-      u('number', f);
-    },
-    placeholder: "1234 5678 9012 3456",
-    inputMode: "numeric"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "booking-pay-row-3"
-  }, /*#__PURE__*/React.createElement(Field, {
-    label: "Expiry"
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "booking-form-input",
-    value: card.exp,
-    onChange: e => {
-      let v = e.target.value.replace(/[^\d]/g, '').slice(0, 4);
-      if (v.length >= 3) v = v.slice(0, 2) + '/' + v.slice(2);
-      u('exp', v);
-    },
-    placeholder: "MM/YY",
-    inputMode: "numeric"
-  })), /*#__PURE__*/React.createElement(Field, {
-    label: "CVC"
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "booking-form-input",
-    value: card.cvc,
-    onChange: e => u('cvc', e.target.value.replace(/[^\d]/g, '').slice(0, 4)),
-    placeholder: "123",
-    inputMode: "numeric"
-  })), /*#__PURE__*/React.createElement(Field, {
-    label: "ZIP"
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "booking-form-input",
-    value: card.zip,
-    onChange: e => u('zip', e.target.value.replace(/[^\d]/g, '').slice(0, 5)),
-    placeholder: "12345",
-    inputMode: "numeric"
-  })))), /*#__PURE__*/React.createElement("div", {
-    className: "booking-discount-box"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase',
-      fontWeight: 600,
-      color: 'var(--ink-soft)',
-      marginBottom: 10
-    }
-  }, "Discount code"), appliedCode ? /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      gap: 12,
-      padding: '10px 14px',
-      background: 'var(--ink)',
-      color: 'var(--bg)',
-      borderRadius: 8
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 10,
-      minWidth: 0
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 16
-    }
-  }, "\u2713"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      minWidth: 0
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      fontSize: 14
-    }
-  }, appliedCode.code), /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      opacity: 0.75
-    }
-  }, appliedCode.label, " \xB7 \u2212", fmtMoney(discountAmount)))), /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    onClick: removeDiscount,
-    style: {
-      background: 'transparent',
-      border: '1.5px solid var(--bg)',
-      color: 'var(--bg)',
-      padding: '6px 10px',
-      borderRadius: 6,
-      fontSize: 11,
-      fontFamily: 'var(--mono)',
-      letterSpacing: '0.08em',
-      textTransform: 'uppercase',
-      cursor: 'pointer',
-      fontWeight: 600
-    }
-  }, "Remove")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 8
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "booking-form-input",
-    style: {
-      flex: 1,
-      textTransform: 'uppercase',
-      letterSpacing: '0.08em',
-      fontFamily: 'var(--mono)',
-      fontSize: 13
-    },
-    value: discountInput,
-    onChange: e => setDiscountInput(e.target.value.toUpperCase()),
-    onKeyDown: e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        applyDiscount();
-      }
-    },
-    placeholder: "ENTER CODE"
-  }), /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    onClick: applyDiscount,
-    disabled: !discountInput.trim(),
-    style: {
-      padding: '0 16px',
-      background: 'var(--ink)',
-      color: 'var(--bg)',
-      border: '1.5px solid var(--ink)',
-      borderRadius: 8,
-      fontSize: 12,
-      fontFamily: 'var(--mono)',
-      letterSpacing: '0.08em',
-      textTransform: 'uppercase',
-      cursor: discountInput.trim() ? 'pointer' : 'not-allowed',
-      fontWeight: 600,
-      opacity: discountInput.trim() ? 1 : 0.4,
-      whiteSpace: 'nowrap'
-    }
-  }, "Apply")), discountError && /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 8,
-      fontSize: 12,
-      color: '#c0392b',
-      fontWeight: 500
-    }
-  }, discountError)), appliedCode && /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 14,
-      paddingTop: 12,
-      borderTop: '1px dashed var(--ink-soft)',
-      fontSize: 13
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      padding: '3px 0'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--ink-soft)'
-    }
-  }, "Subtotal"), /*#__PURE__*/React.createElement("span", null, fmtMoney(basePrice))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      padding: '3px 0',
-      color: 'var(--ink-soft)'
-    }
-  }, /*#__PURE__*/React.createElement("span", null, "Discount (", appliedCode.code, ")"), /*#__PURE__*/React.createElement("span", null, "\u2212", fmtMoney(discountAmount))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      padding: '6px 0 0',
-      fontWeight: 700,
-      fontSize: 15
-    }
-  }, /*#__PURE__*/React.createElement("span", null, "Total"), /*#__PURE__*/React.createElement("span", null, fmtMoney(finalPrice))))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 18,
-      padding: '10px 14px',
-      background: 'var(--bg-alt)',
-      border: '1.5px solid var(--ink)',
-      borderRadius: 10,
-      fontSize: 12,
-      color: 'var(--ink-soft)',
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: 8
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 14
-    }
-  }, "\uD83D\uDD12"), "Payments are processed securely. Card info never touches our servers."));
-}
-
-// ---- Step 4: Confirmed ----
-function ConfirmedStep({
+function ConfirmedMessage({
   service,
-  day,
-  time,
-  email
+  onClose
 }) {
   return /*#__PURE__*/React.createElement("div", {
-    style: {
-      textAlign: 'center',
-      padding: '20px 0 12px'
-    }
+    className: "booking-confirmed"
   }, /*#__PURE__*/React.createElement("div", {
+    className: "booking-confirmed-check",
     style: {
-      width: 72,
-      height: 72,
-      borderRadius: '50%',
-      background: service.color,
-      border: '2px solid var(--ink)',
-      boxShadow: '4px 4px 0 var(--ink)',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: '12px auto 24px',
-      fontSize: 36
+      background: service.color
     }
   }, "\u2713"), /*#__PURE__*/React.createElement("h3", {
-    className: "display",
-    style: {
-      fontSize: 36,
-      margin: '0 0 8px',
-      letterSpacing: '-0.02em'
-    }
+    className: "display booking-confirmed-title"
   }, "you're booked!"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 15,
-      color: 'var(--ink-soft)',
-      margin: '0 0 28px',
-      maxWidth: 440,
-      marginInline: 'auto'
-    }
-  }, "Confirmation sent to ", /*#__PURE__*/React.createElement("strong", null, email), ". A calendar invite is on its way."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'inline-block',
-      textAlign: 'left',
-      background: 'var(--card)',
-      border: '2px solid var(--ink)',
-      borderRadius: 16,
-      padding: '20px 24px',
-      boxShadow: '4px 4px 0 var(--ink)',
-      minWidth: 320,
-      maxWidth: '100%'
-    }
-  }, /*#__PURE__*/React.createElement(Row, {
-    k: "Service",
-    v: service.title
-  }), /*#__PURE__*/React.createElement(Row, {
-    k: "Date",
-    v: day ? fmtDay(day) : ''
-  }), /*#__PURE__*/React.createElement(Row, {
-    k: "Time",
-    v: `${time} CT`
-  }), /*#__PURE__*/React.createElement(Row, {
-    k: "Total",
-    v: service.price,
-    bold: true
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 28,
-      fontSize: 13,
-      color: 'var(--ink-soft)'
-    }
-  }, "Next: I'll DM you within 24 hrs from ", /*#__PURE__*/React.createElement("strong", null, "@mika.creative"), " with your intake form and what to send me."));
-}
-function Row({
-  k,
-  v,
-  bold
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      gap: 30,
-      padding: '8px 0',
-      borderBottom: '1px dashed var(--ink-soft)',
-      fontSize: 14
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 11,
-      letterSpacing: '0.1em',
-      textTransform: 'uppercase',
-      color: 'var(--ink-soft)'
-    }
-  }, k), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontWeight: bold ? 700 : 500
-    }
-  }, v));
+    className: "booking-confirmed-sub"
+  }, "Confirmation is on its way to your inbox, plus a calendar invite. I'll DM you within 24 hrs from ", /*#__PURE__*/React.createElement("strong", null, "@mika.creative"), " with what to send me before our session."), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    className: "btn"
+  }, "Close"));
 }
 window.BookingFlow = BookingFlow;
 
