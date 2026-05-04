@@ -1,20 +1,30 @@
 [build]
   publish = "."
 
+# js/css URLs are stable but content changes on every deploy — without a
+# hash in the filename, "immutable" would lock browsers to a stale bundle
+# until the cache expires. Force revalidation; ETag handles 304s cheaply.
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Fonts truly never change — long cache is fine.
 [[headers]]
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Images: 1 day so updates show within a day without hard refresh.
 [[headers]]
-  for = "/css/*"
+  for = "/images/*"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=86400"
 
 [[headers]]
   for = "/index.html"
