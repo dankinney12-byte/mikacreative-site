@@ -648,8 +648,9 @@ const TESTIMONIALS = [{
 }, {
   quote: "I cannot stop talking about WHAT A FREAKIN INSPIRATION you are!!! I have SO SO SO enjoyed seeing your journey over the years, and seeing you absolutely CRUSH it here on IG. You have totally cracked the code!!!",
   name: "Lindsey",
-  role: "Fellow food creator",
-  color: 'var(--c2)'
+  role: "Food creator · A Recipe for Fun",
+  color: 'var(--c2)',
+  image: 'images/lindsey.jpg'
 }];
 function Testimonials() {
   return /*#__PURE__*/React.createElement("section", {
