@@ -643,7 +643,8 @@ const TESTIMONIALS = [{
   quote: "Mika Kinney spoke to my mastermind group and instantly lit a fire under every single person on the call. Her approach to Instagram growth is not just inspiring, it's incredibly actionable. She is deep in the details, testing what works in real time, and it shows. Our group walked away with clarity, excitement and a desire to grow their accounts. Mika truly knows her stuff and delivers it in a way that makes you want to take action immediately.",
   name: "Megan Porta",
   role: "Food creator · Pip & Ebby · Eat Blog Talk podcast",
-  color: 'var(--c3)'
+  color: 'var(--c3)',
+  image: 'images/megan-porta.jpeg'
 }, {
   quote: "I cannot stop talking about WHAT A FREAKIN INSPIRATION you are!!! I have SO SO SO enjoyed seeing your journey over the years, and seeing you absolutely CRUSH it here on IG. You have totally cracked the code!!!",
   name: "Lindsey",
@@ -686,7 +687,12 @@ function Testimonials() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "testimonial-mark-side"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, t.image ? /*#__PURE__*/React.createElement("img", {
+    className: "testimonial-avatar",
+    src: t.image,
+    alt: t.name,
+    loading: "lazy"
+  }) : /*#__PURE__*/React.createElement("div", {
     className: "display testimonial-mark"
   }, "\""), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "testimonial-name"

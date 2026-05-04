@@ -939,6 +939,16 @@ section { scroll-margin-top: 80px; }
   letter-spacing: -0.05em;
   color: var(--ink);
 }
+.testimonial-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  object-fit: cover;
+  display: block;
+  background: var(--bg);
+}
 .testimonial-name {
   font-weight: 700;
   font-size: 22px;
@@ -992,6 +1002,7 @@ section { scroll-margin-top: 80px; }
     gap: 16px;
   }
   .testimonial-mark { font-size: 80px; }
+  .testimonial-avatar { width: 72px; height: 72px; box-shadow: 3px 3px 0 var(--ink); }
   .testimonial-quote-side { padding: 28px; }
   .testimonial-quote { font-size: 17px; }
 }

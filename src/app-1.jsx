@@ -503,6 +503,7 @@ const TESTIMONIALS = [
     name: "Megan Porta",
     role: "Food creator · Pip & Ebby · Eat Blog Talk podcast",
     color: 'var(--c3)',
+    image: 'images/megan-porta.jpeg',
   },
   {
     quote: "I cannot stop talking about WHAT A FREAKIN INSPIRATION you are!!! I have SO SO SO enjoyed seeing your journey over the years, and seeing you absolutely CRUSH it here on IG. You have totally cracked the code!!!",
@@ -530,7 +531,11 @@ function Testimonials() {
           {TESTIMONIALS.map((t, i) => (
             <div key={i} className="testimonial-card" style={{ background: t.color }}>
               <div className="testimonial-mark-side">
-                <div className="display testimonial-mark">"</div>
+                {t.image ? (
+                  <img className="testimonial-avatar" src={t.image} alt={t.name} loading="lazy" />
+                ) : (
+                  <div className="display testimonial-mark">"</div>
+                )}
                 <div>
                   <div className="testimonial-name">{t.name}</div>
                   <div className="mono testimonial-role">{t.role}</div>
