@@ -415,7 +415,7 @@ function About() {
                 <img src="images/dan-mika-about.webp" alt="Mika and Dan" className="photo-img" loading="lazy" />
               </div>
               <div className="photo has-image">
-                <img src="images/filming-photo.png" alt="Mika filming behind the scenes" className="photo-img" loading="lazy" />
+                <img src="images/filming-photo.webp" alt="Mika filming behind the scenes" className="photo-img" loading="lazy" />
               </div>
             </div>
           </div>
@@ -706,7 +706,7 @@ function ContactCTA({ onOpenQuiz, onBook }) {
             Book Audit + Reviews — $1,100
           </button>
         </div>
-        <a href="mailto:hi@mikacreative.co" className="link" style={{
+        <a href="mailto:mika@joytothefood.com" className="link" style={{
           fontSize: 14,
           color: 'var(--ink-soft)',
           borderBottom: '1.5px dotted var(--ink-soft)',
@@ -723,7 +723,7 @@ function ContactCTA({ onOpenQuiz, onBook }) {
           </div>
           <div className="site-footer-links">
             <a href="https://instagram.com/_joytothefood_" className="link">@_joytothefood_</a>
-            <a href="mailto:hi@mikacreative.co" className="link">Email</a>
+            <a href="mailto:mika@joytothefood.com" className="link">Email</a>
           </div>
         </div>
       </footer>

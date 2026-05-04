@@ -530,7 +530,7 @@ function About() {
   })), /*#__PURE__*/React.createElement("div", {
     className: "photo has-image"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "images/filming-photo.png",
+    src: "images/filming-photo.webp",
     alt: "Mika filming behind the scenes",
     className: "photo-img",
     loading: "lazy"
@@ -906,7 +906,7 @@ function ContactCTA({
       background: 'var(--c4)'
     }
   }, "Book Audit + Reviews \u2014 $1,100")), /*#__PURE__*/React.createElement("a", {
-    href: "mailto:hi@mikacreative.co",
+    href: "mailto:mika@joytothefood.com",
     className: "link",
     style: {
       fontSize: 14,
@@ -927,7 +927,7 @@ function ContactCTA({
     href: "https://instagram.com/_joytothefood_",
     className: "link"
   }, "@_joytothefood_"), /*#__PURE__*/React.createElement("a", {
-    href: "mailto:hi@mikacreative.co",
+    href: "mailto:mika@joytothefood.com",
     className: "link"
   }, "Email")))));
 }
