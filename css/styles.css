@@ -1603,3 +1603,208 @@ section { scroll-margin-top: 80px; }
 @media (max-width: 768px) {
   .container { padding: 0 20px; }
 }
+
+/* ============================================================
+   GHOST BUTTON — secondary action, cream fill on colored bg
+   Used on service cards next to "Book your audit" and inside
+   the details modal CTA bar.
+   ============================================================ */
+.btn-ghost {
+  background: var(--bg);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+.btn-ghost:hover {
+  background: var(--bg-alt);
+}
+
+/* ============================================================
+   SERVICE CARD CTA ROW
+   Holds the primary Book button + the ghost "What to expect"
+   button. Wraps to two rows on narrow widths.
+   ============================================================ */
+.service-card-cta-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: auto;
+}
+
+/* ============================================================
+   SERVICE DETAILS MODAL
+   Reuses .booking-overlay, .booking-modal, .booking-aside,
+   .booking-main, .booking-header, .booking-close. Adds the
+   info-content classes below.
+   ============================================================ */
+.details-modal {
+  /* Slightly taller cap than booking modal because content scrolls */
+  max-height: 92vh;
+}
+.details-content {
+  padding: 24px 28px 16px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+.details-section {
+  padding: 4px 0 22px;
+  border-bottom: 1.5px dashed var(--ink);
+  margin-bottom: 22px;
+}
+.details-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.details-section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  color: var(--ink-soft, var(--ink));
+  opacity: 0.7;
+}
+.details-section-title {
+  font-size: 26px;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+.details-section-intro {
+  font-size: 14.5px;
+  line-height: 1.55;
+  margin: 0 0 14px;
+}
+
+/* Timeline */
+.details-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.details-timeline-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.details-timeline-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display, inherit);
+  font-size: 16px;
+  color: var(--ink);
+  line-height: 1;
+}
+.details-timeline-text {
+  padding-top: 4px;
+}
+.details-timeline-label {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.details-timeline-sub {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-soft, var(--ink));
+  opacity: 0.78;
+}
+
+/* What-you'll-do bullet list */
+.details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.details-list-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.details-list-bullet {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 8px;
+  border: 1.5px solid var(--ink);
+}
+
+/* Deliverables — bigger, with sublines */
+.details-deliverables {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.details-deliverable {
+  padding: 12px 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  background: var(--bg-alt, var(--bg));
+}
+.details-deliverable-label {
+  font-size: 14.5px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.details-deliverable-sub {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* Extras section (audit-plus only) — colored block on the service color */
+.details-extras {
+  margin: 22px -28px 0;
+  padding: 22px 28px;
+  border-bottom: none !important;
+  border-top: 2px solid var(--ink);
+}
+.details-extras .details-section-intro {
+  color: var(--ink);
+}
+
+/* Bottom CTA bar */
+.details-cta-bar {
+  padding: 16px 28px;
+  border-top: 2px solid var(--ink);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-shrink: 0;
+  background: var(--bg);
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .details-modal {
+    grid-template-columns: 1fr;
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    border-width: 0;
+  }
+  .details-content { padding: 18px 18px 12px; }
+  .details-section-title { font-size: 22px; }
+  .details-extras { margin: 18px -18px 0; padding: 18px; }
+  .details-cta-bar { padding: 12px 16px; flex-wrap: wrap; }
+  .details-cta-bar .btn { flex: 1; }
+}

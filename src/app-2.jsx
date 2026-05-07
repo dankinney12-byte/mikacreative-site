@@ -164,4 +164,136 @@ function ConfirmedMessage({ service, onClose }) {
   );
 }
 
+// ============================================================
+// SERVICE DETAILS MODAL
+// "What to expect" walkthrough for available services. Mirrors the
+// BookingFlow modal shell so the two feel like siblings — the aside
+// is identical; only the right-side content swaps.
+// ============================================================
+function ServiceDetailsModal({ service, onClose, onBook }) {
+  // Lock body scroll while open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, []);
+
+  // Esc to close
+  useEffect(() => {
+    function onKey(e) { if (e.key === 'Escape') onClose(); }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  if (!service || !service.details) return null;
+  const d = service.details;
+  const extras = service.extras;
+
+  return (
+    <div
+      className="booking-overlay"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div className="booking-modal details-modal">
+        {/* LEFT: branded service summary — same aside as BookingFlow */}
+        <aside className="booking-aside" style={{ background: service.color }}>
+          <span className="tag booking-aside-tag" style={{ background: 'var(--bg)', alignSelf: 'flex-start' }}>
+            {service.tag}
+          </span>
+          <h3 className="display booking-aside-title">{service.title}</h3>
+          <div className="booking-aside-blurb">{service.blurb}</div>
+
+          <div className="booking-aside-total">
+            <div className="mono booking-aside-total-eyebrow">Total</div>
+            <div className="display booking-aside-total-amount">{service.price}</div>
+            <div className="mono booking-aside-total-sub">{service.sub}</div>
+          </div>
+        </aside>
+
+        {/* RIGHT: scrollable info content */}
+        <div className="booking-main">
+          <header className="booking-header">
+            <div className="mono booking-embed-eyebrow">{d.eyebrow}</div>
+            <button onClick={onClose} aria-label="Close" className="booking-close">×</button>
+          </header>
+
+          <div className="details-content">
+            {/* Timeline */}
+            <section className="details-section">
+              <h4 className="mono details-section-eyebrow">your timeline</h4>
+              <ol className="details-timeline">
+                {d.timeline.map((step) => (
+                  <li key={step.n} className="details-timeline-step">
+                    <div className="details-timeline-num" style={{ background: service.color }}>{step.n}</div>
+                    <div className="details-timeline-text">
+                      <div className="details-timeline-label">{step.label}</div>
+                      <div className="details-timeline-sub">{step.sub}</div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            {/* What you'll do */}
+            <section className="details-section">
+              <h4 className="display details-section-title">{d.prep.title}</h4>
+              <p className="details-section-intro">{d.prep.intro}</p>
+              <ul className="details-list">
+                {d.prep.items.map((it, i) => (
+                  <li key={i} className="details-list-item">
+                    <span className="details-list-bullet" style={{ background: service.color }} />
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* What you'll get */}
+            <section className="details-section">
+              <h4 className="display details-section-title">{d.deliverables.title}</h4>
+              <ul className="details-deliverables">
+                {d.deliverables.items.map((it, i) => (
+                  <li key={i} className="details-deliverable">
+                    <div className="details-deliverable-label">{it.label}</div>
+                    <div className="details-deliverable-sub">{it.sub}</div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Extras (audit-plus only) */}
+            {extras && (
+              <section className="details-section details-extras" style={{ background: service.color }}>
+                <h4 className="display details-section-title">{extras.title}</h4>
+                <p className="details-section-intro">{extras.body}</p>
+                <ul className="details-list">
+                  {extras.bullets.map((b, i) => (
+                    <li key={i} className="details-list-item">
+                      <span className="details-list-bullet" style={{ background: 'var(--ink)' }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+          </div>
+
+          {/* Bottom CTA bar */}
+          <footer className="details-cta-bar">
+            <button
+              className="btn"
+              onClick={() => { onClose(); onBook && onBook(service); }}
+            >
+              {service.cta} →
+            </button>
+            <button className="btn btn-ghost" onClick={onClose}>
+              Maybe later
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 window.BookingFlow = BookingFlow;
+window.ServiceDetailsModal = ServiceDetailsModal;

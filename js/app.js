@@ -316,7 +316,49 @@ const SERVICES = [{
   available: true,
   blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
   bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '5 business day delivery'],
-  cta: 'Book your audit'
+  cta: 'Book your audit',
+  details: {
+    eyebrow: 'What to expect when you book',
+    timeline: [{
+      n: 1,
+      label: 'Book',
+      sub: 'Pick a time, share a few details, pay'
+    }, {
+      n: 2,
+      label: 'Intake',
+      sub: 'Welcome email with your Drive folder + intake form, within 24 hrs'
+    }, {
+      n: 3,
+      label: 'Kickoff call',
+      sub: '15 min on Zoom, within 24 business hrs of your intake'
+    }, {
+      n: 4,
+      label: 'Your audit',
+      sub: 'Delivered within 7 business days of the kickoff'
+    }, {
+      n: 5,
+      label: 'Optional debrief',
+      sub: '20-min walkthrough call, included'
+    }],
+    prep: {
+      title: 'what you\'ll do',
+      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
+      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 of your best-performing reels and 5 underperformers in your Drive folder']
+    },
+    deliverables: {
+      title: 'what you\'ll get',
+      items: [{
+        label: 'Recorded Loom walkthrough (25–35 min)',
+        sub: 'Your profile, content patterns, hook breakdowns, monetization gaps, and the top 3 priorities to tackle first.'
+      }, {
+        label: 'Written action plan (Google Doc)',
+        sub: '3 immediate priorities, 5 content recommendations, monetization opportunities, profile fixes, and one thing to stop doing immediately.'
+      }, {
+        label: 'Optional 20-min debrief call',
+        sub: 'Walk through the audit live and ask questions in real time. Included, no extra charge.'
+      }]
+    }
+  }
 }, {
   id: 'audit-plus',
   tag: '02 / audit+',
@@ -327,7 +369,54 @@ const SERVICES = [{
   available: true,
   blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
   bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', 'Async via Voxer or Google Drive', '30 days to use your reviews'],
-  cta: 'Book your audit+'
+  cta: 'Book your audit+',
+  details: {
+    eyebrow: 'What to expect when you book',
+    timeline: [{
+      n: 1,
+      label: 'Book',
+      sub: 'Pick a time, share a few details, pay'
+    }, {
+      n: 2,
+      label: 'Intake',
+      sub: 'Welcome email with your Drive folder + intake form, within 24 hrs'
+    }, {
+      n: 3,
+      label: 'Kickoff call',
+      sub: '15 min on Zoom, within 24 business hrs of your intake'
+    }, {
+      n: 4,
+      label: 'Your audit',
+      sub: 'Delivered within 7 business days of the kickoff'
+    }, {
+      n: 5,
+      label: 'Optional debrief',
+      sub: '20-min walkthrough call, included'
+    }],
+    prep: {
+      title: 'what you\'ll do',
+      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
+      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 of your best-performing reels and 5 underperformers in your Drive folder']
+    },
+    deliverables: {
+      title: 'what you\'ll get',
+      items: [{
+        label: 'Recorded Loom walkthrough (25–35 min)',
+        sub: 'Your profile, content patterns, hook breakdowns, monetization gaps, and the top 3 priorities to tackle first.'
+      }, {
+        label: 'Written action plan (Google Doc)',
+        sub: '3 immediate priorities, 5 content recommendations, monetization opportunities, profile fixes, and one thing to stop doing immediately.'
+      }, {
+        label: 'Optional 20-min debrief call',
+        sub: 'Walk through the audit live and ask questions in real time. Included, no extra charge.'
+      }]
+    }
+  },
+  extras: {
+    title: 'plus 4 pre-post reel reviews',
+    body: 'You\'ve got 30 days from delivery to use 4 pre-post reviews. When you have a reel ready, drop it in your Drive folder with a quick note on your planned text overlay, voice hook, and caption first line. I\'ll get back to you within 24 business hrs with a Loom or voice note covering hook strength, lighting, clip pacing, and what to fix before you post.',
+    bullets: ['24-business-hour turnaround', 'Async via Voxer, WhatsApp, or Google Drive', 'Use them whenever you\'re ready in your 30-day window']
+  }
 }, {
   id: 'pocket',
   tag: '04 / 1:1',
@@ -369,6 +458,7 @@ function ServiceCard({
   s,
   featured,
   onBook,
+  onSeeDetails,
   onWaitlist
 }) {
   const isComingSoon = s.comingSoon;
@@ -436,18 +526,24 @@ function ServiceCard({
       color: featured ? 'var(--ink)' : 'var(--ink-soft)',
       borderTop: featured ? '1.5px dashed var(--ink)' : '1.5px dashed var(--ink-soft)'
     }
-  }, "Launching soon") : /*#__PURE__*/React.createElement("button", {
+  }, "Launching soon") : /*#__PURE__*/React.createElement("div", {
+    className: "service-card-cta-row"
+  }, /*#__PURE__*/React.createElement("button", {
     className: "btn sm",
     onClick: () => onBook && onBook(s),
     style: {
       background: featured ? 'var(--ink)' : s.color,
       color: featured ? 'var(--bg)' : 'var(--ink)'
     }
-  }, s.cta, " \u2192")));
+  }, s.cta, " \u2192"), s.details && /*#__PURE__*/React.createElement("button", {
+    className: "btn sm btn-ghost",
+    onClick: () => onSeeDetails && onSeeDetails(s)
+  }, "What to expect"))));
 }
 function Services({
   onOpenQuiz,
-  onBook
+  onBook,
+  onSeeDetails
 }) {
   return /*#__PURE__*/React.createElement("section", {
     id: "services",
@@ -476,11 +572,13 @@ function Services({
   }, /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'audit'),
     featured: true,
-    onBook: onBook
+    onBook: onBook,
+    onSeeDetails: onSeeDetails
   }), /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'audit-plus'),
     featured: true,
-    onBook: onBook
+    onBook: onBook,
+    onSeeDetails: onSeeDetails
   })), /*#__PURE__*/React.createElement("div", {
     className: "services-divider"
   }, /*#__PURE__*/React.createElement("span", {
@@ -491,10 +589,12 @@ function Services({
     className: "services-grid"
   }, /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'mastermind'),
-    onBook: onBook
+    onBook: onBook,
+    onSeeDetails: onSeeDetails
   }), /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'pocket'),
-    onBook: onBook
+    onBook: onBook,
+    onSeeDetails: onSeeDetails
   }))));
 }
 
@@ -1476,13 +1576,168 @@ function ConfirmedMessage({
     className: "btn"
   }, "Close"));
 }
+
+// ============================================================
+// SERVICE DETAILS MODAL
+// "What to expect" walkthrough for available services. Mirrors the
+// BookingFlow modal shell so the two feel like siblings — the aside
+// is identical; only the right-side content swaps.
+// ============================================================
+function ServiceDetailsModal({
+  service,
+  onClose,
+  onBook
+}) {
+  // Lock body scroll while open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  // Esc to close
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === 'Escape') onClose();
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+  if (!service || !service.details) return null;
+  const d = service.details;
+  const extras = service.extras;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "booking-overlay",
+    onClick: e => {
+      if (e.target === e.currentTarget) onClose();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "booking-modal details-modal"
+  }, /*#__PURE__*/React.createElement("aside", {
+    className: "booking-aside",
+    style: {
+      background: service.color
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "tag booking-aside-tag",
+    style: {
+      background: 'var(--bg)',
+      alignSelf: 'flex-start'
+    }
+  }, service.tag), /*#__PURE__*/React.createElement("h3", {
+    className: "display booking-aside-title"
+  }, service.title), /*#__PURE__*/React.createElement("div", {
+    className: "booking-aside-blurb"
+  }, service.blurb), /*#__PURE__*/React.createElement("div", {
+    className: "booking-aside-total"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-aside-total-eyebrow"
+  }, "Total"), /*#__PURE__*/React.createElement("div", {
+    className: "display booking-aside-total-amount"
+  }, service.price), /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-aside-total-sub"
+  }, service.sub))), /*#__PURE__*/React.createElement("div", {
+    className: "booking-main"
+  }, /*#__PURE__*/React.createElement("header", {
+    className: "booking-header"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-embed-eyebrow"
+  }, d.eyebrow), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    "aria-label": "Close",
+    className: "booking-close"
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
+    className: "details-content"
+  }, /*#__PURE__*/React.createElement("section", {
+    className: "details-section"
+  }, /*#__PURE__*/React.createElement("h4", {
+    className: "mono details-section-eyebrow"
+  }, "your timeline"), /*#__PURE__*/React.createElement("ol", {
+    className: "details-timeline"
+  }, d.timeline.map(step => /*#__PURE__*/React.createElement("li", {
+    key: step.n,
+    className: "details-timeline-step"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "details-timeline-num",
+    style: {
+      background: service.color
+    }
+  }, step.n), /*#__PURE__*/React.createElement("div", {
+    className: "details-timeline-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "details-timeline-label"
+  }, step.label), /*#__PURE__*/React.createElement("div", {
+    className: "details-timeline-sub"
+  }, step.sub)))))), /*#__PURE__*/React.createElement("section", {
+    className: "details-section"
+  }, /*#__PURE__*/React.createElement("h4", {
+    className: "display details-section-title"
+  }, d.prep.title), /*#__PURE__*/React.createElement("p", {
+    className: "details-section-intro"
+  }, d.prep.intro), /*#__PURE__*/React.createElement("ul", {
+    className: "details-list"
+  }, d.prep.items.map((it, i) => /*#__PURE__*/React.createElement("li", {
+    key: i,
+    className: "details-list-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "details-list-bullet",
+    style: {
+      background: service.color
+    }
+  }), it)))), /*#__PURE__*/React.createElement("section", {
+    className: "details-section"
+  }, /*#__PURE__*/React.createElement("h4", {
+    className: "display details-section-title"
+  }, d.deliverables.title), /*#__PURE__*/React.createElement("ul", {
+    className: "details-deliverables"
+  }, d.deliverables.items.map((it, i) => /*#__PURE__*/React.createElement("li", {
+    key: i,
+    className: "details-deliverable"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "details-deliverable-label"
+  }, it.label), /*#__PURE__*/React.createElement("div", {
+    className: "details-deliverable-sub"
+  }, it.sub))))), extras && /*#__PURE__*/React.createElement("section", {
+    className: "details-section details-extras",
+    style: {
+      background: service.color
+    }
+  }, /*#__PURE__*/React.createElement("h4", {
+    className: "display details-section-title"
+  }, extras.title), /*#__PURE__*/React.createElement("p", {
+    className: "details-section-intro"
+  }, extras.body), /*#__PURE__*/React.createElement("ul", {
+    className: "details-list"
+  }, extras.bullets.map((b, i) => /*#__PURE__*/React.createElement("li", {
+    key: i,
+    className: "details-list-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "details-list-bullet",
+    style: {
+      background: 'var(--ink)'
+    }
+  }), b))))), /*#__PURE__*/React.createElement("footer", {
+    className: "details-cta-bar"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    onClick: () => {
+      onClose();
+      onBook && onBook(service);
+    }
+  }, service.cta, " \u2192"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-ghost",
+    onClick: onClose
+  }, "Maybe later")))));
+}
 window.BookingFlow = BookingFlow;
+window.ServiceDetailsModal = ServiceDetailsModal;
 
 // === src/app-3.jsx ===
 
 "use strict";
 
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
 var {
   useState,
   useEffect
@@ -1537,6 +1792,7 @@ function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [quizOpen, setQuizOpen] = useState(false);
   const [bookingService, setBookingService] = useState(null);
+  const [detailsService, setDetailsService] = useState(null);
   useEffect(() => {
     const p = PALETTES[tweaks.palette] || PALETTES.Confetti;
     const root = document.documentElement;
@@ -1557,7 +1813,8 @@ function App() {
     onBook: setBookingService
   }), /*#__PURE__*/React.createElement(ProofBar, null), /*#__PURE__*/React.createElement(Strip, null), /*#__PURE__*/React.createElement(Services, {
     onOpenQuiz: () => setQuizOpen(true),
-    onBook: setBookingService
+    onBook: setBookingService,
+    onSeeDetails: setDetailsService
   }), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Testimonials, null), /*#__PURE__*/React.createElement(Speaking, null), /*#__PURE__*/React.createElement(ContactCTA, {
     onOpenQuiz: () => setQuizOpen(true),
     onBook: setBookingService
@@ -1568,6 +1825,10 @@ function App() {
   }), bookingService && /*#__PURE__*/React.createElement(BookingFlow, {
     service: bookingService,
     onClose: () => setBookingService(null)
+  }), detailsService && /*#__PURE__*/React.createElement(ServiceDetailsModal, {
+    service: detailsService,
+    onClose: () => setDetailsService(null),
+    onBook: setBookingService
   }), /*#__PURE__*/React.createElement(TweaksPanel, {
     title: "Tweaks"
   }, /*#__PURE__*/React.createElement(TweakSection, {

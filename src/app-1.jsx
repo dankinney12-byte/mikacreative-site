@@ -215,6 +215,34 @@ const SERVICES = [
     blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
     bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '5 business day delivery'],
     cta: 'Book your audit',
+    details: {
+      eyebrow: 'What to expect when you book',
+      timeline: [
+        { n: 1, label: 'Book',           sub: 'Pick a time, share a few details, pay' },
+        { n: 2, label: 'Intake',         sub: 'Welcome email with your Drive folder + intake form, within 24 hrs' },
+        { n: 3, label: 'Kickoff call',   sub: '15 min on Zoom, within 24 business hrs of your intake' },
+        { n: 4, label: 'Your audit',     sub: 'Delivered within 7 business days of the kickoff' },
+        { n: 5, label: 'Optional debrief', sub: '20-min walkthrough call, included' },
+      ],
+      prep: {
+        title: 'what you\'ll do',
+        intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
+        items: [
+          'Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)',
+          'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email',
+          'Take a handful of Instagram Insights screenshots from the app',
+          'Drop 5 of your best-performing reels and 5 underperformers in your Drive folder',
+        ],
+      },
+      deliverables: {
+        title: 'what you\'ll get',
+        items: [
+          { label: 'Recorded Loom walkthrough (25–35 min)', sub: 'Your profile, content patterns, hook breakdowns, monetization gaps, and the top 3 priorities to tackle first.' },
+          { label: 'Written action plan (Google Doc)',     sub: '3 immediate priorities, 5 content recommendations, monetization opportunities, profile fixes, and one thing to stop doing immediately.' },
+          { label: 'Optional 20-min debrief call',          sub: 'Walk through the audit live and ask questions in real time. Included, no extra charge.' },
+        ],
+      },
+    },
   },
   {
     id: 'audit-plus',
@@ -227,6 +255,43 @@ const SERVICES = [
     blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
     bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', 'Async via Voxer or Google Drive', '30 days to use your reviews'],
     cta: 'Book your audit+',
+    details: {
+      eyebrow: 'What to expect when you book',
+      timeline: [
+        { n: 1, label: 'Book',           sub: 'Pick a time, share a few details, pay' },
+        { n: 2, label: 'Intake',         sub: 'Welcome email with your Drive folder + intake form, within 24 hrs' },
+        { n: 3, label: 'Kickoff call',   sub: '15 min on Zoom, within 24 business hrs of your intake' },
+        { n: 4, label: 'Your audit',     sub: 'Delivered within 7 business days of the kickoff' },
+        { n: 5, label: 'Optional debrief', sub: '20-min walkthrough call, included' },
+      ],
+      prep: {
+        title: 'what you\'ll do',
+        intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
+        items: [
+          'Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)',
+          'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email',
+          'Take a handful of Instagram Insights screenshots from the app',
+          'Drop 5 of your best-performing reels and 5 underperformers in your Drive folder',
+        ],
+      },
+      deliverables: {
+        title: 'what you\'ll get',
+        items: [
+          { label: 'Recorded Loom walkthrough (25–35 min)', sub: 'Your profile, content patterns, hook breakdowns, monetization gaps, and the top 3 priorities to tackle first.' },
+          { label: 'Written action plan (Google Doc)',     sub: '3 immediate priorities, 5 content recommendations, monetization opportunities, profile fixes, and one thing to stop doing immediately.' },
+          { label: 'Optional 20-min debrief call',          sub: 'Walk through the audit live and ask questions in real time. Included, no extra charge.' },
+        ],
+      },
+    },
+    extras: {
+      title: 'plus 4 pre-post reel reviews',
+      body: 'You\'ve got 30 days from delivery to use 4 pre-post reviews. When you have a reel ready, drop it in your Drive folder with a quick note on your planned text overlay, voice hook, and caption first line. I\'ll get back to you within 24 business hrs with a Loom or voice note covering hook strength, lighting, clip pacing, and what to fix before you post.',
+      bullets: [
+        '24-business-hour turnaround',
+        'Async via Voxer, WhatsApp, or Google Drive',
+        'Use them whenever you\'re ready in your 30-day window',
+      ],
+    },
   },
   {
     id: 'pocket',
@@ -271,7 +336,7 @@ const EBOOKS = [
   },
 ];
 
-function ServiceCard({ s, featured, onBook, onWaitlist }) {
+function ServiceCard({ s, featured, onBook, onSeeDetails, onWaitlist }) {
   const isComingSoon = s.comingSoon;
   const isAvailable = s.available;
 
@@ -344,23 +409,33 @@ function ServiceCard({ s, featured, onBook, onWaitlist }) {
             Launching soon
           </div>
         ) : (
-          <button
-            className="btn sm"
-            onClick={() => onBook && onBook(s)}
-            style={{
-              background: featured ? 'var(--ink)' : s.color,
-              color: featured ? 'var(--bg)' : 'var(--ink)',
-            }}
-          >
-            {s.cta} →
-          </button>
+          <div className="service-card-cta-row">
+            <button
+              className="btn sm"
+              onClick={() => onBook && onBook(s)}
+              style={{
+                background: featured ? 'var(--ink)' : s.color,
+                color: featured ? 'var(--bg)' : 'var(--ink)',
+              }}
+            >
+              {s.cta} →
+            </button>
+            {s.details && (
+              <button
+                className="btn sm btn-ghost"
+                onClick={() => onSeeDetails && onSeeDetails(s)}
+              >
+                What to expect
+              </button>
+            )}
+          </div>
         )}
       </div>
     </div>
   );
 }
 
-function Services({ onOpenQuiz, onBook }) {
+function Services({ onOpenQuiz, onBook, onSeeDetails }) {
   return (
     <section id="services" className="services">
       <div className="container">
@@ -380,8 +455,8 @@ function Services({ onOpenQuiz, onBook }) {
         </div>
 
         <div className="services-grid">
-          <ServiceCard s={SERVICES.find(s => s.id === 'audit')} featured onBook={onBook} />
-          <ServiceCard s={SERVICES.find(s => s.id === 'audit-plus')} featured onBook={onBook} />
+          <ServiceCard s={SERVICES.find(s => s.id === 'audit')} featured onBook={onBook} onSeeDetails={onSeeDetails} />
+          <ServiceCard s={SERVICES.find(s => s.id === 'audit-plus')} featured onBook={onBook} onSeeDetails={onSeeDetails} />
         </div>
 
         <div className="services-divider">
@@ -390,8 +465,8 @@ function Services({ onOpenQuiz, onBook }) {
         </div>
 
         <div className="services-grid">
-          <ServiceCard s={SERVICES.find(s => s.id === 'mastermind')} onBook={onBook} />
-          <ServiceCard s={SERVICES.find(s => s.id === 'pocket')} onBook={onBook} />
+          <ServiceCard s={SERVICES.find(s => s.id === 'mastermind')} onBook={onBook} onSeeDetails={onSeeDetails} />
+          <ServiceCard s={SERVICES.find(s => s.id === 'pocket')} onBook={onBook} onSeeDetails={onSeeDetails} />
         </div>
       </div>
     </section>

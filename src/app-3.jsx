@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
 const { useState, useEffect } = React;
 
 const PALETTES = {
@@ -17,6 +17,7 @@ function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [quizOpen, setQuizOpen] = useState(false);
   const [bookingService, setBookingService] = useState(null);
+  const [detailsService, setDetailsService] = useState(null);
 
   useEffect(() => {
     const p = PALETTES[tweaks.palette] || PALETTES.Confetti;
@@ -42,6 +43,7 @@ function App() {
       <Services
         onOpenQuiz={() => setQuizOpen(true)}
         onBook={setBookingService}
+        onSeeDetails={setDetailsService}
       />
       <About />
       <Testimonials />
@@ -52,6 +54,14 @@ function App() {
         <BookingFlow
           service={bookingService}
           onClose={() => setBookingService(null)}
+        />
+      )}
+
+      {detailsService && (
+        <ServiceDetailsModal
+          service={detailsService}
+          onClose={() => setDetailsService(null)}
+          onBook={setBookingService}
         />
       )}
 
