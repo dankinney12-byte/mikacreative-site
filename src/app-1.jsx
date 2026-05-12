@@ -210,10 +210,10 @@ const SERVICES = [
     color: 'var(--c1)',
     title: 'The Audit',
     price: '$950',
-    sub: '5 day turnaround',
+    sub: '1 week turnaround',
     available: true,
     blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
-    bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '5 business day delivery'],
+    bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '1 week delivery'],
     cta: 'Book your audit',
     details: {
       eyebrow: 'What to expect when you book',
@@ -250,7 +250,7 @@ const SERVICES = [
     color: 'var(--c4)',
     title: 'The Audit + Pre-Post Reviews',
     price: '$1,100',
-    sub: '5 day audit + 30 days of reviews',
+    sub: '1 week audit + 30 days of reviews',
     available: true,
     blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
     bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', 'Async via Voxer or Google Drive', '30 days to use your reviews'],
@@ -772,7 +772,7 @@ function ContactCTA({ onOpenQuiz, onBook }) {
           let's <span style={{ color: 'var(--c3)' }}>fix that.</span>
         </h2>
         <p className="contact-cta-sub">
-          Book an audit and in 5 days you'll have a written plan, a recorded walkthrough, and zero guesswork. Add pre-post reviews and I'll be in your corner while you put it into practice.
+          Book an audit and in about a week you'll have a written plan, a recorded walkthrough, and zero guesswork. Add pre-post reviews and I'll be in your corner while you put it into practice.
         </p>
         <div className="contact-cta-btns">
           <button className="btn alt contact-cta-btn" onClick={() => onBook && onBook(audit)}>
@@ -919,9 +919,9 @@ function QuizResultGrow({ onReset, onBook }) {
         Under 25K is fixable. An audit shows you exactly what's holding your account back — and what to do about it first.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$950 · 5 day turnaround"
+        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$950 · 1 week turnaround"
           onClick={() => { onReset(); onBook && onBook(audit); }}/>
-        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$1,100 · 5 day turnaround + 30 days of pre-post feedback"
+        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$1,100 · 1 week turnaround + 30 days of pre-post feedback"
           onClick={() => { onReset(); onBook && onBook(auditPlus); }}/>
       </div>
       <ComingSoonNote items={['In Your Pocket Day', 'The Mastermind']}/>
@@ -943,9 +943,9 @@ function QuizResultMonetize({ onReset, onBook }) {
         You have the audience. The audit shows you exactly where revenue should already be coming from — and why it isn't yet.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$950 · 5 day turnaround"
+        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$950 · 1 week turnaround"
           onClick={() => { onReset(); onBook && onBook(audit); }}/>
-        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$1,100 · 5 day turnaround + 30 days of pre-post feedback"
+        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$1,100 · 1 week turnaround + 30 days of pre-post feedback"
           onClick={() => { onReset(); onBook && onBook(auditPlus); }}/>
       </div>
       <ComingSoonNote items={['The Mastermind', 'In Your Pocket Day']}/>
