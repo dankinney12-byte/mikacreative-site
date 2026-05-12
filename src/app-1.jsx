@@ -220,9 +220,9 @@ const SERVICES = [
       timeline: [
         { n: 1, label: 'Book',           sub: 'Pick a time, share a few details, pay' },
         { n: 2, label: 'Intake',         sub: 'Welcome email with your Drive folder + intake form, within 24 hrs' },
-        { n: 3, label: 'Kickoff call',   sub: '15 min on Zoom, within 24 business hrs of your intake' },
+        { n: 3, label: 'Kickoff call',   sub: '30 min on Zoom, within 24 business hrs of your intake' },
         { n: 4, label: 'Your audit',     sub: 'Delivered within 7 business days of the kickoff' },
-        { n: 5, label: 'Optional debrief', sub: '20-min walkthrough call, included' },
+        { n: 5, label: 'Optional debrief', sub: '30-min walkthrough call, included' },
       ],
       prep: {
         title: 'what you\'ll do',
@@ -231,15 +231,15 @@ const SERVICES = [
           'Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)',
           'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email',
           'Take a handful of Instagram Insights screenshots from the app',
-          'Drop 5 of your best-performing reels and 5 underperformers in your Drive folder',
+          'Drop 5 reels that underperformed that you were expecting to do well.',
         ],
       },
       deliverables: {
         title: 'what you\'ll get',
         items: [
           { label: 'Recorded Loom walkthrough (25–35 min)', sub: 'Your profile, content patterns, hook breakdowns, monetization gaps, and the top 3 priorities to tackle first.' },
-          { label: 'Written action plan (Google Doc)',     sub: '3 immediate priorities, 5 content recommendations, monetization opportunities, profile fixes, and one thing to stop doing immediately.' },
-          { label: 'Optional 20-min debrief call',          sub: 'Walk through the audit live and ask questions in real time. Included, no extra charge.' },
+          { label: 'Written action plan (Google Doc)',     sub: 'Includes immediate priorities, content recommendations, monetization opportunities, profile fixes, and one thing to stop doing immediately.' },
+          { label: 'Optional 30-min debrief call',          sub: 'Walk through the audit live and ask questions in real time. Included, no extra charge.' },
         ],
       },
     },
@@ -260,9 +260,9 @@ const SERVICES = [
       timeline: [
         { n: 1, label: 'Book',           sub: 'Pick a time, share a few details, pay' },
         { n: 2, label: 'Intake',         sub: 'Welcome email with your Drive folder + intake form, within 24 hrs' },
-        { n: 3, label: 'Kickoff call',   sub: '15 min on Zoom, within 24 business hrs of your intake' },
+        { n: 3, label: 'Kickoff call',   sub: '30 min on Zoom, within 24 business hrs of your intake' },
         { n: 4, label: 'Your audit',     sub: 'Delivered within 7 business days of the kickoff' },
-        { n: 5, label: 'Optional debrief', sub: '20-min walkthrough call, included' },
+        { n: 5, label: 'Optional debrief', sub: '30-min walkthrough call, included' },
       ],
       prep: {
         title: 'what you\'ll do',
@@ -271,26 +271,22 @@ const SERVICES = [
           'Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)',
           'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email',
           'Take a handful of Instagram Insights screenshots from the app',
-          'Drop 5 of your best-performing reels and 5 underperformers in your Drive folder',
+          'Drop 5 reels that underperformed that you were expecting to do well.',
         ],
       },
       deliverables: {
         title: 'what you\'ll get',
         items: [
           { label: 'Recorded Loom walkthrough (25–35 min)', sub: 'Your profile, content patterns, hook breakdowns, monetization gaps, and the top 3 priorities to tackle first.' },
-          { label: 'Written action plan (Google Doc)',     sub: '3 immediate priorities, 5 content recommendations, monetization opportunities, profile fixes, and one thing to stop doing immediately.' },
-          { label: 'Optional 20-min debrief call',          sub: 'Walk through the audit live and ask questions in real time. Included, no extra charge.' },
+          { label: 'Written action plan (Google Doc)',     sub: 'Includes immediate priorities, content recommendations, monetization opportunities, profile fixes, and one thing to stop doing immediately.' },
+          { label: 'Optional 30-min debrief call',          sub: 'Walk through the audit live and ask questions in real time. Included, no extra charge.' },
         ],
       },
     },
     extras: {
       title: 'plus 4 pre-post reel reviews',
-      body: 'You\'ve got 30 days from delivery to use 4 pre-post reviews. When you have a reel ready, drop it in your Drive folder with a quick note on your planned text overlay, voice hook, and caption first line. I\'ll get back to you within 24 business hrs with a Loom or voice note covering hook strength, lighting, clip pacing, and what to fix before you post.',
-      bullets: [
-        '24-business-hour turnaround',
-        'Send via Voxer, WhatsApp, or Google Drive',
-        'Use them whenever you\'re ready in your 30-day window',
-      ],
+      body: 'You\'ve got 30 days from delivery to use 4 pre-post reviews. When you have a reel ready, drop it in your Drive folder with a quick note on your planned text overlay, voice hook, and caption first line. I\'ll get back to you within 5 business days with notes covering hook strength, lighting, clip pacing, and what to fix before you post.',
+      bullets: [],
     },
   },
   {
