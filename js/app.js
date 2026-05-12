@@ -1030,7 +1030,10 @@ function ContactCTA({
   }, "@_joytothefood_"), /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link"
-  }, "Email")))));
+  }, "Email"), /*#__PURE__*/React.createElement("a", {
+    href: "/terms.html",
+    className: "link"
+  }, "Terms")))));
 }
 
 // ============================================================
@@ -1538,7 +1541,14 @@ function BookingFlow({
     className: "display booking-aside-total-amount"
   }, service.price), /*#__PURE__*/React.createElement("div", {
     className: "mono booking-aside-total-sub"
-  }, service.sub))), /*#__PURE__*/React.createElement("div", {
+  }, service.sub)), /*#__PURE__*/React.createElement("p", {
+    className: "booking-terms-note"
+  }, "By booking you agree to our", ' ', /*#__PURE__*/React.createElement("a", {
+    href: "/terms.html",
+    target: "_blank",
+    rel: "noopener",
+    className: "link"
+  }, "terms"), ".")), /*#__PURE__*/React.createElement("div", {
     className: "booking-main"
   }, /*#__PURE__*/React.createElement("header", {
     className: "booking-header"

@@ -800,6 +800,7 @@ function ContactCTA({ onOpenQuiz, onBook }) {
           <div className="site-footer-links">
             <a href="https://instagram.com/_joytothefood_" className="link">@_joytothefood_</a>
             <a href="mailto:mika@joytothefood.com" className="link">Email</a>
+            <a href="/terms.html" className="link">Terms</a>
           </div>
         </div>
       </footer>

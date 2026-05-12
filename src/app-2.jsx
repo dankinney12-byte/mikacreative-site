@@ -127,6 +127,11 @@ function BookingFlow({ service, onClose }) {
             <div className="display booking-aside-total-amount">{service.price}</div>
             <div className="mono booking-aside-total-sub">{service.sub}</div>
           </div>
+
+          <p className="booking-terms-note">
+            By booking you agree to our{' '}
+            <a href="/terms.html" target="_blank" rel="noopener" className="link">terms</a>.
+          </p>
         </aside>
 
         {/* RIGHT: Cal.com embed (or branded confirmation) */}
