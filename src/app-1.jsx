@@ -61,8 +61,8 @@ function HeroBigType({ onOpenQuiz, onBook }) {
     <section id="top" className="hero">
       <div className="container">
         <div className="hero-tags">
-          <span className="tag">@_joytothefood_ · 450K</span>
-          <span className="tag" style={{ background: 'var(--c2)' }}>1,001 to 450K in 24 months</span>
+          <span className="tag">@_joytothefood_ · 465K</span>
+          <span className="tag" style={{ background: 'var(--c2)' }}>1,001 to 465K in 24 months</span>
         </div>
 
         <h1 className="display hero-headline">
@@ -73,7 +73,7 @@ function HeroBigType({ onOpenQuiz, onBook }) {
 
         <div className="hero-grid">
           <p className="hero-body">
-            I'm Mika - engineer turned food creator. I grew <span className="mono" style={{ fontSize: '0.85em' }}>@_joytothefood_</span> from 1,001 to 450K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.
+            I'm Mika - engineer turned food creator. I grew <span className="mono" style={{ fontSize: '0.85em' }}>@_joytothefood_</span> from 1,001 to 465K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.
             <br /><br />
             I'll show you exactly what moved the needle.
           </p>
@@ -97,7 +97,7 @@ function HeroImageGrid({ onOpenQuiz, onBook }) {
     { c: 'var(--c2)', label: '1K screenshot · 2024' },
     { c: 'var(--c3)', label: 'reel · 2.1M views' },
     { c: 'var(--c1)', label: 'mika filming' },
-    { c: 'var(--c4)', label: '450K screenshot · now' },
+    { c: 'var(--c4)', label: '465K screenshot · now' },
     { c: 'var(--c5)', label: 'mika + dan' },
   ];
   return (
@@ -112,13 +112,13 @@ function HeroImageGrid({ onOpenQuiz, onBook }) {
         </div>
 
         <div className="hero-image-grid-content">
-          <span className="eyebrow">@_joytothefood_ · 450k followers · 5.1M monthly views</span>
+          <span className="eyebrow">@_joytothefood_ · 465K followers · 8M monthly views</span>
           <h1 className="display hero-image-grid-headline">
             <span style={{ color: 'var(--c1)' }}>instagram</span> that<br />
             <span style={{ color: 'var(--c3)' }}>actually</span> works.
           </h1>
           <p className="hero-image-grid-sub">
-            I grew @_joytothefood_ from 1K to 450K in 24 months, in the current algorithm, in a saturated niche. I'll show you how.
+            I grew @_joytothefood_ from 1K to 465K in 24 months, in the current algorithm, in a saturated niche. I'll show you how.
           </p>
           <div className="hero-image-grid-cta">
             <button className="btn alt" onClick={() => onBook && onBook(audit)}>
@@ -139,11 +139,11 @@ function HeroImageGrid({ onOpenQuiz, onBook }) {
 // ============================================================
 function ProofBar() {
   const stats = [
-    { num: '450K', label: 'IG followers' },
-    { num: '5.1M', label: 'monthly views' },
+    { num: '465K', label: 'IG followers' },
+    { num: '8M', label: 'monthly views' },
     { num: '#1', label: 'revenue source' },
     { num: '4', label: 'speaking engagements' },
-    { num: '3', label: 'podcast features' },
+    { num: '10', label: 'podcast features' },
   ];
   const colors = ['var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)', 'var(--c5)'];
   return (
@@ -168,7 +168,7 @@ function ProofBar() {
 function Strip() {
   const items = [
     'the mastermind', 'account audit', 'in your pocket day',
-    'client management', 'the playbook ebook', '1k → 450k in 24 months',
+    'client management', 'the playbook ebook', '1k → 465K in 24 months',
   ];
   const Set = () => (
     <span>
@@ -253,7 +253,7 @@ const SERVICES = [
     sub: '1 week audit + 30 days of reviews',
     available: true,
     blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
-    bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', 'Async via Voxer or Google Drive', '30 days to use your reviews'],
+    bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', '30 days to use your reviews'],
     cta: 'Book your audit+',
     details: {
       eyebrow: 'What to expect when you book',
@@ -288,7 +288,7 @@ const SERVICES = [
       body: 'You\'ve got 30 days from delivery to use 4 pre-post reviews. When you have a reel ready, drop it in your Drive folder with a quick note on your planned text overlay, voice hook, and caption first line. I\'ll get back to you within 24 business hrs with a Loom or voice note covering hook strength, lighting, clip pacing, and what to fix before you post.',
       bullets: [
         '24-business-hour turnaround',
-        'Async via Voxer, WhatsApp, or Google Drive',
+        'Send via Voxer, WhatsApp, or Google Drive',
         'Use them whenever you\'re ready in your 30-day window',
       ],
     },
@@ -505,7 +505,7 @@ function About() {
                 I grew up in <strong style={{ color: 'var(--ink)' }}>Yosemite</strong>. Studied engineering. Worked corporate. Quit twice. Once to backpack Southeast Asia with my husband Dan, once to road trip the Southwest.
               </p>
               <p>
-                We started <strong style={{ color: 'var(--ink)' }}>Joy to the Food</strong> from my kitchen in Minneapolis. In two years it went from 1,001 followers to 450K. Now we run it from wherever we want, with a toddler underfoot.
+                We started <strong style={{ color: 'var(--ink)' }}>Joy to the Food</strong> from my kitchen in Minneapolis. In two years it went from 1,001 followers to 465K. Now we run it from wherever we want, with a toddler underfoot.
               </p>
               <p className="about-text-emph">
                 My philosophy: <span style={{ color: 'var(--c3)' }}>engineer the life you want.</span>
@@ -538,7 +538,7 @@ function Freebie() {
           <div className="freebie-content">
             <span className="tag" style={{ background: 'var(--bg)' }}>Free download</span>
             <h2 className="display freebie-headline">
-              the hook formula<br />that got me to <span style={{ color: 'var(--c1)' }}>450K.</span>
+              the hook formula<br />that got me to <span style={{ color: 'var(--c1)' }}>465K.</span>
             </h2>
             <p className="freebie-sub">
               The exact hook stacking method I use on every reel. 12 page PDF. No newsletter, no sales sequence. Drop your email, get the file.

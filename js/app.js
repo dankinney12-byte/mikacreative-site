@@ -130,12 +130,12 @@ function HeroBigType({
     className: "hero-tags"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag"
-  }, "@_joytothefood_ \xB7 450K"), /*#__PURE__*/React.createElement("span", {
+  }, "@_joytothefood_ \xB7 465K"), /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
       background: 'var(--c2)'
     }
-  }, "1,001 to 450K in 24 months")), /*#__PURE__*/React.createElement("h1", {
+  }, "1,001 to 465K in 24 months")), /*#__PURE__*/React.createElement("h1", {
     className: "display hero-headline"
   }, "instagram", /*#__PURE__*/React.createElement("br", null), "that ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -154,7 +154,7 @@ function HeroBigType({
     style: {
       fontSize: '0.85em'
     }
-  }, "@_joytothefood_"), " from 1,001 to 450K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "I'll show you exactly what moved the needle."), /*#__PURE__*/React.createElement("div", {
+  }, "@_joytothefood_"), " from 1,001 to 465K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "I'll show you exactly what moved the needle."), /*#__PURE__*/React.createElement("div", {
     className: "hero-cta-stack"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
@@ -180,7 +180,7 @@ function HeroImageGrid({
     label: 'mika filming'
   }, {
     c: 'var(--c4)',
-    label: '450K screenshot · now'
+    label: '465K screenshot · now'
   }, {
     c: 'var(--c5)',
     label: 'mika + dan'
@@ -207,7 +207,7 @@ function HeroImageGrid({
     className: "hero-image-grid-content"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, "@_joytothefood_ \xB7 450k followers \xB7 5.1M monthly views"), /*#__PURE__*/React.createElement("h1", {
+  }, "@_joytothefood_ \xB7 465K followers \xB7 8M monthly views"), /*#__PURE__*/React.createElement("h1", {
     className: "display hero-image-grid-headline"
   }, /*#__PURE__*/React.createElement("span", {
     style: {
@@ -219,7 +219,7 @@ function HeroImageGrid({
     }
   }, "actually"), " works."), /*#__PURE__*/React.createElement("p", {
     className: "hero-image-grid-sub"
-  }, "I grew @_joytothefood_ from 1K to 450K in 24 months, in the current algorithm, in a saturated niche. I'll show you how."), /*#__PURE__*/React.createElement("div", {
+  }, "I grew @_joytothefood_ from 1K to 465K in 24 months, in the current algorithm, in a saturated niche. I'll show you how."), /*#__PURE__*/React.createElement("div", {
     className: "hero-image-grid-cta"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
@@ -235,10 +235,10 @@ function HeroImageGrid({
 // ============================================================
 function ProofBar() {
   const stats = [{
-    num: '450K',
+    num: '465K',
     label: 'IG followers'
   }, {
-    num: '5.1M',
+    num: '8M',
     label: 'monthly views'
   }, {
     num: '#1',
@@ -247,7 +247,7 @@ function ProofBar() {
     num: '4',
     label: 'speaking engagements'
   }, {
-    num: '3',
+    num: '10',
     label: 'podcast features'
   }];
   const colors = ['var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)', 'var(--c5)'];
@@ -274,7 +274,7 @@ function ProofBar() {
 // MARQUEE STRIP
 // ============================================================
 function Strip() {
-  const items = ['the mastermind', 'account audit', 'in your pocket day', 'client management', 'the playbook ebook', '1k → 450k in 24 months'];
+  const items = ['the mastermind', 'account audit', 'in your pocket day', 'client management', 'the playbook ebook', '1k → 465K in 24 months'];
   const Set = () => /*#__PURE__*/React.createElement("span", null, items.map((t, i) => /*#__PURE__*/React.createElement("span", {
     key: i,
     style: {
@@ -368,7 +368,7 @@ const SERVICES = [{
   sub: '1 week audit + 30 days of reviews',
   available: true,
   blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
-  bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', 'Async via Voxer or Google Drive', '30 days to use your reviews'],
+  bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', '30 days to use your reviews'],
   cta: 'Book your audit+',
   details: {
     eyebrow: 'What to expect when you book',
@@ -415,7 +415,7 @@ const SERVICES = [{
   extras: {
     title: 'plus 4 pre-post reel reviews',
     body: 'You\'ve got 30 days from delivery to use 4 pre-post reviews. When you have a reel ready, drop it in your Drive folder with a quick note on your planned text overlay, voice hook, and caption first line. I\'ll get back to you within 24 business hrs with a Loom or voice note covering hook strength, lighting, clip pacing, and what to fix before you post.',
-    bullets: ['24-business-hour turnaround', 'Async via Voxer, WhatsApp, or Google Drive', 'Use them whenever you\'re ready in your 30-day window']
+    bullets: ['24-business-hour turnaround', 'Send via Voxer, WhatsApp, or Google Drive', 'Use them whenever you\'re ready in your 30-day window']
   }
 }, {
   id: 'pocket',
@@ -652,7 +652,7 @@ function About() {
     style: {
       color: 'var(--ink)'
     }
-  }, "Joy to the Food"), " from my kitchen in Minneapolis. In two years it went from 1,001 followers to 450K. Now we run it from wherever we want, with a toddler underfoot."), /*#__PURE__*/React.createElement("p", {
+  }, "Joy to the Food"), " from my kitchen in Minneapolis. In two years it went from 1,001 followers to 465K. Now we run it from wherever we want, with a toddler underfoot."), /*#__PURE__*/React.createElement("p", {
     className: "about-text-emph"
   }, "My philosophy: ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -711,7 +711,7 @@ function Freebie() {
     style: {
       color: 'var(--c1)'
     }
-  }, "450K.")), /*#__PURE__*/React.createElement("p", {
+  }, "465K.")), /*#__PURE__*/React.createElement("p", {
     className: "freebie-sub"
   }, "The exact hook stacking method I use on every reel. 12 page PDF. No newsletter, no sales sequence. Drop your email, get the file."), /*#__PURE__*/React.createElement("form", {
     className: "freebie-form",
