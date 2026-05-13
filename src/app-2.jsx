@@ -10,8 +10,8 @@ const { useState, useEffect, useRef } = React;
 
 // service.id  →  cal.com path
 const CAL_LINKS = {
-  'audit':       'mikacreative/the-audit',
-  'audit-plus':  'mikacreative/the-auditplus',
+  'audit':       'mikacreative/instagram-audit-book-your-spot',
+  'audit-plus':  'mikacreative/instagram-audit-plus-book-your-spot',
 };
 
 // Standard Cal.com embed loader IIFE. Lazy: only attaches the
