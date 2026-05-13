@@ -146,7 +146,17 @@ function BookingFlow({ service, onClose }) {
           {confirmed ? (
             <ConfirmedMessage service={service} onClose={onClose} />
           ) : (
-            <div ref={containerRef} className="booking-embed" />
+            <>
+              <div className="booking-notice">
+                <p>
+                  <strong>This is not an actual meeting</strong> (we'll schedule that shortly!). It's to reserve your audit spot since I only do 4 per month. You'll receive an email from <a href="mailto:mika@joytothefood.com" className="link">mika@joytothefood.com</a> within 24 hours (or 1 business day if a weekend) with your intake form and Google Drive folder link.
+                </p>
+                <p>
+                  Cancellations more than 48 business hours before your kickoff call receive a full refund. Within 48 hours: 50% refund. No refunds after your kickoff call. To cancel or reschedule email <a href="mailto:mika@joytothefood.com" className="link">mika@joytothefood.com</a>.
+                </p>
+              </div>
+              <div ref={containerRef} className="booking-embed" />
+            </>
           )}
         </div>
       </div>

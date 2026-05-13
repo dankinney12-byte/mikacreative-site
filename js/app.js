@@ -1561,10 +1561,18 @@ function BookingFlow({
   }, "\xD7")), confirmed ? /*#__PURE__*/React.createElement(ConfirmedMessage, {
     service: service,
     onClose: onClose
-  }) : /*#__PURE__*/React.createElement("div", {
+  }) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "booking-notice"
+  }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "This is not an actual meeting"), " (we'll schedule that shortly!). It's to reserve your audit spot since I only do 4 per month. You'll receive an email from ", /*#__PURE__*/React.createElement("a", {
+    href: "mailto:mika@joytothefood.com",
+    className: "link"
+  }, "mika@joytothefood.com"), " within 24 hours (or 1 business day if a weekend) with your intake form and Google Drive folder link."), /*#__PURE__*/React.createElement("p", null, "Cancellations more than 48 business hours before your kickoff call receive a full refund. Within 48 hours: 50% refund. No refunds after your kickoff call. To cancel or reschedule email ", /*#__PURE__*/React.createElement("a", {
+    href: "mailto:mika@joytothefood.com",
+    className: "link"
+  }, "mika@joytothefood.com"), ".")), /*#__PURE__*/React.createElement("div", {
     ref: containerRef,
     className: "booking-embed"
-  }))));
+  })))));
 }
 function ConfirmedMessage({
   service,
