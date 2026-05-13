@@ -1241,11 +1241,11 @@ section { scroll-margin-top: 80px; }
   border-radius: 28px;
   box-shadow: 8px 8px 0 var(--ink);
   width: 100%;
-  max-width: 920px;
-  max-height: 92vh;
+  max-width: 1080px;
+  max-height: 96vh;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 300px 1fr;
   animation: slide-up 0.25s ease;
 }
 .booking-aside {
@@ -1357,14 +1357,14 @@ section { scroll-margin-top: 80px; }
 }
 .booking-embed {
   flex: 1;
-  min-height: 600px;
+  min-height: 680px;
   background: var(--bg);
   overflow: hidden;
 }
-/* Clip Cal.com's ~48px internal top padding by shifting cal-inline up */
+/* Clip Cal.com's internal top padding by shifting cal-inline up */
 .booking-embed cal-inline {
   display: block;
-  margin-top: -48px;
+  margin-top: -100px;
 }
 .booking-embed iframe {
   width: 100% !important;
