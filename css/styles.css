@@ -1300,6 +1300,7 @@ section { scroll-margin-top: 80px; }
   flex-direction: column;
   max-height: 92vh;
   min-width: 0;
+  background: var(--bg);
 }
 .booking-header {
   padding: 14px 20px;
@@ -1359,6 +1360,11 @@ section { scroll-margin-top: 80px; }
   min-height: 600px;
   background: var(--bg);
   overflow: hidden;
+}
+/* Clip Cal.com's ~48px internal top padding by shifting cal-inline up */
+.booking-embed cal-inline {
+  display: block;
+  margin-top: -48px;
 }
 .booking-embed iframe {
   width: 100% !important;
