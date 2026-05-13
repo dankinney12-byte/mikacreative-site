@@ -1,58 +1,20 @@
 /* global React */
-const { useState, useEffect, useRef } = React;
+const { useState, useEffect } = React;
 
 // ============================================================
 // BOOKING FLOW
-// Wraps Cal.com's inline embed in a branded modal.
-// The aside (service summary + price) is ours; the calendar /
-// scheduling / Stripe payment / intake fields are all Cal.com.
+// Shows a branded modal with service summary on the left and a
+// CTA on the right that opens Cal.com in a new tab for scheduling
+// and payment (Stripe payment works reliably on Cal.com's own page).
 // ============================================================
 
-// service.id  →  cal.com path
+// service.id  →  cal.com full URL
 const CAL_LINKS = {
-  'audit':       'mikacreative/instagram-audit-book-your-spot',
-  'audit-plus':  'mikacreative/instagram-audit-plus-book-your-spot',
+  'audit':       'https://cal.com/mikacreative/instagram-audit-book-your-spot',
+  'audit-plus':  'https://cal.com/mikacreative/instagram-audit-plus-book-your-spot',
 };
 
-// Standard Cal.com embed loader IIFE. Lazy: only attaches the
-// app.cal.com script when first invoked. Safe to call repeatedly.
-function ensureCalLoaded() {
-  if (typeof window === 'undefined') return;
-  if (window.Cal && window.Cal.loaded) return;
-  (function (C, A, L) {
-    const p = function (a, ar) { a.q.push(ar); };
-    const d = C.document;
-    C.Cal = C.Cal || function () {
-      const cal = C.Cal;
-      const ar = arguments;
-      if (!cal.loaded) {
-        cal.ns = {};
-        cal.q = cal.q || [];
-        d.head.appendChild(d.createElement('script')).src = A;
-        cal.loaded = true;
-      }
-      if (ar[0] === L) {
-        const api = function () { p(api, arguments); };
-        const namespace = ar[1];
-        api.q = api.q || [];
-        if (typeof namespace === 'string') {
-          cal.ns[namespace] = cal.ns[namespace] || api;
-          p(cal.ns[namespace], ar);
-          p(cal, ['initNamespace', namespace]);
-        } else {
-          p(cal, ar);
-        }
-        return;
-      }
-      p(cal, ar);
-    };
-  })(window, 'https://app.cal.com/embed/embed.js', 'init');
-}
-
 function BookingFlow({ service, onClose }) {
-  const [confirmed, setConfirmed] = useState(false);
-  const containerRef = useRef(null);
-
   // Lock body scroll while open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -66,47 +28,9 @@ function BookingFlow({ service, onClose }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
 
-  // Initialize the Cal.com inline embed once the modal is mounted.
-  useEffect(() => {
-    if (!service) return;
-    const calLink = CAL_LINKS[service.id];
-    if (!calLink || !containerRef.current) return;
-
-    ensureCalLoaded();
-    const namespace = service.id;
-    const Cal = window.Cal;
-
-    Cal('init', namespace, { origin: 'https://cal.com' });
-    Cal.ns[namespace]('inline', {
-      elementOrSelector: containerRef.current,
-      calLink: calLink,
-      config: { layout: 'month_view', theme: 'light' },
-    });
-    Cal.ns[namespace]('ui', {
-      hideEventTypeDetails: true, // we already show service details in the aside
-      theme: 'light',
-      cssVarsPerTheme: {
-        light: {
-          'cal-brand': '#1F1B16',          // ink (matches site primary buttons)
-          'cal-brand-emphasis': '#FF6B6B', // coral accent
-          'cal-text': '#1F1B16',
-          'cal-text-emphasis': '#1F1B16',
-          'cal-bg': '#FBF7F0',             // site bg
-          'cal-bg-emphasis': '#F4ECDD',    // site bg-alt
-          'cal-border': '#1F1B16',
-          'cal-border-emphasis': '#1F1B16',
-        },
-      },
-    });
-
-    // Branded confirmation when Cal reports a successful booking.
-    // The event has shipped under two names; listen for both to be safe.
-    const onSuccess = () => setConfirmed(true);
-    Cal.ns[namespace]('on', { action: 'bookingSuccessfulV2', callback: onSuccess });
-    Cal.ns[namespace]('on', { action: 'bookingSuccessful',   callback: onSuccess });
-  }, [service]);
-
   if (!service) return null;
+
+  const calUrl = CAL_LINKS[service.id];
 
   return (
     <div
@@ -134,47 +58,38 @@ function BookingFlow({ service, onClose }) {
           </p>
         </aside>
 
-        {/* RIGHT: Cal.com embed (or branded confirmation) */}
+        {/* RIGHT: CTA to open Cal.com in a new tab */}
         <div className="booking-main">
           <header className="booking-header">
-            <div className="mono booking-embed-eyebrow">
-              {confirmed ? "✓ You're booked" : 'Pick a date & time'}
-            </div>
+            <div className="mono booking-embed-eyebrow">Pick a date &amp; time</div>
             <button onClick={onClose} aria-label="Close" className="booking-close">×</button>
           </header>
 
-          {confirmed ? (
-            <ConfirmedMessage service={service} onClose={onClose} />
-          ) : (
-            <>
-              <div className="booking-notice">
-                <p>
-                  <strong>This is not an actual meeting</strong> (we'll schedule that shortly!). It's to reserve your audit spot since I only do 4 per month. You'll receive an email from <a href="mailto:mika@joytothefood.com" className="link">mika@joytothefood.com</a> within 24 hours (or 1 business day if a weekend) with your intake form and Google Drive folder link.
-                </p>
-                <p>
-                  Cancellations more than 48 business hours before your kickoff call receive a full refund. Within 48 hours: 50% refund. No refunds after your kickoff call. To cancel or reschedule email <a href="mailto:mika@joytothefood.com" className="link">mika@joytothefood.com</a>.
-                </p>
-              </div>
-              <div ref={containerRef} className="booking-embed" />
-            </>
-          )}
+          <div className="booking-notice">
+            <p>
+              <strong>This is not an actual meeting</strong> (we'll schedule that shortly!). It's to reserve your audit spot since I only do 4 per month. You'll receive an email from <a href="mailto:mika@joytothefood.com" className="link">mika@joytothefood.com</a> within 24 hours (or 1 business day if a weekend) with your intake form and Google Drive folder link.
+            </p>
+            <p>
+              Cancellations more than 48 business hours before your kickoff call receive a full refund. Within 48 hours: 50% refund. No refunds after your kickoff call. To cancel or reschedule email <a href="mailto:mika@joytothefood.com" className="link">mika@joytothefood.com</a>.
+            </p>
+          </div>
+
+          <div className="booking-direct-cta">
+            <p className="booking-direct-body">
+              Choose your date and time on our booking page. Payment is collected securely via Stripe before your spot is confirmed.
+            </p>
+            <a
+              href={calUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn alt"
+            >
+              Book your spot →
+            </a>
+            <p className="mono booking-direct-hint">Opens in a new tab</p>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function ConfirmedMessage({ service, onClose }) {
-  return (
-    <div className="booking-confirmed">
-      <div className="booking-confirmed-check" style={{ background: service.color }}>✓</div>
-      <h3 className="display booking-confirmed-title">you're booked!</h3>
-      <p className="booking-confirmed-sub">
-        Confirmation is on its way to your inbox, plus a calendar invite.
-        I'll email you within 24 hrs from <strong>mika@joytothefood.com</strong> with
-        what to send me before our session.
-      </p>
-      <button onClick={onClose} className="btn">Close</button>
     </div>
   );
 }

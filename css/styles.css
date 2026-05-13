@@ -1241,7 +1241,7 @@ section { scroll-margin-top: 80px; }
   border-radius: 28px;
   box-shadow: 8px 8px 0 var(--ink);
   width: 100%;
-  max-width: 1080px;
+  max-width: 760px;
   max-height: 96vh;
   overflow: hidden;
   display: grid;
@@ -1355,20 +1355,31 @@ section { scroll-margin-top: 80px; }
   color: var(--ink-soft);
   font-weight: 600;
 }
-.booking-embed {
+/* CTA panel — replaces the Cal.com inline embed */
+.booking-direct-cta {
   flex: 1;
-  min-height: 680px;
-  background: var(--bg);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 36px;
+  text-align: center;
 }
-.booking-embed cal-inline {
-  display: block;
+.booking-direct-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 340px;
+  margin: 0;
 }
-.booking-embed iframe {
-  width: 100% !important;
-  height: 100% !important;
-  border: 0;
-  display: block;
+.booking-direct-hint {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.7;
+  margin: 0;
 }
 
 /* Branded confirmation shown after Cal reports bookingSuccessful */

@@ -1378,68 +1378,25 @@ Object.assign(window, {
 /* global React */
 var {
   useState,
-  useEffect,
-  useRef
+  useEffect
 } = React;
 
 // ============================================================
 // BOOKING FLOW
-// Wraps Cal.com's inline embed in a branded modal.
-// The aside (service summary + price) is ours; the calendar /
-// scheduling / Stripe payment / intake fields are all Cal.com.
+// Shows a branded modal with service summary on the left and a
+// CTA on the right that opens Cal.com in a new tab for scheduling
+// and payment (Stripe payment works reliably on Cal.com's own page).
 // ============================================================
 
-// service.id  →  cal.com path
+// service.id  →  cal.com full URL
 const CAL_LINKS = {
-  'audit': 'mikacreative/instagram-audit-book-your-spot',
-  'audit-plus': 'mikacreative/instagram-audit-plus-book-your-spot'
+  'audit': 'https://cal.com/mikacreative/instagram-audit-book-your-spot',
+  'audit-plus': 'https://cal.com/mikacreative/instagram-audit-plus-book-your-spot'
 };
-
-// Standard Cal.com embed loader IIFE. Lazy: only attaches the
-// app.cal.com script when first invoked. Safe to call repeatedly.
-function ensureCalLoaded() {
-  if (typeof window === 'undefined') return;
-  if (window.Cal && window.Cal.loaded) return;
-  (function (C, A, L) {
-    const p = function (a, ar) {
-      a.q.push(ar);
-    };
-    const d = C.document;
-    C.Cal = C.Cal || function () {
-      const cal = C.Cal;
-      const ar = arguments;
-      if (!cal.loaded) {
-        cal.ns = {};
-        cal.q = cal.q || [];
-        d.head.appendChild(d.createElement('script')).src = A;
-        cal.loaded = true;
-      }
-      if (ar[0] === L) {
-        const api = function () {
-          p(api, arguments);
-        };
-        const namespace = ar[1];
-        api.q = api.q || [];
-        if (typeof namespace === 'string') {
-          cal.ns[namespace] = cal.ns[namespace] || api;
-          p(cal.ns[namespace], ar);
-          p(cal, ['initNamespace', namespace]);
-        } else {
-          p(cal, ar);
-        }
-        return;
-      }
-      p(cal, ar);
-    };
-  })(window, 'https://app.cal.com/embed/embed.js', 'init');
-}
 function BookingFlow({
   service,
   onClose
 }) {
-  const [confirmed, setConfirmed] = useState(false);
-  const containerRef = useRef(null);
-
   // Lock body scroll while open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -1456,61 +1413,8 @@ function BookingFlow({
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
-
-  // Initialize the Cal.com inline embed once the modal is mounted.
-  useEffect(() => {
-    if (!service) return;
-    const calLink = CAL_LINKS[service.id];
-    if (!calLink || !containerRef.current) return;
-    ensureCalLoaded();
-    const namespace = service.id;
-    const Cal = window.Cal;
-    Cal('init', namespace, {
-      origin: 'https://cal.com'
-    });
-    Cal.ns[namespace]('inline', {
-      elementOrSelector: containerRef.current,
-      calLink: calLink,
-      config: {
-        layout: 'month_view',
-        theme: 'light'
-      }
-    });
-    Cal.ns[namespace]('ui', {
-      hideEventTypeDetails: true,
-      // we already show service details in the aside
-      theme: 'light',
-      cssVarsPerTheme: {
-        light: {
-          'cal-brand': '#1F1B16',
-          // ink (matches site primary buttons)
-          'cal-brand-emphasis': '#FF6B6B',
-          // coral accent
-          'cal-text': '#1F1B16',
-          'cal-text-emphasis': '#1F1B16',
-          'cal-bg': '#FBF7F0',
-          // site bg
-          'cal-bg-emphasis': '#F4ECDD',
-          // site bg-alt
-          'cal-border': '#1F1B16',
-          'cal-border-emphasis': '#1F1B16'
-        }
-      }
-    });
-
-    // Branded confirmation when Cal reports a successful booking.
-    // The event has shipped under two names; listen for both to be safe.
-    const onSuccess = () => setConfirmed(true);
-    Cal.ns[namespace]('on', {
-      action: 'bookingSuccessfulV2',
-      callback: onSuccess
-    });
-    Cal.ns[namespace]('on', {
-      action: 'bookingSuccessful',
-      callback: onSuccess
-    });
-  }, [service]);
   if (!service) return null;
+  const calUrl = CAL_LINKS[service.id];
   return /*#__PURE__*/React.createElement("div", {
     className: "booking-overlay",
     onClick: e => {
@@ -1554,14 +1458,11 @@ function BookingFlow({
     className: "booking-header"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mono booking-embed-eyebrow"
-  }, confirmed ? "✓ You're booked" : 'Pick a date & time'), /*#__PURE__*/React.createElement("button", {
+  }, "Pick a date & time"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
     className: "booking-close"
-  }, "\xD7")), confirmed ? /*#__PURE__*/React.createElement(ConfirmedMessage, {
-    service: service,
-    onClose: onClose
-  }) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
     className: "booking-notice"
   }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "This is not an actual meeting"), " (we'll schedule that shortly!). It's to reserve your audit spot since I only do 4 per month. You'll receive an email from ", /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
@@ -1570,29 +1471,17 @@ function BookingFlow({
     href: "mailto:mika@joytothefood.com",
     className: "link"
   }, "mika@joytothefood.com"), ".")), /*#__PURE__*/React.createElement("div", {
-    ref: containerRef,
-    className: "booking-embed"
-  })))));
-}
-function ConfirmedMessage({
-  service,
-  onClose
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "booking-confirmed"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "booking-confirmed-check",
-    style: {
-      background: service.color
-    }
-  }, "\u2713"), /*#__PURE__*/React.createElement("h3", {
-    className: "display booking-confirmed-title"
-  }, "you're booked!"), /*#__PURE__*/React.createElement("p", {
-    className: "booking-confirmed-sub"
-  }, "Confirmation is on its way to your inbox, plus a calendar invite. I'll email you within 24 hrs from ", /*#__PURE__*/React.createElement("strong", null, "mika@joytothefood.com"), " with what to send me before our session."), /*#__PURE__*/React.createElement("button", {
-    onClick: onClose,
-    className: "btn"
-  }, "Close"));
+    className: "booking-direct-cta"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "booking-direct-body"
+  }, "Choose your date and time on our booking page. Payment is collected securely via Stripe before your spot is confirmed."), /*#__PURE__*/React.createElement("a", {
+    href: calUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "btn alt"
+  }, "Book your spot \u2192"), /*#__PURE__*/React.createElement("p", {
+    className: "mono booking-direct-hint"
+  }, "Opens in a new tab")))));
 }
 
 // ============================================================
