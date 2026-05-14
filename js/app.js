@@ -158,8 +158,10 @@ function HeroBigType({
     className: "hero-cta-stack"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
-    onClick: () => onBook && onBook(audit)
-  }, "Book your audit \u2014 $950 \u2192"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => document.getElementById('services')?.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }, "Let's work together \u2192"), /*#__PURE__*/React.createElement("button", {
     onClick: onOpenQuiz,
     className: "hero-cta-quiz"
   }, "not sure yet? take the 30-sec quiz")))));
@@ -223,8 +225,10 @@ function HeroImageGrid({
     className: "hero-image-grid-cta"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
-    onClick: () => onBook && onBook(audit)
-  }, "Book your audit \u2014 $950"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => document.getElementById('services')?.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }, "Let's work together \u2192"), /*#__PURE__*/React.createElement("button", {
     onClick: onOpenQuiz,
     className: "btn ghost"
   }, "Not sure? Take the quiz")))));
@@ -570,13 +574,13 @@ function Services({
     className: "eyebrow"
   }, "work with me"), /*#__PURE__*/React.createElement("h2", {
     className: "display services-headline"
-  }, "two ways to ", /*#__PURE__*/React.createElement("span", {
+  }, "find your ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
-  }, "start.")), /*#__PURE__*/React.createElement("p", {
+  }, "fit.")), /*#__PURE__*/React.createElement("p", {
     className: "services-sub"
-  }, "Both include a full audit. One includes me in your corner while you implement.")), /*#__PURE__*/React.createElement("button", {
+  }, "The Jam Session is the ongoing room \u2014 monthly calls, weekly hook ideas, a Slack community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.")), /*#__PURE__*/React.createElement("button", {
     className: "btn",
     onClick: onOpenQuiz
   }, "Curious if it's right for you? Take the quiz \u2192")), /*#__PURE__*/React.createElement("div", {
@@ -995,6 +999,7 @@ function ContactCTA({
 }) {
   const audit = SERVICES.find(s => s.id === 'audit');
   const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
+  const mastermind = SERVICES.find(s => s.id === 'mastermind');
   return /*#__PURE__*/React.createElement("section", {
     id: "contact",
     className: "contact-cta"
@@ -1017,18 +1022,24 @@ function ContactCTA({
     }
   }, "fix that.")), /*#__PURE__*/React.createElement("p", {
     className: "contact-cta-sub"
-  }, "Book an audit and in about a week you'll have a written plan, a recorded walkthrough, and zero guesswork. Add pre-post reviews and I'll be in your corner while you put it into practice."), /*#__PURE__*/React.createElement("div", {
+  }, "Join The Jam Session for ongoing strategy, community, and a room that gets it. Or start with a one-time audit \u2014 a written plan and recorded walkthrough delivered in about a week, with zero guesswork."), /*#__PURE__*/React.createElement("div", {
     className: "contact-cta-btns"
   }, /*#__PURE__*/React.createElement("button", {
+    className: "btn contact-cta-btn",
+    onClick: () => onBook && onBook(mastermind),
+    style: {
+      background: 'var(--c3)'
+    }
+  }, "\u2726 Apply for The Jam Session \u2014 $249/mo"), /*#__PURE__*/React.createElement("button", {
     className: "btn alt contact-cta-btn",
     onClick: () => onBook && onBook(audit)
-  }, "\u2726 Book The Audit \u2014 $950"), /*#__PURE__*/React.createElement("button", {
+  }, "Book The Audit \u2014 $475"), /*#__PURE__*/React.createElement("button", {
     className: "btn contact-cta-btn",
     onClick: () => onBook && onBook(auditPlus),
     style: {
       background: 'var(--c4)'
     }
-  }, "Book Audit + Reviews \u2014 $1,100")), /*#__PURE__*/React.createElement("a", {
+  }, "Book Audit + Reviews \u2014 $550")), /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link",
     style: {

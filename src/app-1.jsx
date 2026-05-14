@@ -78,8 +78,8 @@ function HeroBigType({ onOpenQuiz, onBook }) {
             I'll show you exactly what moved the needle.
           </p>
           <div className="hero-cta-stack">
-            <button className="btn alt" onClick={() => onBook && onBook(audit)}>
-              Book your audit — $950 →
+            <button className="btn alt" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
+              Let's work together →
             </button>
             <button onClick={onOpenQuiz} className="hero-cta-quiz">
               not sure yet? take the 30-sec quiz
@@ -121,8 +121,8 @@ function HeroImageGrid({ onOpenQuiz, onBook }) {
             I grew @_joytothefood_ from 1K to 465K in 24 months, in the current algorithm, in a saturated niche. I'll show you how.
           </p>
           <div className="hero-image-grid-cta">
-            <button className="btn alt" onClick={() => onBook && onBook(audit)}>
-              Book your audit — $950
+            <button className="btn alt" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
+              Let's work together →
             </button>
             <button onClick={onOpenQuiz} className="btn ghost">
               Not sure? Take the quiz
@@ -451,10 +451,10 @@ function Services({ onOpenQuiz, onBook, onSeeDetails }) {
           <div className="services-header-text">
             <span className="eyebrow">work with me</span>
             <h2 className="display services-headline">
-              two ways to <span style={{ color: 'var(--c1)' }}>start.</span>
+              find your <span style={{ color: 'var(--c1)' }}>fit.</span>
             </h2>
             <p className="services-sub">
-              Both include a full audit. One includes me in your corner while you implement.
+              The Jam Session is the ongoing room — monthly calls, weekly hook ideas, a Slack community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.
             </p>
           </div>
           <button className="btn" onClick={onOpenQuiz}>
@@ -782,6 +782,7 @@ function Speaking() {
 function ContactCTA({ onOpenQuiz, onBook }) {
   const audit = SERVICES.find(s => s.id === 'audit');
   const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
+  const mastermind = SERVICES.find(s => s.id === 'mastermind');
   return (
     <section id="contact" className="contact-cta">
       <div className="container contact-cta-inner">
@@ -791,14 +792,17 @@ function ContactCTA({ onOpenQuiz, onBook }) {
           let's <span style={{ color: 'var(--c3)' }}>fix that.</span>
         </h2>
         <p className="contact-cta-sub">
-          Book an audit and in about a week you'll have a written plan, a recorded walkthrough, and zero guesswork. Add pre-post reviews and I'll be in your corner while you put it into practice.
+          Join The Jam Session for ongoing strategy, community, and a room that gets it. Or start with a one-time audit — a written plan and recorded walkthrough delivered in about a week, with zero guesswork.
         </p>
         <div className="contact-cta-btns">
+          <button className="btn contact-cta-btn" onClick={() => onBook && onBook(mastermind)} style={{ background: 'var(--c3)' }}>
+            ✦ Apply for The Jam Session — $249/mo
+          </button>
           <button className="btn alt contact-cta-btn" onClick={() => onBook && onBook(audit)}>
-            ✦ Book The Audit — $950
+            Book The Audit — $475
           </button>
           <button className="btn contact-cta-btn" onClick={() => onBook && onBook(auditPlus)} style={{ background: 'var(--c4)' }}>
-            Book Audit + Reviews — $1,100
+            Book Audit + Reviews — $550
           </button>
         </div>
         <a href="mailto:mika@joytothefood.com" className="link" style={{
