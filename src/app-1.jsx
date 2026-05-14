@@ -196,13 +196,24 @@ const SERVICES = [
     id: 'mastermind',
     tag: '03 / mastermind',
     color: 'var(--c3)',
-    title: 'The Mastermind',
-    price: '$350/mo',
-    sub: 'or $3,500/year',
+    title: 'The Jam Session',
+    price: '$249/mo',
+    sub: '3-month minimum',
     available: true,
-    blurb: "A small cohort of food and lifestyle creators who are serious about turning content into income. Monthly 90 minute group calls, hot seat reviews, private community, and direct access to my current strategy in real time. This is where the deepest work happens.",
-    bullets: ['Monthly 90 min group call', 'Hot seat account reviews', 'Private community access', 'Guest speakers to learn from the best'],
-    cta: 'Apply for next cohort',
+    blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real — and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Slack community. Me, actually in there with you.",
+    bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Slack channel', 'A Slack community of creators at your exact stage', 'Direct access to Mika in Slack', 'Guest speaker once a quarter'],
+    fitYes: [
+      "you're a food or lifestyle creator who is serious about making instagram actually work — not just posting and hoping",
+      "you want real strategy, not another tip you found by scrolling",
+      "you're the kind of person who will show up, do the work, and use what you learn",
+      "you want people around you who are building the same thing — so you're never figuring it out alone",
+    ],
+    fitNo: [
+      "you want a course to passively consume",
+      "you're looking for overnight results",
+    ],
+    cta: 'Apply now',
+    detailsCta: 'Tell me more',
   },
   {
     id: 'audit',
@@ -396,6 +407,29 @@ function ServiceCard({ s, featured, onBook, onSeeDetails, onWaitlist }) {
         ))}
       </ul>
 
+      {s.fitYes && (
+        <div className="service-card-fit">
+          <div className="service-card-fit-block">
+            <div className="mono service-card-fit-label">this is for you if</div>
+            {s.fitYes.map((it, i) => (
+              <div key={i} className="service-card-fit-item">
+                <span className="service-card-fit-check" style={{ color: s.color }}>✔</span>
+                {it}
+              </div>
+            ))}
+          </div>
+          <div className="service-card-fit-block">
+            <div className="mono service-card-fit-label">this is not for you if</div>
+            {s.fitNo.map((it, i) => (
+              <div key={i} className="service-card-fit-item muted">
+                <span className="service-card-fit-dash">—</span>
+                {it}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="service-card-cta-wrap">
         {isComingSoon ? (
           <div className="mono service-card-coming-note" style={{
@@ -416,12 +450,12 @@ function ServiceCard({ s, featured, onBook, onSeeDetails, onWaitlist }) {
             >
               {s.cta} →
             </button>
-            {s.details && (
+            {(s.details || s.detailsCta) && (
               <button
                 className="btn sm btn-ghost"
                 onClick={() => onSeeDetails && onSeeDetails(s)}
               >
-                What to expect
+                {s.detailsCta || 'What to expect'}
               </button>
             )}
           </div>
@@ -456,7 +490,7 @@ function Services({ onOpenQuiz, onBook, onSeeDetails }) {
         </div>
 
         <div className="services-divider">
-          <span className="mono services-divider-label">Coming soon</span>
+          <span className="mono services-divider-label">More ways to work together</span>
           <div className="services-divider-line"></div>
         </div>
 

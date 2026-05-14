@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, MastermindModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
 const { useState, useEffect } = React;
 
 const PALETTES = {
@@ -63,7 +63,14 @@ function App() {
         />
       )}
 
-      {detailsService && (
+      {detailsService && detailsService.id === 'mastermind' && (
+        <MastermindDetailsModal
+          service={detailsService}
+          onClose={() => setDetailsService(null)}
+          onBook={setBookingService}
+        />
+      )}
+      {detailsService && detailsService.id !== 'mastermind' && (
         <ServiceDetailsModal
           service={detailsService}
           onClose={() => setDetailsService(null)}

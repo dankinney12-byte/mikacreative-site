@@ -299,13 +299,16 @@ const SERVICES = [{
   id: 'mastermind',
   tag: '03 / mastermind',
   color: 'var(--c3)',
-  title: 'The Mastermind',
-  price: '$350/mo',
-  sub: 'or $3,500/year',
+  title: 'The Jam Session',
+  price: '$249/mo',
+  sub: '3-month minimum',
   available: true,
-  blurb: "A small cohort of food and lifestyle creators who are serious about turning content into income. Monthly 90 minute group calls, hot seat reviews, private community, and direct access to my current strategy in real time. This is where the deepest work happens.",
-  bullets: ['Monthly 90 min group call', 'Hot seat account reviews', 'Private community access', 'Guest speakers to learn from the best'],
-  cta: 'Apply for next cohort'
+  blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real — and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Slack community. Me, actually in there with you.",
+  bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Slack channel', 'A Slack community of creators at your exact stage', 'Direct access to Mika in Slack', 'Guest speaker once a quarter'],
+  fitYes: ["you're a food or lifestyle creator who is serious about making instagram actually work — not just posting and hoping", "you want real strategy, not another tip you found by scrolling", "you're the kind of person who will show up, do the work, and use what you learn", "you want people around you who are building the same thing — so you're never figuring it out alone"],
+  fitNo: ["you want a course to passively consume", "you're looking for overnight results"],
+  cta: 'Apply now',
+  detailsCta: 'Tell me more'
 }, {
   id: 'audit',
   tag: '01 / audit',
@@ -518,7 +521,30 @@ function ServiceCard({
       background: featured ? 'var(--ink)' : s.color,
       color: featured ? s.color : 'var(--ink)'
     }
-  }, "\u2713"), b))), /*#__PURE__*/React.createElement("div", {
+  }, "\u2713"), b))), s.fitYes && /*#__PURE__*/React.createElement("div", {
+    className: "service-card-fit"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "service-card-fit-block"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mono service-card-fit-label"
+  }, "this is for you if"), s.fitYes.map((it, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "service-card-fit-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "service-card-fit-check",
+    style: {
+      color: s.color
+    }
+  }, "\u2714"), it))), /*#__PURE__*/React.createElement("div", {
+    className: "service-card-fit-block"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mono service-card-fit-label"
+  }, "this is not for you if"), s.fitNo.map((it, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "service-card-fit-item muted"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "service-card-fit-dash"
+  }, "\u2014"), it)))), /*#__PURE__*/React.createElement("div", {
     className: "service-card-cta-wrap"
   }, isComingSoon ? /*#__PURE__*/React.createElement("div", {
     className: "mono service-card-coming-note",
@@ -535,10 +561,10 @@ function ServiceCard({
       background: featured ? 'var(--ink)' : s.color,
       color: featured ? 'var(--bg)' : 'var(--ink)'
     }
-  }, s.cta, " \u2192"), s.details && /*#__PURE__*/React.createElement("button", {
+  }, s.cta, " \u2192"), (s.details || s.detailsCta) && /*#__PURE__*/React.createElement("button", {
     className: "btn sm btn-ghost",
     onClick: () => onSeeDetails && onSeeDetails(s)
-  }, "What to expect"))));
+  }, s.detailsCta || 'What to expect'))));
 }
 function Services({
   onOpenQuiz,
@@ -583,7 +609,7 @@ function Services({
     className: "services-divider"
   }, /*#__PURE__*/React.createElement("span", {
     className: "mono services-divider-label"
-  }, "Coming soon"), /*#__PURE__*/React.createElement("div", {
+  }, "More ways to work together"), /*#__PURE__*/React.createElement("div", {
     className: "services-divider-line"
   })), /*#__PURE__*/React.createElement("div", {
     className: "services-grid"
@@ -1669,15 +1695,15 @@ function MastermindModal({
   }, [onClose]);
   if (!service) return null;
   const tracks = [{
-    id: 'grow',
+    id: 'rise',
     emoji: '🌱',
-    label: 'I want to grow my following',
-    sub: "You're building your audience and want a proven system to get there faster."
+    label: 'On the Rise',
+    sub: "You're building your account and you want it to actually work. Better hooks, smarter content strategy, more of the right people finding you. This is where we figure that out together."
   }, {
-    id: 'monetize',
+    id: 'next-level',
     emoji: '💸',
-    label: 'I want to monetize my existing audience',
-    sub: "You already have a following and want to turn it into reliable income."
+    label: 'The Next Level',
+    sub: "You've built the audience. Now you want to make real money from it. Brand deals, memberships, affiliate strategy — this track is for creators who are ready to turn what they've built into real income."
   }];
   return /*#__PURE__*/React.createElement("div", {
     className: "booking-overlay",
@@ -1767,11 +1793,149 @@ function MastermindModal({
 }
 window.MastermindModal = MastermindModal;
 
+// ============================================================
+// MASTERMIND DETAILS MODAL — "Tell me more"
+// Full Jam Session explainer: what a month looks like, who it's
+// for/not for, how it works, price, and apply CTA.
+// ============================================================
+function MastermindDetailsModal({
+  service,
+  onClose,
+  onBook
+}) {
+  // Lock body scroll while open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  // Esc to close
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === 'Escape') onClose();
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+  if (!service) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "booking-overlay",
+    onClick: e => {
+      if (e.target === e.currentTarget) onClose();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "booking-modal details-modal mastermind-details-modal"
+  }, /*#__PURE__*/React.createElement("aside", {
+    className: "booking-aside",
+    style: {
+      background: service.color
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "tag booking-aside-tag",
+    style: {
+      background: 'var(--bg)',
+      alignSelf: 'flex-start'
+    }
+  }, service.tag), /*#__PURE__*/React.createElement("h3", {
+    className: "display booking-aside-title"
+  }, service.title), /*#__PURE__*/React.createElement("div", {
+    className: "booking-aside-blurb"
+  }, service.blurb), /*#__PURE__*/React.createElement("div", {
+    className: "booking-aside-total"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-aside-total-eyebrow"
+  }, "Investment"), /*#__PURE__*/React.createElement("div", {
+    className: "display booking-aside-total-amount"
+  }, service.price), /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-aside-total-sub"
+  }, service.sub))), /*#__PURE__*/React.createElement("div", {
+    className: "booking-main"
+  }, /*#__PURE__*/React.createElement("header", {
+    className: "booking-header"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-embed-eyebrow"
+  }, "so here's what a month actually looks like"), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    "aria-label": "Close",
+    className: "booking-close"
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
+    className: "details-content jam-details-content"
+  }, /*#__PURE__*/React.createElement("section", {
+    className: "details-section"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "jam-prose"
+  }, "Once a month we get on a call together \u2014 your track, your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits."), /*#__PURE__*/React.createElement("p", {
+    className: "jam-prose"
+  }, "Every week you get fresh hook ideas dropped into your Slack channel so you're never starting from scratch on a caption again."), /*#__PURE__*/React.createElement("p", {
+    className: "jam-prose"
+  }, "In between calls, Slack is where it all lives. Your track channel is full of creators at your exact stage \u2014 not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up."), /*#__PURE__*/React.createElement("p", {
+    className: "jam-prose"
+  }, "And I'm in there too. Actually responding."), /*#__PURE__*/React.createElement("p", {
+    className: "jam-prose"
+  }, "Once a quarter we bring in a guest speaker \u2014 someone doing something you want to do, who can tell you exactly how they got there.")), /*#__PURE__*/React.createElement("section", {
+    className: "details-section jam-fit-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "jam-fit-col"
+  }, /*#__PURE__*/React.createElement("h4", {
+    className: "mono details-section-eyebrow"
+  }, "this is for you if"), /*#__PURE__*/React.createElement("ul", {
+    className: "details-list"
+  }, ["You're a food or lifestyle creator who is done piecing together a strategy from random viral tips", "You're not opposed to showing up — on calls, in Slack, in your content — but you want the research and strategy done for you", "You're a \"tell me what to focus on and I'll go do it\" kind of person — but you also want to understand the why behind it", "You're ready to actually commit to figuring this out"].map((it, i) => /*#__PURE__*/React.createElement("li", {
+    key: i,
+    className: "details-list-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "details-list-bullet",
+    style: {
+      background: service.color
+    }
+  }), it)))), /*#__PURE__*/React.createElement("div", {
+    className: "jam-fit-col"
+  }, /*#__PURE__*/React.createElement("h4", {
+    className: "mono details-section-eyebrow jam-not-eyebrow"
+  }, "this is not for you if"), /*#__PURE__*/React.createElement("ul", {
+    className: "details-list"
+  }, ["You want something to passively sit in", "You're looking for overnight results"].map((it, i) => /*#__PURE__*/React.createElement("li", {
+    key: i,
+    className: "details-list-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "details-list-bullet",
+    style: {
+      background: 'var(--ink-soft)'
+    }
+  }), it))))), /*#__PURE__*/React.createElement("section", {
+    className: "details-section"
+  }, /*#__PURE__*/React.createElement("h4", {
+    className: "mono details-section-eyebrow"
+  }, "how it works"), /*#__PURE__*/React.createElement("p", {
+    className: "jam-prose"
+  }, "Fill out a quick application, I'll make sure it's the right fit, and you'll get added to your track at the next opening."), /*#__PURE__*/React.createElement("div", {
+    className: "jam-price-block"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "display jam-price"
+  }, service.price), /*#__PURE__*/React.createElement("span", {
+    className: "mono jam-price-sub"
+  }, service.sub)))), /*#__PURE__*/React.createElement("footer", {
+    className: "details-cta-bar"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    onClick: () => {
+      onClose();
+      onBook && onBook(service);
+    }
+  }, "Apply now \u2192"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-ghost",
+    onClick: onClose
+  }, "Maybe later")))));
+}
+window.MastermindDetailsModal = MastermindDetailsModal;
+
 // === src/app-3.jsx ===
 
 "use strict";
 
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, MastermindModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
 var {
   useState,
   useEffect
@@ -1862,7 +2026,11 @@ function App() {
   }), bookingService && bookingService.id !== 'mastermind' && /*#__PURE__*/React.createElement(BookingFlow, {
     service: bookingService,
     onClose: () => setBookingService(null)
-  }), detailsService && /*#__PURE__*/React.createElement(ServiceDetailsModal, {
+  }), detailsService && detailsService.id === 'mastermind' && /*#__PURE__*/React.createElement(MastermindDetailsModal, {
+    service: detailsService,
+    onClose: () => setDetailsService(null),
+    onBook: setBookingService
+  }), detailsService && detailsService.id !== 'mastermind' && /*#__PURE__*/React.createElement(ServiceDetailsModal, {
     service: detailsService,
     onClose: () => setDetailsService(null),
     onBook: setBookingService

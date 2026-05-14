@@ -253,16 +253,16 @@ function MastermindModal({ service, onClose }) {
 
   const tracks = [
     {
-      id: 'grow',
+      id: 'rise',
       emoji: '🌱',
-      label: 'I want to grow my following',
-      sub: "You're building your audience and want a proven system to get there faster.",
+      label: 'On the Rise',
+      sub: "You're building your account and you want it to actually work. Better hooks, smarter content strategy, more of the right people finding you. This is where we figure that out together.",
     },
     {
-      id: 'monetize',
+      id: 'next-level',
       emoji: '💸',
-      label: 'I want to monetize my existing audience',
-      sub: "You already have a following and want to turn it into reliable income.",
+      label: 'The Next Level',
+      sub: "You've built the audience. Now you want to make real money from it. Brand deals, memberships, affiliate strategy — this track is for creators who are ready to turn what they've built into real income.",
     },
   ];
 
@@ -349,3 +349,140 @@ function MastermindModal({ service, onClose }) {
 }
 
 window.MastermindModal = MastermindModal;
+
+// ============================================================
+// MASTERMIND DETAILS MODAL — "Tell me more"
+// Full Jam Session explainer: what a month looks like, who it's
+// for/not for, how it works, price, and apply CTA.
+// ============================================================
+function MastermindDetailsModal({ service, onClose, onBook }) {
+  // Lock body scroll while open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, []);
+
+  // Esc to close
+  useEffect(() => {
+    function onKey(e) { if (e.key === 'Escape') onClose(); }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  if (!service) return null;
+
+  return (
+    <div
+      className="booking-overlay"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div className="booking-modal details-modal mastermind-details-modal">
+        {/* LEFT: branded aside */}
+        <aside className="booking-aside" style={{ background: service.color }}>
+          <span className="tag booking-aside-tag" style={{ background: 'var(--bg)', alignSelf: 'flex-start' }}>
+            {service.tag}
+          </span>
+          <h3 className="display booking-aside-title">{service.title}</h3>
+          <div className="booking-aside-blurb">{service.blurb}</div>
+          <div className="booking-aside-total">
+            <div className="mono booking-aside-total-eyebrow">Investment</div>
+            <div className="display booking-aside-total-amount">{service.price}</div>
+            <div className="mono booking-aside-total-sub">{service.sub}</div>
+          </div>
+        </aside>
+
+        {/* RIGHT: scrollable "tell me more" content */}
+        <div className="booking-main">
+          <header className="booking-header">
+            <div className="mono booking-embed-eyebrow">so here's what a month actually looks like</div>
+            <button onClick={onClose} aria-label="Close" className="booking-close">×</button>
+          </header>
+
+          <div className="details-content jam-details-content">
+
+            {/* What a month looks like */}
+            <section className="details-section">
+              <p className="jam-prose">
+                Once a month we get on a call together — your track, your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits.
+              </p>
+              <p className="jam-prose">
+                Every week you get fresh hook ideas dropped into your Slack channel so you're never starting from scratch on a caption again.
+              </p>
+              <p className="jam-prose">
+                In between calls, Slack is where it all lives. Your track channel is full of creators at your exact stage — not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up.
+              </p>
+              <p className="jam-prose">
+                And I'm in there too. Actually responding.
+              </p>
+              <p className="jam-prose">
+                Once a quarter we bring in a guest speaker — someone doing something you want to do, who can tell you exactly how they got there.
+              </p>
+            </section>
+
+            {/* For you / not for you */}
+            <section className="details-section jam-fit-section">
+              <div className="jam-fit-col">
+                <h4 className="mono details-section-eyebrow">this is for you if</h4>
+                <ul className="details-list">
+                  {[
+                    "You're a food or lifestyle creator who is done piecing together a strategy from random viral tips",
+                    "You're not opposed to showing up — on calls, in Slack, in your content — but you want the research and strategy done for you",
+                    "You're a \"tell me what to focus on and I'll go do it\" kind of person — but you also want to understand the why behind it",
+                    "You're ready to actually commit to figuring this out",
+                  ].map((it, i) => (
+                    <li key={i} className="details-list-item">
+                      <span className="details-list-bullet" style={{ background: service.color }} />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="jam-fit-col">
+                <h4 className="mono details-section-eyebrow jam-not-eyebrow">this is not for you if</h4>
+                <ul className="details-list">
+                  {[
+                    "You want something to passively sit in",
+                    "You're looking for overnight results",
+                  ].map((it, i) => (
+                    <li key={i} className="details-list-item">
+                      <span className="details-list-bullet" style={{ background: 'var(--ink-soft)' }} />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+
+            {/* How it works */}
+            <section className="details-section">
+              <h4 className="mono details-section-eyebrow">how it works</h4>
+              <p className="jam-prose">
+                Fill out a quick application, I'll make sure it's the right fit, and you'll get added to your track at the next opening.
+              </p>
+              <div className="jam-price-block">
+                <span className="display jam-price">{service.price}</span>
+                <span className="mono jam-price-sub">{service.sub}</span>
+              </div>
+            </section>
+
+          </div>
+
+          {/* Bottom CTA bar */}
+          <footer className="details-cta-bar">
+            <button
+              className="btn"
+              onClick={() => { onClose(); onBook && onBook(service); }}
+            >
+              Apply now →
+            </button>
+            <button className="btn btn-ghost" onClick={onClose}>
+              Maybe later
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+window.MastermindDetailsModal = MastermindDetailsModal;

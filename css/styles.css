@@ -734,6 +734,35 @@ section { scroll-margin-top: 80px; }
   font-size: 11px; font-weight: 700;
   flex-shrink: 0;
 }
+/* Service card fit/not-fit section (mastermind) */
+.service-card-fit {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0 4px;
+  padding: 16px 0;
+  border-top: 1.5px dashed var(--ink);
+}
+.service-card-fit-block { display: flex; flex-direction: column; gap: 6px; }
+.service-card-fit-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.service-card-fit-item {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink);
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+}
+.service-card-fit-item.muted { color: var(--ink-soft); }
+.service-card-fit-check { font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+.service-card-fit-dash { flex-shrink: 0; color: var(--ink-soft); }
+
 .service-card-cta-wrap {
   margin-top: auto;
   padding-top: 8px;
@@ -1465,6 +1494,44 @@ section { scroll-margin-top: 80px; }
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 4px;
+}
+
+/* ── Mastermind "Tell me more" details modal ── */
+.mastermind-details-modal { max-width: 860px; }
+
+.jam-details-content { padding: 0 0 8px; }
+
+.jam-prose {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.jam-prose:last-child { margin-bottom: 0; }
+
+.jam-fit-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 600px) {
+  .jam-fit-section { grid-template-columns: 1fr; }
+}
+.jam-fit-col { display: flex; flex-direction: column; gap: 4px; }
+.jam-not-eyebrow { color: var(--ink-soft) !important; }
+
+.jam-price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 12px;
+}
+.jam-price { font-size: 28px; }
+.jam-price-sub {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
 /* Branded confirmation shown after Cal reports bookingSuccessful */
