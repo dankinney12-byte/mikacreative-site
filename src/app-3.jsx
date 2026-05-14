@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, MastermindModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
 const { useState, useEffect } = React;
 
 const PALETTES = {
@@ -50,7 +50,13 @@ function App() {
       <Speaking />
       <ContactCTA onOpenQuiz={() => setQuizOpen(true)} onBook={setBookingService} />
       <QuizWidget open={quizOpen} setOpen={setQuizOpen} onBook={setBookingService} />
-      {bookingService && (
+      {bookingService && bookingService.id === 'mastermind' && (
+        <MastermindModal
+          service={bookingService}
+          onClose={() => setBookingService(null)}
+        />
+      )}
+      {bookingService && bookingService.id !== 'mastermind' && (
         <BookingFlow
           service={bookingService}
           onClose={() => setBookingService(null)}

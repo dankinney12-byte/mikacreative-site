@@ -1382,6 +1382,91 @@ section { scroll-margin-top: 80px; }
   margin: 0;
 }
 
+/* ── Mastermind modal ── */
+.mastermind-modal { max-width: 820px; }
+
+.mastermind-tracks {
+  padding: 32px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+}
+.mastermind-tracks-intro {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.mastermind-track-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 600px) {
+  .mastermind-track-grid { grid-template-columns: 1fr; }
+}
+.mastermind-track-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 24px 20px;
+  background: var(--bg-alt);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, transform 0.1s;
+}
+.mastermind-track-btn:hover {
+  background: var(--track-accent, var(--c3));
+  transform: translateY(-2px);
+}
+.mastermind-track-emoji {
+  font-size: 32px;
+  line-height: 1;
+}
+.mastermind-track-label {
+  font-family: 'Caprasimo', Georgia, serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.mastermind-track-sub {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.mastermind-placeholder {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.mastermind-placeholder-icon { font-size: 48px; line-height: 1; }
+.mastermind-placeholder-title {
+  font-size: 24px;
+  line-height: 1.1;
+  margin: 0;
+}
+.mastermind-placeholder-body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 420px;
+}
+.mastermind-placeholder-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
 /* Branded confirmation shown after Cal reports bookingSuccessful */
 .booking-confirmed {
   flex: 1;

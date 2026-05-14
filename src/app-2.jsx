@@ -227,3 +227,125 @@ function ServiceDetailsModal({ service, onClose, onBook }) {
 
 window.BookingFlow = BookingFlow;
 window.ServiceDetailsModal = ServiceDetailsModal;
+
+// ============================================================
+// MASTERMIND MODAL
+// Two-track application flow: Grow vs Monetize.
+// Track selection leads to a placeholder — Google Form TBD.
+// ============================================================
+function MastermindModal({ service, onClose }) {
+  const [selectedTrack, setSelectedTrack] = useState(null);
+
+  // Lock body scroll while open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, []);
+
+  // Esc to close
+  useEffect(() => {
+    function onKey(e) { if (e.key === 'Escape') onClose(); }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  if (!service) return null;
+
+  const tracks = [
+    {
+      id: 'grow',
+      emoji: '🌱',
+      label: 'I want to grow my following',
+      sub: "You're building your audience and want a proven system to get there faster.",
+    },
+    {
+      id: 'monetize',
+      emoji: '💸',
+      label: 'I want to monetize my existing audience',
+      sub: "You already have a following and want to turn it into reliable income.",
+    },
+  ];
+
+  return (
+    <div
+      className="booking-overlay"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div className="booking-modal mastermind-modal">
+        {/* LEFT: branded aside — same pattern as BookingFlow */}
+        <aside className="booking-aside" style={{ background: service.color }}>
+          <span className="tag booking-aside-tag" style={{ background: 'var(--bg)', alignSelf: 'flex-start' }}>
+            {service.tag}
+          </span>
+          <h3 className="display booking-aside-title">{service.title}</h3>
+          <div className="booking-aside-blurb">{service.blurb}</div>
+          <div className="booking-aside-total">
+            <div className="mono booking-aside-total-eyebrow">Investment</div>
+            <div className="display booking-aside-total-amount">{service.price}</div>
+            <div className="mono booking-aside-total-sub">{service.sub}</div>
+          </div>
+        </aside>
+
+        {/* RIGHT */}
+        <div className="booking-main">
+          <header className="booking-header">
+            <div className="mono booking-embed-eyebrow">
+              {selectedTrack ? 'Application received' : 'Choose your track'}
+            </div>
+            <button onClick={onClose} aria-label="Close" className="booking-close">×</button>
+          </header>
+
+          {!selectedTrack ? (
+            /* ── Step 1: track selection ── */
+            <div className="mastermind-tracks">
+              <p className="mastermind-tracks-intro">
+                The Mastermind has two tracks so we can make sure you're with people at a similar stage.
+                Which fits you best right now?
+              </p>
+              <div className="mastermind-track-grid">
+                {tracks.map((t) => (
+                  <button
+                    key={t.id}
+                    className="mastermind-track-btn"
+                    style={{ '--track-accent': service.color }}
+                    onClick={() => setSelectedTrack(t)}
+                  >
+                    <span className="mastermind-track-emoji">{t.emoji}</span>
+                    <span className="mastermind-track-label">{t.label}</span>
+                    <span className="mastermind-track-sub">{t.sub}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            /* ── Step 2: placeholder (Google Form TBD) ── */
+            <div className="mastermind-placeholder">
+              <div className="mastermind-placeholder-icon">{selectedTrack.emoji}</div>
+              <h4 className="display mastermind-placeholder-title">
+                {selectedTrack.label}
+              </h4>
+              <p className="mastermind-placeholder-body">
+                Application details are coming soon. In the meantime, email{' '}
+                <a href="mailto:mika@joytothefood.com" className="link">
+                  mika@joytothefood.com
+                </a>{' '}
+                with the subject line <strong>Mastermind Application</strong> and let Mika know
+                which track you're interested in — she'll follow up directly.
+              </p>
+              <div className="mastermind-placeholder-actions">
+                <button className="btn btn-ghost" onClick={() => setSelectedTrack(null)}>
+                  ← Change track
+                </button>
+                <button className="btn" onClick={onClose}>
+                  Got it
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+window.MastermindModal = MastermindModal;

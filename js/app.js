@@ -302,9 +302,9 @@ const SERVICES = [{
   title: 'The Mastermind',
   price: '$350/mo',
   sub: 'or $3,500/year',
-  comingSoon: true,
+  available: true,
   blurb: "A small cohort of food and lifestyle creators who are serious about turning content into income. Monthly 90 minute group calls, hot seat reviews, private community, and direct access to my current strategy in real time. This is where the deepest work happens.",
-  bullets: ['Monthly 90 min group call', 'Hot seat account reviews', 'Private community access', 'Discounted In Your Pocket Days'],
+  bullets: ['Monthly 90 min group call', 'Hot seat account reviews', 'Private community access', 'Guest speakers to learn from the best'],
   cta: 'Apply for next cohort'
 }, {
   id: 'audit',
@@ -1640,11 +1640,138 @@ function ServiceDetailsModal({
 window.BookingFlow = BookingFlow;
 window.ServiceDetailsModal = ServiceDetailsModal;
 
+// ============================================================
+// MASTERMIND MODAL
+// Two-track application flow: Grow vs Monetize.
+// Track selection leads to a placeholder — Google Form TBD.
+// ============================================================
+function MastermindModal({
+  service,
+  onClose
+}) {
+  const [selectedTrack, setSelectedTrack] = useState(null);
+
+  // Lock body scroll while open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  // Esc to close
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === 'Escape') onClose();
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+  if (!service) return null;
+  const tracks = [{
+    id: 'grow',
+    emoji: '🌱',
+    label: 'I want to grow my following',
+    sub: "You're building your audience and want a proven system to get there faster."
+  }, {
+    id: 'monetize',
+    emoji: '💸',
+    label: 'I want to monetize my existing audience',
+    sub: "You already have a following and want to turn it into reliable income."
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "booking-overlay",
+    onClick: e => {
+      if (e.target === e.currentTarget) onClose();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "booking-modal mastermind-modal"
+  }, /*#__PURE__*/React.createElement("aside", {
+    className: "booking-aside",
+    style: {
+      background: service.color
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "tag booking-aside-tag",
+    style: {
+      background: 'var(--bg)',
+      alignSelf: 'flex-start'
+    }
+  }, service.tag), /*#__PURE__*/React.createElement("h3", {
+    className: "display booking-aside-title"
+  }, service.title), /*#__PURE__*/React.createElement("div", {
+    className: "booking-aside-blurb"
+  }, service.blurb), /*#__PURE__*/React.createElement("div", {
+    className: "booking-aside-total"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-aside-total-eyebrow"
+  }, "Investment"), /*#__PURE__*/React.createElement("div", {
+    className: "display booking-aside-total-amount"
+  }, service.price), /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-aside-total-sub"
+  }, service.sub))), /*#__PURE__*/React.createElement("div", {
+    className: "booking-main"
+  }, /*#__PURE__*/React.createElement("header", {
+    className: "booking-header"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-embed-eyebrow"
+  }, selectedTrack ? 'Application received' : 'Choose your track'), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    "aria-label": "Close",
+    className: "booking-close"
+  }, "\xD7")), !selectedTrack ?
+  /*#__PURE__*/
+  /* ── Step 1: track selection ── */
+  React.createElement("div", {
+    className: "mastermind-tracks"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "mastermind-tracks-intro"
+  }, "The Mastermind has two tracks so we can make sure you're with people at a similar stage. Which fits you best right now?"), /*#__PURE__*/React.createElement("div", {
+    className: "mastermind-track-grid"
+  }, tracks.map(t => /*#__PURE__*/React.createElement("button", {
+    key: t.id,
+    className: "mastermind-track-btn",
+    style: {
+      '--track-accent': service.color
+    },
+    onClick: () => setSelectedTrack(t)
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "mastermind-track-emoji"
+  }, t.emoji), /*#__PURE__*/React.createElement("span", {
+    className: "mastermind-track-label"
+  }, t.label), /*#__PURE__*/React.createElement("span", {
+    className: "mastermind-track-sub"
+  }, t.sub))))) :
+  /*#__PURE__*/
+  /* ── Step 2: placeholder (Google Form TBD) ── */
+  React.createElement("div", {
+    className: "mastermind-placeholder"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "mastermind-placeholder-icon"
+  }, selectedTrack.emoji), /*#__PURE__*/React.createElement("h4", {
+    className: "display mastermind-placeholder-title"
+  }, selectedTrack.label), /*#__PURE__*/React.createElement("p", {
+    className: "mastermind-placeholder-body"
+  }, "Application details are coming soon. In the meantime, email", ' ', /*#__PURE__*/React.createElement("a", {
+    href: "mailto:mika@joytothefood.com",
+    className: "link"
+  }, "mika@joytothefood.com"), ' ', "with the subject line ", /*#__PURE__*/React.createElement("strong", null, "Mastermind Application"), " and let Mika know which track you're interested in \u2014 she'll follow up directly."), /*#__PURE__*/React.createElement("div", {
+    className: "mastermind-placeholder-actions"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-ghost",
+    onClick: () => setSelectedTrack(null)
+  }, "\u2190 Change track"), /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    onClick: onClose
+  }, "Got it"))))));
+}
+window.MastermindModal = MastermindModal;
+
 // === src/app-3.jsx ===
 
 "use strict";
 
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, MastermindModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
 var {
   useState,
   useEffect
@@ -1729,7 +1856,10 @@ function App() {
     open: quizOpen,
     setOpen: setQuizOpen,
     onBook: setBookingService
-  }), bookingService && /*#__PURE__*/React.createElement(BookingFlow, {
+  }), bookingService && bookingService.id === 'mastermind' && /*#__PURE__*/React.createElement(MastermindModal, {
+    service: bookingService,
+    onClose: () => setBookingService(null)
+  }), bookingService && bookingService.id !== 'mastermind' && /*#__PURE__*/React.createElement(BookingFlow, {
     service: bookingService,
     onClose: () => setBookingService(null)
   }), detailsService && /*#__PURE__*/React.createElement(ServiceDetailsModal, {

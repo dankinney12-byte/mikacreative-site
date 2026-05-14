@@ -199,9 +199,9 @@ const SERVICES = [
     title: 'The Mastermind',
     price: '$350/mo',
     sub: 'or $3,500/year',
-    comingSoon: true,
+    available: true,
     blurb: "A small cohort of food and lifestyle creators who are serious about turning content into income. Monthly 90 minute group calls, hot seat reviews, private community, and direct access to my current strategy in real time. This is where the deepest work happens.",
-    bullets: ['Monthly 90 min group call', 'Hot seat account reviews', 'Private community access', 'Discounted In Your Pocket Days'],
+    bullets: ['Monthly 90 min group call', 'Hot seat account reviews', 'Private community access', 'Guest speakers to learn from the best'],
     cta: 'Apply for next cohort',
   },
   {
