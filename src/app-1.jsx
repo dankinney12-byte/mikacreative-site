@@ -932,18 +932,20 @@ function QuizResultGrow({ onReset, onBook }) {
     <div className="quiz-body">
       <span className="tag" style={{ background: 'var(--c3)', fontSize: 10 }}>You = grower</span>
       <h3 className="display quiz-body-title" style={{ fontSize: 28, marginTop: 12 }}>
-        start with an <span style={{ color: 'var(--c1)' }}>audit.</span>
+        your match.
       </h3>
       <p className="quiz-body-sub" style={{ marginBottom: 16 }}>
-        Under 25K is fixable. An audit shows you exactly what's holding your account back — and what to do about it first.
+        Under 25K is fixable. Here's where to start.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$950 · 1 week turnaround"
+        <ResultCard color="var(--c3)" step="community" title="The Jam Session — On the Rise" price="$249/mo · small-group mastermind for creators who are building"
+          onClick={() => window.open('https://jssnn6ddnj6.typeform.com/to/gV4kNGFv', '_blank')} />
+        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$475 · 1 week turnaround (trial pricing)"
           onClick={() => { onReset(); onBook && onBook(audit); }}/>
-        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$1,100 · 1 week turnaround + 30 days of pre-post feedback"
+        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$550 · 1 week turnaround + 30 days of pre-post feedback (trial pricing)"
           onClick={() => { onReset(); onBook && onBook(auditPlus); }}/>
       </div>
-      <ComingSoonNote items={['In Your Pocket Day', 'The Mastermind']}/>
+      <ComingSoonNote items={['In Your Pocket Day']}/>
       <button onClick={onReset} className="mono quiz-retake">← retake</button>
     </div>
   );
@@ -956,18 +958,20 @@ function QuizResultMonetize({ onReset, onBook }) {
     <div className="quiz-body">
       <span className="tag" style={{ background: 'var(--c5)', fontSize: 10 }}>You = earner</span>
       <h3 className="display quiz-body-title" style={{ fontSize: 28, marginTop: 12 }}>
-        start with an <span style={{ color: 'var(--c1)' }}>audit.</span>
+        your match.
       </h3>
       <p className="quiz-body-sub" style={{ marginBottom: 16 }}>
-        You have the audience. The audit shows you exactly where revenue should already be coming from — and why it isn't yet.
+        You have the audience. Here's how to make it work harder.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$950 · 1 week turnaround"
+        <ResultCard color="var(--c3)" step="community" title="The Jam Session — The Next Level" price="$249/mo · small-group mastermind for creators who are monetizing"
+          onClick={() => window.open('https://jssnn6ddnj6.typeform.com/to/gV4kNGFv', '_blank')} />
+        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$475 · 1 week turnaround (trial pricing)"
           onClick={() => { onReset(); onBook && onBook(audit); }}/>
-        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$1,100 · 1 week turnaround + 30 days of pre-post feedback"
+        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$550 · 1 week turnaround + 30 days of pre-post feedback (trial pricing)"
           onClick={() => { onReset(); onBook && onBook(auditPlus); }}/>
       </div>
-      <ComingSoonNote items={['The Mastermind', 'In Your Pocket Day']}/>
+      <ComingSoonNote items={['In Your Pocket Day']}/>
       <button onClick={onReset} className="mono quiz-retake">← retake</button>
     </div>
   );

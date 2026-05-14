@@ -1199,26 +1199,28 @@ function QuizResultGrow({
       fontSize: 28,
       marginTop: 12
     }
-  }, "start with an ", /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--c1)'
-    }
-  }, "audit.")), /*#__PURE__*/React.createElement("p", {
+  }, "your match."), /*#__PURE__*/React.createElement("p", {
     className: "quiz-body-sub",
     style: {
       marginBottom: 16
     }
-  }, "Under 25K is fixable. An audit shows you exactly what's holding your account back \u2014 and what to do about it first."), /*#__PURE__*/React.createElement("div", {
+  }, "Under 25K is fixable. Here's where to start."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       flexDirection: 'column',
       gap: 10
     }
   }, /*#__PURE__*/React.createElement(ResultCard, {
+    color: "var(--c3)",
+    step: "community",
+    title: "The Jam Session \u2014 On the Rise",
+    price: "$249/mo \xB7 small-group mastermind for creators who are building",
+    onClick: () => window.open('https://jssnn6ddnj6.typeform.com/to/gV4kNGFv', '_blank')
+  }), /*#__PURE__*/React.createElement(ResultCard, {
     color: "var(--c1)",
     step: "solo",
     title: "The Audit",
-    price: "$950 \xB7 1 week turnaround",
+    price: "$475 \xB7 1 week turnaround (trial pricing)",
     onClick: () => {
       onReset();
       onBook && onBook(audit);
@@ -1227,13 +1229,13 @@ function QuizResultGrow({
     color: "var(--c4)",
     step: "+reviews",
     title: "The Audit + Pre-Post Reviews",
-    price: "$1,100 \xB7 1 week turnaround + 30 days of pre-post feedback",
+    price: "$550 \xB7 1 week turnaround + 30 days of pre-post feedback (trial pricing)",
     onClick: () => {
       onReset();
       onBook && onBook(auditPlus);
     }
   })), /*#__PURE__*/React.createElement(ComingSoonNote, {
-    items: ['In Your Pocket Day', 'The Mastermind']
+    items: ['In Your Pocket Day']
   }), /*#__PURE__*/React.createElement("button", {
     onClick: onReset,
     className: "mono quiz-retake"
@@ -1259,26 +1261,28 @@ function QuizResultMonetize({
       fontSize: 28,
       marginTop: 12
     }
-  }, "start with an ", /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--c1)'
-    }
-  }, "audit.")), /*#__PURE__*/React.createElement("p", {
+  }, "your match."), /*#__PURE__*/React.createElement("p", {
     className: "quiz-body-sub",
     style: {
       marginBottom: 16
     }
-  }, "You have the audience. The audit shows you exactly where revenue should already be coming from \u2014 and why it isn't yet."), /*#__PURE__*/React.createElement("div", {
+  }, "You have the audience. Here's how to make it work harder."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       flexDirection: 'column',
       gap: 10
     }
   }, /*#__PURE__*/React.createElement(ResultCard, {
+    color: "var(--c3)",
+    step: "community",
+    title: "The Jam Session \u2014 The Next Level",
+    price: "$249/mo \xB7 small-group mastermind for creators who are monetizing",
+    onClick: () => window.open('https://jssnn6ddnj6.typeform.com/to/gV4kNGFv', '_blank')
+  }), /*#__PURE__*/React.createElement(ResultCard, {
     color: "var(--c1)",
     step: "solo",
     title: "The Audit",
-    price: "$950 \xB7 1 week turnaround",
+    price: "$475 \xB7 1 week turnaround (trial pricing)",
     onClick: () => {
       onReset();
       onBook && onBook(audit);
@@ -1287,13 +1291,13 @@ function QuizResultMonetize({
     color: "var(--c4)",
     step: "+reviews",
     title: "The Audit + Pre-Post Reviews",
-    price: "$1,100 \xB7 1 week turnaround + 30 days of pre-post feedback",
+    price: "$550 \xB7 1 week turnaround + 30 days of pre-post feedback (trial pricing)",
     onClick: () => {
       onReset();
       onBook && onBook(auditPlus);
     }
   })), /*#__PURE__*/React.createElement(ComingSoonNote, {
-    items: ['The Mastermind', 'In Your Pocket Day']
+    items: ['In Your Pocket Day']
   }), /*#__PURE__*/React.createElement("button", {
     onClick: onReset,
     className: "mono quiz-retake"
@@ -1661,18 +1665,17 @@ function ServiceDetailsModal({
 }
 window.BookingFlow = BookingFlow;
 window.ServiceDetailsModal = ServiceDetailsModal;
+const TYPEFORM_URL = 'https://jssnn6ddnj6.typeform.com/to/gV4kNGFv';
 
 // ============================================================
 // MASTERMIND MODAL
-// Two-track application flow: Grow vs Monetize.
-// Track selection leads to a placeholder — Google Form TBD.
+// Shows two tracks; clicking either opens the Typeform application
+// in a new tab and closes the modal.
 // ============================================================
 function MastermindModal({
   service,
   onClose
 }) {
-  const [selectedTrack, setSelectedTrack] = useState(null);
-
   // Lock body scroll while open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -1737,14 +1740,11 @@ function MastermindModal({
     className: "booking-header"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mono booking-embed-eyebrow"
-  }, selectedTrack ? 'Application received' : 'Choose your track'), /*#__PURE__*/React.createElement("button", {
+  }, "Choose your track"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
     className: "booking-close"
-  }, "\xD7")), !selectedTrack ?
-  /*#__PURE__*/
-  /* ── Step 1: track selection ── */
-  React.createElement("div", {
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
     className: "mastermind-tracks"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mastermind-track-grid"
@@ -1754,36 +1754,17 @@ function MastermindModal({
     style: {
       '--track-accent': service.color
     },
-    onClick: () => setSelectedTrack(t)
+    onClick: () => {
+      window.open(TYPEFORM_URL, '_blank');
+      onClose();
+    }
   }, /*#__PURE__*/React.createElement("span", {
     className: "mastermind-track-emoji"
   }, t.emoji), /*#__PURE__*/React.createElement("span", {
     className: "mastermind-track-label"
   }, t.label), /*#__PURE__*/React.createElement("span", {
     className: "mastermind-track-sub"
-  }, t.sub))))) :
-  /*#__PURE__*/
-  /* ── Step 2: placeholder (Google Form TBD) ── */
-  React.createElement("div", {
-    className: "mastermind-placeholder"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "mastermind-placeholder-icon"
-  }, selectedTrack.emoji), /*#__PURE__*/React.createElement("h4", {
-    className: "display mastermind-placeholder-title"
-  }, selectedTrack.label), /*#__PURE__*/React.createElement("p", {
-    className: "mastermind-placeholder-body"
-  }, "Application details are coming soon. In the meantime, email", ' ', /*#__PURE__*/React.createElement("a", {
-    href: "mailto:mika@joytothefood.com",
-    className: "link"
-  }, "mika@joytothefood.com"), ' ', "with the subject line ", /*#__PURE__*/React.createElement("strong", null, "Mastermind Application"), " and let Mika know which track you're interested in \u2014 she'll follow up directly."), /*#__PURE__*/React.createElement("div", {
-    className: "mastermind-placeholder-actions"
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-ghost",
-    onClick: () => setSelectedTrack(null)
-  }, "\u2190 Change track"), /*#__PURE__*/React.createElement("button", {
-    className: "btn",
-    onClick: onClose
-  }, "Got it"))))));
+  }, t.sub))))))));
 }
 window.MastermindModal = MastermindModal;
 
