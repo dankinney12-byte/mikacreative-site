@@ -278,7 +278,10 @@ function MastermindModal({ service, onClose }) {
             {service.tag}
           </span>
           <h3 className="display booking-aside-title">{service.title}</h3>
-          <div className="booking-aside-blurb">{service.blurb}</div>
+          <div className="booking-aside-blurb">
+            The Mastermind has two tracks so we can make sure you're with people at a similar stage.
+            Which fits you best right now?
+          </div>
           <div className="booking-aside-total">
             <div className="mono booking-aside-total-eyebrow">Investment</div>
             <div className="display booking-aside-total-amount">{service.price}</div>
@@ -298,10 +301,6 @@ function MastermindModal({ service, onClose }) {
           {!selectedTrack ? (
             /* ── Step 1: track selection ── */
             <div className="mastermind-tracks">
-              <p className="mastermind-tracks-intro">
-                The Mastermind has two tracks so we can make sure you're with people at a similar stage.
-                Which fits you best right now?
-              </p>
               <div className="mastermind-track-grid">
                 {tracks.map((t) => (
                   <button

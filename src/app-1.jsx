@@ -200,18 +200,8 @@ const SERVICES = [
     price: '$249/mo',
     sub: '3-month minimum',
     available: true,
-    blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real — and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Slack community. Me, actually in there with you.",
-    bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Slack channel', 'A Slack community of creators at your exact stage', 'Direct access to Mika in Slack', 'Guest speaker once a quarter'],
-    fitYes: [
-      "you're a food or lifestyle creator who is serious about making instagram actually work — not just posting and hoping",
-      "you want real strategy, not another tip you found by scrolling",
-      "you're the kind of person who will show up, do the work, and use what you learn",
-      "you want people around you who are building the same thing — so you're never figuring it out alone",
-    ],
-    fitNo: [
-      "you want a course to passively consume",
-      "you're looking for overnight results",
-    ],
+    blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Slack community. Me, actually in there with you!",
+    bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Slack channel', 'A Slack community of creators at your exact stage', 'Direct access to Mika in Slack', 'Guest speaker once a quarter', 'Capped at 10 members'],
     cta: 'Apply now',
     detailsCta: 'Tell me more',
   },
@@ -406,29 +396,6 @@ function ServiceCard({ s, featured, onBook, onSeeDetails, onWaitlist }) {
           </li>
         ))}
       </ul>
-
-      {s.fitYes && (
-        <div className="service-card-fit">
-          <div className="service-card-fit-block">
-            <div className="mono service-card-fit-label">this is for you if</div>
-            {s.fitYes.map((it, i) => (
-              <div key={i} className="service-card-fit-item">
-                <span className="service-card-fit-check" style={{ color: s.color }}>✔</span>
-                {it}
-              </div>
-            ))}
-          </div>
-          <div className="service-card-fit-block">
-            <div className="mono service-card-fit-label">this is not for you if</div>
-            {s.fitNo.map((it, i) => (
-              <div key={i} className="service-card-fit-item muted">
-                <span className="service-card-fit-dash">—</span>
-                {it}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       <div className="service-card-cta-wrap">
         {isComingSoon ? (
