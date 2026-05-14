@@ -589,11 +589,21 @@ section { scroll-margin-top: 80px; }
   margin: 0;
   max-width: 580px;
 }
+.services-grid-single {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 32px;
+}
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   margin-bottom: 32px;
+}
+/* Full-width featured card: bullets in 2 columns */
+.services-grid-single .service-card.featured .service-card-bullets {
+  columns: 2;
+  column-gap: 24px;
 }
 .services-divider {
   display: flex; align-items: center;
@@ -617,6 +627,7 @@ section { scroll-margin-top: 80px; }
   .services-sub { font-size: 16px; }
   .services-header > .btn { width: 100%; justify-content: center; }
   .services-grid { grid-template-columns: 1fr; gap: 16px; }
+  .services-grid-single .service-card.featured .service-card-bullets { columns: 1; }
   .services-divider { margin: 32px 0 16px; }
 }
 
@@ -687,6 +698,27 @@ section { scroll-margin-top: 80px; }
 }
 .service-card.featured .service-card-price-sub {
   color: var(--ink);
+}
+.service-card-price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.service-card-price-was {
+  text-decoration: line-through;
+  opacity: 0.4;
+  font-size: 0.6em;
+  margin-right: 6px;
+}
+.service-card-trial-note {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.service-card.featured .service-card-trial-note {
+  color: var(--ink);
+  opacity: 0.75;
 }
 .service-card-title {
   font-size: 34px;
@@ -762,6 +794,36 @@ section { scroll-margin-top: 80px; }
 .service-card-fit-item.muted { color: var(--ink-soft); }
 .service-card-fit-check { font-size: 11px; flex-shrink: 0; margin-top: 1px; }
 .service-card-fit-dash { flex-shrink: 0; color: var(--ink-soft); }
+
+/* Compact horizontal card (Pocket Day full-width row) */
+.service-card.compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  opacity: 0.55;
+  filter: grayscale(0.7);
+}
+.service-card.compact .service-card-badge  { grid-column: 1 / -1; grid-row: 1; }
+.service-card.compact .service-card-tag-row { grid-column: 1; grid-row: 2; }
+.service-card.compact .service-card-title  { grid-column: 1; grid-row: 3; }
+.service-card.compact .service-card-blurb  { grid-column: 1; grid-row: 4; max-width: 400px; }
+.service-card.compact .service-card-bullets {
+  grid-column: 2; grid-row: 2 / 5;
+  align-self: center;
+  margin: 0;
+  padding-bottom: 0;
+}
+.service-card.compact .service-card-cta-wrap {
+  grid-column: 1 / -1; grid-row: 5;
+  margin-top: 12px;
+  padding-top: 0;
+  border-top: 1.5px dashed var(--ink-soft);
+}
+@media (max-width: 768px) {
+  .service-card.compact { grid-template-columns: 1fr; }
+  .service-card.compact .service-card-bullets { grid-column: 1; grid-row: auto; }
+  .service-card.compact .service-card-cta-wrap { grid-column: 1; }
+}
 
 .service-card-cta-wrap {
   margin-top: auto;

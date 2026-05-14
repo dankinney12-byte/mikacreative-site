@@ -194,7 +194,7 @@ function Strip() {
 const SERVICES = [
   {
     id: 'mastermind',
-    tag: '03 / mastermind',
+    tag: '01 / mastermind',
     color: 'var(--c3)',
     title: 'The Jam Session',
     price: '$249/mo',
@@ -207,10 +207,12 @@ const SERVICES = [
   },
   {
     id: 'audit',
-    tag: '01 / audit',
+    tag: '02 / audit',
     color: 'var(--c1)',
     title: 'The Audit',
     price: '$950',
+    trialPrice: '$475',
+    trialNote: 'Trial audits are 50% off',
     sub: '1 week turnaround',
     available: true,
     blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
@@ -247,10 +249,12 @@ const SERVICES = [
   },
   {
     id: 'audit-plus',
-    tag: '02 / audit+',
+    tag: '03 / audit+',
     color: 'var(--c4)',
     title: 'The Audit + Pre-Post Reviews',
     price: '$1,100',
+    trialPrice: '$550',
+    trialNote: 'Trial audits are 50% off',
     sub: '1 week audit + 30 days of reviews',
     available: true,
     blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
@@ -298,8 +302,8 @@ const SERVICES = [
     price: '$1,000',
     sub: 'standalone',
     comingSoon: true,
-    blurb: "One full day of real time access via Voxer or WhatsApp. Film, send, get feedback, adjust, in real time. Hook rewrites, lighting feedback, caption help, whatever comes up. It's like having me in your kitchen for the day.",
-    bullets: ['8 hrs of Voxer/WhatsApp access', 'Real time content feedback', 'Hook + caption rewrites', 'Lighting & shot review'],
+    blurb: "One full day of direct access via Voxer or WhatsApp. Film, send, get feedback — in real time.",
+    bullets: ['8 hrs of Voxer/WhatsApp', 'Real-time content feedback', 'Hook + caption rewrites', 'Lighting & shot review'],
     cta: 'Grab your day',
   },
 ];
@@ -333,13 +337,13 @@ const EBOOKS = [
   },
 ];
 
-function ServiceCard({ s, featured, onBook, onSeeDetails, onWaitlist }) {
+function ServiceCard({ s, featured, compact, onBook, onSeeDetails, onWaitlist }) {
   const isComingSoon = s.comingSoon;
   const isAvailable = s.available;
 
   return (
     <div
-      className={`card service-card ${featured ? 'featured' : ''}`}
+      className={`card service-card ${featured ? 'featured' : ''} ${compact ? 'compact' : ''}`}
       style={{
         background: featured ? s.color : 'var(--card)',
         opacity: isComingSoon ? 0.55 : 1,
@@ -372,9 +376,16 @@ function ServiceCard({ s, featured, onBook, onSeeDetails, onWaitlist }) {
       </div>
 
       {!isComingSoon && (
-        <div className="service-card-price-row">
-          <div className="display service-card-price">{s.price}</div>
-          {s.sub && <div className="mono service-card-price-sub">{s.sub}</div>}
+        <div className="service-card-price-block">
+          <div className="service-card-price-row">
+            <div className="display service-card-price">
+              {s.trialPrice ? (
+                <><span className="service-card-price-was">{s.price}</span>{s.trialPrice}</>
+              ) : s.price}
+            </div>
+            {s.sub && <div className="mono service-card-price-sub">{s.sub}</div>}
+          </div>
+          {s.trialNote && <div className="mono service-card-trial-note">{s.trialNote}</div>}
         </div>
       )}
 
@@ -451,19 +462,30 @@ function Services({ onOpenQuiz, onBook, onSeeDetails }) {
           </button>
         </div>
 
+        {/* ROW 1: Mastermind — full width, featured */}
+        <div className="services-grid-single">
+          <ServiceCard s={SERVICES.find(s => s.id === 'mastermind')} featured onBook={onBook} onSeeDetails={onSeeDetails} />
+        </div>
+
+        <div className="services-divider">
+          <span className="mono services-divider-label">or start with a one-time audit</span>
+          <div className="services-divider-line"></div>
+        </div>
+
+        {/* ROW 2: Audits — side by side */}
         <div className="services-grid">
           <ServiceCard s={SERVICES.find(s => s.id === 'audit')} featured onBook={onBook} onSeeDetails={onSeeDetails} />
           <ServiceCard s={SERVICES.find(s => s.id === 'audit-plus')} featured onBook={onBook} onSeeDetails={onSeeDetails} />
         </div>
 
         <div className="services-divider">
-          <span className="mono services-divider-label">More ways to work together</span>
+          <span className="mono services-divider-label">Coming soon</span>
           <div className="services-divider-line"></div>
         </div>
 
-        <div className="services-grid">
-          <ServiceCard s={SERVICES.find(s => s.id === 'mastermind')} onBook={onBook} onSeeDetails={onSeeDetails} />
-          <ServiceCard s={SERVICES.find(s => s.id === 'pocket')} onBook={onBook} onSeeDetails={onSeeDetails} />
+        {/* ROW 4: Pocket Day — full width, compact */}
+        <div className="services-grid-single">
+          <ServiceCard s={SERVICES.find(s => s.id === 'pocket')} compact onBook={onBook} onSeeDetails={onSeeDetails} />
         </div>
       </div>
     </section>

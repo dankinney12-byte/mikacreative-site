@@ -297,7 +297,7 @@ function Strip() {
 // ============================================================
 const SERVICES = [{
   id: 'mastermind',
-  tag: '03 / mastermind',
+  tag: '01 / mastermind',
   color: 'var(--c3)',
   title: 'The Jam Session',
   price: '$249/mo',
@@ -309,10 +309,12 @@ const SERVICES = [{
   detailsCta: 'Tell me more'
 }, {
   id: 'audit',
-  tag: '01 / audit',
+  tag: '02 / audit',
   color: 'var(--c1)',
   title: 'The Audit',
   price: '$950',
+  trialPrice: '$475',
+  trialNote: 'Trial audits are 50% off',
   sub: '1 week turnaround',
   available: true,
   blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
@@ -362,10 +364,12 @@ const SERVICES = [{
   }
 }, {
   id: 'audit-plus',
-  tag: '02 / audit+',
+  tag: '03 / audit+',
   color: 'var(--c4)',
   title: 'The Audit + Pre-Post Reviews',
   price: '$1,100',
+  trialPrice: '$550',
+  trialNote: 'Trial audits are 50% off',
   sub: '1 week audit + 30 days of reviews',
   available: true,
   blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
@@ -426,8 +430,8 @@ const SERVICES = [{
   price: '$1,000',
   sub: 'standalone',
   comingSoon: true,
-  blurb: "One full day of real time access via Voxer or WhatsApp. Film, send, get feedback, adjust, in real time. Hook rewrites, lighting feedback, caption help, whatever comes up. It's like having me in your kitchen for the day.",
-  bullets: ['8 hrs of Voxer/WhatsApp access', 'Real time content feedback', 'Hook + caption rewrites', 'Lighting & shot review'],
+  blurb: "One full day of direct access via Voxer or WhatsApp. Film, send, get feedback — in real time.",
+  bullets: ['8 hrs of Voxer/WhatsApp', 'Real-time content feedback', 'Hook + caption rewrites', 'Lighting & shot review'],
   cta: 'Grab your day'
 }];
 const EBOOKS = [{
@@ -458,6 +462,7 @@ const EBOOKS = [{
 function ServiceCard({
   s,
   featured,
+  compact,
   onBook,
   onSeeDetails,
   onWaitlist
@@ -465,7 +470,7 @@ function ServiceCard({
   const isComingSoon = s.comingSoon;
   const isAvailable = s.available;
   return /*#__PURE__*/React.createElement("div", {
-    className: `card service-card ${featured ? 'featured' : ''}`,
+    className: `card service-card ${featured ? 'featured' : ''} ${compact ? 'compact' : ''}`,
     style: {
       background: featured ? s.color : 'var(--card)',
       opacity: isComingSoon ? 0.55 : 1,
@@ -497,12 +502,18 @@ function ServiceCard({
       background: featured ? 'var(--bg)' : s.color
     }
   }, s.tag)), !isComingSoon && /*#__PURE__*/React.createElement("div", {
+    className: "service-card-price-block"
+  }, /*#__PURE__*/React.createElement("div", {
     className: "service-card-price-row"
   }, /*#__PURE__*/React.createElement("div", {
     className: "display service-card-price"
-  }, s.price), s.sub && /*#__PURE__*/React.createElement("div", {
+  }, s.trialPrice ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+    className: "service-card-price-was"
+  }, s.price), s.trialPrice) : s.price), s.sub && /*#__PURE__*/React.createElement("div", {
     className: "mono service-card-price-sub"
-  }, s.sub)), /*#__PURE__*/React.createElement("h3", {
+  }, s.sub)), s.trialNote && /*#__PURE__*/React.createElement("div", {
+    className: "mono service-card-trial-note"
+  }, s.trialNote)), /*#__PURE__*/React.createElement("h3", {
     className: "display service-card-title"
   }, s.title, s.subtitle && /*#__PURE__*/React.createElement("div", {
     className: "service-card-subtitle"
@@ -569,6 +580,19 @@ function Services({
     className: "btn",
     onClick: onOpenQuiz
   }, "Curious if it's right for you? Take the quiz \u2192")), /*#__PURE__*/React.createElement("div", {
+    className: "services-grid-single"
+  }, /*#__PURE__*/React.createElement(ServiceCard, {
+    s: SERVICES.find(s => s.id === 'mastermind'),
+    featured: true,
+    onBook: onBook,
+    onSeeDetails: onSeeDetails
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "services-divider"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "mono services-divider-label"
+  }, "or start with a one-time audit"), /*#__PURE__*/React.createElement("div", {
+    className: "services-divider-line"
+  })), /*#__PURE__*/React.createElement("div", {
     className: "services-grid"
   }, /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'audit'),
@@ -584,16 +608,13 @@ function Services({
     className: "services-divider"
   }, /*#__PURE__*/React.createElement("span", {
     className: "mono services-divider-label"
-  }, "More ways to work together"), /*#__PURE__*/React.createElement("div", {
+  }, "Coming soon"), /*#__PURE__*/React.createElement("div", {
     className: "services-divider-line"
   })), /*#__PURE__*/React.createElement("div", {
-    className: "services-grid"
+    className: "services-grid-single"
   }, /*#__PURE__*/React.createElement(ServiceCard, {
-    s: SERVICES.find(s => s.id === 'mastermind'),
-    onBook: onBook,
-    onSeeDetails: onSeeDetails
-  }), /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'pocket'),
+    compact: true,
     onBook: onBook,
     onSeeDetails: onSeeDetails
   }))));
