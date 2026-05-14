@@ -320,6 +320,10 @@ function MastermindModal({ service, onClose }) {
                 </button>
               ))}
             </div>
+            <p className="mastermind-apply-note">
+              Mika reviews every application personally and selects group members based on
+              availability and fit. You'll hear back within a few days of applying.
+            </p>
           </div>
         </div>
       </div>
@@ -436,7 +440,7 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
             <section className="details-section">
               <h4 className="mono details-section-eyebrow">how it works</h4>
               <p className="jam-prose">
-                Fill out a quick application, I'll make sure it's the right fit, and you'll get added to your track at the next opening.
+                Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit — you'll hear back within a few days. If it's a yes, you'll get added to your track at the next opening.
               </p>
               <div className="jam-price-block">
                 <span className="display jam-price">{service.price}</span>

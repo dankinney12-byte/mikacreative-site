@@ -1779,7 +1779,9 @@ function MastermindModal({
     className: "mastermind-track-label"
   }, t.label), /*#__PURE__*/React.createElement("span", {
     className: "mastermind-track-sub"
-  }, t.sub))))))));
+  }, t.sub)))), /*#__PURE__*/React.createElement("p", {
+    className: "mastermind-apply-note"
+  }, "Mika reviews every application personally and selects group members based on availability and fit. You'll hear back within a few days of applying.")))));
 }
 window.MastermindModal = MastermindModal;
 
@@ -1900,7 +1902,7 @@ function MastermindDetailsModal({
     className: "mono details-section-eyebrow"
   }, "how it works"), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Fill out a quick application, I'll make sure it's the right fit, and you'll get added to your track at the next opening."), /*#__PURE__*/React.createElement("div", {
+  }, "Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit \u2014 you'll hear back within a few days. If it's a yes, you'll get added to your track at the next opening."), /*#__PURE__*/React.createElement("div", {
     className: "jam-price-block"
   }, /*#__PURE__*/React.createElement("span", {
     className: "display jam-price"
