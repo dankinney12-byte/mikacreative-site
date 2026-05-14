@@ -799,10 +799,10 @@ function ContactCTA({ onOpenQuiz, onBook }) {
             ✦ Apply for The Jam Session — $249/mo
           </button>
           <button className="btn alt contact-cta-btn" onClick={() => onBook && onBook(audit)}>
-            Book The Audit — $475
+            Book The Audit — $475 (trial price)
           </button>
           <button className="btn contact-cta-btn" onClick={() => onBook && onBook(auditPlus)} style={{ background: 'var(--c4)' }}>
-            Book Audit + Reviews — $550
+            Book Audit + Reviews — $550 (trial price)
           </button>
         </div>
         <a href="mailto:mika@joytothefood.com" className="link" style={{

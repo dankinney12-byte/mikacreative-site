@@ -1033,13 +1033,13 @@ function ContactCTA({
   }, "\u2726 Apply for The Jam Session \u2014 $249/mo"), /*#__PURE__*/React.createElement("button", {
     className: "btn alt contact-cta-btn",
     onClick: () => onBook && onBook(audit)
-  }, "Book The Audit \u2014 $475"), /*#__PURE__*/React.createElement("button", {
+  }, "Book The Audit \u2014 $475 (trial price)"), /*#__PURE__*/React.createElement("button", {
     className: "btn contact-cta-btn",
     onClick: () => onBook && onBook(auditPlus),
     style: {
       background: 'var(--c4)'
     }
-  }, "Book Audit + Reviews \u2014 $550")), /*#__PURE__*/React.createElement("a", {
+  }, "Book Audit + Reviews \u2014 $550 (trial price)")), /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link",
     style: {
