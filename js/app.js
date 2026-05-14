@@ -1478,9 +1478,13 @@ function BookingFlow({
     className: "booking-aside-total"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mono booking-aside-total-eyebrow"
-  }, "Total"), /*#__PURE__*/React.createElement("div", {
-    className: "display booking-aside-total-amount"
+  }, "Total"), service.trialPrice && /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-aside-total-was"
   }, service.price), /*#__PURE__*/React.createElement("div", {
+    className: "display booking-aside-total-amount"
+  }, service.trialPrice || service.price), service.trialNote && /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-aside-total-trial"
+  }, service.trialNote), /*#__PURE__*/React.createElement("div", {
     className: "mono booking-aside-total-sub"
   }, service.sub)), /*#__PURE__*/React.createElement("p", {
     className: "booking-terms-note"

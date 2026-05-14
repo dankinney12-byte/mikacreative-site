@@ -48,7 +48,15 @@ function BookingFlow({ service, onClose }) {
 
           <div className="booking-aside-total">
             <div className="mono booking-aside-total-eyebrow">Total</div>
-            <div className="display booking-aside-total-amount">{service.price}</div>
+            {service.trialPrice && (
+              <div className="mono booking-aside-total-was">{service.price}</div>
+            )}
+            <div className="display booking-aside-total-amount">
+              {service.trialPrice || service.price}
+            </div>
+            {service.trialNote && (
+              <div className="mono booking-aside-total-trial">{service.trialNote}</div>
+            )}
             <div className="mono booking-aside-total-sub">{service.sub}</div>
           </div>
 
