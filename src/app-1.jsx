@@ -200,8 +200,8 @@ const SERVICES = [
     price: '$249/mo',
     sub: '3-month minimum',
     available: true,
-    blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Slack community. Me, actually in there with you!",
-    bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Slack channel', 'A Slack community of creators at your exact stage', 'Direct access to Mika in Slack', 'Guest speaker once a quarter', 'Capped at 10 members'],
+    blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
+    bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
     cta: 'Apply now',
     detailsCta: 'Tell me more',
   },
@@ -454,7 +454,7 @@ function Services({ onOpenQuiz, onBook, onSeeDetails }) {
               find your <span style={{ color: 'var(--c1)' }}>fit.</span>
             </h2>
             <p className="services-sub">
-              The Jam Session is the ongoing room — monthly calls, weekly hook ideas, a Slack community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.
+              The Jam Session is the ongoing room — monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.
             </p>
           </div>
           <button className="btn" onClick={onOpenQuiz}>

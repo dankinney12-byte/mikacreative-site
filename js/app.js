@@ -307,8 +307,8 @@ const SERVICES = [{
   price: '$249/mo',
   sub: '3-month minimum',
   available: true,
-  blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Slack community. Me, actually in there with you!",
-  bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Slack channel', 'A Slack community of creators at your exact stage', 'Direct access to Mika in Slack', 'Guest speaker once a quarter', 'Capped at 10 members'],
+  blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
+  bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
   cta: 'Apply now',
   detailsCta: 'Tell me more'
 }, {
@@ -580,7 +580,7 @@ function Services({
     }
   }, "fit.")), /*#__PURE__*/React.createElement("p", {
     className: "services-sub"
-  }, "The Jam Session is the ongoing room \u2014 monthly calls, weekly hook ideas, a Slack community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.")), /*#__PURE__*/React.createElement("button", {
+  }, "The Jam Session is the ongoing room \u2014 monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.")), /*#__PURE__*/React.createElement("button", {
     className: "btn",
     onClick: onOpenQuiz
   }, "Curious if it's right for you? Take the quiz \u2192")), /*#__PURE__*/React.createElement("div", {
@@ -1860,9 +1860,9 @@ function MastermindDetailsModal({
     className: "jam-prose"
   }, "Once a month we get on a call together \u2014 your track, your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Every week you get fresh hook ideas dropped into your Slack channel so you're never starting from scratch on a caption again."), /*#__PURE__*/React.createElement("p", {
+  }, "Every week you get fresh hook ideas dropped into your Discord channel so you're never starting from scratch on a caption again."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "In between calls, Slack is where it all lives. Your track channel is full of creators at your exact stage \u2014 not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up."), /*#__PURE__*/React.createElement("p", {
+  }, "In between calls, Discord is where it all lives. Your track channel is full of creators at your exact stage \u2014 not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
   }, "And I'm in there too. Actually responding."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
@@ -1874,7 +1874,7 @@ function MastermindDetailsModal({
     className: "mono details-section-eyebrow"
   }, "this is for you if"), /*#__PURE__*/React.createElement("ul", {
     className: "details-list"
-  }, ["You're a food or lifestyle creator who is done piecing together a strategy from random viral tips", "You're not opposed to showing up — on calls, in Slack, in your content — but you want the research and strategy done for you", "You're a \"tell me what to focus on and I'll go do it\" kind of person — but you also want to understand the why behind it", "You're ready to actually commit to figuring this out"].map((it, i) => /*#__PURE__*/React.createElement("li", {
+  }, ["You're a food or lifestyle creator who is done piecing together a strategy from random viral tips", "You're not opposed to showing up — on calls, in Discord, in your content — but you want the research and strategy done for you", "You're a \"tell me what to focus on and I'll go do it\" kind of person — but you also want to understand the why behind it", "You're ready to actually commit to figuring this out"].map((it, i) => /*#__PURE__*/React.createElement("li", {
     key: i,
     className: "details-list-item"
   }, /*#__PURE__*/React.createElement("span", {

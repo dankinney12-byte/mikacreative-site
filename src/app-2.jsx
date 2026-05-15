@@ -389,10 +389,10 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
                 Once a month we get on a call together — your track, your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits.
               </p>
               <p className="jam-prose">
-                Every week you get fresh hook ideas dropped into your Slack channel so you're never starting from scratch on a caption again.
+                Every week you get fresh hook ideas dropped into your Discord channel so you're never starting from scratch on a caption again.
               </p>
               <p className="jam-prose">
-                In between calls, Slack is where it all lives. Your track channel is full of creators at your exact stage — not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up.
+                In between calls, Discord is where it all lives. Your track channel is full of creators at your exact stage — not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up.
               </p>
               <p className="jam-prose">
                 And I'm in there too. Actually responding.
@@ -409,7 +409,7 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
                 <ul className="details-list">
                   {[
                     "You're a food or lifestyle creator who is done piecing together a strategy from random viral tips",
-                    "You're not opposed to showing up — on calls, in Slack, in your content — but you want the research and strategy done for you",
+                    "You're not opposed to showing up — on calls, in Discord, in your content — but you want the research and strategy done for you",
                     "You're a \"tell me what to focus on and I'll go do it\" kind of person — but you also want to understand the why behind it",
                     "You're ready to actually commit to figuring this out",
                   ].map((it, i) => (
