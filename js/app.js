@@ -305,7 +305,7 @@ const SERVICES = [{
   color: 'var(--c3)',
   title: 'The Jam Session',
   price: '$249/mo',
-  sub: '3-month minimum',
+  sub: '3 month commitment',
   available: true,
   blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
   bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
