@@ -295,6 +295,7 @@ function MastermindModal({ service, onClose }) {
             <div className="mono booking-aside-total-eyebrow">Investment</div>
             <div className="display booking-aside-total-amount">{service.price}</div>
             <div className="mono booking-aside-total-sub">{service.sub}</div>
+            <div className="mono booking-aside-savings">Pay 3 months upfront and save 5%</div>
           </div>
         </aside>
 
@@ -446,6 +447,10 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
                 <span className="display jam-price">{service.price}</span>
                 <span className="mono jam-price-sub">{service.sub}</span>
               </div>
+              <p className="jam-prose jam-savings-note">
+                Prefer to pay upfront? Pay all 3 months at once and save 5%. Upfront payments
+                are non-refundable but transferable to a future cohort.
+              </p>
             </section>
 
           </div>

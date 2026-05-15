@@ -720,6 +720,14 @@ section { scroll-margin-top: 80px; }
   color: var(--ink);
   opacity: 0.75;
 }
+.service-card-savings-note {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.8;
+  margin-top: 2px;
+}
 .service-card-title {
   font-size: 34px;
   margin: 0;
@@ -1391,6 +1399,13 @@ section { scroll-margin-top: 80px; }
   margin-top: 6px;
   opacity: 0.75;
 }
+.booking-aside-savings {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 8px;
+  opacity: 0.8;
+}
 .booking-terms-note {
   margin: 16px 0 0;
   font-size: 11px;
@@ -1617,6 +1632,15 @@ section { scroll-margin-top: 80px; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-soft);
+}
+.jam-savings-note {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 10px !important;
+  padding: 12px 16px;
+  background: var(--bg-alt);
+  border-radius: 10px;
+  border: 1.5px dashed var(--ink-soft);
 }
 
 /* Branded confirmation shown after Cal reports bookingSuccessful */

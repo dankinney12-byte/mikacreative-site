@@ -202,6 +202,7 @@ const SERVICES = [
     available: true,
     blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
     bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
+    savingsNote: 'Pay 3 months upfront and save 5%',
     cta: 'Apply now',
     detailsCta: 'Tell me more',
   },
@@ -386,6 +387,7 @@ function ServiceCard({ s, featured, compact, onBook, onSeeDetails, onWaitlist })
             {s.sub && <div className="mono service-card-price-sub">{s.sub}</div>}
           </div>
           {s.trialNote && <div className="mono service-card-trial-note">{s.trialNote}</div>}
+          {s.savingsNote && <div className="mono service-card-savings-note">{s.savingsNote}</div>}
         </div>
       )}
 

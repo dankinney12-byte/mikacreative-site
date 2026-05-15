@@ -309,6 +309,7 @@ const SERVICES = [{
   available: true,
   blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
   bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
+  savingsNote: 'Pay 3 months upfront and save 5%',
   cta: 'Apply now',
   detailsCta: 'Tell me more'
 }, {
@@ -517,7 +518,9 @@ function ServiceCard({
     className: "mono service-card-price-sub"
   }, s.sub)), s.trialNote && /*#__PURE__*/React.createElement("div", {
     className: "mono service-card-trial-note"
-  }, s.trialNote)), /*#__PURE__*/React.createElement("h3", {
+  }, s.trialNote), s.savingsNote && /*#__PURE__*/React.createElement("div", {
+    className: "mono service-card-savings-note"
+  }, s.savingsNote)), /*#__PURE__*/React.createElement("h3", {
     className: "display service-card-title"
   }, s.title, s.subtitle && /*#__PURE__*/React.createElement("div", {
     className: "service-card-subtitle"
@@ -1749,7 +1752,9 @@ function MastermindModal({
     className: "display booking-aside-total-amount"
   }, service.price), /*#__PURE__*/React.createElement("div", {
     className: "mono booking-aside-total-sub"
-  }, service.sub))), /*#__PURE__*/React.createElement("div", {
+  }, service.sub), /*#__PURE__*/React.createElement("div", {
+    className: "mono booking-aside-savings"
+  }, "Pay 3 months upfront and save 5%"))), /*#__PURE__*/React.createElement("div", {
     className: "booking-main"
   }, /*#__PURE__*/React.createElement("header", {
     className: "booking-header"
@@ -1908,7 +1913,9 @@ function MastermindDetailsModal({
     className: "display jam-price"
   }, service.price), /*#__PURE__*/React.createElement("span", {
     className: "mono jam-price-sub"
-  }, service.sub)))), /*#__PURE__*/React.createElement("footer", {
+  }, service.sub)), /*#__PURE__*/React.createElement("p", {
+    className: "jam-prose jam-savings-note"
+  }, "Prefer to pay upfront? Pay all 3 months at once and save 5%. Upfront payments are non-refundable but transferable to a future cohort."))), /*#__PURE__*/React.createElement("footer", {
     className: "details-cta-bar"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn",
