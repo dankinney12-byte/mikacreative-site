@@ -199,7 +199,7 @@ const SERVICES = [
     title: 'The Jam Session',
     price: '$249/mo',
     sub: '3 month commitment',
-    available: true,
+    badge: '4 spots left · July–September',
     blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
     bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
     savingsNote: 'Pay 3 months upfront and save 5%',
@@ -215,7 +215,7 @@ const SERVICES = [
     trialPrice: '$475',
     trialNote: 'Trial audits are 50% off',
     sub: '1 week turnaround',
-    available: true,
+    badge: '1 trial spot left',
     blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
     bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '1 week delivery'],
     cta: 'Book your audit',
@@ -257,7 +257,7 @@ const SERVICES = [
     trialPrice: '$550',
     trialNote: 'Trial audits are 50% off',
     sub: '1 week audit + 30 days of reviews',
-    available: true,
+    badge: '1 trial spot left',
     blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
     bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', '30 days to use your reviews'],
     cta: 'Book your audit+',
@@ -340,7 +340,6 @@ const EBOOKS = [
 
 function ServiceCard({ s, featured, compact, onBook, onSeeDetails, onWaitlist }) {
   const isComingSoon = s.comingSoon;
-  const isAvailable = s.available;
 
   return (
     <div
@@ -365,10 +364,10 @@ function ServiceCard({ s, featured, compact, onBook, onSeeDetails, onWaitlist })
       {isComingSoon && (
         <div className="service-card-badge coming-soon">Coming soon</div>
       )}
-      {isAvailable && (
-        <div className="service-card-badge available">
+      {s.badge && (
+        <div className="service-card-badge scarcity">
           <span className="service-card-badge-pulse" />
-          Available now
+          {s.badge}
         </div>
       )}
 
