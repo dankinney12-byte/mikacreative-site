@@ -135,7 +135,12 @@ function HeroBigType({
     style: {
       background: 'var(--c2)'
     }
-  }, "1,001 to 465K in 24 months")), /*#__PURE__*/React.createElement("h1", {
+  }, "1,001 to 465K in 24 months"), /*#__PURE__*/React.createElement("span", {
+    className: "tag",
+    style: {
+      background: 'var(--c5)'
+    }
+  }, "by food creators, for food creators")), /*#__PURE__*/React.createElement("h1", {
     className: "display hero-headline"
   }, "instagram", /*#__PURE__*/React.createElement("br", null), "that ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -574,7 +579,7 @@ function Services({
     className: "services-header-text"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, "work with me"), /*#__PURE__*/React.createElement("h2", {
+  }, "by food creators, for food creators"), /*#__PURE__*/React.createElement("h2", {
     className: "display services-headline"
   }, "find your ", /*#__PURE__*/React.createElement("span", {
     style: {

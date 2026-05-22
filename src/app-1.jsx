@@ -63,6 +63,7 @@ function HeroBigType({ onOpenQuiz, onBook }) {
         <div className="hero-tags">
           <span className="tag">@_joytothefood_ · 465K</span>
           <span className="tag" style={{ background: 'var(--c2)' }}>1,001 to 465K in 24 months</span>
+          <span className="tag" style={{ background: 'var(--c5)' }}>by food creators, for food creators</span>
         </div>
 
         <h1 className="display hero-headline">
@@ -450,7 +451,7 @@ function Services({ onOpenQuiz, onBook, onSeeDetails }) {
       <div className="container">
         <div className="services-header">
           <div className="services-header-text">
-            <span className="eyebrow">work with me</span>
+            <span className="eyebrow">by food creators, for food creators</span>
             <h2 className="display services-headline">
               find your <span style={{ color: 'var(--c1)' }}>fit.</span>
             </h2>
