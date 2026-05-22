@@ -641,6 +641,7 @@ section { scroll-margin-top: 80px; }
   transition: opacity 0.25s, filter 0.25s;
 }
 .service-card.featured { padding: 40px; }
+/* ── "coming soon" pill badge (unchanged) ── */
 .service-card-badge {
   position: absolute;
   top: 16px;
@@ -662,25 +663,26 @@ section { scroll-margin-top: 80px; }
   background: var(--ink);
   color: var(--bg);
 }
-.service-card-badge.available {
-  background: #1a8870;
-  color: white;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+
+/* ── scarcity starburst badge ── */
+.scarcity-badge-sticker {
+  position: absolute;
+  top: -18px;
+  right: 14px;
+  width: 88px;
+  height: 88px;
+  transform: rotate(12deg);
+  z-index: 3;
+  pointer-events: none;
 }
-.service-card-badge.scarcity {
-  background: #C2410C;
-  color: white;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.service-card.featured .scarcity-badge-sticker {
+  top: -18px;
+  right: 20px;
 }
-.service-card-badge-pulse {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: white;
-  animation: pulse 2s infinite;
+.scarcity-badge-sticker svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 .service-card-tag-row {
   display: flex; justify-content: space-between;

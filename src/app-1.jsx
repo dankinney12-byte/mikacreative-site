@@ -201,6 +201,7 @@ const SERVICES = [
     price: '$249/mo',
     sub: '3 month commitment',
     badge: '4 spots left · July–September',
+    badgeLines: ['4 spots', 'left', 'Jul–Sep'],
     blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
     bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
     savingsNote: 'Pay 3 months upfront and save 5%',
@@ -217,6 +218,7 @@ const SERVICES = [
     trialNote: 'Trial audits are 50% off',
     sub: '1 week turnaround',
     badge: '1 trial spot left',
+    badgeLines: ['1 trial', 'spot left'],
     blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
     bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '1 week delivery'],
     cta: 'Book your audit',
@@ -259,6 +261,7 @@ const SERVICES = [
     trialNote: 'Trial audits are 50% off',
     sub: '1 week audit + 30 days of reviews',
     badge: '1 trial spot left',
+    badgeLines: ['1 trial', 'spot left'],
     blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
     bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', '30 days to use your reviews'],
     cta: 'Book your audit+',
@@ -339,6 +342,33 @@ const EBOOKS = [
   },
 ];
 
+function ScarcityBadge({ lines }) {
+  const POINTS = "50,2 57,8 65,4 70,12 78,11 80,20 89,22 88,31 96,35 93,43 98,50 93,57 96,65 88,70 89,79 80,80 78,89 70,88 65,96 57,93 50,98 43,93 35,96 31,88 22,89 20,80 11,79 12,70 4,65 8,57 2,50 8,43 4,35 12,31 11,22 20,20 22,11 31,12 35,4 43,8";
+  const n = lines.length;
+  const yPositions = n === 1 ? [50] : n === 2 ? [44, 57] : [40, 50, 61];
+  return (
+    <div className="scarcity-badge-sticker">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <polygon points={POINTS} fill="var(--c2)" />
+        {lines.map((line, i) => (
+          <text
+            key={i}
+            x="50"
+            y={yPositions[i]}
+            textAnchor="middle"
+            fontSize={n <= 2 ? "12" : "11"}
+            fontWeight="700"
+            fill="var(--ink)"
+            fontFamily="'DM Mono', ui-monospace, monospace"
+          >
+            {line.toUpperCase()}
+          </text>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 function ServiceCard({ s, featured, compact, onBook, onSeeDetails, onWaitlist }) {
   const isComingSoon = s.comingSoon;
 
@@ -365,11 +395,8 @@ function ServiceCard({ s, featured, compact, onBook, onSeeDetails, onWaitlist })
       {isComingSoon && (
         <div className="service-card-badge coming-soon">Coming soon</div>
       )}
-      {s.badge && (
-        <div className="service-card-badge scarcity">
-          <span className="service-card-badge-pulse" />
-          {s.badge}
-        </div>
+      {s.badge && s.badgeLines && (
+        <ScarcityBadge lines={s.badgeLines} />
       )}
 
       <div className="service-card-tag-row">
