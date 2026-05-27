@@ -195,6 +195,7 @@ const SERVICES = [
     sub: '3 month commitment',
     badge: '3 spots left · July–September',
     badgeLines: ['3 spots', 'left', 'Jul–Sep'],
+    shadowClass: 'btn-shadow-c2',
     blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
     bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
     savingsNote: 'Pay 3 months upfront and save 5%',
@@ -212,6 +213,7 @@ const SERVICES = [
     sub: '1 week turnaround',
     badge: '1 trial spot left',
     badgeLines: ['1 trial', 'spot left'],
+    shadowClass: 'btn-shadow-c3',
     blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
     bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '1 week delivery'],
     cta: 'Book your audit',
@@ -255,6 +257,7 @@ const SERVICES = [
     sub: '1 week audit + 30 days of reviews',
     badge: '1 trial spot left',
     badgeLines: ['1 trial', 'spot left'],
+    shadowClass: 'btn-shadow-c1',
     blurb: "Everything in the audit, plus you send me up to 4 reels before you post and I'll review them before they go live. The audit tells you what to fix. The pre-post reviews make sure you're actually fixing it.",
     bullets: ['Everything in The Audit', 'Up to 4 pre-post reel reviews', 'Hook, lighting + caption feedback', '30 days to use your reviews'],
     cta: 'Book your audit+',
@@ -441,7 +444,7 @@ function ServiceCard({ s, featured, compact, onBook, onSeeDetails, onWaitlist })
         ) : (
           <div className="service-card-cta-row">
             <button
-              className="btn sm"
+              className={`btn sm${featured && s.shadowClass ? ` ${s.shadowClass}` : ''}`}
               onClick={() => onBook && onBook(s)}
               style={{
                 background: featured ? 'var(--ink)' : s.color,
@@ -744,7 +747,7 @@ function BookingForm() {
         />
       </div>
 
-      <button type="submit" className="btn">Send inquiry →</button>
+      <button type="submit" className="btn btn-shadow-c2">Send inquiry →</button>
     </form>
   );
 }

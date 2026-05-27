@@ -205,6 +205,19 @@ body { overflow-x: hidden; }
 .btn.ghost { background: transparent; color: var(--ink); box-shadow: none; }
 .btn.ghost:hover { background: var(--ink); color: var(--bg); transform: none; box-shadow: none; }
 .btn.sm { padding: 10px 18px; font-size: 14px; box-shadow: 3px 3px 0 var(--ink); }
+.nav-links .btn.sm { box-shadow: 3px 3px 0 var(--c2); }
+.nav-links .btn.sm:hover { box-shadow: 5px 5px 0 var(--c2); }
+
+/* === Colored button shadows === */
+.btn-shadow-c1 { box-shadow: 4px 4px 0 var(--c1) !important; }
+.btn-shadow-c1:hover { box-shadow: 6px 6px 0 var(--c1) !important; }
+.btn-shadow-c1:active { box-shadow: 0 0 0 var(--c1) !important; }
+.btn-shadow-c2 { box-shadow: 4px 4px 0 var(--c2) !important; }
+.btn-shadow-c2:hover { box-shadow: 6px 6px 0 var(--c2) !important; }
+.btn-shadow-c2:active { box-shadow: 0 0 0 var(--c2) !important; }
+.btn-shadow-c3 { box-shadow: 4px 4px 0 var(--c3) !important; }
+.btn-shadow-c3:hover { box-shadow: 6px 6px 0 var(--c3) !important; }
+.btn-shadow-c3:active { box-shadow: 0 0 0 var(--c3) !important; }
 .btn.full { width: 100%; justify-content: center; }
 
 /* === Photo placeholder (used until real photos exist) === */

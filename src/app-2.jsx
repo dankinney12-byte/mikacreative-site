@@ -296,7 +296,7 @@ function MastermindModal({ service, onClose }) {
                 You're building your account and you want it to actually work. Better hooks, smarter content strategy, more of the right people finding you. This is where we figure that out together.
               </p>
               <button
-                className="btn"
+                className="btn btn-shadow-c3"
                 style={{ background: 'var(--ink)', color: 'var(--bg)', width: '100%' }}
                 onClick={() => { window.open(TYPEFORM_URL, '_blank'); onClose(); }}
               >
@@ -440,7 +440,7 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
           {/* Bottom CTA bar */}
           <footer className="details-cta-bar">
             <button
-              className="btn"
+              className="btn btn-shadow-c3"
               onClick={() => { onClose(); onBook && onBook(service); }}
             >
               Apply now →
