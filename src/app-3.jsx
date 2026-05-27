@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
 const { useState, useEffect } = React;
 
 const PALETTES = {
@@ -15,7 +15,6 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 
 function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [quizOpen, setQuizOpen] = useState(false);
   const [bookingService, setBookingService] = useState(null);
   const [detailsService, setDetailsService] = useState(null);
 
@@ -36,20 +35,18 @@ function App() {
 
   return (
     <>
-      <Nav onOpenQuiz={() => setQuizOpen(true)} />
-      <Hero onOpenQuiz={() => setQuizOpen(true)} onBook={setBookingService} />
+      <Nav />
+      <Hero onBook={setBookingService} />
       <ProofBar />
       <Strip />
       <Services
-        onOpenQuiz={() => setQuizOpen(true)}
         onBook={setBookingService}
         onSeeDetails={setDetailsService}
       />
       <About />
       <Testimonials />
       <Speaking />
-      <ContactCTA onOpenQuiz={() => setQuizOpen(true)} onBook={setBookingService} />
-      <QuizWidget open={quizOpen} setOpen={setQuizOpen} onBook={setBookingService} />
+      <ContactCTA onBook={setBookingService} />
       {bookingService && bookingService.id === 'mastermind' && (
         <MastermindModal
           service={bookingService}

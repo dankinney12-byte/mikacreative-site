@@ -240,8 +240,7 @@ const TYPEFORM_URL = 'https://jssnn6ddnj6.typeform.com/to/gV4kNGFv';
 
 // ============================================================
 // MASTERMIND MODAL
-// Shows two tracks; clicking either opens the Typeform application
-// in a new tab and closes the modal.
+// Single track (On the Rise); apply button opens Typeform.
 // ============================================================
 function MastermindModal({ service, onClose }) {
 
@@ -260,36 +259,20 @@ function MastermindModal({ service, onClose }) {
 
   if (!service) return null;
 
-  const tracks = [
-    {
-      id: 'rise',
-      emoji: '🌱',
-      label: 'On the Rise',
-      sub: "You're building your account and you want it to actually work. Better hooks, smarter content strategy, more of the right people finding you. This is where we figure that out together.",
-    },
-    {
-      id: 'next-level',
-      emoji: '💸',
-      label: 'The Next Level',
-      sub: "You've built the audience. Now you want to make real money from it. Brand deals, memberships, affiliate strategy — this track is for creators who are ready to turn what they've built into real income.",
-    },
-  ];
-
   return (
     <div
       className="booking-overlay"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div className="booking-modal mastermind-modal">
-        {/* LEFT: branded aside — same pattern as BookingFlow */}
+        {/* LEFT: branded aside */}
         <aside className="booking-aside" style={{ background: service.color }}>
           <span className="tag booking-aside-tag" style={{ background: 'var(--bg)', alignSelf: 'flex-start' }}>
             {service.tag}
           </span>
           <h3 className="display booking-aside-title">{service.title}</h3>
           <div className="booking-aside-blurb">
-            The Mastermind has two tracks so we can make sure you're with people at a similar stage.
-            Which fits you best right now?
+            A small-group mastermind for food and lifestyle creators who are serious about building something real — and want a room full of people who actually get it.
           </div>
           <div className="booking-aside-total">
             <div className="mono booking-aside-total-eyebrow">Investment</div>
@@ -302,24 +285,23 @@ function MastermindModal({ service, onClose }) {
         {/* RIGHT */}
         <div className="booking-main">
           <header className="booking-header">
-            <div className="mono booking-embed-eyebrow">Choose your track</div>
+            <div className="mono booking-embed-eyebrow">Apply now</div>
             <button onClick={onClose} aria-label="Close" className="booking-close">×</button>
           </header>
 
           <div className="mastermind-tracks">
-            <div className="mastermind-track-grid">
-              {tracks.map((t) => (
-                <button
-                  key={t.id}
-                  className="mastermind-track-btn"
-                  style={{ '--track-accent': service.color }}
-                  onClick={() => { window.open(TYPEFORM_URL, '_blank'); onClose(); }}
-                >
-                  <span className="mastermind-track-emoji">{t.emoji}</span>
-                  <span className="mastermind-track-label">{t.label}</span>
-                  <span className="mastermind-track-sub">{t.sub}</span>
-                </button>
-              ))}
+            <div className="mastermind-single-track">
+              <span className="mastermind-track-emoji">🌱</span>
+              <p className="mastermind-track-sub">
+                You're building your account and you want it to actually work. Better hooks, smarter content strategy, more of the right people finding you. This is where we figure that out together.
+              </p>
+              <button
+                className="btn"
+                style={{ background: 'var(--ink)', color: 'var(--bg)', width: '100%' }}
+                onClick={() => { window.open(TYPEFORM_URL, '_blank'); onClose(); }}
+              >
+                Apply now →
+              </button>
             </div>
             <p className="mastermind-apply-note">
               Mika reviews every application personally and selects group members based on
@@ -387,13 +369,13 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
             {/* What a month looks like */}
             <section className="details-section">
               <p className="jam-prose">
-                Once a month we get on a call together — your track, your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits.
+                Once a month we get on a call together — your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits.
               </p>
               <p className="jam-prose">
                 Every week you get fresh hook ideas dropped into your Discord channel so you're never starting from scratch on a caption again.
               </p>
               <p className="jam-prose">
-                In between calls, Discord is where it all lives. Your track channel is full of creators at your exact stage — not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up.
+                In between calls, Discord is where it all lives. The community is full of creators at your exact stage — not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up.
               </p>
               <p className="jam-prose">
                 And I'm in there too. Actually responding.
@@ -441,7 +423,7 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
             <section className="details-section">
               <h4 className="mono details-section-eyebrow">how it works</h4>
               <p className="jam-prose">
-                Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit — you'll hear back within a few days. If it's a yes, you'll get added to your track at the next opening.
+                Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit — you'll hear back within a few days. If it's a yes, you'll get added at the next opening.
               </p>
               <div className="jam-price-block">
                 <span className="display jam-price">{service.price}</span>

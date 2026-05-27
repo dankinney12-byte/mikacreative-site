@@ -27,7 +27,6 @@ function TweakRadio() {
 
 "use strict";
 
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* global React */
 var {
   useState,
@@ -60,9 +59,7 @@ function Wordmark({
 // ============================================================
 // NAV
 // ============================================================
-function Nav({
-  onOpenQuiz
-}) {
+function Nav() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   return /*#__PURE__*/React.createElement("nav", {
@@ -89,10 +86,6 @@ function Nav({
   })), /*#__PURE__*/React.createElement("div", {
     className: `nav-links ${open ? 'is-open' : ''}`
   }, /*#__PURE__*/React.createElement("a", {
-    href: "#services",
-    className: "link",
-    onClick: close
-  }, "Work with me"), /*#__PURE__*/React.createElement("a", {
     href: "#about",
     className: "link",
     onClick: close
@@ -100,24 +93,21 @@ function Nav({
     href: "#speaking",
     className: "link",
     onClick: close
-  }, "Speaking"), /*#__PURE__*/React.createElement("button", {
+  }, "Speaking"), /*#__PURE__*/React.createElement("a", {
+    href: "#services",
     className: "btn sm",
-    onClick: () => {
-      close();
-      onOpenQuiz();
-    }
+    onClick: close
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 16
     }
-  }, "\u2726"), " Find your fit"))));
+  }, "\u2726"), " Work with me"))));
 }
 
 // ============================================================
 // HERO - two layouts
 // ============================================================
 function HeroBigType({
-  onOpenQuiz,
   onBook
 }) {
   const audit = SERVICES.find(s => s.id === 'audit');
@@ -130,12 +120,12 @@ function HeroBigType({
     className: "hero-tags"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag"
-  }, "@_joytothefood_ \xB7 475K"), /*#__PURE__*/React.createElement("span", {
+  }, "@_joytothefood_ \xB7 481K"), /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
       background: 'var(--c2)'
     }
-  }, "1,001 to 475K in 24 months"), /*#__PURE__*/React.createElement("span", {
+  }, "1,001 to 481K in 24 months"), /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
       background: 'var(--c5)'
@@ -159,20 +149,16 @@ function HeroBigType({
     style: {
       fontSize: '0.85em'
     }
-  }, "@_joytothefood_"), " from 1,001 to 475K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "I'll show you exactly what moved the needle."), /*#__PURE__*/React.createElement("div", {
+  }, "@_joytothefood_"), " from 1,001 to 481K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "I'll show you exactly what moved the needle."), /*#__PURE__*/React.createElement("div", {
     className: "hero-cta-stack"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
     onClick: () => document.getElementById('services')?.scrollIntoView({
       behavior: 'smooth'
     })
-  }, "Let's work together \u2192"), /*#__PURE__*/React.createElement("button", {
-    onClick: onOpenQuiz,
-    className: "hero-cta-quiz"
-  }, "not sure yet? take the 30-sec quiz")))));
+  }, "Let's work together \u2192")))));
 }
 function HeroImageGrid({
-  onOpenQuiz,
   onBook
 }) {
   const audit = SERVICES.find(s => s.id === 'audit');
@@ -187,7 +173,7 @@ function HeroImageGrid({
     label: 'mika filming'
   }, {
     c: 'var(--c4)',
-    label: '475K screenshot · now'
+    label: '481K screenshot · now'
   }, {
     c: 'var(--c5)',
     label: 'mika + dan'
@@ -214,7 +200,7 @@ function HeroImageGrid({
     className: "hero-image-grid-content"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, "@_joytothefood_ \xB7 475K followers \xB7 10M monthly views"), /*#__PURE__*/React.createElement("h1", {
+  }, "@_joytothefood_ \xB7 481K followers \xB7 10M monthly views"), /*#__PURE__*/React.createElement("h1", {
     className: "display hero-image-grid-headline"
   }, /*#__PURE__*/React.createElement("span", {
     style: {
@@ -226,17 +212,14 @@ function HeroImageGrid({
     }
   }, "actually"), " works."), /*#__PURE__*/React.createElement("p", {
     className: "hero-image-grid-sub"
-  }, "I grew @_joytothefood_ from 1K to 475K in 24 months, in the current algorithm, in a saturated niche. I'll show you how."), /*#__PURE__*/React.createElement("div", {
+  }, "I grew @_joytothefood_ from 1K to 481K in 24 months, in the current algorithm, in a saturated niche. I'll show you how."), /*#__PURE__*/React.createElement("div", {
     className: "hero-image-grid-cta"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
     onClick: () => document.getElementById('services')?.scrollIntoView({
       behavior: 'smooth'
     })
-  }, "Let's work together \u2192"), /*#__PURE__*/React.createElement("button", {
-    onClick: onOpenQuiz,
-    className: "btn ghost"
-  }, "Not sure? Take the quiz")))));
+  }, "Let's work together \u2192")))));
 }
 
 // ============================================================
@@ -244,7 +227,7 @@ function HeroImageGrid({
 // ============================================================
 function ProofBar() {
   const stats = [{
-    num: '475K',
+    num: '481K',
     label: 'IG followers'
   }, {
     num: '10M',
@@ -283,7 +266,7 @@ function ProofBar() {
 // MARQUEE STRIP
 // ============================================================
 function Strip() {
-  const items = ['the mastermind', 'account audit', 'in your pocket day', 'client management', 'the playbook ebook', '1k → 475K in 24 months'];
+  const items = ['the mastermind', 'account audit', 'in your pocket day', 'client management', 'the playbook ebook', '1k → 481K in 24 months'];
   const Set = () => /*#__PURE__*/React.createElement("span", null, items.map((t, i) => /*#__PURE__*/React.createElement("span", {
     key: i,
     style: {
@@ -311,8 +294,8 @@ const SERVICES = [{
   title: 'The Jam Session',
   price: '$249/mo',
   sub: '3 month commitment',
-  badge: '4 spots left · July–September',
-  badgeLines: ['4 spots', 'left', 'Jul–Sep'],
+  badge: '3 spots left · July–September',
+  badgeLines: ['3 spots', 'left', 'Jul–Sep'],
   blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
   bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
   savingsNote: 'Pay 3 months upfront and save 5%',
@@ -590,7 +573,6 @@ function ServiceCard({
   }, s.detailsCta || 'What to expect'))));
 }
 function Services({
-  onOpenQuiz,
   onBook,
   onSeeDetails
 }) {
@@ -613,10 +595,7 @@ function Services({
     }
   }, "fit.")), /*#__PURE__*/React.createElement("p", {
     className: "services-sub"
-  }, "The Jam Session is the ongoing room \u2014 monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.")), /*#__PURE__*/React.createElement("button", {
-    className: "btn",
-    onClick: onOpenQuiz
-  }, "Curious if it's right for you? Take the quiz \u2192")), /*#__PURE__*/React.createElement("div", {
+  }, "The Jam Session is the ongoing room \u2014 monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it."))), /*#__PURE__*/React.createElement("div", {
     className: "services-grid-single"
   }, /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'mastermind'),
@@ -711,7 +690,7 @@ function About() {
     style: {
       color: 'var(--ink)'
     }
-  }, "Joy to the Food"), " from my kitchen in Minneapolis. In two years it went from 1,001 followers to 475K. Now we run it from wherever we want, with a toddler underfoot."), /*#__PURE__*/React.createElement("p", {
+  }, "Joy to the Food"), " from my kitchen in Minneapolis. In two years it went from 1,001 followers to 481K. Now we run it from wherever we want, with a toddler underfoot."), /*#__PURE__*/React.createElement("p", {
     className: "about-text-emph"
   }, "My philosophy: ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -770,7 +749,7 @@ function Freebie() {
     style: {
       color: 'var(--c1)'
     }
-  }, "475K.")), /*#__PURE__*/React.createElement("p", {
+  }, "481K.")), /*#__PURE__*/React.createElement("p", {
     className: "freebie-sub"
   }, "The exact hook stacking method I use on every reel. 12 page PDF. No newsletter, no sales sequence. Drop your email, get the file."), /*#__PURE__*/React.createElement("form", {
     className: "freebie-form",
@@ -1027,7 +1006,6 @@ function Speaking() {
 // CONTACT / FOOTER
 // ============================================================
 function ContactCTA({
-  onOpenQuiz,
   onBook
 }) {
   const audit = SERVICES.find(s => s.id === 'audit');
@@ -1102,327 +1080,6 @@ function ContactCTA({
   }, "Terms")))));
 }
 
-// ============================================================
-// QUIZ - floating widget
-// ============================================================
-function QuizWidget({
-  open,
-  setOpen,
-  onBook
-}) {
-  const [step, setStep] = useState('intro');
-  useEffect(() => {
-    if (!open) setTimeout(() => setStep('intro'), 300);
-  }, [open]);
-  if (!open) {
-    return /*#__PURE__*/React.createElement("button", {
-      onClick: () => setOpen(true),
-      className: "quiz-fab",
-      onMouseEnter: e => {
-        e.currentTarget.style.transform = 'translate(-2px, -2px)';
-        e.currentTarget.style.boxShadow = '6px 6px 0 var(--c1)';
-      },
-      onMouseLeave: e => {
-        e.currentTarget.style.transform = 'translate(0,0)';
-        e.currentTarget.style.boxShadow = '4px 4px 0 var(--c1)';
-      }
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "quiz-fab-pulse"
-    }), "Find your fit ", /*#__PURE__*/React.createElement("span", {
-      style: {
-        opacity: 0.6
-      }
-    }, "\xB7 30s"));
-  }
-  return /*#__PURE__*/React.createElement("div", {
-    className: "quiz-widget"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "quiz-header"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "quiz-header-info"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "quiz-header-pulse"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "mono quiz-header-label"
-  }, step === 'intro' ? 'Quick quiz · 1 question' : 'Your match')), /*#__PURE__*/React.createElement("button", {
-    onClick: () => setOpen(false),
-    className: "quiz-close"
-  }, "\xD7")), step === 'intro' && /*#__PURE__*/React.createElement(QuizIntro, {
-    onChoose: setStep
-  }), step === 'result-grow' && /*#__PURE__*/React.createElement(QuizResultGrow, {
-    onReset: () => setStep('intro'),
-    onBook: s => {
-      setOpen(false);
-      onBook && onBook(s);
-    }
-  }), step === 'result-monetize' && /*#__PURE__*/React.createElement(QuizResultMonetize, {
-    onReset: () => setStep('intro'),
-    onBook: s => {
-      setOpen(false);
-      onBook && onBook(s);
-    }
-  }));
-}
-function QuizIntro({
-  onChoose
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "quiz-body"
-  }, /*#__PURE__*/React.createElement("h3", {
-    className: "display quiz-body-title"
-  }, "which one is ", /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--c1)'
-    }
-  }, "you"), "?"), /*#__PURE__*/React.createElement("p", {
-    className: "quiz-body-sub"
-  }, "Pick the one that sounds the most like your situation right now."), /*#__PURE__*/React.createElement("div", {
-    className: "quiz-options"
-  }, /*#__PURE__*/React.createElement(QuizOption, {
-    color: "var(--c3)",
-    icon: "\uD83C\uDF31",
-    title: "I'm trying to grow",
-    sub: "Under 25K and posting into the void. Let's fix that.",
-    onClick: () => onChoose('result-grow')
-  }), /*#__PURE__*/React.createElement(QuizOption, {
-    color: "var(--c5)",
-    icon: "\uD83D\uDCB8",
-    title: "I have a following, want to cash in",
-    sub: "25K+ but the income doesn't match the reach.",
-    onClick: () => onChoose('result-monetize')
-  })));
-}
-function QuizOption({
-  color,
-  icon,
-  title,
-  sub,
-  onClick
-}) {
-  return /*#__PURE__*/React.createElement("button", {
-    onClick: onClick,
-    className: "quiz-option",
-    onMouseEnter: e => {
-      e.currentTarget.style.background = color;
-      e.currentTarget.style.transform = 'translate(-2px, -2px)';
-      e.currentTarget.style.boxShadow = '4px 4px 0 var(--ink)';
-    },
-    onMouseLeave: e => {
-      e.currentTarget.style.background = 'var(--bg)';
-      e.currentTarget.style.transform = 'translate(0, 0)';
-      e.currentTarget.style.boxShadow = 'none';
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "quiz-option-icon",
-    style: {
-      background: color
-    }
-  }, icon), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "quiz-option-title"
-  }, title), /*#__PURE__*/React.createElement("div", {
-    className: "quiz-option-sub"
-  }, sub)));
-}
-function QuizResultGrow({
-  onReset,
-  onBook
-}) {
-  const audit = SERVICES.find(s => s.id === 'audit');
-  const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
-  return /*#__PURE__*/React.createElement("div", {
-    className: "quiz-body"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "tag",
-    style: {
-      background: 'var(--c3)',
-      fontSize: 10
-    }
-  }, "You = grower"), /*#__PURE__*/React.createElement("h3", {
-    className: "display quiz-body-title",
-    style: {
-      fontSize: 28,
-      marginTop: 12
-    }
-  }, "your match."), /*#__PURE__*/React.createElement("p", {
-    className: "quiz-body-sub",
-    style: {
-      marginBottom: 16
-    }
-  }, "Under 25K is fixable. Here's where to start."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 10
-    }
-  }, /*#__PURE__*/React.createElement(ResultCard, {
-    color: "var(--c3)",
-    step: "community",
-    title: "The Jam Session \u2014 On the Rise",
-    price: "$249/mo \xB7 small-group mastermind for creators who are building",
-    onClick: () => window.open('https://jssnn6ddnj6.typeform.com/to/gV4kNGFv', '_blank')
-  }), /*#__PURE__*/React.createElement(ResultCard, {
-    color: "var(--c1)",
-    step: "solo",
-    title: "The Audit",
-    price: "$475 \xB7 1 week turnaround (trial pricing)",
-    onClick: () => {
-      onReset();
-      onBook && onBook(audit);
-    }
-  }), /*#__PURE__*/React.createElement(ResultCard, {
-    color: "var(--c4)",
-    step: "+reviews",
-    title: "The Audit + Pre-Post Reviews",
-    price: "$550 \xB7 1 week turnaround + 30 days of pre-post feedback (trial pricing)",
-    onClick: () => {
-      onReset();
-      onBook && onBook(auditPlus);
-    }
-  })), /*#__PURE__*/React.createElement(ComingSoonNote, {
-    items: ['In Your Pocket Day']
-  }), /*#__PURE__*/React.createElement("button", {
-    onClick: onReset,
-    className: "mono quiz-retake"
-  }, "\u2190 retake"));
-}
-function QuizResultMonetize({
-  onReset,
-  onBook
-}) {
-  const audit = SERVICES.find(s => s.id === 'audit');
-  const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
-  return /*#__PURE__*/React.createElement("div", {
-    className: "quiz-body"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "tag",
-    style: {
-      background: 'var(--c5)',
-      fontSize: 10
-    }
-  }, "You = earner"), /*#__PURE__*/React.createElement("h3", {
-    className: "display quiz-body-title",
-    style: {
-      fontSize: 28,
-      marginTop: 12
-    }
-  }, "your match."), /*#__PURE__*/React.createElement("p", {
-    className: "quiz-body-sub",
-    style: {
-      marginBottom: 16
-    }
-  }, "You have the audience. Here's how to make it work harder."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 10
-    }
-  }, /*#__PURE__*/React.createElement(ResultCard, {
-    color: "var(--c3)",
-    step: "community",
-    title: "The Jam Session \u2014 The Next Level",
-    price: "$249/mo \xB7 small-group mastermind for creators who are monetizing",
-    onClick: () => window.open('https://jssnn6ddnj6.typeform.com/to/gV4kNGFv', '_blank')
-  }), /*#__PURE__*/React.createElement(ResultCard, {
-    color: "var(--c1)",
-    step: "solo",
-    title: "The Audit",
-    price: "$475 \xB7 1 week turnaround (trial pricing)",
-    onClick: () => {
-      onReset();
-      onBook && onBook(audit);
-    }
-  }), /*#__PURE__*/React.createElement(ResultCard, {
-    color: "var(--c4)",
-    step: "+reviews",
-    title: "The Audit + Pre-Post Reviews",
-    price: "$550 \xB7 1 week turnaround + 30 days of pre-post feedback (trial pricing)",
-    onClick: () => {
-      onReset();
-      onBook && onBook(auditPlus);
-    }
-  })), /*#__PURE__*/React.createElement(ComingSoonNote, {
-    items: ['In Your Pocket Day']
-  }), /*#__PURE__*/React.createElement("button", {
-    onClick: onReset,
-    className: "mono quiz-retake"
-  }, "\u2190 retake"));
-}
-function ComingSoonNote({
-  items
-}) {
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 14,
-      padding: '12px 14px',
-      background: 'var(--bg-alt)',
-      border: '1.5px dashed var(--ink-soft)',
-      borderRadius: 12
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: '0.14em',
-      textTransform: 'uppercase',
-      color: 'var(--ink-soft)',
-      marginBottom: 6,
-      fontWeight: 600
-    }
-  }, "Coming soon"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: 'var(--ink-soft)',
-      lineHeight: 1.4
-    }
-  }, items.join(' · ')));
-}
-function ResultCard({
-  color,
-  step,
-  title,
-  price,
-  href,
-  onClick
-}) {
-  const Tag = onClick ? 'button' : 'a';
-  const props = onClick ? {
-    onClick,
-    type: 'button'
-  } : {
-    href
-  };
-  return /*#__PURE__*/React.createElement(Tag, _extends({}, props, {
-    className: "quiz-result-card",
-    onMouseEnter: e => {
-      e.currentTarget.style.background = color;
-      e.currentTarget.style.transform = 'translate(-1px, -1px)';
-      e.currentTarget.style.boxShadow = '4px 4px 0 var(--ink)';
-    },
-    onMouseLeave: e => {
-      e.currentTarget.style.background = 'var(--bg)';
-      e.currentTarget.style.transform = 'translate(0, 0)';
-      e.currentTarget.style.boxShadow = '3px 3px 0 var(--ink)';
-    }
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "mono quiz-result-step-pill",
-    style: {
-      background: color
-    }
-  }, step), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "quiz-result-card-title"
-  }, title), /*#__PURE__*/React.createElement("div", {
-    className: "mono quiz-result-card-sub"
-  }, price)), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 18
-    }
-  }, "\u2192"));
-}
-
 // expose to window
 Object.assign(window, {
   Wordmark,
@@ -1437,8 +1094,7 @@ Object.assign(window, {
   Testimonials,
   BookingForm,
   Speaking,
-  ContactCTA,
-  QuizWidget
+  ContactCTA
 });
 
 // === src/app-2.jsx ===
@@ -1717,8 +1373,7 @@ const TYPEFORM_URL = 'https://jssnn6ddnj6.typeform.com/to/gV4kNGFv';
 
 // ============================================================
 // MASTERMIND MODAL
-// Shows two tracks; clicking either opens the Typeform application
-// in a new tab and closes the modal.
+// Single track (On the Rise); apply button opens Typeform.
 // ============================================================
 function MastermindModal({
   service,
@@ -1741,17 +1396,6 @@ function MastermindModal({
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
   if (!service) return null;
-  const tracks = [{
-    id: 'rise',
-    emoji: '🌱',
-    label: 'On the Rise',
-    sub: "You're building your account and you want it to actually work. Better hooks, smarter content strategy, more of the right people finding you. This is where we figure that out together."
-  }, {
-    id: 'next-level',
-    emoji: '💸',
-    label: 'The Next Level',
-    sub: "You've built the audience. Now you want to make real money from it. Brand deals, memberships, affiliate strategy — this track is for creators who are ready to turn what they've built into real income."
-  }];
   return /*#__PURE__*/React.createElement("div", {
     className: "booking-overlay",
     onClick: e => {
@@ -1774,7 +1418,7 @@ function MastermindModal({
     className: "display booking-aside-title"
   }, service.title), /*#__PURE__*/React.createElement("div", {
     className: "booking-aside-blurb"
-  }, "The Mastermind has two tracks so we can make sure you're with people at a similar stage. Which fits you best right now?"), /*#__PURE__*/React.createElement("div", {
+  }, "A small-group mastermind for food and lifestyle creators who are serious about building something real \u2014 and want a room full of people who actually get it."), /*#__PURE__*/React.createElement("div", {
     className: "booking-aside-total"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mono booking-aside-total-eyebrow"
@@ -1790,31 +1434,30 @@ function MastermindModal({
     className: "booking-header"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mono booking-embed-eyebrow"
-  }, "Choose your track"), /*#__PURE__*/React.createElement("button", {
+  }, "Apply now"), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
     className: "booking-close"
   }, "\xD7")), /*#__PURE__*/React.createElement("div", {
     className: "mastermind-tracks"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "mastermind-track-grid"
-  }, tracks.map(t => /*#__PURE__*/React.createElement("button", {
-    key: t.id,
-    className: "mastermind-track-btn",
+    className: "mastermind-single-track"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "mastermind-track-emoji"
+  }, "\uD83C\uDF31"), /*#__PURE__*/React.createElement("p", {
+    className: "mastermind-track-sub"
+  }, "You're building your account and you want it to actually work. Better hooks, smarter content strategy, more of the right people finding you. This is where we figure that out together."), /*#__PURE__*/React.createElement("button", {
+    className: "btn",
     style: {
-      '--track-accent': service.color
+      background: 'var(--ink)',
+      color: 'var(--bg)',
+      width: '100%'
     },
     onClick: () => {
       window.open(TYPEFORM_URL, '_blank');
       onClose();
     }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "mastermind-track-emoji"
-  }, t.emoji), /*#__PURE__*/React.createElement("span", {
-    className: "mastermind-track-label"
-  }, t.label), /*#__PURE__*/React.createElement("span", {
-    className: "mastermind-track-sub"
-  }, t.sub)))), /*#__PURE__*/React.createElement("p", {
+  }, "Apply now \u2192")), /*#__PURE__*/React.createElement("p", {
     className: "mastermind-apply-note"
   }, "Mika reviews every application personally and selects group members based on availability and fit. You'll hear back within a few days of applying.")))));
 }
@@ -1893,11 +1536,11 @@ function MastermindDetailsModal({
     className: "details-section"
   }, /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Once a month we get on a call together \u2014 your track, your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits."), /*#__PURE__*/React.createElement("p", {
+  }, "Once a month we get on a call together \u2014 your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
   }, "Every week you get fresh hook ideas dropped into your Discord channel so you're never starting from scratch on a caption again."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "In between calls, Discord is where it all lives. Your track channel is full of creators at your exact stage \u2014 not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up."), /*#__PURE__*/React.createElement("p", {
+  }, "In between calls, Discord is where it all lives. The community is full of creators at your exact stage \u2014 not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
   }, "And I'm in there too. Actually responding."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
@@ -1937,7 +1580,7 @@ function MastermindDetailsModal({
     className: "mono details-section-eyebrow"
   }, "how it works"), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit \u2014 you'll hear back within a few days. If it's a yes, you'll get added to your track at the next opening."), /*#__PURE__*/React.createElement("div", {
+  }, "Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit \u2014 you'll hear back within a few days. If it's a yes, you'll get added at the next opening."), /*#__PURE__*/React.createElement("div", {
     className: "jam-price-block"
   }, /*#__PURE__*/React.createElement("span", {
     className: "display jam-price"
@@ -1964,7 +1607,7 @@ window.MastermindDetailsModal = MastermindDetailsModal;
 
 "use strict";
 
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, QuizWidget, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
 var {
   useState,
   useEffect
@@ -2017,7 +1660,6 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 } /*EDITMODE-END*/;
 function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [quizOpen, setQuizOpen] = useState(false);
   const [bookingService, setBookingService] = useState(null);
   const [detailsService, setDetailsService] = useState(null);
   useEffect(() => {
@@ -2033,21 +1675,12 @@ function App() {
     root.style.setProperty('--ink', p.ink);
   }, [tweaks.palette]);
   const Hero = tweaks.hero === 'ImageGrid' ? HeroImageGrid : HeroBigType;
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, {
-    onOpenQuiz: () => setQuizOpen(true)
-  }), /*#__PURE__*/React.createElement(Hero, {
-    onOpenQuiz: () => setQuizOpen(true),
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(Hero, {
     onBook: setBookingService
   }), /*#__PURE__*/React.createElement(ProofBar, null), /*#__PURE__*/React.createElement(Strip, null), /*#__PURE__*/React.createElement(Services, {
-    onOpenQuiz: () => setQuizOpen(true),
     onBook: setBookingService,
     onSeeDetails: setDetailsService
   }), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Testimonials, null), /*#__PURE__*/React.createElement(Speaking, null), /*#__PURE__*/React.createElement(ContactCTA, {
-    onOpenQuiz: () => setQuizOpen(true),
-    onBook: setBookingService
-  }), /*#__PURE__*/React.createElement(QuizWidget, {
-    open: quizOpen,
-    setOpen: setQuizOpen,
     onBook: setBookingService
   }), bookingService && bookingService.id === 'mastermind' && /*#__PURE__*/React.createElement(MastermindModal, {
     service: bookingService,

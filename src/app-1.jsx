@@ -20,7 +20,7 @@ function Wordmark({ size = 36, showCreative = true, className = '' }) {
 // ============================================================
 // NAV
 // ============================================================
-function Nav({ onOpenQuiz }) {
+function Nav() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   return (
@@ -40,12 +40,11 @@ function Nav({ onOpenQuiz }) {
           <span className="nav-toggle-line" />
         </button>
         <div className={`nav-links ${open ? 'is-open' : ''}`}>
-          <a href="#services" className="link" onClick={close}>Work with me</a>
           <a href="#about" className="link" onClick={close}>About</a>
           <a href="#speaking" className="link" onClick={close}>Speaking</a>
-          <button className="btn sm" onClick={() => { close(); onOpenQuiz(); }}>
-            <span style={{ fontSize: 16 }}>✦</span> Find your fit
-          </button>
+          <a href="#services" className="btn sm" onClick={close}>
+            <span style={{ fontSize: 16 }}>✦</span> Work with me
+          </a>
         </div>
       </div>
     </nav>
@@ -55,14 +54,14 @@ function Nav({ onOpenQuiz }) {
 // ============================================================
 // HERO - two layouts
 // ============================================================
-function HeroBigType({ onOpenQuiz, onBook }) {
+function HeroBigType({ onBook }) {
   const audit = SERVICES.find(s => s.id === 'audit');
   return (
     <section id="top" className="hero">
       <div className="container">
         <div className="hero-tags">
-          <span className="tag">@_joytothefood_ · 475K</span>
-          <span className="tag" style={{ background: 'var(--c2)' }}>1,001 to 475K in 24 months</span>
+          <span className="tag">@_joytothefood_ · 481K</span>
+          <span className="tag" style={{ background: 'var(--c2)' }}>1,001 to 481K in 24 months</span>
           <span className="tag" style={{ background: 'var(--c5)' }}>by food creators, for food creators</span>
         </div>
 
@@ -74,16 +73,13 @@ function HeroBigType({ onOpenQuiz, onBook }) {
 
         <div className="hero-grid">
           <p className="hero-body">
-            I'm Mika - engineer turned food creator. I grew <span className="mono" style={{ fontSize: '0.85em' }}>@_joytothefood_</span> from 1,001 to 475K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.
+            I'm Mika - engineer turned food creator. I grew <span className="mono" style={{ fontSize: '0.85em' }}>@_joytothefood_</span> from 1,001 to 481K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.
             <br /><br />
             I'll show you exactly what moved the needle.
           </p>
           <div className="hero-cta-stack">
             <button className="btn alt" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
               Let's work together →
-            </button>
-            <button onClick={onOpenQuiz} className="hero-cta-quiz">
-              not sure yet? take the 30-sec quiz
             </button>
           </div>
         </div>
@@ -92,13 +88,13 @@ function HeroBigType({ onOpenQuiz, onBook }) {
   );
 }
 
-function HeroImageGrid({ onOpenQuiz, onBook }) {
+function HeroImageGrid({ onBook }) {
   const audit = SERVICES.find(s => s.id === 'audit');
   const photos = [
     { c: 'var(--c2)', label: '1K screenshot · 2024' },
     { c: 'var(--c3)', label: 'reel · 2.1M views' },
     { c: 'var(--c1)', label: 'mika filming' },
-    { c: 'var(--c4)', label: '475K screenshot · now' },
+    { c: 'var(--c4)', label: '481K screenshot · now' },
     { c: 'var(--c5)', label: 'mika + dan' },
   ];
   return (
@@ -113,20 +109,17 @@ function HeroImageGrid({ onOpenQuiz, onBook }) {
         </div>
 
         <div className="hero-image-grid-content">
-          <span className="eyebrow">@_joytothefood_ · 475K followers · 10M monthly views</span>
+          <span className="eyebrow">@_joytothefood_ · 481K followers · 10M monthly views</span>
           <h1 className="display hero-image-grid-headline">
             <span style={{ color: 'var(--c1)' }}>instagram</span> that<br />
             <span style={{ color: 'var(--c3)' }}>actually</span> works.
           </h1>
           <p className="hero-image-grid-sub">
-            I grew @_joytothefood_ from 1K to 475K in 24 months, in the current algorithm, in a saturated niche. I'll show you how.
+            I grew @_joytothefood_ from 1K to 481K in 24 months, in the current algorithm, in a saturated niche. I'll show you how.
           </p>
           <div className="hero-image-grid-cta">
             <button className="btn alt" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
               Let's work together →
-            </button>
-            <button onClick={onOpenQuiz} className="btn ghost">
-              Not sure? Take the quiz
             </button>
           </div>
         </div>
@@ -140,7 +133,7 @@ function HeroImageGrid({ onOpenQuiz, onBook }) {
 // ============================================================
 function ProofBar() {
   const stats = [
-    { num: '475K', label: 'IG followers' },
+    { num: '481K', label: 'IG followers' },
     { num: '10M', label: 'monthly views' },
     { num: '#1', label: 'revenue source' },
     { num: '4', label: 'speaking engagements' },
@@ -169,7 +162,7 @@ function ProofBar() {
 function Strip() {
   const items = [
     'the mastermind', 'account audit', 'in your pocket day',
-    'client management', 'the playbook ebook', '1k → 475K in 24 months',
+    'client management', 'the playbook ebook', '1k → 481K in 24 months',
   ];
   const Set = () => (
     <span>
@@ -200,8 +193,8 @@ const SERVICES = [
     title: 'The Jam Session',
     price: '$249/mo',
     sub: '3 month commitment',
-    badge: '4 spots left · July–September',
-    badgeLines: ['4 spots', 'left', 'Jul–Sep'],
+    badge: '3 spots left · July–September',
+    badgeLines: ['3 spots', 'left', 'Jul–Sep'],
     blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
     bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
     savingsNote: 'Pay 3 months upfront and save 5%',
@@ -472,7 +465,7 @@ function ServiceCard({ s, featured, compact, onBook, onSeeDetails, onWaitlist })
   );
 }
 
-function Services({ onOpenQuiz, onBook, onSeeDetails }) {
+function Services({ onBook, onSeeDetails }) {
   return (
     <section id="services" className="services">
       <div className="container">
@@ -486,9 +479,6 @@ function Services({ onOpenQuiz, onBook, onSeeDetails }) {
               The Jam Session is the ongoing room — monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.
             </p>
           </div>
-          <button className="btn" onClick={onOpenQuiz}>
-            Curious if it's right for you? Take the quiz →
-          </button>
         </div>
 
         {/* ROW 1: Mastermind — full width, featured */}
@@ -553,7 +543,7 @@ function About() {
                 I grew up in <strong style={{ color: 'var(--ink)' }}>Yosemite</strong>. Studied engineering. Worked corporate. Quit twice. Once to backpack Southeast Asia with my husband Dan, once to road trip the Southwest.
               </p>
               <p>
-                We started <strong style={{ color: 'var(--ink)' }}>Joy to the Food</strong> from my kitchen in Minneapolis. In two years it went from 1,001 followers to 475K. Now we run it from wherever we want, with a toddler underfoot.
+                We started <strong style={{ color: 'var(--ink)' }}>Joy to the Food</strong> from my kitchen in Minneapolis. In two years it went from 1,001 followers to 481K. Now we run it from wherever we want, with a toddler underfoot.
               </p>
               <p className="about-text-emph">
                 My philosophy: <span style={{ color: 'var(--c3)' }}>engineer the life you want.</span>
@@ -586,7 +576,7 @@ function Freebie() {
           <div className="freebie-content">
             <span className="tag" style={{ background: 'var(--bg)' }}>Free download</span>
             <h2 className="display freebie-headline">
-              the hook formula<br />that got me to <span style={{ color: 'var(--c1)' }}>475K.</span>
+              the hook formula<br />that got me to <span style={{ color: 'var(--c1)' }}>481K.</span>
             </h2>
             <p className="freebie-sub">
               The exact hook stacking method I use on every reel. 12 page PDF. No newsletter, no sales sequence. Drop your email, get the file.
@@ -808,7 +798,7 @@ function Speaking() {
 // ============================================================
 // CONTACT / FOOTER
 // ============================================================
-function ContactCTA({ onOpenQuiz, onBook }) {
+function ContactCTA({ onBook }) {
   const audit = SERVICES.find(s => s.id === 'audit');
   const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
   const mastermind = SERVICES.find(s => s.id === 'mastermind');
@@ -860,203 +850,10 @@ function ContactCTA({ onOpenQuiz, onBook }) {
   );
 }
 
-// ============================================================
-// QUIZ - floating widget
-// ============================================================
-function QuizWidget({ open, setOpen, onBook }) {
-  const [step, setStep] = useState('intro');
-
-  useEffect(() => {
-    if (!open) setTimeout(() => setStep('intro'), 300);
-  }, [open]);
-
-  if (!open) {
-    return (
-      <button
-        onClick={() => setOpen(true)}
-        className="quiz-fab"
-        onMouseEnter={(e) => { e.currentTarget.style.transform = 'translate(-2px, -2px)'; e.currentTarget.style.boxShadow = '6px 6px 0 var(--c1)'; }}
-        onMouseLeave={(e) => { e.currentTarget.style.transform = 'translate(0,0)'; e.currentTarget.style.boxShadow = '4px 4px 0 var(--c1)'; }}
-      >
-        <span className="quiz-fab-pulse" />
-        Find your fit <span style={{ opacity: 0.6 }}>· 30s</span>
-      </button>
-    );
-  }
-
-  return (
-    <div className="quiz-widget">
-      <div className="quiz-header">
-        <div className="quiz-header-info">
-          <span className="quiz-header-pulse" />
-          <span className="mono quiz-header-label">
-            {step === 'intro' ? 'Quick quiz · 1 question' : 'Your match'}
-          </span>
-        </div>
-        <button onClick={() => setOpen(false)} className="quiz-close">×</button>
-      </div>
-
-      {step === 'intro' && <QuizIntro onChoose={setStep} />}
-      {step === 'result-grow' && <QuizResultGrow onReset={() => setStep('intro')} onBook={(s) => { setOpen(false); onBook && onBook(s); }} />}
-      {step === 'result-monetize' && <QuizResultMonetize onReset={() => setStep('intro')} onBook={(s) => { setOpen(false); onBook && onBook(s); }} />}
-    </div>
-  );
-}
-
-function QuizIntro({ onChoose }) {
-  return (
-    <div className="quiz-body">
-      <h3 className="display quiz-body-title">
-        which one is <span style={{ color: 'var(--c1)' }}>you</span>?
-      </h3>
-      <p className="quiz-body-sub">
-        Pick the one that sounds the most like your situation right now.
-      </p>
-
-      <div className="quiz-options">
-        <QuizOption
-          color="var(--c3)"
-          icon="🌱"
-          title="I'm trying to grow"
-          sub="Under 25K and posting into the void. Let's fix that."
-          onClick={() => onChoose('result-grow')}
-        />
-        <QuizOption
-          color="var(--c5)"
-          icon="💸"
-          title="I have a following, want to cash in"
-          sub="25K+ but the income doesn't match the reach."
-          onClick={() => onChoose('result-monetize')}
-        />
-      </div>
-    </div>
-  );
-}
-
-function QuizOption({ color, icon, title, sub, onClick }) {
-  return (
-    <button
-      onClick={onClick}
-      className="quiz-option"
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = color;
-        e.currentTarget.style.transform = 'translate(-2px, -2px)';
-        e.currentTarget.style.boxShadow = '4px 4px 0 var(--ink)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'var(--bg)';
-        e.currentTarget.style.transform = 'translate(0, 0)';
-        e.currentTarget.style.boxShadow = 'none';
-      }}
-    >
-      <div className="quiz-option-icon" style={{ background: color }}>{icon}</div>
-      <div>
-        <div className="quiz-option-title">{title}</div>
-        <div className="quiz-option-sub">{sub}</div>
-      </div>
-    </button>
-  );
-}
-
-function QuizResultGrow({ onReset, onBook }) {
-  const audit = SERVICES.find(s => s.id === 'audit');
-  const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
-  return (
-    <div className="quiz-body">
-      <span className="tag" style={{ background: 'var(--c3)', fontSize: 10 }}>You = grower</span>
-      <h3 className="display quiz-body-title" style={{ fontSize: 28, marginTop: 12 }}>
-        your match.
-      </h3>
-      <p className="quiz-body-sub" style={{ marginBottom: 16 }}>
-        Under 25K is fixable. Here's where to start.
-      </p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <ResultCard color="var(--c3)" step="community" title="The Jam Session — On the Rise" price="$249/mo · small-group mastermind for creators who are building"
-          onClick={() => window.open('https://jssnn6ddnj6.typeform.com/to/gV4kNGFv', '_blank')} />
-        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$475 · 1 week turnaround (trial pricing)"
-          onClick={() => { onReset(); onBook && onBook(audit); }}/>
-        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$550 · 1 week turnaround + 30 days of pre-post feedback (trial pricing)"
-          onClick={() => { onReset(); onBook && onBook(auditPlus); }}/>
-      </div>
-      <ComingSoonNote items={['In Your Pocket Day']}/>
-      <button onClick={onReset} className="mono quiz-retake">← retake</button>
-    </div>
-  );
-}
-
-function QuizResultMonetize({ onReset, onBook }) {
-  const audit = SERVICES.find(s => s.id === 'audit');
-  const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
-  return (
-    <div className="quiz-body">
-      <span className="tag" style={{ background: 'var(--c5)', fontSize: 10 }}>You = earner</span>
-      <h3 className="display quiz-body-title" style={{ fontSize: 28, marginTop: 12 }}>
-        your match.
-      </h3>
-      <p className="quiz-body-sub" style={{ marginBottom: 16 }}>
-        You have the audience. Here's how to make it work harder.
-      </p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <ResultCard color="var(--c3)" step="community" title="The Jam Session — The Next Level" price="$249/mo · small-group mastermind for creators who are monetizing"
-          onClick={() => window.open('https://jssnn6ddnj6.typeform.com/to/gV4kNGFv', '_blank')} />
-        <ResultCard color="var(--c1)" step="solo" title="The Audit" price="$475 · 1 week turnaround (trial pricing)"
-          onClick={() => { onReset(); onBook && onBook(audit); }}/>
-        <ResultCard color="var(--c4)" step="+reviews" title="The Audit + Pre-Post Reviews" price="$550 · 1 week turnaround + 30 days of pre-post feedback (trial pricing)"
-          onClick={() => { onReset(); onBook && onBook(auditPlus); }}/>
-      </div>
-      <ComingSoonNote items={['In Your Pocket Day']}/>
-      <button onClick={onReset} className="mono quiz-retake">← retake</button>
-    </div>
-  );
-}
-
-function ComingSoonNote({ items }) {
-  return (
-    <div style={{
-      marginTop: 14,
-      padding: '12px 14px',
-      background: 'var(--bg-alt)',
-      border: '1.5px dashed var(--ink-soft)',
-      borderRadius: 12,
-    }}>
-      <div className="mono" style={{
-        fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase',
-        color: 'var(--ink-soft)', marginBottom: 6, fontWeight: 600,
-      }}>
-        Coming soon
-      </div>
-      <div style={{ fontSize: 12, color: 'var(--ink-soft)', lineHeight: 1.4 }}>
-        {items.join(' · ')}
-      </div>
-    </div>
-  );
-}
-
-function ResultCard({ color, step, title, price, href, onClick }) {
-  const Tag = onClick ? 'button' : 'a';
-  const props = onClick
-    ? { onClick, type: 'button' }
-    : { href };
-  return (
-    <Tag {...props}
-      className="quiz-result-card"
-      onMouseEnter={(e) => { e.currentTarget.style.background = color; e.currentTarget.style.transform = 'translate(-1px, -1px)'; e.currentTarget.style.boxShadow = '4px 4px 0 var(--ink)'; }}
-      onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--bg)'; e.currentTarget.style.transform = 'translate(0, 0)'; e.currentTarget.style.boxShadow = '3px 3px 0 var(--ink)'; }}
-    >
-      <span className="mono quiz-result-step-pill" style={{ background: color }}>{step}</span>
-      <div style={{ flex: 1 }}>
-        <div className="quiz-result-card-title">{title}</div>
-        <div className="mono quiz-result-card-sub">{price}</div>
-      </div>
-      <span style={{ fontSize: 18 }}>→</span>
-    </Tag>
-  );
-}
 
 // expose to window
 Object.assign(window, {
   Wordmark, Nav,
   HeroBigType, HeroImageGrid,
   ProofBar, Strip, Services, About, Freebie, Testimonials, BookingForm, Speaking, ContactCTA,
-  QuizWidget,
 });
