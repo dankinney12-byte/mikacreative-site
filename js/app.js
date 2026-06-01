@@ -128,31 +128,39 @@ function AnnouncementBar({
       msg: 'grow with joy is coming! enrollment opens june 15',
       target: LAUNCH.enrollOpens,
       cta: 'join the waitlist →',
-      bg: 'var(--c3)'
+      bg: 'var(--c3)',
+      fg: 'var(--ink)'
     },
     open: {
       msg: 'enrollment is OPEN! doors close in',
       target: LAUNCH.enrollCloses,
       cta: 'enroll now →',
-      bg: 'var(--c1)'
+      bg: 'var(--c1)',
+      fg: 'var(--ink)'
     },
     closed: {
       msg: "doors are closed for this round!",
       target: null,
       cta: 'join the list for round two →',
-      bg: 'var(--ink)'
+      bg: 'var(--bg-alt)',
+      fg: 'var(--ink)'
     }
   }[phase];
   return /*#__PURE__*/React.createElement("div", {
     className: "gwj-bar",
     style: {
-      background: cfg.bg
+      background: cfg.bg,
+      color: cfg.fg
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "gwj-bar-msg"
-  }, cfg.msg, cfg.target && /*#__PURE__*/React.createElement(React.Fragment, null, " \u2014 ", /*#__PURE__*/React.createElement(Countdown, {
+  }, cfg.msg), cfg.target && /*#__PURE__*/React.createElement("span", {
+    className: "gwj-bar-count"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-bar-dash"
+  }, "\u2014 "), /*#__PURE__*/React.createElement(Countdown, {
     target: cfg.target
-  }))), /*#__PURE__*/React.createElement("button", {
+  })), /*#__PURE__*/React.createElement("button", {
     className: "gwj-bar-cta",
     onClick: () => onCta(phase)
   }, cfg.cta));
