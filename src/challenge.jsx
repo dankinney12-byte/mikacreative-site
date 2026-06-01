@@ -107,7 +107,7 @@ function ChallengeHero({ phase, onCta }) {
         <p className="gwj-hero-body">
           okay here's the deal! I grew{' '}
           <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
-          from 1,001 to 481,000 followers in two years. in THIS algorithm! in a saturated niche! with a two-person team! not back in 2016 when instagram was easy, like, right now. and listen, I'm not a guru and I do not have secret hacks, I promise you they don't exist! what I have is receipts. I pulled the actual data on what grew my account and what was a complete waste of my time, and I'm handing you all of it for 30 days. we're growing your followers AND your engagement, because (plot twist!) those are two totally different jobs and nobody tells you that. let's gooo!
+          from 1,001 to 500,000 followers in two years. in THIS algorithm! in a saturated niche! with a two-person team! not back in 2016 when instagram was easy, like, right now. and listen, I'm not a guru and I do not have secret hacks, I promise you they don't exist! what I have is receipts. I pulled the actual data on what grew my account and what was a complete waste of my time, and I'm handing you all of it for 30 days. we're growing your followers AND your engagement, because (plot twist!) those are two totally different jobs and nobody tells you that. let's gooo!
         </p>
         <div className="gwj-hero-cta-wrap">
           <button className="btn gwj-hero-btn btn-shadow-c2" onClick={() => onCta(phase)}>
@@ -134,7 +134,7 @@ function ChallengeHero({ phase, onCta }) {
 // ============================================================
 function ChallengeProofBar() {
   const stats = [
-    { num: '481K',  label: 'followers' },
+    { num: '500K',  label: 'followers' },
     { num: '10M',   label: 'monthly views' },
     { num: '2.96M', label: 'views on one reel' },
     { num: '+57K',  label: 'followers from a single post' },
@@ -167,7 +167,10 @@ function WhyNow() {
           why now? honestly, because the internet is shifting and I need you to see it!
         </h2>
         <p className="gwj-prose">
-          google search is shrinking. people are not googling "easy high protein dinner" the way they used to, they're scrolling, they're searching inside the apps, they're finding their next favorite creator on instagram. which means the food creators who figure social out RIGHT NOW are the ones who win the next few years. this is not me being dramatic (okay maybe a little, it's me) but the window where you can still grow fast is wide open and I want you standing in it. that is the entire reason I built this thing!
+          here's what's actually happening: google is now putting AI-generated recipe summaries right at the top of search results. people get the answer without ever clicking through to your website. studies are showing AI Overviews cutting organic clicks to blogs by nearly 40%. food bloggers — real ones, named ones — are reporting 30 to 80% drops in traffic. raptive, which runs ads for thousands of food creators, called it a potential $2 billion hit to the industry. this is not a blip!
+        </p>
+        <p className="gwj-prose" style={{ marginTop: 20 }}>
+          the way people discover food content is shifting — from "google it" to "scroll for it." nearly half of people now use instagram and tiktok as their search engine. which means the food creators who build a real social presence RIGHT NOW are the ones who win the next few years. the window is wide open and I want you standing in it. that is the entire reason I built this thing!
         </p>
       </div>
     </section>
@@ -195,7 +198,7 @@ function HowItWorks() {
       color: 'var(--c4)',
       num: 'days 3–30',
       title: 'a drop almost every day!',
-      body: "one idea, one real post of mine with the real numbers attached, and one tiny dare to go actually DO it. plus rest days built in, because burnout is real and I am not a monster.",
+      body: "one idea, one real post of mine with the real numbers attached, and one tiny dare to go actually DO it. rest days are built in too — and they're not empty days. they're things like a study day to find accounts you genuinely love, an engagement day to go comment on creators who inspire you, or just getting outside somewhere that fills your creative tank back up. the kind of days that make your posting days better.",
     },
   ];
 
@@ -283,7 +286,7 @@ function WhoMikaIs() {
           <h2 className="display gwj-section-headline">okay but who even am I!</h2>
           <p className="gwj-prose">
             I'm Mika! engineer turned food creator, NASM certified nutrition coach, and the person behind{' '}
-            <span className="mono">@_joytothefood_</span>. I grew it from 1,001 to 481K in 24 months and I did it the boring, honest way: I posted, I studied what worked, I did more of that. there is no secret. one of my reels added 57,000 followers in a few days and I can show you EXACTLY why it worked — and I'll also show you the ones that flopped, because that is the part everyone conveniently leaves out! receipts over theory, every single time.
+            <span className="mono">@_joytothefood_</span>. I grew it from 1,001 to 500K in 24 months and I did it the boring, honest way: I posted, I studied what worked, I did more of that. there is no secret. one of my reels added 57,000 followers in a few days and I can show you EXACTLY why it worked — and I'll also show you the ones that flopped, because that is the part everyone conveniently leaves out! receipts over theory, every single time.
           </p>
           <div className="gwj-heard-on">
             <span className="mono gwj-heard-label">as heard on</span>
