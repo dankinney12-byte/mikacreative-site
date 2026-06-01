@@ -58,12 +58,12 @@
   letter-spacing: 0.02em;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: 3px 3px 0 var(--c2);
   transition: transform 0.15s, box-shadow 0.15s;
 }
 .gwj-bar-cta:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 5px 5px 0 var(--c2);
 }
 .gwj-countdown {
   font-family: 'DM Mono', ui-monospace, monospace;
