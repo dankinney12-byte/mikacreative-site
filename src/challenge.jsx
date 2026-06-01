@@ -105,9 +105,7 @@ function ChallengeHero({ phase, onCta }) {
           30 days. one challenge. your instagram finally working <em>for</em> you instead of the other way around!
         </p>
         <p className="gwj-hero-body">
-          okay here's the deal! I grew{' '}
-          <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
-          from 1,001 to 500,000 followers in two years. in THIS algorithm! in a saturated niche! with a two-person team! not back in 2016 when instagram was easy, like, right now. and listen, I'm not a guru and I do not have secret hacks, I promise you they don't exist! what I have is receipts. I pulled the actual data on what grew my account and what was a complete waste of my time, and I'm handing you all of it for 30 days. we're growing your followers AND your engagement, because (plot twist!) those are two totally different jobs and nobody tells you that. let's gooo!
+          okay here's the deal! I pulled the actual data on what grew my account and what was a complete waste of my time, and I'm handing you all of it for 30 days. the twist? we're growing your followers AND your engagement at the same time — because those are two totally different jobs done by totally different types of posts, and almost nobody tells you that. let's gooo!
         </p>
         <div className="gwj-hero-cta-wrap">
           <button className="btn gwj-hero-btn btn-shadow-c2" onClick={() => onCta(phase)}>
@@ -198,7 +196,7 @@ function HowItWorks() {
       color: 'var(--c4)',
       num: 'days 3–30',
       title: 'a drop almost every day!',
-      body: "one idea, one real post of mine with the real numbers attached, and one tiny dare to go actually DO it. rest days are built in too — and they're not empty days. they're things like a study day to find accounts you genuinely love, an engagement day to go comment on creators who inspire you, or just getting outside somewhere that fills your creative tank back up. the kind of days that make your posting days better.",
+      body: "one idea, one real post of mine with the real numbers attached, and one tiny dare to go actually DO it. rest days are built in too, so you can take a break from posting to do lighter tasks that still impact your account. because growing should be fun, not a grind that will burn you out!",
     },
   ];
 
@@ -297,8 +295,8 @@ function WhoMikaIs() {
           </div>
         </div>
         <div className="gwj-who-photo">
-          <div className="gwj-photo-placeholder">
-            <span className="mono" style={{ fontSize: 11, color: 'var(--ink-soft)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>photo of mika</span>
+          <div className="photo has-image gwj-who-img-wrap">
+            <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
           </div>
         </div>
       </div>

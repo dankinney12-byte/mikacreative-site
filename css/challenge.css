@@ -257,16 +257,14 @@
 .gwj-who-photo {
   width: 100%;
 }
-.gwj-photo-placeholder {
+.gwj-who-img-wrap {
   width: 100%;
   aspect-ratio: 3/4;
   max-width: 360px;
-  background: var(--bg);
-  border: 2px dashed var(--ink-soft);
   border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -274,7 +272,7 @@
     grid-template-columns: 1fr 340px;
     align-items: start;
   }
-  .gwj-photo-placeholder {
+  .gwj-who-img-wrap {
     max-width: 100%;
   }
 }
