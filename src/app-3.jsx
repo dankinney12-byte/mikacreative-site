@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
 const { useState, useEffect } = React;
 
 const PALETTES = {
@@ -14,9 +14,11 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 
 function App() {
-  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [tweaks, setTweak]         = useTweaks(TWEAK_DEFAULTS);
   const [bookingService, setBookingService] = useState(null);
   const [detailsService, setDetailsService] = useState(null);
+  const [waitlistOpen, setWaitlistOpen]     = useState(false);
+  const phase = usePhase();
 
   useEffect(() => {
     const p = PALETTES[tweaks.palette] || PALETTES.Confetti;
@@ -31,22 +33,53 @@ function App() {
     root.style.setProperty('--ink', p.ink);
   }, [tweaks.palette]);
 
-  const Hero = tweaks.hero === 'ImageGrid' ? HeroImageGrid : HeroBigType;
+  // Single CTA handler — open Kit Commerce in open phase, else waitlist modal
+  function handleCta(ph) {
+    if (ph === 'open') {
+      window.location.href = LAUNCH.kitCommerceUrl;
+    } else {
+      setWaitlistOpen(true);
+    }
+  }
 
   return (
     <>
+      {/* ── Challenge launch page ── */}
+      <AnnouncementBar phase={phase} onCta={() => handleCta(phase)} />
       <Nav />
-      <Hero onBook={setBookingService} />
-      <ProofBar />
-      <Strip />
-      <Services
-        onBook={setBookingService}
-        onSeeDetails={setDetailsService}
-      />
+      <ChallengeHero phase={phase} onCta={handleCta} />
+      <ChallengeProofBar />
+      <WhyNow />
+      <HowItWorks />
+      <WeekArc />
+      <WhoMikaIs />
+      <ForNotFor />
+      <ValueStack phase={phase} onCta={handleCta} />
+      <Timeline />
+      <FAQ />
+      <ChallengeCTA phase={phase} onCta={handleCta} />
+
+      {/* ── Existing services, relocated below the challenge ── */}
+      <div className="gwj-services-bridge">
+        <div className="container">
+          <p className="gwj-bridge-text">
+            already established and want me 1:1? I've got you over here too →
+          </p>
+        </div>
+      </div>
+      <Services onBook={setBookingService} onSeeDetails={setDetailsService} />
       <About />
       <Testimonials />
       <Speaking />
       <ContactCTA onBook={setBookingService} />
+
+      {/* ── Modals ── */}
+      <WaitlistModal
+        open={waitlistOpen}
+        onClose={() => setWaitlistOpen(false)}
+        phase={phase}
+      />
+
       {bookingService && bookingService.id === 'mastermind' && (
         <MastermindModal
           service={bookingService}
@@ -59,7 +92,6 @@ function App() {
           onClose={() => setBookingService(null)}
         />
       )}
-
       {detailsService && detailsService.id === 'mastermind' && (
         <MastermindDetailsModal
           service={detailsService}
@@ -81,13 +113,6 @@ function App() {
             value={tweaks.palette}
             options={['Confetti', 'Citrus', 'Berry', 'Sunset']}
             onChange={(v) => setTweak('palette', v)}
-          />
-        </TweakSection>
-        <TweakSection title="Hero layout">
-          <TweakRadio
-            value={tweaks.hero}
-            options={['BigType', 'ImageGrid']}
-            onChange={(v) => setTweak('hero', v)}
           />
         </TweakSection>
       </TweaksPanel>
