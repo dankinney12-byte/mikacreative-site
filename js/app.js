@@ -194,7 +194,7 @@ function ChallengeHero({
     }
   }, "joy.")), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-subhead"
-  }, "30 days. one challenge. your instagram finally working ", /*#__PURE__*/React.createElement("em", null, "for"), " you instead of the other way around!"), /*#__PURE__*/React.createElement("div", {
+  }, "30 days. One challenge. Your Instagram finally working ", /*#__PURE__*/React.createElement("em", null, "for"), " you instead of the other way around!"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-photo gwj-hero-photo-inline"
   }, /*#__PURE__*/React.createElement("img", {
     src: "images/mika-headshot.jpg",
@@ -203,23 +203,23 @@ function ChallengeHero({
     loading: "lazy"
   })), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-body"
-  }, "hi, I'm Mika! I grew", ' ', /*#__PURE__*/React.createElement("span", {
+  }, "Hi, I'm Mika! I grew", ' ', /*#__PURE__*/React.createElement("span", {
     className: "mono",
     style: {
       fontSize: '0.88em'
     }
-  }, "@_joytothefood_"), ' ', "from 1,001 to 500K followers in two years, in this exact algorithm, with a two-person team. so here's the deal: I pulled the actual data on what grew my account and what was a total waste of my time, and I'm handing you all of it for 30 days. the twist? we're growing your followers AND your engagement at the same time, because those are two totally different jobs done by totally different types of posts, and almost nobody tells you that. let's gooo!"), /*#__PURE__*/React.createElement("p", {
+  }, "@_joytothefood_"), ' ', "from 1,001 to 500K followers in two years, in this exact algorithm, with a two-person team. So here's the deal: I pulled the actual data on what grew my account and what was a total waste of my time, and I'm handing you all of it for 30 days. The twist? Most recipe videos earn saves and maybe even go viral, but they don't actually earn you followers. I'll show you how to make the videos that DO, the ones that make people feel so seen they have no choice but to follow you. Let's gooo!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-outcome"
-  }, "by day 30 you'll have a posting system you actually understand and a feed that's finally moving."), /*#__PURE__*/React.createElement("div", {
+  }, "By day 30 you'll have a posting system you actually understand and a feed that's finally moving."), /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-cta-wrap"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn gwj-hero-btn btn-shadow-c2",
     onClick: () => onCta(phase)
   }, ctaLabel), phase === 'waitlist' && /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-microcopy"
-  }, "be first through the door when enrollment opens june 15! no spam, just updates."), phase === 'open' && /*#__PURE__*/React.createElement("p", {
+  }, "Be first through the door when enrollment opens June 15! No spam, just updates."), phase === 'open' && /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-microcopy"
-  }, "doors close june 30 \xB7 ", /*#__PURE__*/React.createElement(Countdown, {
+  }, "Doors close June 30 \xB7 ", /*#__PURE__*/React.createElement(Countdown, {
     target: LAUNCH.enrollCloses
   })))), /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-photo gwj-hero-photo-side"
@@ -242,10 +242,10 @@ function ChallengeProofBar() {
     num: '10M',
     label: 'monthly views'
   }, {
-    num: '2.96M',
-    label: 'views on one reel'
+    num: '38M',
+    label: 'views from one reel'
   }, {
-    num: '+57K',
+    num: '157K+',
     label: 'followers from a single post'
   }];
   const colors = ['var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)'];
@@ -336,14 +336,14 @@ function WhyNow() {
     className: "container gwj-why-inner"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "display gwj-section-headline"
-  }, "why now? honestly, because the internet is shifting and I need you to see it!"), /*#__PURE__*/React.createElement("p", {
+  }, "why now? honestly, because the internet is shifting and so is how people search!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-prose"
-  }, "here's what's actually happening. google is putting AI-generated answers right at the top of search now, which means people get what they came for without ever clicking through to your website. recipe sites are some of the hardest hit, and a lot of food bloggers have watched their search traffic fall off a cliff this past year. it's real, it's happening, and it is not a blip!"), /*#__PURE__*/React.createElement("p", {
+  }, "Here's what's actually happening. Google is putting AI-generated answers right at the top of search now, which means people get what they came for without ever clicking through to your website. Recipe sites are some of the hardest hit, and a lot of food bloggers have watched their search traffic fall off a cliff this past year. It's real, it's happening, and it is not a blip!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-prose",
     style: {
       marginTop: 20
     }
-  }, "and here's the other half of it. the way people find food is shifting from \"google it\" to \"scroll for it.\" a huge chunk of younger people now open tiktok or instagram to find their next recipe or favorite creator instead of google. which means the food creators who build a real presence on social RIGHT NOW win the next few years. the window is wide open and I want you standing in it. that is the entire reason I built this thing!")));
+  }, "The way people find food is shifting. Fewer and fewer people google recipes anymore, now they open up TikTok, Facebook, or (you guessed it) Instagram! And they're not searching a webpage, they're scrolling for a person to trust. So this is the moment to build an actual brand: a face, a point of view, tested recipes people choose to follow and come back to. Here's the part I need you to believe: anyone with a phone and a little sunlight can make content that reaches millions of people. I'm not special, I promise. I just paid attention to how people really search now, and I refused to quit. You can absolutely do this too!")));
 }
 
 // ============================================================
@@ -354,17 +354,17 @@ function HowItWorks() {
     color: 'var(--c1)',
     num: 'day 1',
     title: 'we go LIVE!',
-    body: "a 2-hour workshop, just me walking you through my entire framework, the one I taught at a conference people paid $2,500 to attend. (yes I will be talking with my hands the whole time.)"
+    body: "A 2-hour workshop (don't worry, a replay will be available!) of me walking you through my entire framework, the one that's working RIGHT NOW. It's the same framework I've taught at conferences, except now you get it from the comfort of your own home! (Yes, I will be talking with my hands the whole time.)"
   }, {
     color: 'var(--c3)',
     num: 'day 2',
     title: 'the masterclass!',
-    body: "the deep-dive you can rewatch as many times as you need. zero judgment."
+    body: "The deep-dive you can rewatch as many times as you need. Zero judgment."
   }, {
     color: 'var(--c4)',
     num: 'days 3–30',
-    title: 'a drop almost every day!',
-    body: "one idea, one real post of mine with the real numbers attached, and one tiny dare to go actually DO it. rest days are built in too, so you can take a break from posting to do lighter tasks that still impact your account. because growing should be fun, not a grind that will burn you out!"
+    title: 'daily drops!',
+    body: "One idea, one real post of mine with the real numbers attached, and one tiny dare to go actually DO it. Rest days are built in too, so you can take a break from posting to do lighter tasks that still move your account forward. Because growing should be fun, not a grind that burns you out!"
   }];
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-section gwj-section-alt"
@@ -391,9 +391,9 @@ function HowItWorks() {
     className: "display gwj-how-title"
   }, c.title), /*#__PURE__*/React.createElement("p", {
     className: "gwj-how-body"
-  }, c.body)))), /*#__PURE__*/React.createElement("p", {
+  }, c.body)))), /*#__PURE__*/React.createElement("div", {
     className: "gwj-dual-goal"
-  }, "and the whole time we're working two goals at once, growing your audience AND your engagement, because those are different jobs done by different posts and I'm going to show you exactly which is which!")));
+  }, /*#__PURE__*/React.createElement("p", null, "Here's the thing almost nobody tells you: a gorgeous recipe video full of hands and pans will get saves and maybe even go viral, but it won't necessarily get you followers. People save it and move on, they don't need to follow you. The videos that actually grow your following are the ones where you show up as a real person, name your audience's pain point out loud, and make them feel so seen they have no choice but to hit follow. That's the psychology of recipe content, and it's exactly what I'm going to teach you (unless your recipe is so wild or so viral that it does the work for you, but we can't count on that)."), /*#__PURE__*/React.createElement("p", null, "And we'll do all of it without burning you out. I'll show you how to turn one piece of content into many, and how to double down on what's already working so you're not stuck in the constant-planning hamster wheel. We'll bust you out of 200-view jail with hooks that actually land, and get you showing up as a real person with real opinions, real thoughts, and real tested recipes, in a world absolutely drowning in AI slop."))));
 }
 
 // ============================================================
@@ -404,22 +404,22 @@ function WeekArc() {
     color: 'var(--c2)',
     week: 'week 1',
     title: 'your feed is a house!',
-    body: "the framework everything hangs on, who you even are online, how to stack your hooks, and my first very honest \"okay don't do what I did.\""
+    body: "The framework everything hangs on, who you even are online, and how to stack your hooks. I don't always get these right even now, but we gotta keep trying!! That's the difference between growing and staying stuck in the same place, and when we hit the framework dead on, everything clicks!"
   }, {
     color: 'var(--c1)',
     week: 'week 2',
     title: 'the recipe reels!',
-    body: "how to actually build one, when to lead with the pretty shot vs jump into the chaos, captions that buy you watch time, and the comment funnel."
+    body: "How to actually build one, when to lead with the pretty shot vs jump into the chaos, captions that buy you watch time, and the comment funnel."
   }, {
     color: 'var(--c5)',
     week: 'week 3',
     title: 'the personality stuff!',
-    body: "the posts that turn followers into actual fans. your opinions, your POV, your weird little life. the room everybody skips."
+    body: "The posts that turn followers into actual fans. Your opinions, your POV, your weird little life. The absolute most important content for recipe creators, and the part most people skip."
   }, {
     color: 'var(--c3)',
     week: 'week 4',
     title: 'carousels + graduation!',
-    body: "the formats that quietly grow you, how to turn one winner into ten, and sending you off with a plan you'll actually keep."
+    body: "The quiet power of carousels, how to turn one winner into ten, and the reps and repetition that make all of this finally stick. You won't nail it right away, and that's normal! The more reps you get, the more you just do the dang thing, the faster you learn. Honest to god, almost everyone I work with tells me the same thing: it started to click after about a month of making content like this."
   }];
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-section"
@@ -468,9 +468,9 @@ function WhoMikaIs() {
     className: "display gwj-section-headline"
   }, "okay but who even am I!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-prose"
-  }, "I'm Mika! engineer turned food creator, NASM certified nutrition coach, and the person behind", ' ', /*#__PURE__*/React.createElement("span", {
+  }, "I'm Mika! Engineer turned food creator, NASM certified nutrition coach, and the person behind", ' ', /*#__PURE__*/React.createElement("span", {
     className: "mono"
-  }, "@_joytothefood_"), ". I grew it from 1,001 to 500K in 24 months and I did it the boring, honest way: I posted, I studied what worked, I did more of that. there is no secret. one of my reels added 57,000 followers in a few days and I can show you EXACTLY why it worked, and I'll also show you the ones that flopped, because that is the part everyone conveniently leaves out! receipts over theory, every single time."), /*#__PURE__*/React.createElement("div", {
+  }, "@_joytothefood_"), ". Here's what I believe: the energy you put out is the energy you get back. You have to make content you're genuinely proud of, while still being able to look at it critically. Quality over quantity, every single day of the week. I grew this account the boring, honest way. I posted, I studied (I know, not fun!) what worked, and I did more of that. I'm not special, I'm just delusionally optimistic and I refuse to quit. And I'll happily show you the posts that flopped too, because the fastest to fall is the fastest to learn, my favorite saying!! Receipts over theory, every single time."), /*#__PURE__*/React.createElement("div", {
     className: "gwj-heard-on"
   }, /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-heard-label"
@@ -496,8 +496,8 @@ function WhoMikaIs() {
 // FOR / NOT FOR
 // ============================================================
 function ForNotFor() {
-  const forItems = ["you're a food creator (or you want to be!)", "you're already posting and it's just not working", "you're sick of advice that doesn't fit the algorithm that exists right now", "you want an actual plan, not vibes"];
-  const notItems = ["you want a magic go-viral button (not real, won't pretend!)", "you're not willing to actually post during the 30 days. it's a CHALLENGE, you gotta play!"];
+  const forItems = ["You're a food creator (or you want to be!)", "You're already posting and it's just not working", "You're sick of advice that doesn't fit the algorithm that exists right now", "You've tried other coaches or courses and they just weren't right, because the food space is its own animal", "You want an actual plan, not vibes"];
+  const notItems = ["You want a magic go-viral button (I wish there was, but the only magic is you 🫶)", "You're not willing to actually post during the 30 days. It's a CHALLENGE, you gotta play!"];
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-section"
   }, /*#__PURE__*/React.createElement("div", {
@@ -657,7 +657,7 @@ function ValueStack({
     className: "gwj-price-reveal"
   }, /*#__PURE__*/React.createElement("p", {
     className: "gwj-price-outcome"
-  }, "by day 30 you'll have a posting system you actually understand and a feed that's finally moving. all of this gets you there:"), /*#__PURE__*/React.createElement("div", {
+  }, "By day 30 you'll have a posting system you actually understand and a feed that's finally moving. All of this gets you there:"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-price-compare"
   }, /*#__PURE__*/React.createElement("span", {
     className: "display gwj-price-was"
@@ -665,9 +665,9 @@ function ValueStack({
     className: "display gwj-price-amount"
   }, "$249")), /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-price-savings"
-  }, "that's $2,307 off"), /*#__PURE__*/React.createElement("p", {
+  }, "that's over 90% off"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-price-note"
-  }, "that's the whole thing, all of it, for less than a single one of my 1:1 audits!"), /*#__PURE__*/React.createElement("button", {
+  }, "That's the whole thing, all of it, for less than a single one of my 1:1 audits!"), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-shadow-c2 gwj-stack-cta",
     onClick: () => onCta(phase)
   }, ctaLabel))));
@@ -732,26 +732,26 @@ function Timeline() {
 function FAQ() {
   const [openIdx, setOpenIdx] = useState(null);
   const faqs = [{
-    q: "when does it start?",
-    a: "july 1! mark your calendar!"
+    q: "When does it start?",
+    a: "July 1! Mark your calendar!"
   }, {
-    q: "how long is it?",
+    q: "How long is it?",
     a: "30 days!"
   }, {
-    q: "what if I fall behind?",
-    a: "there are rest days built in and everything lives in your inbox to come back to. no shame ever."
+    q: "What if I fall behind?",
+    a: "There are rest days built in and everything lives in your inbox to come back to. No shame ever."
   }, {
-    q: "is this for total beginners or people who already have an account?",
-    a: "both! I'll tell you which parts to nail first depending on where you're at."
+    q: "Is this for total beginners or people who already have an account?",
+    a: "Both! I'll tell you which parts to nail first depending on where you're at."
   }, {
-    q: "how is it delivered?",
-    a: "day 1 is live (and recorded if you can't make it!), day 2 is a masterclass, and days 3–30 land right in your email."
+    q: "How is it delivered?",
+    a: "Day 1 is live (and recorded if you can't make it!), day 2 is a masterclass, and days 3–30 land right in your email."
   }, {
-    q: "do I have to post every single day?",
-    a: "nope! but the more you actually do the dares, the more this works. that's just the honest truth."
+    q: "Do I have to post every single day?",
+    a: "Nope! But the more you actually do the dares, the more this works. That's just the honest truth."
   }, {
-    q: "what if I can't make the live workshop?",
-    a: "it's recorded, you're completely covered."
+    q: "What if I can't make the live workshop?",
+    a: "It's recorded, you're completely covered."
   }];
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-section gwj-section-alt"
@@ -799,7 +799,7 @@ function ChallengeCTA({
     }
   }, "joy!")), /*#__PURE__*/React.createElement("p", {
     className: "gwj-final-sub"
-  }, "30 days. real data. your instagram finally working for you."), /*#__PURE__*/React.createElement("button", {
+  }, "30 days. Real data. Your Instagram finally working for you."), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-shadow-c2 gwj-final-btn",
     onClick: () => onCta(phase)
   }, ctaLabel), target && /*#__PURE__*/React.createElement("p", {
