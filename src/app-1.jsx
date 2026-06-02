@@ -214,7 +214,7 @@ const SERVICES = [
     badge: '1 trial spot left',
     badgeLines: ['1 trial', 'spot left'],
     shadowClass: 'btn-shadow-c3',
-    blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
+    blurb: "I go through your entire Instagram like I'd go through my own, looking at hooks, content strategy, monetization gaps, and profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
     bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '1 week delivery'],
     cta: 'Book your audit',
     details: {
@@ -228,10 +228,10 @@ const SERVICES = [
       ],
       prep: {
         title: 'what you\'ll do',
-        intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
+        intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake, the more context I have, the sharper the audit.',
         items: [
           'Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)',
-          'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email',
+          'Export your Meta Business Suite data (last 90 days), full instructions in your welcome email',
           'Take a handful of Instagram Insights screenshots from the app',
           'Drop 5 reels that underperformed that you were expecting to do well.',
         ],
@@ -272,10 +272,10 @@ const SERVICES = [
       ],
       prep: {
         title: 'what you\'ll do',
-        intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
+        intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake, the more context I have, the sharper the audit.',
         items: [
           'Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)',
-          'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email',
+          'Export your Meta Business Suite data (last 90 days), full instructions in your welcome email',
           'Take a handful of Instagram Insights screenshots from the app',
           'Drop 5 reels that underperformed that you were expecting to do well.',
         ],
@@ -303,7 +303,7 @@ const SERVICES = [
     price: '$1,000',
     sub: 'standalone',
     comingSoon: true,
-    blurb: "One full day of direct access via Voxer or WhatsApp. Film, send, get feedback — in real time.",
+    blurb: "One full day of direct access via Voxer or WhatsApp. Film, send, get feedback, in real time.",
     bullets: ['8 hrs of Voxer/WhatsApp', 'Real-time content feedback', 'Hook + caption rewrites', 'Lighting & shot review'],
     cta: 'Grab your day',
   },
@@ -479,7 +479,7 @@ function Services({ onBook, onSeeDetails }) {
               find your <span style={{ color: 'var(--c1)' }}>fit.</span>
             </h2>
             <p className="services-sub">
-              The Jam Session is the ongoing room — monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.
+              The Jam Session is the ongoing room, with monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.
             </p>
           </div>
         </div>
@@ -667,7 +667,7 @@ function Testimonials() {
 
         <div className="testimonials-note">
           <span style={{ fontFamily: 'var(--mono)', letterSpacing: '0.12em', textTransform: 'uppercase', fontSize: 11, opacity: 0.7 }}>
-            More to come — first audits are wrapping now.
+            More to come, first audits are wrapping now.
           </span>
         </div>
       </div>
@@ -814,17 +814,17 @@ function ContactCTA({ onBook }) {
           let's <span style={{ color: 'var(--c3)' }}>fix that.</span>
         </h2>
         <p className="contact-cta-sub">
-          Join The Jam Session for ongoing strategy, community, and a room that gets it. Or start with a one-time audit — a written plan and recorded walkthrough delivered in about a week, with zero guesswork.
+          Join The Jam Session for ongoing strategy, community, and a room that gets it. Or start with a one-time audit, a written plan and recorded walkthrough delivered in about a week, with zero guesswork.
         </p>
         <div className="contact-cta-btns">
           <button className="btn contact-cta-btn" onClick={() => onBook && onBook(mastermind)} style={{ background: 'var(--c3)' }}>
-            ✦ Apply for The Jam Session — $249/mo
+            ✦ Apply for The Jam Session · $249/mo
           </button>
           <button className="btn alt contact-cta-btn" onClick={() => onBook && onBook(audit)}>
-            Book The Audit — $475 (trial price)
+            Book The Audit · $475 (trial price)
           </button>
           <button className="btn contact-cta-btn" onClick={() => onBook && onBook(auditPlus)} style={{ background: 'var(--c4)' }}>
-            Book Audit + Reviews — $550 (trial price)
+            Book Audit + Reviews · $550 (trial price)
           </button>
         </div>
         <a href="mailto:mika@joytothefood.com" className="link" style={{

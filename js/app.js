@@ -158,7 +158,7 @@ function AnnouncementBar({
     className: "gwj-bar-count"
   }, /*#__PURE__*/React.createElement("span", {
     className: "gwj-bar-dash"
-  }, "\u2014 "), /*#__PURE__*/React.createElement(Countdown, {
+  }, "\xB7 "), /*#__PURE__*/React.createElement(Countdown, {
     target: cfg.target
   })), /*#__PURE__*/React.createElement("button", {
     className: "gwj-bar-cta",
@@ -175,13 +175,15 @@ function ChallengeHero({
 }) {
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open: 'enroll now — $249 →',
+    open: 'enroll now ($249) →',
     closed: 'join the list for round two →'
   }[phase];
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-hero"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "container gwj-hero-inner"
+    className: "container gwj-hero-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-hero-text"
   }, /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-hero-eyebrow"
   }, "a 30-day instagram challenge for food creators"), /*#__PURE__*/React.createElement("h1", {
@@ -192,9 +194,23 @@ function ChallengeHero({
     }
   }, "joy.")), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-subhead"
-  }, "30 days. one challenge. your instagram finally working ", /*#__PURE__*/React.createElement("em", null, "for"), " you instead of the other way around!"), /*#__PURE__*/React.createElement("p", {
+  }, "30 days. one challenge. your instagram finally working ", /*#__PURE__*/React.createElement("em", null, "for"), " you instead of the other way around!"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-hero-photo gwj-hero-photo-inline"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "images/mika-headshot.jpg",
+    alt: "Mika Kinney",
+    className: "photo-img",
+    loading: "lazy"
+  })), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-body"
-  }, "okay here's the deal! I pulled the actual data on what grew my account and what was a complete waste of my time, and I'm handing you all of it for 30 days. the twist? we're growing your followers AND your engagement at the same time \u2014 because those are two totally different jobs done by totally different types of posts, and almost nobody tells you that. let's gooo!"), /*#__PURE__*/React.createElement("div", {
+  }, "hi, I'm Mika! I grew", ' ', /*#__PURE__*/React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: '0.88em'
+    }
+  }, "@_joytothefood_"), ' ', "from 1,001 to 500K followers in two years, in this exact algorithm, with a two-person team. so here's the deal: I pulled the actual data on what grew my account and what was a total waste of my time, and I'm handing you all of it for 30 days. the twist? we're growing your followers AND your engagement at the same time, because those are two totally different jobs done by totally different types of posts, and almost nobody tells you that. let's gooo!"), /*#__PURE__*/React.createElement("p", {
+    className: "gwj-hero-outcome"
+  }, "by day 30 you'll have a posting system you actually understand and a feed that's finally moving."), /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-cta-wrap"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn gwj-hero-btn btn-shadow-c2",
@@ -203,9 +219,16 @@ function ChallengeHero({
     className: "gwj-hero-microcopy"
   }, "be first through the door when enrollment opens june 15! no spam, just updates."), phase === 'open' && /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-microcopy"
-  }, "doors close june 30 \u2014 ", /*#__PURE__*/React.createElement(Countdown, {
+  }, "doors close june 30 \xB7 ", /*#__PURE__*/React.createElement(Countdown, {
     target: LAUNCH.enrollCloses
-  })))));
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-hero-photo gwj-hero-photo-side"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "images/mika-headshot.jpg",
+    alt: "Mika Kinney",
+    className: "photo-img",
+    loading: "lazy"
+  }))));
 }
 
 // ============================================================
@@ -246,6 +269,64 @@ function ChallengeProofBar() {
 }
 
 // ============================================================
+// REEL PROOF — three reels with follower-jump overlays
+// Screenshots supplied by Dan: images/2k_10k.png, etc.
+// ============================================================
+function ReelProof() {
+  const reels = [{
+    img: 'images/2k_10k.png',
+    from: '2K',
+    to: '10K',
+    accent: 'var(--c1)'
+  }, {
+    img: 'images/15k_100k.png',
+    from: '15K',
+    to: '100K',
+    accent: 'var(--c4)'
+  }, {
+    img: 'images/150k_250k.png',
+    from: '150K',
+    to: '250K',
+    accent: 'var(--c5)'
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section gwj-reels"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow",
+    style: {
+      justifyContent: 'flex-start'
+    }
+  }, "receipts, not theory"), /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline"
+  }, "the reels that built this!"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-reels-grid"
+  }, reels.map((r, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "gwj-reel-card"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: r.img,
+    alt: `a reel that grew the account from ${r.from} to ${r.to} followers`,
+    className: "gwj-reel-img",
+    loading: "lazy"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-reel-overlay",
+    style: {
+      background: r.accent
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-reel-from"
+  }, r.from), /*#__PURE__*/React.createElement("span", {
+    className: "gwj-reel-arrow"
+  }, "\u2192"), /*#__PURE__*/React.createElement("span", {
+    className: "gwj-reel-to"
+  }, r.to), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-reel-label"
+  }, "followers")))))));
+}
+
+// ============================================================
 // WHY NOW
 // ============================================================
 function WhyNow() {
@@ -257,12 +338,12 @@ function WhyNow() {
     className: "display gwj-section-headline"
   }, "why now? honestly, because the internet is shifting and I need you to see it!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-prose"
-  }, "here's what's actually happening: google is now putting AI-generated recipe summaries right at the top of search results. people get the answer without ever clicking through to your website. studies are showing AI Overviews cutting organic clicks to blogs by nearly 40%. food bloggers \u2014 real ones, named ones \u2014 are reporting 30 to 80% drops in traffic. raptive, which runs ads for thousands of food creators, called it a potential $2 billion hit to the industry. this is not a blip!"), /*#__PURE__*/React.createElement("p", {
+  }, "here's what's actually happening. google is putting AI-generated answers right at the top of search now, which means people get what they came for without ever clicking through to your website. recipe sites are some of the hardest hit, and a lot of food bloggers have watched their search traffic fall off a cliff this past year. it's real, it's happening, and it is not a blip!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-prose",
     style: {
       marginTop: 20
     }
-  }, "the way people discover food content is shifting \u2014 from \"google it\" to \"scroll for it.\" nearly half of people now use instagram and tiktok as their search engine. which means the food creators who build a real social presence RIGHT NOW are the ones who win the next few years. the window is wide open and I want you standing in it. that is the entire reason I built this thing!")));
+  }, "and here's the other half of it. the way people find food is shifting from \"google it\" to \"scroll for it.\" a huge chunk of younger people now open tiktok or instagram to find their next recipe or favorite creator instead of google. which means the food creators who build a real presence on social RIGHT NOW win the next few years. the window is wide open and I want you standing in it. that is the entire reason I built this thing!")));
 }
 
 // ============================================================
@@ -273,7 +354,7 @@ function HowItWorks() {
     color: 'var(--c1)',
     num: 'day 1',
     title: 'we go LIVE!',
-    body: "a 2-hour workshop, just me walking you through my entire framework — the one I taught at a conference people paid $2,500 to attend. (yes I will be talking with my hands the whole time.)"
+    body: "a 2-hour workshop, just me walking you through my entire framework, the one I taught at a conference people paid $2,500 to attend. (yes I will be talking with my hands the whole time.)"
   }, {
     color: 'var(--c3)',
     num: 'day 2',
@@ -312,7 +393,7 @@ function HowItWorks() {
     className: "gwj-how-body"
   }, c.body)))), /*#__PURE__*/React.createElement("p", {
     className: "gwj-dual-goal"
-  }, "and the whole time we're working two goals at once \u2014 growing your audience AND your engagement \u2014 because those are different jobs done by different posts and I'm going to show you exactly which is which!")));
+  }, "and the whole time we're working two goals at once, growing your audience AND your engagement, because those are different jobs done by different posts and I'm going to show you exactly which is which!")));
 }
 
 // ============================================================
@@ -389,7 +470,7 @@ function WhoMikaIs() {
     className: "gwj-prose"
   }, "I'm Mika! engineer turned food creator, NASM certified nutrition coach, and the person behind", ' ', /*#__PURE__*/React.createElement("span", {
     className: "mono"
-  }, "@_joytothefood_"), ". I grew it from 1,001 to 500K in 24 months and I did it the boring, honest way: I posted, I studied what worked, I did more of that. there is no secret. one of my reels added 57,000 followers in a few days and I can show you EXACTLY why it worked \u2014 and I'll also show you the ones that flopped, because that is the part everyone conveniently leaves out! receipts over theory, every single time."), /*#__PURE__*/React.createElement("div", {
+  }, "@_joytothefood_"), ". I grew it from 1,001 to 500K in 24 months and I did it the boring, honest way: I posted, I studied what worked, I did more of that. there is no secret. one of my reels added 57,000 followers in a few days and I can show you EXACTLY why it worked, and I'll also show you the ones that flopped, because that is the part everyone conveniently leaves out! receipts over theory, every single time."), /*#__PURE__*/React.createElement("div", {
     className: "gwj-heard-on"
   }, /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-heard-label"
@@ -416,7 +497,7 @@ function WhoMikaIs() {
 // ============================================================
 function ForNotFor() {
   const forItems = ["you're a food creator (or you want to be!)", "you're already posting and it's just not working", "you're sick of advice that doesn't fit the algorithm that exists right now", "you want an actual plan, not vibes"];
-  const notItems = ["you want a magic go-viral button (not real, won't pretend!)", "you're not willing to actually post during the 30 days — it's a CHALLENGE, you gotta play!"];
+  const notItems = ["you want a magic go-viral button (not real, won't pretend!)", "you're not willing to actually post during the 30 days. it's a CHALLENGE, you gotta play!"];
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-section"
   }, /*#__PURE__*/React.createElement("div", {
@@ -455,6 +536,59 @@ function ForNotFor() {
       opacity: 0.3
     }
   }, "\u2717"), item))))));
+}
+
+// ============================================================
+// CHALLENGE TESTIMONIALS — placeholders
+// PLACEHOLDER content: Dan drops 1 to 3 real quotes from audit and
+// mastermind clients. Replace the `testimonials` array entries below.
+// ============================================================
+function ChallengeTestimonials() {
+  const testimonials = [{
+    quote: "Placeholder quote. A real client testimonial drops in here, roughly this length, two or three honest sentences about working with Mika and what actually changed for their account.",
+    name: "Client name",
+    role: "audit client"
+  }, {
+    quote: "Placeholder quote. Another short, genuine note from a mastermind member about the strategy, the community, and the results they saw.",
+    name: "Client name",
+    role: "mastermind member"
+  }, {
+    quote: "Placeholder quote. One more spot ready for a real testimonial whenever it arrives this week.",
+    name: "Client name",
+    role: "audit client"
+  }];
+  const accents = ['var(--c2)', 'var(--c3)', 'var(--c4)'];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section gwj-testimonials"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow",
+    style: {
+      justifyContent: 'center'
+    }
+  }, "what people say"), /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline",
+    style: {
+      textAlign: 'center'
+    }
+  }, "don't just take my word for it!"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-testi-grid"
+  }, testimonials.map((t, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "card gwj-testi-card",
+    style: {
+      background: accents[i]
+    }
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "gwj-testi-quote"
+  }, "\"", t.quote, "\""), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-testi-attr"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-testi-name"
+  }, t.name), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-testi-role"
+  }, t.role)))))));
 }
 
 // ============================================================
@@ -499,7 +633,7 @@ function ValueStack({
   }];
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open: 'enroll now — $249 →',
+    open: 'enroll now ($249) →',
     closed: 'join the list for round two →'
   }[phase];
   return /*#__PURE__*/React.createElement("section", {
@@ -519,23 +653,19 @@ function ValueStack({
     className: "gwj-stack-bonus-chip"
   }, "bonus"), item.label), /*#__PURE__*/React.createElement("span", {
     className: "gwj-stack-value"
-  }, item.value))), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-stack-divider"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-stack-row gwj-stack-total"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "gwj-stack-label"
-  }, "total value"), /*#__PURE__*/React.createElement("span", {
-    className: "gwj-stack-value"
-  }, "$2,556"))), /*#__PURE__*/React.createElement("div", {
+  }, item.value)))), /*#__PURE__*/React.createElement("div", {
     className: "gwj-price-reveal"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "gwj-price-row"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "gwj-price-outcome"
+  }, "by day 30 you'll have a posting system you actually understand and a feed that's finally moving. all of this gets you there:"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-price-compare"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "mono gwj-price-eyebrow"
-  }, "your price"), /*#__PURE__*/React.createElement("span", {
+    className: "display gwj-price-was"
+  }, "$2,556"), /*#__PURE__*/React.createElement("span", {
     className: "display gwj-price-amount"
-  }, "$249.")), /*#__PURE__*/React.createElement("p", {
+  }, "$249")), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-price-savings"
+  }, "that's $2,307 off"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-price-note"
   }, "that's the whole thing, all of it, for less than a single one of my 1:1 audits!"), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-shadow-c2 gwj-stack-cta",
@@ -653,7 +783,7 @@ function ChallengeCTA({
 }) {
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open: 'enroll now — $249 →',
+    open: 'enroll now ($249) →',
     closed: 'join the list for round two →'
   }[phase];
   const target = phase === 'waitlist' ? LAUNCH.enrollOpens : phase === 'open' ? LAUNCH.enrollCloses : null;
@@ -821,7 +951,7 @@ function WaitlistModal({
       margin: '10px 0 0',
       textAlign: 'center'
     }
-  }, "something went wrong \u2014 try again or email", ' ', /*#__PURE__*/React.createElement("a", {
+  }, "something went wrong, try again or email", ' ', /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link"
   }, "mika@joytothefood.com"))))));
@@ -833,11 +963,13 @@ Object.assign(window, {
   AnnouncementBar,
   ChallengeHero,
   ChallengeProofBar,
+  ReelProof,
   WhyNow,
   HowItWorks,
   WeekArc,
   WhoMikaIs,
   ForNotFor,
+  ChallengeTestimonials,
   ValueStack,
   Timeline,
   FAQ,
@@ -1136,7 +1268,7 @@ const SERVICES = [{
   badge: '1 trial spot left',
   badgeLines: ['1 trial', 'spot left'],
   shadowClass: 'btn-shadow-c3',
-  blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
+  blurb: "I go through your entire Instagram like I'd go through my own, looking at hooks, content strategy, monetization gaps, and profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
   bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '1 week delivery'],
   cta: 'Book your audit',
   details: {
@@ -1164,8 +1296,8 @@ const SERVICES = [{
     }],
     prep: {
       title: 'what you\'ll do',
-      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
-      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 reels that underperformed that you were expecting to do well.']
+      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake, the more context I have, the sharper the audit.',
+      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days), full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 reels that underperformed that you were expecting to do well.']
     },
     deliverables: {
       title: 'what you\'ll get',
@@ -1221,8 +1353,8 @@ const SERVICES = [{
     }],
     prep: {
       title: 'what you\'ll do',
-      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
-      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 reels that underperformed that you were expecting to do well.']
+      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake, the more context I have, the sharper the audit.',
+      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days), full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 reels that underperformed that you were expecting to do well.']
     },
     deliverables: {
       title: 'what you\'ll get',
@@ -1251,7 +1383,7 @@ const SERVICES = [{
   price: '$1,000',
   sub: 'standalone',
   comingSoon: true,
-  blurb: "One full day of direct access via Voxer or WhatsApp. Film, send, get feedback — in real time.",
+  blurb: "One full day of direct access via Voxer or WhatsApp. Film, send, get feedback, in real time.",
   bullets: ['8 hrs of Voxer/WhatsApp', 'Real-time content feedback', 'Hook + caption rewrites', 'Lighting & shot review'],
   cta: 'Grab your day'
 }];
@@ -1420,7 +1552,7 @@ function Services({
     }
   }, "fit.")), /*#__PURE__*/React.createElement("p", {
     className: "services-sub"
-  }, "The Jam Session is the ongoing room \u2014 monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it."))), /*#__PURE__*/React.createElement("div", {
+  }, "The Jam Session is the ongoing room, with monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it."))), /*#__PURE__*/React.createElement("div", {
     className: "services-grid-single"
   }, /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'mastermind'),
@@ -1676,7 +1808,7 @@ function Testimonials() {
       fontSize: 11,
       opacity: 0.7
     }
-  }, "More to come \u2014 first audits are wrapping now."))));
+  }, "More to come, first audits are wrapping now."))));
 }
 
 // ============================================================
@@ -1858,7 +1990,7 @@ function ContactCTA({
     }
   }, "fix that.")), /*#__PURE__*/React.createElement("p", {
     className: "contact-cta-sub"
-  }, "Join The Jam Session for ongoing strategy, community, and a room that gets it. Or start with a one-time audit \u2014 a written plan and recorded walkthrough delivered in about a week, with zero guesswork."), /*#__PURE__*/React.createElement("div", {
+  }, "Join The Jam Session for ongoing strategy, community, and a room that gets it. Or start with a one-time audit, a written plan and recorded walkthrough delivered in about a week, with zero guesswork."), /*#__PURE__*/React.createElement("div", {
     className: "contact-cta-btns"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn contact-cta-btn",
@@ -1866,16 +1998,16 @@ function ContactCTA({
     style: {
       background: 'var(--c3)'
     }
-  }, "\u2726 Apply for The Jam Session \u2014 $249/mo"), /*#__PURE__*/React.createElement("button", {
+  }, "\u2726 Apply for The Jam Session \xB7 $249/mo"), /*#__PURE__*/React.createElement("button", {
     className: "btn alt contact-cta-btn",
     onClick: () => onBook && onBook(audit)
-  }, "Book The Audit \u2014 $475 (trial price)"), /*#__PURE__*/React.createElement("button", {
+  }, "Book The Audit \xB7 $475 (trial price)"), /*#__PURE__*/React.createElement("button", {
     className: "btn contact-cta-btn",
     onClick: () => onBook && onBook(auditPlus),
     style: {
       background: 'var(--c4)'
     }
-  }, "Book Audit + Reviews \u2014 $550 (trial price)")), /*#__PURE__*/React.createElement("a", {
+  }, "Book Audit + Reviews \xB7 $550 (trial price)")), /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link",
     style: {
@@ -2243,7 +2375,7 @@ function MastermindModal({
     className: "display booking-aside-title"
   }, service.title), /*#__PURE__*/React.createElement("div", {
     className: "booking-aside-blurb"
-  }, "A small-group mastermind for food and lifestyle creators who are serious about building something real \u2014 and want a room full of people who actually get it."), /*#__PURE__*/React.createElement("div", {
+  }, "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it."), /*#__PURE__*/React.createElement("div", {
     className: "booking-aside-total"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mono booking-aside-total-eyebrow"
@@ -2361,15 +2493,15 @@ function MastermindDetailsModal({
     className: "details-section"
   }, /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Once a month we get on a call together \u2014 your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits."), /*#__PURE__*/React.createElement("p", {
+  }, "Once a month we get on a call together, your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
   }, "Every week you get fresh hook ideas dropped into your Discord channel so you're never starting from scratch on a caption again."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "In between calls, Discord is where it all lives. The community is full of creators at your exact stage \u2014 not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up."), /*#__PURE__*/React.createElement("p", {
+  }, "In between calls, Discord is where it all lives. The community is full of creators at your exact stage, not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
   }, "And I'm in there too. Actually responding."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Once a quarter we bring in a guest speaker \u2014 someone doing something you want to do, who can tell you exactly how they got there.")), /*#__PURE__*/React.createElement("section", {
+  }, "Once a quarter we bring in a guest speaker, someone doing something you want to do, who can tell you exactly how they got there.")), /*#__PURE__*/React.createElement("section", {
     className: "details-section jam-fit-section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "jam-fit-col"
@@ -2377,7 +2509,7 @@ function MastermindDetailsModal({
     className: "mono details-section-eyebrow"
   }, "this is for you if"), /*#__PURE__*/React.createElement("ul", {
     className: "details-list"
-  }, ["You're a food or lifestyle creator who is done piecing together a strategy from random viral tips", "You're not opposed to showing up — on calls, in Discord, in your content — but you want the research and strategy done for you", "You're a \"tell me what to focus on and I'll go do it\" kind of person — but you also want to understand the why behind it", "You're ready to actually commit to figuring this out"].map((it, i) => /*#__PURE__*/React.createElement("li", {
+  }, ["You're a food or lifestyle creator who is done piecing together a strategy from random viral tips", "You're not opposed to showing up (on calls, in Discord, in your content) but you want the research and strategy done for you", "You're a \"tell me what to focus on and I'll go do it\" kind of person, but you also want to understand the why behind it", "You're ready to actually commit to figuring this out"].map((it, i) => /*#__PURE__*/React.createElement("li", {
     key: i,
     className: "details-list-item"
   }, /*#__PURE__*/React.createElement("span", {
@@ -2405,7 +2537,7 @@ function MastermindDetailsModal({
     className: "mono details-section-eyebrow"
   }, "how it works"), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit \u2014 you'll hear back within a few days. If it's a yes, you'll get added at the next opening."), /*#__PURE__*/React.createElement("div", {
+  }, "Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit, so you'll hear back within a few days. If it's a yes, you'll get added at the next opening."), /*#__PURE__*/React.createElement("div", {
     className: "jam-price-block"
   }, /*#__PURE__*/React.createElement("span", {
     className: "display jam-price"
@@ -2432,7 +2564,7 @@ window.MastermindDetailsModal = MastermindDetailsModal;
 
 "use strict";
 
-/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
+/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof, WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor, ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
 var {
   useState,
   useEffect
@@ -2516,7 +2648,7 @@ function App() {
   }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ValueStack, {
+  }), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(ValueStack, {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement(Timeline, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {

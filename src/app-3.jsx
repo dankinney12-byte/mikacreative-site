@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
+/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof, WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor, ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
 const { useState, useEffect } = React;
 
 const PALETTES = {
@@ -49,11 +49,13 @@ function App() {
       <Nav />
       <ChallengeHero phase={phase} onCta={handleCta} />
       <ChallengeProofBar />
+      <ReelProof />
       <WhyNow />
       <HowItWorks />
       <WeekArc />
       <WhoMikaIs />
       <ForNotFor />
+      <ChallengeTestimonials />
       <ValueStack phase={phase} onCta={handleCta} />
       <Timeline />
       <FAQ />

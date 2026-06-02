@@ -79,7 +79,7 @@ function AnnouncementBar({ phase, onCta }) {
       <span className="gwj-bar-msg">{cfg.msg}</span>
       {cfg.target && (
         <span className="gwj-bar-count">
-          <span className="gwj-bar-dash">— </span>
+          <span className="gwj-bar-dash">· </span>
           <Countdown target={cfg.target} />
         </span>
       )}
@@ -96,37 +96,54 @@ function AnnouncementBar({ phase, onCta }) {
 function ChallengeHero({ phase, onCta }) {
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open:     'enroll now — $249 →',
+    open:     'enroll now ($249) →',
     closed:   'join the list for round two →',
   }[phase];
 
   return (
     <section className="gwj-hero">
-      <div className="container gwj-hero-inner">
-        <span className="mono gwj-hero-eyebrow">a 30-day instagram challenge for food creators</span>
-        <h1 className="display gwj-hero-headline">
-          grow with <span style={{ color: 'var(--c1)' }}>joy.</span>
-        </h1>
-        <p className="gwj-hero-subhead">
-          30 days. one challenge. your instagram finally working <em>for</em> you instead of the other way around!
-        </p>
-        <p className="gwj-hero-body">
-          okay here's the deal! I pulled the actual data on what grew my account and what was a complete waste of my time, and I'm handing you all of it for 30 days. the twist? we're growing your followers AND your engagement at the same time — because those are two totally different jobs done by totally different types of posts, and almost nobody tells you that. let's gooo!
-        </p>
-        <div className="gwj-hero-cta-wrap">
-          <button className="btn gwj-hero-btn btn-shadow-c2" onClick={() => onCta(phase)}>
-            {ctaLabel}
-          </button>
-          {phase === 'waitlist' && (
-            <p className="gwj-hero-microcopy">
-              be first through the door when enrollment opens june 15! no spam, just updates.
-            </p>
-          )}
-          {phase === 'open' && (
-            <p className="gwj-hero-microcopy">
-              doors close june 30 — <Countdown target={LAUNCH.enrollCloses} />
-            </p>
-          )}
+      <div className="container gwj-hero-grid">
+        <div className="gwj-hero-text">
+          <span className="mono gwj-hero-eyebrow">a 30-day instagram challenge for food creators</span>
+          <h1 className="display gwj-hero-headline">
+            grow with <span style={{ color: 'var(--c1)' }}>joy.</span>
+          </h1>
+          <p className="gwj-hero-subhead">
+            30 days. one challenge. your instagram finally working <em>for</em> you instead of the other way around!
+          </p>
+
+          {/* photo appears here on mobile, in the right column on desktop */}
+          <div className="gwj-hero-photo gwj-hero-photo-inline">
+            <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
+          </div>
+
+          <p className="gwj-hero-body">
+            hi, I'm Mika! I grew{' '}
+            <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
+            from 1,001 to 500K followers in two years, in this exact algorithm, with a two-person team. so here's the deal: I pulled the actual data on what grew my account and what was a total waste of my time, and I'm handing you all of it for 30 days. the twist? we're growing your followers AND your engagement at the same time, because those are two totally different jobs done by totally different types of posts, and almost nobody tells you that. let's gooo!
+          </p>
+          <p className="gwj-hero-outcome">
+            by day 30 you'll have a posting system you actually understand and a feed that's finally moving.
+          </p>
+          <div className="gwj-hero-cta-wrap">
+            <button className="btn gwj-hero-btn btn-shadow-c2" onClick={() => onCta(phase)}>
+              {ctaLabel}
+            </button>
+            {phase === 'waitlist' && (
+              <p className="gwj-hero-microcopy">
+                be first through the door when enrollment opens june 15! no spam, just updates.
+              </p>
+            )}
+            {phase === 'open' && (
+              <p className="gwj-hero-microcopy">
+                doors close june 30 · <Countdown target={LAUNCH.enrollCloses} />
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="gwj-hero-photo gwj-hero-photo-side">
+          <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
         </div>
       </div>
     </section>
@@ -161,6 +178,44 @@ function ChallengeProofBar() {
 }
 
 // ============================================================
+// REEL PROOF — three reels with follower-jump overlays
+// Screenshots supplied by Dan: images/2k_10k.png, etc.
+// ============================================================
+function ReelProof() {
+  const reels = [
+    { img: 'images/2k_10k.png',    from: '2K',   to: '10K',  accent: 'var(--c1)' },
+    { img: 'images/15k_100k.png',  from: '15K',  to: '100K', accent: 'var(--c4)' },
+    { img: 'images/150k_250k.png', from: '150K', to: '250K', accent: 'var(--c5)' },
+  ];
+  return (
+    <section className="gwj-section gwj-reels">
+      <div className="container">
+        <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>receipts, not theory</span>
+        <h2 className="display gwj-section-headline">the reels that built this!</h2>
+        <div className="gwj-reels-grid">
+          {reels.map((r, i) => (
+            <div key={i} className="gwj-reel-card">
+              <img
+                src={r.img}
+                alt={`a reel that grew the account from ${r.from} to ${r.to} followers`}
+                className="gwj-reel-img"
+                loading="lazy"
+              />
+              <div className="gwj-reel-overlay" style={{ background: r.accent }}>
+                <span className="gwj-reel-from">{r.from}</span>
+                <span className="gwj-reel-arrow">→</span>
+                <span className="gwj-reel-to">{r.to}</span>
+                <span className="mono gwj-reel-label">followers</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // WHY NOW
 // ============================================================
 function WhyNow() {
@@ -171,10 +226,10 @@ function WhyNow() {
           why now? honestly, because the internet is shifting and I need you to see it!
         </h2>
         <p className="gwj-prose">
-          here's what's actually happening: google is now putting AI-generated recipe summaries right at the top of search results. people get the answer without ever clicking through to your website. studies are showing AI Overviews cutting organic clicks to blogs by nearly 40%. food bloggers — real ones, named ones — are reporting 30 to 80% drops in traffic. raptive, which runs ads for thousands of food creators, called it a potential $2 billion hit to the industry. this is not a blip!
+          here's what's actually happening. google is putting AI-generated answers right at the top of search now, which means people get what they came for without ever clicking through to your website. recipe sites are some of the hardest hit, and a lot of food bloggers have watched their search traffic fall off a cliff this past year. it's real, it's happening, and it is not a blip!
         </p>
         <p className="gwj-prose" style={{ marginTop: 20 }}>
-          the way people discover food content is shifting — from "google it" to "scroll for it." nearly half of people now use instagram and tiktok as their search engine. which means the food creators who build a real social presence RIGHT NOW are the ones who win the next few years. the window is wide open and I want you standing in it. that is the entire reason I built this thing!
+          and here's the other half of it. the way people find food is shifting from "google it" to "scroll for it." a huge chunk of younger people now open tiktok or instagram to find their next recipe or favorite creator instead of google. which means the food creators who build a real presence on social RIGHT NOW win the next few years. the window is wide open and I want you standing in it. that is the entire reason I built this thing!
         </p>
       </div>
     </section>
@@ -190,7 +245,7 @@ function HowItWorks() {
       color: 'var(--c1)',
       num: 'day 1',
       title: 'we go LIVE!',
-      body: "a 2-hour workshop, just me walking you through my entire framework — the one I taught at a conference people paid $2,500 to attend. (yes I will be talking with my hands the whole time.)",
+      body: "a 2-hour workshop, just me walking you through my entire framework, the one I taught at a conference people paid $2,500 to attend. (yes I will be talking with my hands the whole time.)",
     },
     {
       color: 'var(--c3)',
@@ -221,7 +276,7 @@ function HowItWorks() {
           ))}
         </div>
         <p className="gwj-dual-goal">
-          and the whole time we're working two goals at once — growing your audience AND your engagement — because those are different jobs done by different posts and I'm going to show you exactly which is which!
+          and the whole time we're working two goals at once, growing your audience AND your engagement, because those are different jobs done by different posts and I'm going to show you exactly which is which!
         </p>
       </div>
     </section>
@@ -290,7 +345,7 @@ function WhoMikaIs() {
           <h2 className="display gwj-section-headline">okay but who even am I!</h2>
           <p className="gwj-prose">
             I'm Mika! engineer turned food creator, NASM certified nutrition coach, and the person behind{' '}
-            <span className="mono">@_joytothefood_</span>. I grew it from 1,001 to 500K in 24 months and I did it the boring, honest way: I posted, I studied what worked, I did more of that. there is no secret. one of my reels added 57,000 followers in a few days and I can show you EXACTLY why it worked — and I'll also show you the ones that flopped, because that is the part everyone conveniently leaves out! receipts over theory, every single time.
+            <span className="mono">@_joytothefood_</span>. I grew it from 1,001 to 500K in 24 months and I did it the boring, honest way: I posted, I studied what worked, I did more of that. there is no secret. one of my reels added 57,000 followers in a few days and I can show you EXACTLY why it worked, and I'll also show you the ones that flopped, because that is the part everyone conveniently leaves out! receipts over theory, every single time.
           </p>
           <div className="gwj-heard-on">
             <span className="mono gwj-heard-label">as heard on</span>
@@ -322,7 +377,7 @@ function ForNotFor() {
   ];
   const notItems = [
     "you want a magic go-viral button (not real, won't pretend!)",
-    "you're not willing to actually post during the 30 days — it's a CHALLENGE, you gotta play!",
+    "you're not willing to actually post during the 30 days. it's a CHALLENGE, you gotta play!",
   ];
 
   return (
@@ -360,6 +415,54 @@ function ForNotFor() {
 }
 
 // ============================================================
+// CHALLENGE TESTIMONIALS — placeholders
+// PLACEHOLDER content: Dan drops 1 to 3 real quotes from audit and
+// mastermind clients. Replace the `testimonials` array entries below.
+// ============================================================
+function ChallengeTestimonials() {
+  const testimonials = [
+    {
+      quote: "Placeholder quote. A real client testimonial drops in here, roughly this length, two or three honest sentences about working with Mika and what actually changed for their account.",
+      name: "Client name",
+      role: "audit client",
+    },
+    {
+      quote: "Placeholder quote. Another short, genuine note from a mastermind member about the strategy, the community, and the results they saw.",
+      name: "Client name",
+      role: "mastermind member",
+    },
+    {
+      quote: "Placeholder quote. One more spot ready for a real testimonial whenever it arrives this week.",
+      name: "Client name",
+      role: "audit client",
+    },
+  ];
+  const accents = ['var(--c2)', 'var(--c3)', 'var(--c4)'];
+
+  return (
+    <section className="gwj-section gwj-testimonials">
+      <div className="container">
+        <span className="eyebrow" style={{ justifyContent: 'center' }}>what people say</span>
+        <h2 className="display gwj-section-headline" style={{ textAlign: 'center' }}>
+          don't just take my word for it!
+        </h2>
+        <div className="gwj-testi-grid">
+          {testimonials.map((t, i) => (
+            <div key={i} className="card gwj-testi-card" style={{ background: accents[i] }}>
+              <p className="gwj-testi-quote">"{t.quote}"</p>
+              <div className="gwj-testi-attr">
+                <span className="gwj-testi-name">{t.name}</span>
+                <span className="mono gwj-testi-role">{t.role}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // VALUE STACK + PRICE
 // ============================================================
 function ValueStack({ phase, onCta }) {
@@ -376,7 +479,7 @@ function ValueStack({ phase, onCta }) {
 
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open:     'enroll now — $249 →',
+    open:     'enroll now ($249) →',
     closed:   'join the list for round two →',
   }[phase];
 
@@ -396,17 +499,16 @@ function ValueStack({ phase, onCta }) {
               <span className="gwj-stack-value">{item.value}</span>
             </div>
           ))}
-          <div className="gwj-stack-divider" />
-          <div className="gwj-stack-row gwj-stack-total">
-            <span className="gwj-stack-label">total value</span>
-            <span className="gwj-stack-value">$2,556</span>
-          </div>
         </div>
         <div className="gwj-price-reveal">
-          <div className="gwj-price-row">
-            <span className="mono gwj-price-eyebrow">your price</span>
-            <span className="display gwj-price-amount">$249.</span>
+          <p className="gwj-price-outcome">
+            by day 30 you'll have a posting system you actually understand and a feed that's finally moving. all of this gets you there:
+          </p>
+          <div className="gwj-price-compare">
+            <span className="display gwj-price-was">$2,556</span>
+            <span className="display gwj-price-amount">$249</span>
           </div>
+          <span className="mono gwj-price-savings">that's $2,307 off</span>
           <p className="gwj-price-note">
             that's the whole thing, all of it, for less than a single one of my 1:1 audits!
           </p>
@@ -511,7 +613,7 @@ function FAQ() {
 function ChallengeCTA({ phase, onCta }) {
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open:     'enroll now — $249 →',
+    open:     'enroll now ($249) →',
     closed:   'join the list for round two →',
   }[phase];
   const target = phase === 'waitlist' ? LAUNCH.enrollOpens
@@ -647,7 +749,7 @@ function WaitlistModal({ open, onClose, phase }) {
               </button>
               {status === 'error' && (
                 <p style={{ color: 'var(--c1)', fontSize: 13, margin: '10px 0 0', textAlign: 'center' }}>
-                  something went wrong — try again or email{' '}
+                  something went wrong, try again or email{' '}
                   <a href="mailto:mika@joytothefood.com" className="link">mika@joytothefood.com</a>
                 </p>
               )}
@@ -662,7 +764,7 @@ function WaitlistModal({ open, onClose, phase }) {
 // expose to window (bundle consistency)
 Object.assign(window, {
   usePhase,
-  AnnouncementBar, ChallengeHero, ChallengeProofBar,
+  AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof,
   WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor,
-  ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal,
+  ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal,
 });

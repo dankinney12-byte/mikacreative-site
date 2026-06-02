@@ -272,7 +272,7 @@ function MastermindModal({ service, onClose }) {
           </span>
           <h3 className="display booking-aside-title">{service.title}</h3>
           <div className="booking-aside-blurb">
-            A small-group mastermind for food and lifestyle creators who are serious about building something real — and want a room full of people who actually get it.
+            A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it.
           </div>
           <div className="booking-aside-total">
             <div className="mono booking-aside-total-eyebrow">Investment</div>
@@ -369,19 +369,19 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
             {/* What a month looks like */}
             <section className="details-section">
               <p className="jam-prose">
-                Once a month we get on a call together — your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits.
+                Once a month we get on a call together, your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits.
               </p>
               <p className="jam-prose">
                 Every week you get fresh hook ideas dropped into your Discord channel so you're never starting from scratch on a caption again.
               </p>
               <p className="jam-prose">
-                In between calls, Discord is where it all lives. The community is full of creators at your exact stage — not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up.
+                In between calls, Discord is where it all lives. The community is full of creators at your exact stage, not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up.
               </p>
               <p className="jam-prose">
                 And I'm in there too. Actually responding.
               </p>
               <p className="jam-prose">
-                Once a quarter we bring in a guest speaker — someone doing something you want to do, who can tell you exactly how they got there.
+                Once a quarter we bring in a guest speaker, someone doing something you want to do, who can tell you exactly how they got there.
               </p>
             </section>
 
@@ -392,8 +392,8 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
                 <ul className="details-list">
                   {[
                     "You're a food or lifestyle creator who is done piecing together a strategy from random viral tips",
-                    "You're not opposed to showing up — on calls, in Discord, in your content — but you want the research and strategy done for you",
-                    "You're a \"tell me what to focus on and I'll go do it\" kind of person — but you also want to understand the why behind it",
+                    "You're not opposed to showing up (on calls, in Discord, in your content) but you want the research and strategy done for you",
+                    "You're a \"tell me what to focus on and I'll go do it\" kind of person, but you also want to understand the why behind it",
                     "You're ready to actually commit to figuring this out",
                   ].map((it, i) => (
                     <li key={i} className="details-list-item">
@@ -423,7 +423,7 @@ function MastermindDetailsModal({ service, onClose, onBook }) {
             <section className="details-section">
               <h4 className="mono details-section-eyebrow">how it works</h4>
               <p className="jam-prose">
-                Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit — you'll hear back within a few days. If it's a yes, you'll get added at the next opening.
+                Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit, so you'll hear back within a few days. If it's a yes, you'll get added at the next opening.
               </p>
               <div className="jam-price-block">
                 <span className="display jam-price">{service.price}</span>
