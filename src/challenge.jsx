@@ -108,36 +108,38 @@ function ChallengeHero({ phase, onCta }) {
           grow with <span style={{ color: 'var(--c1)' }}>joy.</span>
         </h1>
         <p className="gwj-hero-subhead">
-          30 days. One challenge. Your Instagram finally working <em>for</em> you instead of the other way around!
+          30 days. One challenge. Teaching food bloggers the system that helped me grow my Instagram into a successful business!
         </p>
 
-        {/* small photo floats beside the intro paragraph */}
-        <div className="gwj-hero-photo">
-          <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
-        </div>
-
-        <p className="gwj-hero-body">
-          Hi, I'm Mika! I grew{' '}
-          <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
-          from 1,001 to 500K followers in two years, in this exact algorithm, with a two-person team. So here's the deal: I pulled the actual data on what grew my account and what was a total waste of my time, and I'm handing you all of it for 30 days. The twist? Most recipe videos earn saves and maybe even go viral, but they don't actually earn you followers. I'll show you how to make the videos that DO, the ones that make people feel so seen they have no choice but to follow you. Let's gooo!
-        </p>
-        <p className="gwj-hero-outcome">
-          By day 30 you'll have a posting system you actually understand and a feed that's finally moving.
-        </p>
-        <div className="gwj-hero-cta-wrap">
-          <button className="btn gwj-hero-btn btn-shadow-c2" onClick={() => onCta(phase)}>
-            {ctaLabel}
-          </button>
-          {phase === 'waitlist' && (
-            <p className="gwj-hero-microcopy">
-              Be first through the door when enrollment opens June 15! No spam, just updates.
+        <div className="gwj-hero-row">
+          <div className="gwj-hero-photo">
+            <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
+          </div>
+          <div className="gwj-hero-col">
+            <p className="gwj-hero-body">
+              Hi, I'm Mika! I grew{' '}
+              <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
+              from 1,001 to 500K followers in two years, in this algorithm, with just me and my husband. So here's the deal: I checked the data on what grew my account and what was a waste of my time, and I'm handing you the deets in a 30 challenge. The twist? Most recipe videos get saved and maybe go viral, but don't really earn you followers. I'll teach you the system that I use to gain followers, keep engagement high, and make a living with Instagram. Let's gooo!
             </p>
-          )}
-          {phase === 'open' && (
-            <p className="gwj-hero-microcopy">
-              Doors close June 30 · <Countdown target={LAUNCH.enrollCloses} />
+            <p className="gwj-hero-outcome">
+              By day 30 you'll have a posting system you understand and a feed you're proud of.
             </p>
-          )}
+            <div className="gwj-hero-cta-wrap">
+              <button className="btn gwj-hero-btn btn-shadow-c2" onClick={() => onCta(phase)}>
+                {ctaLabel}
+              </button>
+              {phase === 'waitlist' && (
+                <p className="gwj-hero-microcopy">
+                  Be first through the door when enrollment opens June 15! No spam, just updates.
+                </p>
+              )}
+              {phase === 'open' && (
+                <p className="gwj-hero-microcopy">
+                  Doors close June 30 · <Countdown target={LAUNCH.enrollCloses} />
+                </p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -220,10 +222,10 @@ function WhyNow() {
           why now? honestly, because the internet is shifting and so is how people search!
         </h2>
         <p className="gwj-prose">
-          Here's what's actually happening. Google is putting AI-generated answers right at the top of search now, which means people get what they came for without ever clicking through to your website. Recipe sites are some of the hardest hit, and a lot of food bloggers have watched their search traffic fall off a cliff this past year. It's real, it's happening, and it is not a blip!
+          Here's what's actually happening. Google is showing AI-generated answers as search results, which means people get what they came for without ever clicking through to your food blog. Recipe sites are some of the hardest hit, and a lot of food bloggers have watched their search traffic fall off a cliff this past year. It's real, it's happening, and it is not a blip!
         </p>
         <p className="gwj-prose" style={{ marginTop: 20 }}>
-          The way people find food is shifting. Fewer and fewer people google recipes anymore, now they open up TikTok, Facebook, or (you guessed it) Instagram! And they're not searching a webpage, they're scrolling for a person to trust. So this is the moment to build an actual brand: a face, a point of view, tested recipes people choose to follow and come back to. Here's the part I need you to believe: anyone with a phone and a little sunlight can make content that reaches millions of people. I'm not special, I promise. I just paid attention to how people really search now, and I refused to quit. You can absolutely do this too!
+          The way people find food is shifting. Fewer people google recipes because now they open up TikTok, Facebook, or (you guessed it) Instagram! And they're not searching a webpage, they're scrolling for a person they trust. So this is the moment to build an actual brand: a face, a point of view, tested recipes people choose to follow and come back to. Here's the part I need you to believe: anyone with a phone and a little sunlight can make content that reaches millions of people. I'm not special, I promise. I just paid attention to how people really search now, and I refused to quit. You can absolutely do this too!
         </p>
       </div>
     </section>
@@ -271,10 +273,10 @@ function HowItWorks() {
         </div>
         <div className="gwj-dual-goal">
           <p>
-            Here's what almost nobody tells you: a gorgeous recipe video full of hands and pans gets saves and maybe even goes viral, but it won't necessarily get you followers. People save it and move on. The videos that actually grow your following are the ones where you show up as a real person and name your audience's pain point so clearly they have no choice but to follow. That's the psychology of recipe content, and it's exactly what I'll teach you.
+            Here's what I've learned about growing my Instagram: a gorgeous recipe video of hands and pans gets saves and maybe even goes viral, but likely won't get many followers. People save it and move on. The videos that actually grow following are the ones where you show up as a real person and name your audience's pain point (like people who want high-protein without protein powder). That's the psychology of recipe content, and it's exactly what I'll teach you.
           </p>
           <p>
-            And we'll do it without burning you out. You'll learn to turn one piece of content into many and double down on what's already working, so you're off the constant-planning hamster wheel. We'll bust you out of 200-view jail with hooks that land, and get you showing up as a real person in a world drowning in AI slop.
+            And we'll do it without burning you out. You'll learn to turn one piece of content into many and double down on what's working, so you're off the constant-planning hamster wheel. We'll bust you out of 200-view jail with hooks that land, and get you showing up as a real person in a world drowning in AI slop.
           </p>
         </div>
       </div>
@@ -344,7 +346,10 @@ function WhoMikaIs() {
           <h2 className="display gwj-section-headline">okay but who even am I!</h2>
           <p className="gwj-prose">
             I'm Mika! Engineer turned food creator, NASM certified nutrition coach, and the person behind{' '}
-            <span className="mono">@_joytothefood_</span>. Here's what I believe: the energy you put out is the energy you get back. You have to make content you're genuinely proud of, while still being able to look at it critically. Quality over quantity, every single day of the week. I grew this account the boring, honest way. I posted, I studied (I know, not fun!) what worked, and I did more of that. I'm not special, I'm just delusionally optimistic and I refuse to quit. And I'll happily show you the posts that flopped too, because the fastest to fall is the fastest to learn, my favorite saying!! Receipts over theory, every single time.
+            <span className="mono">@_joytothefood_</span>. Here's what I believe: the energy you put out is the energy you get back. You have to make content you're genuinely proud of, which means quality over quantity.
+          </p>
+          <p className="gwj-prose" style={{ marginTop: 18 }}>
+            I grew this account the boring way. I posted, I studied (I know, not fun!), I tried all sorts of stuff and then keep doing what works. I'm not special, I'm just delusionally optimistic and I refuse to quit. And I'll happily show you the posts that flopped too, because the fastest to fall is the fastest to learn, my favorite saying!!
           </p>
           <div className="gwj-heard-on">
             <span className="mono gwj-heard-label">as heard on</span>
@@ -499,6 +504,10 @@ function ValueStack({ phase, onCta }) {
               <span className="gwj-stack-value">{item.value}</span>
             </div>
           ))}
+          <div className="gwj-stack-row gwj-stack-total">
+            <span className="gwj-stack-label">total value</span>
+            <span className="gwj-stack-value">$2,556</span>
+          </div>
         </div>
         <div className="gwj-price-reveal">
           <p className="gwj-price-outcome">
