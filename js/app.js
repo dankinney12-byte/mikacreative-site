@@ -181,9 +181,7 @@ function ChallengeHero({
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-hero"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "container gwj-hero-grid"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "gwj-hero-text"
+    className: "container gwj-hero-inner"
   }, /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-hero-eyebrow"
   }, "a 30-day instagram challenge for food creators"), /*#__PURE__*/React.createElement("h1", {
@@ -195,7 +193,7 @@ function ChallengeHero({
   }, "joy.")), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-subhead"
   }, "30 days. One challenge. Your Instagram finally working ", /*#__PURE__*/React.createElement("em", null, "for"), " you instead of the other way around!"), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-hero-photo gwj-hero-photo-inline"
+    className: "gwj-hero-photo"
   }, /*#__PURE__*/React.createElement("img", {
     src: "images/mika-headshot.jpg",
     alt: "Mika Kinney",
@@ -221,14 +219,7 @@ function ChallengeHero({
     className: "gwj-hero-microcopy"
   }, "Doors close June 30 \xB7 ", /*#__PURE__*/React.createElement(Countdown, {
     target: LAUNCH.enrollCloses
-  })))), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-hero-photo gwj-hero-photo-side"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "images/mika-headshot.jpg",
-    alt: "Mika Kinney",
-    className: "photo-img",
-    loading: "lazy"
-  }))));
+  })))));
 }
 
 // ============================================================
@@ -393,7 +384,7 @@ function HowItWorks() {
     className: "gwj-how-body"
   }, c.body)))), /*#__PURE__*/React.createElement("div", {
     className: "gwj-dual-goal"
-  }, /*#__PURE__*/React.createElement("p", null, "Here's the thing almost nobody tells you: a gorgeous recipe video full of hands and pans will get saves and maybe even go viral, but it won't necessarily get you followers. People save it and move on, they don't need to follow you. The videos that actually grow your following are the ones where you show up as a real person, name your audience's pain point out loud, and make them feel so seen they have no choice but to hit follow. That's the psychology of recipe content, and it's exactly what I'm going to teach you (unless your recipe is so wild or so viral that it does the work for you, but we can't count on that)."), /*#__PURE__*/React.createElement("p", null, "And we'll do all of it without burning you out. I'll show you how to turn one piece of content into many, and how to double down on what's already working so you're not stuck in the constant-planning hamster wheel. We'll bust you out of 200-view jail with hooks that actually land, and get you showing up as a real person with real opinions, real thoughts, and real tested recipes, in a world absolutely drowning in AI slop."))));
+  }, /*#__PURE__*/React.createElement("p", null, "Here's what almost nobody tells you: a gorgeous recipe video full of hands and pans gets saves and maybe even goes viral, but it won't necessarily get you followers. People save it and move on. The videos that actually grow your following are the ones where you show up as a real person and name your audience's pain point so clearly they have no choice but to follow. That's the psychology of recipe content, and it's exactly what I'll teach you."), /*#__PURE__*/React.createElement("p", null, "And we'll do it without burning you out. You'll learn to turn one piece of content into many and double down on what's already working, so you're off the constant-planning hamster wheel. We'll bust you out of 200-view jail with hooks that land, and get you showing up as a real person in a world drowning in AI slop."))));
 }
 
 // ============================================================

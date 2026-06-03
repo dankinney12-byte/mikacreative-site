@@ -102,48 +102,42 @@ function ChallengeHero({ phase, onCta }) {
 
   return (
     <section className="gwj-hero">
-      <div className="container gwj-hero-grid">
-        <div className="gwj-hero-text">
-          <span className="mono gwj-hero-eyebrow">a 30-day instagram challenge for food creators</span>
-          <h1 className="display gwj-hero-headline">
-            grow with <span style={{ color: 'var(--c1)' }}>joy.</span>
-          </h1>
-          <p className="gwj-hero-subhead">
-            30 days. One challenge. Your Instagram finally working <em>for</em> you instead of the other way around!
-          </p>
+      <div className="container gwj-hero-inner">
+        <span className="mono gwj-hero-eyebrow">a 30-day instagram challenge for food creators</span>
+        <h1 className="display gwj-hero-headline">
+          grow with <span style={{ color: 'var(--c1)' }}>joy.</span>
+        </h1>
+        <p className="gwj-hero-subhead">
+          30 days. One challenge. Your Instagram finally working <em>for</em> you instead of the other way around!
+        </p>
 
-          {/* photo appears here on mobile, in the right column on desktop */}
-          <div className="gwj-hero-photo gwj-hero-photo-inline">
-            <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
-          </div>
-
-          <p className="gwj-hero-body">
-            Hi, I'm Mika! I grew{' '}
-            <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
-            from 1,001 to 500K followers in two years, in this exact algorithm, with a two-person team. So here's the deal: I pulled the actual data on what grew my account and what was a total waste of my time, and I'm handing you all of it for 30 days. The twist? Most recipe videos earn saves and maybe even go viral, but they don't actually earn you followers. I'll show you how to make the videos that DO, the ones that make people feel so seen they have no choice but to follow you. Let's gooo!
-          </p>
-          <p className="gwj-hero-outcome">
-            By day 30 you'll have a posting system you actually understand and a feed that's finally moving.
-          </p>
-          <div className="gwj-hero-cta-wrap">
-            <button className="btn gwj-hero-btn btn-shadow-c2" onClick={() => onCta(phase)}>
-              {ctaLabel}
-            </button>
-            {phase === 'waitlist' && (
-              <p className="gwj-hero-microcopy">
-                Be first through the door when enrollment opens June 15! No spam, just updates.
-              </p>
-            )}
-            {phase === 'open' && (
-              <p className="gwj-hero-microcopy">
-                Doors close June 30 · <Countdown target={LAUNCH.enrollCloses} />
-              </p>
-            )}
-          </div>
+        {/* small photo floats beside the intro paragraph */}
+        <div className="gwj-hero-photo">
+          <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
         </div>
 
-        <div className="gwj-hero-photo gwj-hero-photo-side">
-          <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
+        <p className="gwj-hero-body">
+          Hi, I'm Mika! I grew{' '}
+          <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
+          from 1,001 to 500K followers in two years, in this exact algorithm, with a two-person team. So here's the deal: I pulled the actual data on what grew my account and what was a total waste of my time, and I'm handing you all of it for 30 days. The twist? Most recipe videos earn saves and maybe even go viral, but they don't actually earn you followers. I'll show you how to make the videos that DO, the ones that make people feel so seen they have no choice but to follow you. Let's gooo!
+        </p>
+        <p className="gwj-hero-outcome">
+          By day 30 you'll have a posting system you actually understand and a feed that's finally moving.
+        </p>
+        <div className="gwj-hero-cta-wrap">
+          <button className="btn gwj-hero-btn btn-shadow-c2" onClick={() => onCta(phase)}>
+            {ctaLabel}
+          </button>
+          {phase === 'waitlist' && (
+            <p className="gwj-hero-microcopy">
+              Be first through the door when enrollment opens June 15! No spam, just updates.
+            </p>
+          )}
+          {phase === 'open' && (
+            <p className="gwj-hero-microcopy">
+              Doors close June 30 · <Countdown target={LAUNCH.enrollCloses} />
+            </p>
+          )}
         </div>
       </div>
     </section>
@@ -277,10 +271,10 @@ function HowItWorks() {
         </div>
         <div className="gwj-dual-goal">
           <p>
-            Here's the thing almost nobody tells you: a gorgeous recipe video full of hands and pans will get saves and maybe even go viral, but it won't necessarily get you followers. People save it and move on, they don't need to follow you. The videos that actually grow your following are the ones where you show up as a real person, name your audience's pain point out loud, and make them feel so seen they have no choice but to hit follow. That's the psychology of recipe content, and it's exactly what I'm going to teach you (unless your recipe is so wild or so viral that it does the work for you, but we can't count on that).
+            Here's what almost nobody tells you: a gorgeous recipe video full of hands and pans gets saves and maybe even goes viral, but it won't necessarily get you followers. People save it and move on. The videos that actually grow your following are the ones where you show up as a real person and name your audience's pain point so clearly they have no choice but to follow. That's the psychology of recipe content, and it's exactly what I'll teach you.
           </p>
           <p>
-            And we'll do all of it without burning you out. I'll show you how to turn one piece of content into many, and how to double down on what's already working so you're not stuck in the constant-planning hamster wheel. We'll bust you out of 200-view jail with hooks that actually land, and get you showing up as a real person with real opinions, real thoughts, and real tested recipes, in a world absolutely drowning in AI slop.
+            And we'll do it without burning you out. You'll learn to turn one piece of content into many and double down on what's already working, so you're off the constant-planning hamster wheel. We'll bust you out of 200-view jail with hooks that land, and get you showing up as a real person in a world drowning in AI slop.
           </p>
         </div>
       </div>
