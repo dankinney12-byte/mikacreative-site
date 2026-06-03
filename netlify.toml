@@ -1,6 +1,9 @@
 [build]
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+
 # js/css URLs are stable but content changes on every deploy — without a
 # hash in the filename, "immutable" would lock browsers to a stale bundle
 # until the cache expires. Force revalidation; ETag handles 304s cheaply.
