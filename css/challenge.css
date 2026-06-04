@@ -174,8 +174,9 @@
     grid-template-columns: 1fr 260px;
     gap: 44px;
     align-items: start;
+    max-width: 944px;
   }
-  .gwj-hero-col { order: 1; min-width: 0; max-width: 640px; }
+  .gwj-hero-col { order: 1; min-width: 0; }
   .gwj-hero-photo {
     order: 2;
     float: none;

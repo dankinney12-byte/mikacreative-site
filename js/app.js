@@ -192,7 +192,7 @@ function ChallengeHero({
     }
   }, "joy.")), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-subhead"
-  }, "30 days. One system. The one I used to grow my food blog into a real business on Instagram!"), /*#__PURE__*/React.createElement("div", {
+  }, "30 days. One system. The one I used to grow my food blog into a real", /*#__PURE__*/React.createElement("br", null), "business on Instagram!"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-row"
   }, /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-photo"
