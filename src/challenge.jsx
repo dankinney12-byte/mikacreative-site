@@ -108,7 +108,7 @@ function ChallengeHero({ phase, onCta }) {
           grow with <span style={{ color: 'var(--c1)' }}>joy.</span>
         </h1>
         <p className="gwj-hero-subhead">
-          30 days. One system. The one I used to grow my food blog into a real<br />business on Instagram!
+          30 days. One system. The one I used to grow my food blog into a real business on Instagram!
         </p>
 
         <div className="gwj-hero-row">
