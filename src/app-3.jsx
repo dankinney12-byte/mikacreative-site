@@ -49,9 +49,9 @@ function App() {
       <Nav />
       <ChallengeHero phase={phase} onCta={handleCta} />
       <ChallengeProofBar />
-      <ReelProof />
-      <WhyNow />
       <HowItWorks />
+      <WhyNow />
+      <ReelProof />
       <WeekArc />
       <ForNotFor />
       <ChallengeTestimonials />

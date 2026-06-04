@@ -10,9 +10,9 @@
 .gwj-section-alt {
   background: var(--bg-alt);
 }
-/* tighten the gap between the reels and "why now?" (~144px -> ~72px) */
-.gwj-reels { padding-bottom: 36px; }
-.gwj-why-section { padding-top: 36px; }
+/* tighten the gap between "why now?" and the reels (~144px -> ~72px) */
+.gwj-why-section { padding-bottom: 36px; }
+.gwj-reels { padding-top: 36px; }
 .gwj-section-headline {
   font-size: clamp(26px, 5vw, 42px);
   line-height: 1.05;

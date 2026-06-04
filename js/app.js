@@ -2598,7 +2598,7 @@ function App() {
   }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(ValueStack, {
+  }), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(ValueStack, {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement(Timeline, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {
