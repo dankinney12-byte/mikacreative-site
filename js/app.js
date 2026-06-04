@@ -1494,28 +1494,10 @@ function Services({
     }
   }, "fit.")), /*#__PURE__*/React.createElement("p", {
     className: "services-sub"
-  }, "The Jam Session is the ongoing room, with monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it."))), /*#__PURE__*/React.createElement("div", {
+  }, "The Jam Session is the ongoing room, with monthly calls, weekly hook ideas, a Discord community, and me in there with you."))), /*#__PURE__*/React.createElement("div", {
     className: "services-grid-single"
   }, /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'mastermind'),
-    featured: true,
-    onBook: onBook,
-    onSeeDetails: onSeeDetails
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "services-divider"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "mono services-divider-label"
-  }, "or start with a one-time audit"), /*#__PURE__*/React.createElement("div", {
-    className: "services-divider-line"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "services-grid"
-  }, /*#__PURE__*/React.createElement(ServiceCard, {
-    s: SERVICES.find(s => s.id === 'audit'),
-    featured: true,
-    onBook: onBook,
-    onSeeDetails: onSeeDetails
-  }), /*#__PURE__*/React.createElement(ServiceCard, {
-    s: SERVICES.find(s => s.id === 'audit-plus'),
     featured: true,
     onBook: onBook,
     onSeeDetails: onSeeDetails
@@ -1907,8 +1889,6 @@ function Speaking() {
 function ContactCTA({
   onBook
 }) {
-  const audit = SERVICES.find(s => s.id === 'audit');
-  const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
   const mastermind = SERVICES.find(s => s.id === 'mastermind');
   return /*#__PURE__*/React.createElement("section", {
     id: "contact",
@@ -1932,7 +1912,7 @@ function ContactCTA({
     }
   }, "fix that.")), /*#__PURE__*/React.createElement("p", {
     className: "contact-cta-sub"
-  }, "Join The Jam Session for ongoing strategy, community, and a room that gets it. Or start with a one-time audit, a written plan and recorded walkthrough delivered in about a week, with zero guesswork."), /*#__PURE__*/React.createElement("div", {
+  }, "Join The Jam Session for ongoing strategy, community, and a room that gets it."), /*#__PURE__*/React.createElement("div", {
     className: "contact-cta-btns"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn contact-cta-btn",
@@ -1940,16 +1920,7 @@ function ContactCTA({
     style: {
       background: 'var(--c3)'
     }
-  }, "\u2726 Apply for The Jam Session \xB7 $249/mo"), /*#__PURE__*/React.createElement("button", {
-    className: "btn alt contact-cta-btn",
-    onClick: () => onBook && onBook(audit)
-  }, "Book The Audit \xB7 $475 (trial price)"), /*#__PURE__*/React.createElement("button", {
-    className: "btn contact-cta-btn",
-    onClick: () => onBook && onBook(auditPlus),
-    style: {
-      background: 'var(--c4)'
-    }
-  }, "Book Audit + Reviews \xB7 $550 (trial price)")), /*#__PURE__*/React.createElement("a", {
+  }, "\u2726 Apply for The Jam Session \xB7 $249/mo")), /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link",
     style: {

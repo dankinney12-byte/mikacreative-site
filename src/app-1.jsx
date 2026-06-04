@@ -479,7 +479,7 @@ function Services({ onBook, onSeeDetails }) {
               find your <span style={{ color: 'var(--c1)' }}>fit.</span>
             </h2>
             <p className="services-sub">
-              The Jam Session is the ongoing room, with monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it.
+              The Jam Session is the ongoing room, with monthly calls, weekly hook ideas, a Discord community, and me in there with you.
             </p>
           </div>
         </div>
@@ -487,17 +487,6 @@ function Services({ onBook, onSeeDetails }) {
         {/* ROW 1: Mastermind — full width, featured */}
         <div className="services-grid-single">
           <ServiceCard s={SERVICES.find(s => s.id === 'mastermind')} featured onBook={onBook} onSeeDetails={onSeeDetails} />
-        </div>
-
-        <div className="services-divider">
-          <span className="mono services-divider-label">or start with a one-time audit</span>
-          <div className="services-divider-line"></div>
-        </div>
-
-        {/* ROW 2: Audits — side by side */}
-        <div className="services-grid">
-          <ServiceCard s={SERVICES.find(s => s.id === 'audit')} featured onBook={onBook} onSeeDetails={onSeeDetails} />
-          <ServiceCard s={SERVICES.find(s => s.id === 'audit-plus')} featured onBook={onBook} onSeeDetails={onSeeDetails} />
         </div>
 
         <div className="services-divider">
@@ -802,8 +791,6 @@ function Speaking() {
 // CONTACT / FOOTER
 // ============================================================
 function ContactCTA({ onBook }) {
-  const audit = SERVICES.find(s => s.id === 'audit');
-  const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
   const mastermind = SERVICES.find(s => s.id === 'mastermind');
   return (
     <section id="contact" className="contact-cta">
@@ -814,17 +801,11 @@ function ContactCTA({ onBook }) {
           let's <span style={{ color: 'var(--c3)' }}>fix that.</span>
         </h2>
         <p className="contact-cta-sub">
-          Join The Jam Session for ongoing strategy, community, and a room that gets it. Or start with a one-time audit, a written plan and recorded walkthrough delivered in about a week, with zero guesswork.
+          Join The Jam Session for ongoing strategy, community, and a room that gets it.
         </p>
         <div className="contact-cta-btns">
           <button className="btn contact-cta-btn" onClick={() => onBook && onBook(mastermind)} style={{ background: 'var(--c3)' }}>
             ✦ Apply for The Jam Session · $249/mo
-          </button>
-          <button className="btn alt contact-cta-btn" onClick={() => onBook && onBook(audit)}>
-            Book The Audit · $475 (trial price)
-          </button>
-          <button className="btn contact-cta-btn" onClick={() => onBook && onBook(auditPlus)} style={{ background: 'var(--c4)' }}>
-            Book Audit + Reviews · $550 (trial price)
           </button>
         </div>
         <a href="mailto:mika@joytothefood.com" className="link" style={{
