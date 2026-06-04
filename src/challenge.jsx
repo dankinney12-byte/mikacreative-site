@@ -108,7 +108,7 @@ function ChallengeHero({ phase, onCta }) {
           grow with <span style={{ color: 'var(--c1)' }}>joy.</span>
         </h1>
         <p className="gwj-hero-subhead">
-          30 days. One challenge. Teaching food bloggers the system that helped me grow my Instagram into a successful business!
+          30 days. One system. The one I used to grow my food blog into a real business on Instagram!
         </p>
 
         <div className="gwj-hero-row">
@@ -119,7 +119,7 @@ function ChallengeHero({ phase, onCta }) {
             <p className="gwj-hero-body">
               Hi, I'm Mika! I grew{' '}
               <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
-              from 1,001 to 500K followers in two years, in this algorithm, with just me and my husband. So here's the deal: I checked the data on what grew my account and what was a waste of my time, and I'm handing you the deets in a 30 challenge. The twist? Most recipe videos get saved and maybe go viral, but don't really earn you followers. I'll teach you the system that I use to gain followers, keep engagement high, and make a living with Instagram. Let's gooo!
+              from 1,001 to 500K followers in two years, and I tracked exactly what worked. This 30-day challenge hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!
             </p>
             <p className="gwj-hero-outcome">
               By day 30 you'll have a posting system you understand and a feed you're proud of.
@@ -219,13 +219,10 @@ function WhyNow() {
     <section className="gwj-section">
       <div className="container gwj-why-inner">
         <h2 className="display gwj-section-headline">
-          why now? honestly, because the internet is shifting and so is how people search!
+          why now?
         </h2>
         <p className="gwj-prose">
-          Here's what's actually happening. Google is showing AI-generated answers as search results, which means people get what they came for without ever clicking through to your food blog. Recipe sites are some of the hardest hit, and a lot of food bloggers have watched their search traffic fall off a cliff this past year. It's real, it's happening, and it is not a blip!
-        </p>
-        <p className="gwj-prose" style={{ marginTop: 20 }}>
-          The way people find food is shifting. Fewer people google recipes because now they open up TikTok, Facebook, or (you guessed it) Instagram! And they're not searching a webpage, they're scrolling for a person they trust. So this is the moment to build an actual brand: a face, a point of view, tested recipes people choose to follow and come back to. Here's the part I need you to believe: anyone with a phone and a little sunlight can make content that reaches millions of people. I'm not special, I promise. I just paid attention to how people really search now, and I refused to quit. You can absolutely do this too!
+          Google now answers recipe searches with AI, so blog traffic is drying up. People find food on TikTok, Facebook, and Instagram now, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.
         </p>
       </div>
     </section>
@@ -241,19 +238,19 @@ function HowItWorks() {
       color: 'var(--c1)',
       num: 'day 1',
       title: 'we go LIVE!',
-      body: "A 2-hour workshop (don't worry, a replay will be available!) of me walking you through my entire framework, the one that's working RIGHT NOW. It's the same framework I've taught at conferences, except now you get it from the comfort of your own home! (Yes, I will be talking with my hands the whole time.)",
+      body: "A live 2-hour workshop walking you through my whole framework, the same one I've taught at conferences. Can't make it live? You get the replay.",
     },
     {
       color: 'var(--c3)',
       num: 'day 2',
       title: 'the masterclass!',
-      body: "The deep-dive you can rewatch as many times as you need. Zero judgment.",
+      body: "The deep-dive you can rewatch anytime. Zero judgment.",
     },
     {
       color: 'var(--c4)',
       num: 'days 3–30',
       title: 'daily drops!',
-      body: "One idea, one real post of mine with the real numbers attached, and one tiny dare to go actually DO it. Rest days are built in too, so you can take a break from posting to do lighter tasks that still move your account forward. Because growing should be fun, not a grind that burns you out!",
+      body: "One idea, one real post of mine with the numbers, and one small dare to go do it. Rest days built in, because growth shouldn't burn you out.",
     },
   ];
 
@@ -273,10 +270,10 @@ function HowItWorks() {
         </div>
         <div className="gwj-dual-goal">
           <p>
-            Here's what I've learned about growing my Instagram: a gorgeous recipe video of hands and pans gets saves and maybe even goes viral, but likely won't get many followers. People save it and move on. The videos that actually grow following are the ones where you show up as a real person and name your audience's pain point (like people who want high-protein without protein powder). That's the psychology of recipe content, and it's exactly what I'll teach you.
+            A pretty recipe video gets saves, not followers. The ones that actually grow you are where you show up as a real person and say your audience's pain point out loud (think: high-protein without the protein powder).
           </p>
           <p>
-            And we'll do it without burning you out. You'll learn to turn one piece of content into many and double down on what's working, so you're off the constant-planning hamster wheel. We'll bust you out of 200-view jail with hooks that land, and get you showing up as a real person in a world drowning in AI slop.
+            And you'll do it without burning out, turning one idea into many and escaping 200-view jail with hooks that cut through the AI slop.
           </p>
         </div>
       </div>
@@ -293,25 +290,25 @@ function WeekArc() {
       color: 'var(--c2)',
       week: 'week 1',
       title: 'your feed is a house!',
-      body: "The framework everything hangs on, who you even are online, and how to stack your hooks. I don't always get these right even now, but we gotta keep trying!! That's the difference between growing and staying stuck in the same place, and when we hit the framework dead on, everything clicks!",
+      body: "The framework everything hangs on: who you are online and how to stack your hooks. Get this right and it all clicks.",
     },
     {
       color: 'var(--c1)',
       week: 'week 2',
       title: 'the recipe reels!',
-      body: "How to actually build one, when to lead with the pretty shot vs jump into the chaos, captions that buy you watch time, and the comment funnel.",
+      body: "How to build a recipe reel that earns watch time: the hook, the shot, the caption, and the comment funnel.",
     },
     {
       color: 'var(--c5)',
       week: 'week 3',
       title: 'the personality stuff!',
-      body: "The posts that turn followers into actual fans. Your opinions, your POV, your weird little life. The absolute most important content for recipe creators, and the part most people skip.",
+      body: "The personality posts that turn followers into fans. The part most recipe creators skip, and the most important.",
     },
     {
       color: 'var(--c3)',
       week: 'week 4',
       title: 'carousels + graduation!',
-      body: "The quiet power of carousels, how to turn one winner into ten, and the reps and repetition that make all of this finally stick. You won't nail it right away, and that's normal! The more reps you get, the more you just do the dang thing, the faster you learn. Honest to god, almost everyone I work with tells me the same thing: it started to click after about a month of making content like this.",
+      body: "Carousels, turning one winner into ten, and the reps that make it stick. Most people say it clicks after about a month.",
     },
   ];
 
@@ -345,11 +342,8 @@ function WhoMikaIs() {
           <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>about your host</span>
           <h2 className="display gwj-section-headline">okay but who even am I!</h2>
           <p className="gwj-prose">
-            I'm Mika! Engineer turned food creator, NASM certified nutrition coach, and the person behind{' '}
-            <span className="mono">@_joytothefood_</span>. Here's what I believe: the energy you put out is the energy you get back. You have to make content you're genuinely proud of, which means quality over quantity.
-          </p>
-          <p className="gwj-prose" style={{ marginTop: 18 }}>
-            I grew this account the boring way. I posted, I studied (I know, not fun!), I tried all sorts of stuff and then keep doing what works. I'm not special, I'm just delusionally optimistic and I refuse to quit. And I'll happily show you the posts that flopped too, because the fastest to fall is the fastest to learn, my favorite saying!!
+            I'm Mika: engineer turned food creator, NASM nutrition coach, and the face of{' '}
+            <span className="mono">@_joytothefood_</span>. I grew it the boring, honest way: post, study what works, do more of that. I'm not special, just stubborn! I'll even show you my flops, because the fastest to fall is the fastest to learn.
           </p>
           <div className="gwj-heard-on">
             <span className="mono gwj-heard-label">as heard on</span>
@@ -377,7 +371,7 @@ function ForNotFor() {
     "You're a food creator (or you want to be!)",
     "You're already posting and it's just not working",
     "You're sick of advice that doesn't fit the algorithm that exists right now",
-    "You've tried other coaches or courses and they just weren't right, because the food space is its own animal",
+    "Other courses didn't fit, because food is its own animal",
     "You want an actual plan, not vibes",
   ];
   const notItems = [
@@ -492,7 +486,7 @@ function ValueStack({ phase, onCta }) {
     <section className="gwj-section gwj-section-alt">
       <div className="container gwj-stack-wrap">
         <h2 className="display gwj-section-headline">
-          let's add this all up, because I want you to SEE what you're getting!
+          here's everything you get:
         </h2>
         <div className="gwj-stack">
           {items.map((item, i) => (
