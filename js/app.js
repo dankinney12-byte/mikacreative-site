@@ -326,14 +326,14 @@ function ReelProof() {
 // ============================================================
 function WhyNow() {
   return /*#__PURE__*/React.createElement("section", {
-    className: "gwj-section"
+    className: "gwj-section gwj-why-section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container gwj-why-inner"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "display gwj-section-headline"
   }, "why now?"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-prose"
-  }, "Google now answers recipe searches with AI, so blog traffic is drying up. People find food on TikTok, Facebook, and Instagram now, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.")));
+  }, "Google now answers recipe searches with AI, so search engine traffic is drying up. People find food on TikTok, Facebook, and Instagram now, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.")));
 }
 
 // ============================================================
@@ -381,9 +381,7 @@ function HowItWorks() {
     className: "display gwj-how-title"
   }, c.title), /*#__PURE__*/React.createElement("p", {
     className: "gwj-how-body"
-  }, c.body)))), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-dual-goal"
-  }, /*#__PURE__*/React.createElement("p", null, "A pretty recipe video gets saves, not followers. The ones that actually grow you are where you show up as a real person and say your audience's pain point out loud (think: high-protein without the protein powder)."), /*#__PURE__*/React.createElement("p", null, "And you'll do it without burning out, turning one idea into many and escaping 200-view jail with hooks that cut through the AI slop."))));
+  }, c.body))))));
 }
 
 // ============================================================

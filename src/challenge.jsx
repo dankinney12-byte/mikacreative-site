@@ -216,13 +216,13 @@ function ReelProof() {
 // ============================================================
 function WhyNow() {
   return (
-    <section className="gwj-section">
+    <section className="gwj-section gwj-why-section">
       <div className="container gwj-why-inner">
         <h2 className="display gwj-section-headline">
           why now?
         </h2>
         <p className="gwj-prose">
-          Google now answers recipe searches with AI, so blog traffic is drying up. People find food on TikTok, Facebook, and Instagram now, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.
+          Google now answers recipe searches with AI, so search engine traffic is drying up. People find food on TikTok, Facebook, and Instagram now, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.
         </p>
       </div>
     </section>
@@ -267,14 +267,6 @@ function HowItWorks() {
               <p className="gwj-how-body">{c.body}</p>
             </div>
           ))}
-        </div>
-        <div className="gwj-dual-goal">
-          <p>
-            A pretty recipe video gets saves, not followers. The ones that actually grow you are where you show up as a real person and say your audience's pain point out loud (think: high-protein without the protein powder).
-          </p>
-          <p>
-            And you'll do it without burning out, turning one idea into many and escaping 200-view jail with hooks that cut through the AI slop.
-          </p>
         </div>
       </div>
     </section>
