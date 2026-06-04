@@ -331,7 +331,7 @@ function ForNotFor() {
     "You're already posting and it's just not working",
     "You're sick of advice that doesn't fit the algorithm that exists right now",
     "Other courses didn't fit, because food is its own animal",
-    "You want an actual plan, not vibes",
+    "You want an actual plan to guide your vibes",
   ];
   const notItems = [
     "You want a magic go-viral button (I wish there was, but the only magic is you 🫶)",
@@ -373,29 +373,22 @@ function ForNotFor() {
 }
 
 // ============================================================
-// CHALLENGE TESTIMONIALS — placeholders
-// PLACEHOLDER content: Dan drops 1 to 3 real quotes from audit and
-// mastermind clients. Replace the `testimonials` array entries below.
+// CHALLENGE TESTIMONIALS
 // ============================================================
 function ChallengeTestimonials() {
   const testimonials = [
     {
-      quote: "Placeholder quote. A real client testimonial drops in here, roughly this length, two or three honest sentences about working with Mika and what actually changed for their account.",
-      name: "Client name",
-      role: "audit client",
+      quote: "Mika Kinney spoke to my mastermind group and instantly lit a fire under every single person on the call. Her approach to Instagram growth is not just inspiring, it's incredibly actionable. She is deep in the details, testing what works in real time, and it shows. Our group walked away with clarity, excitement and a desire to grow their accounts. Mika truly knows her stuff and delivers it in a way that makes you want to take action immediately.",
+      name: "Megan Porta",
+      role: "Food creator · Pip & Ebby · Eat Blog Talk podcast",
     },
     {
-      quote: "Placeholder quote. Another short, genuine note from a mastermind member about the strategy, the community, and the results they saw.",
-      name: "Client name",
-      role: "mastermind member",
-    },
-    {
-      quote: "Placeholder quote. One more spot ready for a real testimonial whenever it arrives this week.",
-      name: "Client name",
-      role: "audit client",
+      quote: "I cannot stop talking about WHAT A FREAKIN INSPIRATION you are!!! I have SO SO SO enjoyed seeing your journey over the years, and seeing you absolutely CRUSH it here on IG. You have totally cracked the code!!!",
+      name: "Lindsey",
+      role: "Food creator · A Recipe for Fun",
     },
   ];
-  const accents = ['var(--c2)', 'var(--c3)', 'var(--c4)'];
+  const accents = ['var(--c3)', 'var(--c2)'];
 
   return (
     <section className="gwj-section gwj-testimonials">
@@ -472,7 +465,7 @@ function ValueStack({ phase, onCta }) {
           </div>
           <span className="mono gwj-price-savings">that's over 90% off</span>
           <p className="gwj-price-note">
-            That's the whole thing, all of it, for less than a single one of my 1:1 audits!
+            That's the whole thing, all of it, for way less than it's worth!
           </p>
           <button className="btn btn-shadow-c2 gwj-stack-cta" onClick={() => onCta(phase)}>
             {ctaLabel}

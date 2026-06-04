@@ -70,7 +70,6 @@ function App() {
       </div>
       <Services onBook={setBookingService} onSeeDetails={setDetailsService} />
       <About />
-      <Testimonials />
       <Speaking />
       <ContactCTA onBook={setBookingService} />
 
