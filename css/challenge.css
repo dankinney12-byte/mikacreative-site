@@ -89,7 +89,7 @@
   background: var(--bg);
 }
 .gwj-hero-inner {
-  max-width: 860px;
+  max-width: none;
 }
 .gwj-hero-eyebrow {
   display: block;
@@ -110,7 +110,6 @@
   line-height: 1.35;
   font-weight: 600;
   margin: 0 0 28px;
-  max-width: 560px;
 }
 .gwj-hero-body {
   font-size: 16px;
@@ -174,9 +173,9 @@
     display: grid;
     grid-template-columns: 1fr 260px;
     gap: 44px;
-    align-items: center;
+    align-items: start;
   }
-  .gwj-hero-col { order: 1; min-width: 0; }
+  .gwj-hero-col { order: 1; min-width: 0; max-width: 640px; }
   .gwj-hero-photo {
     order: 2;
     float: none;
