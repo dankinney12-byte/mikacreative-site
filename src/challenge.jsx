@@ -103,12 +103,11 @@ function ChallengeHero({ phase, onCta }) {
   return (
     <section className="gwj-hero">
       <div className="container gwj-hero-inner">
-        <span className="mono gwj-hero-eyebrow">a 30-day instagram challenge for food creators</span>
         <h1 className="display gwj-hero-headline">
           grow with <span style={{ color: 'var(--c1)' }}>joy.</span>
         </h1>
         <p className="gwj-hero-subhead">
-          30 days. One system. The one I used to grow my food blog into a real business on Instagram!
+          the 30 day challenge for food creators ready to GROW
         </p>
 
         <div className="gwj-hero-row">

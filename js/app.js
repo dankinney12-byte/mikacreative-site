@@ -182,9 +182,7 @@ function ChallengeHero({
     className: "gwj-hero"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container gwj-hero-inner"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "mono gwj-hero-eyebrow"
-  }, "a 30-day instagram challenge for food creators"), /*#__PURE__*/React.createElement("h1", {
+  }, /*#__PURE__*/React.createElement("h1", {
     className: "display gwj-hero-headline"
   }, "grow with ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -192,7 +190,7 @@ function ChallengeHero({
     }
   }, "joy.")), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-subhead"
-  }, "30 days. One system. The one I used to grow my food blog into a real business on Instagram!"), /*#__PURE__*/React.createElement("div", {
+  }, "the 30 day challenge for food creators ready to GROW"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-row"
   }, /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-photo"
