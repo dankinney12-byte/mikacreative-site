@@ -568,9 +568,24 @@
 }
 .gwj-testi-attr {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+.gwj-testi-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--ink);
+  flex-shrink: 0;
+}
+.gwj-testi-attr-text {
+  display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-top: auto;
+  min-width: 0;
 }
 .gwj-testi-name {
   font-weight: 700;

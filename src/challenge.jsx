@@ -334,7 +334,7 @@ function ForNotFor() {
     "You want an actual plan to guide your vibes",
   ];
   const notItems = [
-    "You want a magic go-viral button (I wish there was, but the only magic is you 🫶)",
+    "You want a magic go-viral button (I wish there was, but the only magic is you)",
     "You're not willing to actually post during the 30 days. It's a CHALLENGE, you gotta play!",
   ];
 
@@ -381,11 +381,13 @@ function ChallengeTestimonials() {
       quote: "Mika Kinney spoke to my mastermind group and instantly lit a fire under every single person on the call. Her approach to Instagram growth is not just inspiring, it's incredibly actionable. She is deep in the details, testing what works in real time, and it shows. Our group walked away with clarity, excitement and a desire to grow their accounts. Mika truly knows her stuff and delivers it in a way that makes you want to take action immediately.",
       name: "Megan Porta",
       role: "Food creator · Pip & Ebby · Eat Blog Talk podcast",
+      image: "images/megan-porta.jpeg",
     },
     {
       quote: "I cannot stop talking about WHAT A FREAKIN INSPIRATION you are!!! I have SO SO SO enjoyed seeing your journey over the years, and seeing you absolutely CRUSH it here on IG. You have totally cracked the code!!!",
       name: "Lindsey",
       role: "Food creator · A Recipe for Fun",
+      image: "images/lindsey.jpg",
     },
   ];
   const accents = ['var(--c3)', 'var(--c2)'];
@@ -402,8 +404,13 @@ function ChallengeTestimonials() {
             <div key={i} className="card gwj-testi-card" style={{ background: accents[i] }}>
               <p className="gwj-testi-quote">"{t.quote}"</p>
               <div className="gwj-testi-attr">
-                <span className="gwj-testi-name">{t.name}</span>
-                <span className="mono gwj-testi-role">{t.role}</span>
+                {t.image && (
+                  <img src={t.image} alt={t.name} className="gwj-testi-avatar" loading="lazy" />
+                )}
+                <div className="gwj-testi-attr-text">
+                  <span className="gwj-testi-name">{t.name}</span>
+                  <span className="mono gwj-testi-role">{t.role}</span>
+                </div>
               </div>
             </div>
           ))}
