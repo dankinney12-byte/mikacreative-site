@@ -298,61 +298,6 @@
   }
 }
 
-/* ── who mika is ──────────────────────────────────────────── */
-.gwj-who-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
-  align-items: start;
-}
-.gwj-heard-on {
-  margin-top: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.gwj-heard-label {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.gwj-heard-pills {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.gwj-heard-pill {
-  padding: 8px 16px;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  background: var(--bg);
-}
-.gwj-who-photo {
-  width: 100%;
-}
-.gwj-who-img-wrap {
-  width: 100%;
-  aspect-ratio: 3/4;
-  max-width: 250px;
-  border-radius: 24px;
-  border: 2px solid var(--ink);
-  box-shadow: 6px 6px 0 var(--ink);
-  overflow: hidden;
-}
-
-@media (min-width: 768px) {
-  .gwj-who-inner {
-    grid-template-columns: 1fr 240px;
-    align-items: start;
-  }
-  .gwj-who-img-wrap {
-    max-width: 100%;
-  }
-}
-
 /* ── for / not for ────────────────────────────────────────── */
 .gwj-fit-wrap {
   display: grid;

@@ -438,49 +438,6 @@ function WeekArc() {
 }
 
 // ============================================================
-// WHO MIKA IS
-// ============================================================
-function WhoMikaIs() {
-  return /*#__PURE__*/React.createElement("section", {
-    className: "gwj-section gwj-section-alt"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container gwj-who-inner"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "gwj-who-content"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "eyebrow",
-    style: {
-      justifyContent: 'flex-start'
-    }
-  }, "about your host"), /*#__PURE__*/React.createElement("h2", {
-    className: "display gwj-section-headline"
-  }, "okay but who even am I!"), /*#__PURE__*/React.createElement("p", {
-    className: "gwj-prose"
-  }, "I'm Mika: engineer turned food creator, NASM nutrition coach, and the face of", ' ', /*#__PURE__*/React.createElement("span", {
-    className: "mono"
-  }, "@_joytothefood_"), ". I grew it the boring, honest way: post, study what works, do more of that. I'm not special, just stubborn! I'll even show you my flops, because the fastest to fall is the fastest to learn."), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-heard-on"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "mono gwj-heard-label"
-  }, "as heard on"), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-heard-pills"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "gwj-heard-pill"
-  }, "Food Blogger Pro"), /*#__PURE__*/React.createElement("span", {
-    className: "gwj-heard-pill"
-  }, "Eat Blog Talk")))), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-who-photo"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "photo has-image gwj-who-img-wrap"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "images/mika-headshot.jpg",
-    alt: "Mika Kinney",
-    className: "photo-img",
-    loading: "lazy"
-  })))));
-}
-
-// ============================================================
 // FOR / NOT FOR
 // ============================================================
 function ForNotFor() {
@@ -961,7 +918,6 @@ Object.assign(window, {
   WhyNow,
   HowItWorks,
   WeekArc,
-  WhoMikaIs,
   ForNotFor,
   ChallengeTestimonials,
   ValueStack,
@@ -2558,7 +2514,7 @@ window.MastermindDetailsModal = MastermindDetailsModal;
 
 "use strict";
 
-/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof, WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor, ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
+/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof, WhyNow, HowItWorks, WeekArc, ForNotFor, ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
 var {
   useState,
   useEffect
@@ -2642,7 +2598,7 @@ function App() {
   }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(ValueStack, {
+  }), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(ValueStack, {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement(Timeline, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {

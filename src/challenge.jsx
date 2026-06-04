@@ -324,38 +324,6 @@ function WeekArc() {
 }
 
 // ============================================================
-// WHO MIKA IS
-// ============================================================
-function WhoMikaIs() {
-  return (
-    <section className="gwj-section gwj-section-alt">
-      <div className="container gwj-who-inner">
-        <div className="gwj-who-content">
-          <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>about your host</span>
-          <h2 className="display gwj-section-headline">okay but who even am I!</h2>
-          <p className="gwj-prose">
-            I'm Mika: engineer turned food creator, NASM nutrition coach, and the face of{' '}
-            <span className="mono">@_joytothefood_</span>. I grew it the boring, honest way: post, study what works, do more of that. I'm not special, just stubborn! I'll even show you my flops, because the fastest to fall is the fastest to learn.
-          </p>
-          <div className="gwj-heard-on">
-            <span className="mono gwj-heard-label">as heard on</span>
-            <div className="gwj-heard-pills">
-              <span className="gwj-heard-pill">Food Blogger Pro</span>
-              <span className="gwj-heard-pill">Eat Blog Talk</span>
-            </div>
-          </div>
-        </div>
-        <div className="gwj-who-photo">
-          <div className="photo has-image gwj-who-img-wrap">
-            <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================
 // FOR / NOT FOR
 // ============================================================
 function ForNotFor() {
@@ -760,6 +728,6 @@ function WaitlistModal({ open, onClose, phase }) {
 Object.assign(window, {
   usePhase,
   AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof,
-  WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor,
+  WhyNow, HowItWorks, WeekArc, ForNotFor,
   ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal,
 });
