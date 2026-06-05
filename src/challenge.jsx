@@ -221,7 +221,7 @@ function WhyNow() {
           why now?
         </h2>
         <p className="gwj-prose">
-          Google now answers recipe searches with AI, so search engine traffic is drying up. People find food on TikTok, Facebook, and Instagram now, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.
+          Google is answering recipe searches with AI, so search engine traffic is drying up. More and more people find food on TikTok, Facebook, and Instagram, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.
         </p>
       </div>
     </section>
