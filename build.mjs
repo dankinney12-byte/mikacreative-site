@@ -8,6 +8,8 @@ import presetEnv from '@babel/preset-env';
 
 const SOURCES = [
   'src/stubs.jsx',
+  'src/launch.js',      // Grow with Joy launch config + getPhase()
+  'src/challenge.jsx',  // Grow with Joy challenge page components
   'src/app-1.jsx',
   'src/app-2.jsx',
   'src/app-3.jsx',

@@ -23,6 +23,911 @@ function TweakRadio() {
   return null;
 }
 
+// === src/launch.js ===
+
+"use strict";
+
+// Grow with Joy — launch configuration (single source of truth)
+// No import/export — compiled into the global bundle.
+// Kit URLs are placeholders; replace with real values before go-live.
+
+var LAUNCH = {
+  name: "Grow with Joy",
+  price: 249,
+  timezone: "America/Chicago",
+  enrollOpens: "2026-06-15T00:00:00-05:00",
+  enrollCloses: "2026-06-30T23:59:59-05:00",
+  challengeStarts: "2026-07-01T00:00:00-05:00",
+  kitCommerceUrl: "#",
+  // <<KIT_COMMERCE_CHECKOUT_URL>>
+  kitWaitlistUrl: "#" // fallback href if Netlify function not available
+};
+function getPhase(now) {
+  if (!now) now = new Date();
+  var open = new Date(LAUNCH.enrollOpens);
+  var close = new Date(LAUNCH.enrollCloses);
+  if (now < open) return "waitlist";
+  if (now <= close) return "open";
+  return "closed";
+}
+
+// === src/challenge.jsx ===
+
+"use strict";
+
+/* global React, LAUNCH, getPhase */
+// Grow with Joy — challenge page components
+// Compiled into the global bundle after launch.js, so LAUNCH + getPhase are available.
+var {
+  useState,
+  useEffect
+} = React;
+
+// ============================================================
+// PHASE HOOK
+// ============================================================
+function usePhase() {
+  const [phase, setPhase] = useState(getPhase());
+  useEffect(() => {
+    const id = setInterval(() => setPhase(getPhase()), 30000);
+    return () => clearInterval(id);
+  }, []);
+  return phase;
+}
+
+// ============================================================
+// COUNTDOWN
+// ============================================================
+function useCountdown(target) {
+  const [diff, setDiff] = useState(0);
+  useEffect(() => {
+    if (!target) return;
+    const t = new Date(target).getTime();
+    const tick = () => setDiff(Math.max(0, t - Date.now()));
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [target]);
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor(diff % 86400000 / 3600000);
+  const mins = Math.floor(diff % 3600000 / 60000);
+  const secs = Math.floor(diff % 60000 / 1000);
+  return {
+    days,
+    hours,
+    mins,
+    secs,
+    done: diff === 0
+  };
+}
+function Countdown({
+  target
+}) {
+  const {
+    days,
+    hours,
+    mins,
+    secs,
+    done
+  } = useCountdown(target);
+  if (done || !target) return null;
+  return /*#__PURE__*/React.createElement("span", {
+    className: "gwj-countdown"
+  }, days > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("strong", null, days), "d "), /*#__PURE__*/React.createElement("strong", null, hours), "h ", /*#__PURE__*/React.createElement("strong", null, mins), "m ", /*#__PURE__*/React.createElement("strong", null, secs), "s");
+}
+
+// ============================================================
+// ANNOUNCEMENT BAR
+// ============================================================
+function AnnouncementBar({
+  phase,
+  onCta
+}) {
+  const cfg = {
+    waitlist: {
+      msg: 'grow with joy is coming! enrollment opens june 15',
+      target: LAUNCH.enrollOpens,
+      cta: 'join the waitlist →',
+      bg: 'var(--c3)',
+      fg: 'var(--ink)'
+    },
+    open: {
+      msg: 'enrollment is OPEN! doors close in',
+      target: LAUNCH.enrollCloses,
+      cta: 'enroll now →',
+      bg: 'var(--c1)',
+      fg: 'var(--ink)'
+    },
+    closed: {
+      msg: "doors are closed for this round!",
+      target: null,
+      cta: 'join the list for round two →',
+      bg: 'var(--bg-alt)',
+      fg: 'var(--ink)'
+    }
+  }[phase];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "gwj-bar",
+    style: {
+      background: cfg.bg,
+      color: cfg.fg
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-bar-msg"
+  }, cfg.msg), cfg.target && /*#__PURE__*/React.createElement("span", {
+    className: "gwj-bar-count"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-bar-dash"
+  }, "\xB7 "), /*#__PURE__*/React.createElement(Countdown, {
+    target: cfg.target
+  })), /*#__PURE__*/React.createElement("button", {
+    className: "gwj-bar-cta",
+    onClick: () => onCta(phase)
+  }, cfg.cta));
+}
+
+// ============================================================
+// CHALLENGE HERO
+// ============================================================
+function ChallengeHero({
+  phase,
+  onCta
+}) {
+  const ctaLabel = {
+    waitlist: 'join the waitlist →',
+    open: 'enroll now ($249) →',
+    closed: 'join the list for round two →'
+  }[phase];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-hero"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container gwj-hero-inner"
+  }, /*#__PURE__*/React.createElement("h1", {
+    className: "display gwj-hero-headline"
+  }, "grow with ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--c1)'
+    }
+  }, "joy.")), /*#__PURE__*/React.createElement("p", {
+    className: "gwj-hero-subhead"
+  }, "the 30 day challenge for food creators ready to GROW"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-hero-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-hero-photo"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "images/mika-headshot.jpg",
+    alt: "Mika Kinney",
+    className: "photo-img",
+    loading: "lazy"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-hero-col"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "gwj-hero-body"
+  }, "Hi, I'm Mika! I grew", ' ', /*#__PURE__*/React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: '0.88em'
+    }
+  }, "@_joytothefood_"), ' ', "from 1,001 to 500K followers in two years, and I tracked exactly what worked. This 30-day challenge hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!"), /*#__PURE__*/React.createElement("p", {
+    className: "gwj-hero-outcome"
+  }, "By day 30 you'll have a posting system you understand and a feed you're proud of."), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-hero-cta-wrap"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn gwj-hero-btn btn-shadow-c2",
+    onClick: () => onCta(phase)
+  }, ctaLabel), phase === 'waitlist' && /*#__PURE__*/React.createElement("p", {
+    className: "gwj-hero-microcopy"
+  }, "Be first through the door when enrollment opens June 15! No spam, just updates."), phase === 'open' && /*#__PURE__*/React.createElement("p", {
+    className: "gwj-hero-microcopy"
+  }, "Doors close June 30 \xB7 ", /*#__PURE__*/React.createElement(Countdown, {
+    target: LAUNCH.enrollCloses
+  })))))));
+}
+
+// ============================================================
+// CHALLENGE PROOF BAR (reuses existing proof-bar CSS)
+// ============================================================
+function ChallengeProofBar() {
+  const stats = [{
+    num: '500K',
+    label: 'followers'
+  }, {
+    num: '10M',
+    label: 'monthly views'
+  }, {
+    num: '38M',
+    label: 'views from one reel'
+  }, {
+    num: '157K+',
+    label: 'followers from a single post'
+  }];
+  const colors = ['var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)'];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "proof-bar"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "proof-bar-grid gwj-proof-grid"
+  }, stats.map((s, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "proof-bar-stat"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "display proof-bar-num",
+    style: {
+      color: colors[i]
+    }
+  }, s.num), /*#__PURE__*/React.createElement("div", {
+    className: "mono proof-bar-label"
+  }, s.label))))));
+}
+
+// ============================================================
+// REEL PROOF — three reels with follower-jump overlays
+// Screenshots supplied by Dan: images/2k_10k.png, etc.
+// ============================================================
+function ReelProof() {
+  const reels = [{
+    img: 'images/2k_10k.png',
+    from: '2K',
+    to: '10K',
+    accent: 'var(--c1)'
+  }, {
+    img: 'images/15k_100k.png',
+    from: '15K',
+    to: '100K',
+    accent: 'var(--c4)'
+  }, {
+    img: 'images/150k_250k.png',
+    from: '150K',
+    to: '250K',
+    accent: 'var(--c5)'
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section gwj-reels"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow",
+    style: {
+      justifyContent: 'flex-start'
+    }
+  }, "receipts, not theory"), /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline"
+  }, "the reels that built this!"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-reels-grid"
+  }, reels.map((r, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "gwj-reel-card"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: r.img,
+    alt: `a reel that grew the account from ${r.from} to ${r.to} followers`,
+    className: "gwj-reel-img",
+    loading: "lazy"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-reel-overlay",
+    style: {
+      background: r.accent
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-reel-from"
+  }, r.from), /*#__PURE__*/React.createElement("span", {
+    className: "gwj-reel-arrow"
+  }, "\u2192"), /*#__PURE__*/React.createElement("span", {
+    className: "gwj-reel-to"
+  }, r.to), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-reel-label"
+  }, "followers")))))));
+}
+
+// ============================================================
+// WHY NOW
+// ============================================================
+function WhyNow() {
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section gwj-why-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container gwj-why-inner"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline"
+  }, "why now?"), /*#__PURE__*/React.createElement("p", {
+    className: "gwj-prose"
+  }, "Google now answers recipe searches with AI, so search engine traffic is drying up. People find food on TikTok, Facebook, and Instagram now, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.")));
+}
+
+// ============================================================
+// HOW IT WORKS — 3 cards
+// ============================================================
+function HowItWorks() {
+  const cards = [{
+    color: 'var(--c1)',
+    num: 'day 1',
+    title: 'we go LIVE!',
+    body: "A live 2-hour workshop walking you through my whole framework, the same one I've taught at conferences. Can't make it live? You get the replay."
+  }, {
+    color: 'var(--c3)',
+    num: 'day 2',
+    title: 'the masterclass!',
+    body: "The deep-dive you can rewatch anytime. Zero judgment."
+  }, {
+    color: 'var(--c4)',
+    num: 'days 3–30',
+    title: 'daily drops!',
+    body: "One idea, one real post of mine with the numbers, and one small dare to go do it. Rest days built in, because growth shouldn't burn you out."
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section gwj-section-alt"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow",
+    style: {
+      justifyContent: 'flex-start'
+    }
+  }, "the schedule"), /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline"
+  }, "here's how the 30 days actually go!"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-how-grid"
+  }, cards.map((c, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "card gwj-how-card",
+    style: {
+      background: c.color
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-how-num"
+  }, c.num), /*#__PURE__*/React.createElement("h3", {
+    className: "display gwj-how-title"
+  }, c.title), /*#__PURE__*/React.createElement("p", {
+    className: "gwj-how-body"
+  }, c.body))))));
+}
+
+// ============================================================
+// WEEK ARC — 4 cards
+// ============================================================
+function WeekArc() {
+  const weeks = [{
+    color: 'var(--c2)',
+    week: 'week 1',
+    title: 'your feed is a house!',
+    body: "The framework everything hangs on: who you are online and how to stack your hooks. Get this right and it all clicks."
+  }, {
+    color: 'var(--c1)',
+    week: 'week 2',
+    title: 'the recipe reels!',
+    body: "How to build a recipe reel that earns watch time: the hook, the shot, the caption, and the comment funnel."
+  }, {
+    color: 'var(--c5)',
+    week: 'week 3',
+    title: 'the personality stuff!',
+    body: "The personality posts that turn followers into fans. The part most recipe creators skip, and the most important."
+  }, {
+    color: 'var(--c3)',
+    week: 'week 4',
+    title: 'carousels + graduation!',
+    body: "Carousels, turning one winner into ten, and the reps that make it stick. Most people say it clicks after about a month."
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow",
+    style: {
+      justifyContent: 'flex-start'
+    }
+  }, "what's inside"), /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline"
+  }, "the 4-week arc!"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-weeks-grid"
+  }, weeks.map((w, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "card gwj-week-card",
+    style: {
+      background: w.color
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-week-num"
+  }, w.week), /*#__PURE__*/React.createElement("h3", {
+    className: "display gwj-week-title"
+  }, w.title), /*#__PURE__*/React.createElement("p", {
+    className: "gwj-week-body"
+  }, w.body))))));
+}
+
+// ============================================================
+// FOR / NOT FOR
+// ============================================================
+function ForNotFor() {
+  const forItems = ["You're a food creator (or you want to be!)", "You're already posting and it's just not working", "You're sick of advice that doesn't fit the algorithm that exists right now", "Other courses didn't fit, because food is its own animal", "You want an actual plan to guide your vibes"];
+  const notItems = ["You want a magic go-viral button (I wish there was, but the only magic is you)", "You're not willing to actually post during the 30 days. It's a CHALLENGE, you gotta play!"];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container gwj-fit-wrap"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-fit-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-fit-header gwj-fit-header-yes"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "mono gwj-fit-eyebrow"
+  }, "this is for you if")), /*#__PURE__*/React.createElement("ul", {
+    className: "gwj-fit-list"
+  }, forItems.map((item, i) => /*#__PURE__*/React.createElement("li", {
+    key: i,
+    className: "gwj-fit-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-fit-bullet",
+    style: {
+      background: 'var(--c3)'
+    }
+  }, "\u2713"), item)))), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-fit-col"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-fit-header gwj-fit-header-no"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "mono gwj-fit-eyebrow"
+  }, "this is NOT for you if")), /*#__PURE__*/React.createElement("ul", {
+    className: "gwj-fit-list"
+  }, notItems.map((item, i) => /*#__PURE__*/React.createElement("li", {
+    key: i,
+    className: "gwj-fit-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-fit-bullet",
+    style: {
+      background: 'var(--ink)',
+      opacity: 0.3
+    }
+  }, "\u2717"), item))))));
+}
+
+// ============================================================
+// CHALLENGE TESTIMONIALS
+// ============================================================
+function ChallengeTestimonials() {
+  const testimonials = [{
+    quote: "Mika Kinney spoke to my mastermind group and instantly lit a fire under every single person on the call. Her approach to Instagram growth is not just inspiring, it's incredibly actionable. She is deep in the details, testing what works in real time, and it shows. Our group walked away with clarity, excitement and a desire to grow their accounts. Mika truly knows her stuff and delivers it in a way that makes you want to take action immediately.",
+    name: "Megan Porta",
+    role: "Food creator · Pip & Ebby · Eat Blog Talk podcast",
+    image: "images/megan-porta.jpeg"
+  }, {
+    quote: "I cannot stop talking about WHAT A FREAKIN INSPIRATION you are!!! I have SO SO SO enjoyed seeing your journey over the years, and seeing you absolutely CRUSH it here on IG. You have totally cracked the code!!!",
+    name: "Lindsey",
+    role: "Food creator · A Recipe for Fun",
+    image: "images/lindsey.jpg"
+  }];
+  const accents = ['var(--c3)', 'var(--c2)'];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section gwj-testimonials"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow",
+    style: {
+      justifyContent: 'center'
+    }
+  }, "what people say"), /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline",
+    style: {
+      textAlign: 'center'
+    }
+  }, "don't just take my word for it!"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-testi-grid"
+  }, testimonials.map((t, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "card gwj-testi-card",
+    style: {
+      background: accents[i]
+    }
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "gwj-testi-quote"
+  }, "\"", t.quote, "\""), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-testi-attr"
+  }, t.image && /*#__PURE__*/React.createElement("img", {
+    src: t.image,
+    alt: t.name,
+    className: "gwj-testi-avatar",
+    loading: "lazy"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-testi-attr-text"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-testi-name"
+  }, t.name), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-testi-role"
+  }, t.role))))))));
+}
+
+// ============================================================
+// VALUE STACK + PRICE
+// ============================================================
+function ValueStack({
+  phase,
+  onCta
+}) {
+  const items = [{
+    label: "Day 1: live 2-hour workshop with Mika",
+    value: "$997",
+    bonus: false
+  }, {
+    label: "Day 2: the masterclass",
+    value: "$297",
+    bonus: false
+  }, {
+    label: "Days 3–30: daily-drop system (28 drops + dares + the full framework)",
+    value: "$997",
+    bonus: false
+  }, {
+    label: "Bonus: the AI prompt kit",
+    value: "$79",
+    bonus: true
+  }, {
+    label: "Bonus: the hook swipe file",
+    value: "$79",
+    bonus: true
+  }, {
+    label: "Bonus: the filming setup checklist",
+    value: "$39",
+    bonus: true
+  }, {
+    label: "Bonus: the house cheat sheet",
+    value: "$39",
+    bonus: true
+  }, {
+    label: "Bonus: the 5 pre-post checks",
+    value: "$29",
+    bonus: true
+  }];
+  const ctaLabel = {
+    waitlist: 'join the waitlist →',
+    open: 'enroll now ($249) →',
+    closed: 'join the list for round two →'
+  }[phase];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section gwj-section-alt"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container gwj-stack-wrap"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline"
+  }, "here's everything you get:"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-stack"
+  }, items.map((item, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: `gwj-stack-row${item.bonus ? ' gwj-stack-row-bonus' : ''}`
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-stack-label"
+  }, item.bonus && /*#__PURE__*/React.createElement("span", {
+    className: "gwj-stack-bonus-chip"
+  }, "bonus"), item.label), /*#__PURE__*/React.createElement("span", {
+    className: "gwj-stack-value"
+  }, item.value))), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-stack-row gwj-stack-total"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-stack-label"
+  }, "total value"), /*#__PURE__*/React.createElement("span", {
+    className: "gwj-stack-value"
+  }, "$2,556"))), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-price-reveal"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "gwj-price-outcome"
+  }, "By day 30 you'll have a posting system you actually understand and a feed that's finally moving. All of this gets you there:"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-price-compare"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "display gwj-price-was"
+  }, "$2,556"), /*#__PURE__*/React.createElement("span", {
+    className: "display gwj-price-amount"
+  }, "$249")), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-price-savings"
+  }, "that's over 90% off"), /*#__PURE__*/React.createElement("p", {
+    className: "gwj-price-note"
+  }, "That's the whole thing, all of it, for way less than it's worth!"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-shadow-c2 gwj-stack-cta",
+    onClick: () => onCta(phase)
+  }, ctaLabel))));
+}
+
+// ============================================================
+// TIMELINE
+// ============================================================
+function Timeline() {
+  const steps = [{
+    label: 'waitlist open now',
+    color: 'var(--c3)',
+    active: true
+  }, {
+    label: 'enrollment opens june 15',
+    color: 'var(--c2)'
+  }, {
+    label: 'doors close june 30',
+    color: 'var(--c1)'
+  }, {
+    label: 'we start july 1',
+    color: 'var(--c4)'
+  }, {
+    label: '30 days of drops',
+    color: 'var(--c5)'
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline",
+    style: {
+      textAlign: 'center'
+    }
+  }, "how this all shakes out!"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-timeline"
+  }, steps.map((s, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: "gwj-timeline-step"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-timeline-dot-wrap"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: `gwj-timeline-dot${s.active ? ' is-active' : ''}`,
+    style: {
+      background: s.active ? s.color : 'var(--bg)',
+      borderColor: s.active ? s.color : 'var(--ink)'
+    }
+  }), i < steps.length - 1 && /*#__PURE__*/React.createElement("div", {
+    className: "gwj-timeline-line"
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-timeline-label",
+    style: {
+      color: s.active ? s.color : 'var(--ink)'
+    }
+  }, s.label))))));
+}
+
+// ============================================================
+// FAQ — accordion
+// ============================================================
+function FAQ() {
+  const [openIdx, setOpenIdx] = useState(null);
+  const faqs = [{
+    q: "When does it start?",
+    a: "July 1! Mark your calendar!"
+  }, {
+    q: "How long is it?",
+    a: "30 days!"
+  }, {
+    q: "What if I fall behind?",
+    a: "There are rest days built in and everything lives in your inbox to come back to. No shame ever."
+  }, {
+    q: "Is this for total beginners or people who already have an account?",
+    a: "Both! I'll tell you which parts to nail first depending on where you're at."
+  }, {
+    q: "How is it delivered?",
+    a: "Day 1 is live (and recorded if you can't make it!), day 2 is a masterclass, and days 3–30 land right in your email."
+  }, {
+    q: "Do I have to post every single day?",
+    a: "Nope! But the more you actually do the dares, the more this works. That's just the honest truth."
+  }, {
+    q: "What if I can't make the live workshop?",
+    a: "It's recorded, you're completely covered."
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section gwj-section-alt"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container gwj-faq-wrap"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline"
+  }, "questions? I've got answers!"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-faq"
+  }, faqs.map((f, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: `gwj-faq-item${openIdx === i ? ' is-open' : ''}`
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "gwj-faq-q",
+    onClick: () => setOpenIdx(openIdx === i ? null : i)
+  }, /*#__PURE__*/React.createElement("span", null, f.q), /*#__PURE__*/React.createElement("span", {
+    className: "gwj-faq-icon"
+  }, openIdx === i ? '−' : '+')), openIdx === i && /*#__PURE__*/React.createElement("p", {
+    className: "gwj-faq-a"
+  }, f.a))))));
+}
+
+// ============================================================
+// FINAL CTA BAND
+// ============================================================
+function ChallengeCTA({
+  phase,
+  onCta
+}) {
+  const ctaLabel = {
+    waitlist: 'join the waitlist →',
+    open: 'enroll now ($249) →',
+    closed: 'join the list for round two →'
+  }[phase];
+  const target = phase === 'waitlist' ? LAUNCH.enrollOpens : phase === 'open' ? LAUNCH.enrollCloses : null;
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-final-cta"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container gwj-final-cta-inner"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-final-headline"
+  }, "ready? let's grow with ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--c1)'
+    }
+  }, "joy!")), /*#__PURE__*/React.createElement("p", {
+    className: "gwj-final-sub"
+  }, "30 days. Real data. Your Instagram finally working for you."), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-shadow-c2 gwj-final-btn",
+    onClick: () => onCta(phase)
+  }, ctaLabel), target && /*#__PURE__*/React.createElement("p", {
+    className: "mono gwj-final-countdown"
+  }, phase === 'waitlist' ? 'enrollment opens in ' : 'doors close in ', /*#__PURE__*/React.createElement(Countdown, {
+    target: target
+  }))));
+}
+
+// ============================================================
+// WAITLIST MODAL
+// ============================================================
+function WaitlistModal({
+  open,
+  onClose,
+  phase
+}) {
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+
+  useEffect(() => {
+    if (!open) {
+      setStatus('idle');
+      setEmail('');
+      setFirstName('');
+    }
+  }, [open]);
+  useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === 'Escape') onClose();
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+  if (!open) return null;
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setStatus('loading');
+    try {
+      const res = await fetch('/.netlify/functions/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          firstName
+        })
+      });
+      if (res.ok) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+      }
+    } catch (_) {
+      setStatus('error');
+    }
+  };
+  const isRoundTwo = phase === 'closed';
+  const title = isRoundTwo ? "join the list for round two!" : "you're almost in!";
+  const sub = isRoundTwo ? "leave your email and you'll be first to know when round two opens." : "drop your email and you'll be first through the door when enrollment opens june 15! no spam, just updates.";
+  return /*#__PURE__*/React.createElement("div", {
+    className: "booking-overlay",
+    onClick: e => {
+      if (e.target === e.currentTarget) onClose();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-modal"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    className: "booking-close gwj-modal-close"
+  }, "\xD7"), status === 'success' ? /*#__PURE__*/React.createElement("div", {
+    className: "gwj-modal-success"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 56,
+      lineHeight: 1
+    }
+  }, "\uD83C\uDF31"), /*#__PURE__*/React.createElement("h3", {
+    className: "display",
+    style: {
+      fontSize: 36,
+      margin: '20px 0 8px',
+      lineHeight: 1.1
+    }
+  }, "you're on the list!"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 15,
+      color: 'var(--ink-soft)',
+      margin: 0
+    }
+  }, "watch your inbox. no spam, just updates.")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+    className: "tag",
+    style: {
+      background: 'var(--c3)',
+      display: 'inline-block',
+      marginBottom: 20
+    }
+  }, "grow with joy"), /*#__PURE__*/React.createElement("h3", {
+    className: "display",
+    style: {
+      fontSize: 32,
+      margin: '0 0 10px',
+      lineHeight: 1.1
+    }
+  }, title), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 14,
+      color: 'var(--ink-soft)',
+      margin: '0 0 28px',
+      lineHeight: 1.6
+    }
+  }, sub), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit,
+    className: "gwj-modal-form"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "booking-form-input",
+    type: "text",
+    placeholder: "first name (optional)",
+    value: firstName,
+    onChange: e => setFirstName(e.target.value)
+  }), /*#__PURE__*/React.createElement("input", {
+    className: "booking-form-input",
+    type: "email",
+    required: true,
+    placeholder: "your email address",
+    value: email,
+    onChange: e => setEmail(e.target.value)
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "btn btn-shadow-c3",
+    disabled: status === 'loading',
+    style: {
+      width: '100%',
+      justifyContent: 'center'
+    }
+  }, status === 'loading' ? 'joining...' : 'count me in →'), status === 'error' && /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--c1)',
+      fontSize: 13,
+      margin: '10px 0 0',
+      textAlign: 'center'
+    }
+  }, "something went wrong, try again or email", ' ', /*#__PURE__*/React.createElement("a", {
+    href: "mailto:mika@joytothefood.com",
+    className: "link"
+  }, "mika@joytothefood.com"))))));
+}
+
+// expose to window (bundle consistency)
+Object.assign(window, {
+  usePhase,
+  AnnouncementBar,
+  ChallengeHero,
+  ChallengeProofBar,
+  ReelProof,
+  WhyNow,
+  HowItWorks,
+  WeekArc,
+  ForNotFor,
+  ChallengeTestimonials,
+  ValueStack,
+  Timeline,
+  FAQ,
+  ChallengeCTA,
+  WaitlistModal
+});
+
 // === src/app-1.jsx ===
 
 "use strict";
@@ -314,7 +1219,7 @@ const SERVICES = [{
   badge: '1 trial spot left',
   badgeLines: ['1 trial', 'spot left'],
   shadowClass: 'btn-shadow-c3',
-  blurb: "I go through your entire Instagram like I'd go through my own — hooks, content strategy, monetization gaps, profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
+  blurb: "I go through your entire Instagram like I'd go through my own, looking at hooks, content strategy, monetization gaps, and profile. You get a recorded video walkthrough and a written action plan you can start using the same week.",
   bullets: ['Recorded video walkthrough', 'Hook + content analysis', 'Monetization gaps', 'Written action plan', '1 week delivery'],
   cta: 'Book your audit',
   details: {
@@ -342,8 +1247,8 @@ const SERVICES = [{
     }],
     prep: {
       title: 'what you\'ll do',
-      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
-      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 reels that underperformed that you were expecting to do well.']
+      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake, the more context I have, the sharper the audit.',
+      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days), full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 reels that underperformed that you were expecting to do well.']
     },
     deliverables: {
       title: 'what you\'ll get',
@@ -399,8 +1304,8 @@ const SERVICES = [{
     }],
     prep: {
       title: 'what you\'ll do',
-      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake — the more context I have, the sharper the audit.',
-      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days) — full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 reels that underperformed that you were expecting to do well.']
+      intro: 'Most of the work happens before our kickoff call. Plan to spend about 30–45 minutes on intake, the more context I have, the sharper the audit.',
+      items: ['Fill out a short intake form about your goals, niche, and what\'s been working (and what hasn\'t)', 'Export your Meta Business Suite data (last 90 days), full instructions in your welcome email', 'Take a handful of Instagram Insights screenshots from the app', 'Drop 5 reels that underperformed that you were expecting to do well.']
     },
     deliverables: {
       title: 'what you\'ll get',
@@ -429,7 +1334,7 @@ const SERVICES = [{
   price: '$1,000',
   sub: 'standalone',
   comingSoon: true,
-  blurb: "One full day of direct access via Voxer or WhatsApp. Film, send, get feedback — in real time.",
+  blurb: "One full day of direct access via Voxer or WhatsApp. Film, send, get feedback, in real time.",
   bullets: ['8 hrs of Voxer/WhatsApp', 'Real-time content feedback', 'Hook + caption rewrites', 'Lighting & shot review'],
   cta: 'Grab your day'
 }];
@@ -598,28 +1503,10 @@ function Services({
     }
   }, "fit.")), /*#__PURE__*/React.createElement("p", {
     className: "services-sub"
-  }, "The Jam Session is the ongoing room \u2014 monthly calls, weekly hook ideas, a Discord community, and me in there with you. The Audit is the fastest way to know exactly what to fix. The Audit+ keeps me in your corner while you do it."))), /*#__PURE__*/React.createElement("div", {
+  }, "The Jam Session is the ongoing room, with monthly calls, weekly hook ideas, a Discord community, and me in there with you."))), /*#__PURE__*/React.createElement("div", {
     className: "services-grid-single"
   }, /*#__PURE__*/React.createElement(ServiceCard, {
     s: SERVICES.find(s => s.id === 'mastermind'),
-    featured: true,
-    onBook: onBook,
-    onSeeDetails: onSeeDetails
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "services-divider"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "mono services-divider-label"
-  }, "or start with a one-time audit"), /*#__PURE__*/React.createElement("div", {
-    className: "services-divider-line"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "services-grid"
-  }, /*#__PURE__*/React.createElement(ServiceCard, {
-    s: SERVICES.find(s => s.id === 'audit'),
-    featured: true,
-    onBook: onBook,
-    onSeeDetails: onSeeDetails
-  }), /*#__PURE__*/React.createElement(ServiceCard, {
-    s: SERVICES.find(s => s.id === 'audit-plus'),
     featured: true,
     onBook: onBook,
     onSeeDetails: onSeeDetails
@@ -854,7 +1741,7 @@ function Testimonials() {
       fontSize: 11,
       opacity: 0.7
     }
-  }, "More to come \u2014 first audits are wrapping now."))));
+  }, "More to come, first audits are wrapping now."))));
 }
 
 // ============================================================
@@ -1011,8 +1898,6 @@ function Speaking() {
 function ContactCTA({
   onBook
 }) {
-  const audit = SERVICES.find(s => s.id === 'audit');
-  const auditPlus = SERVICES.find(s => s.id === 'audit-plus');
   const mastermind = SERVICES.find(s => s.id === 'mastermind');
   return /*#__PURE__*/React.createElement("section", {
     id: "contact",
@@ -1036,7 +1921,7 @@ function ContactCTA({
     }
   }, "fix that.")), /*#__PURE__*/React.createElement("p", {
     className: "contact-cta-sub"
-  }, "Join The Jam Session for ongoing strategy, community, and a room that gets it. Or start with a one-time audit \u2014 a written plan and recorded walkthrough delivered in about a week, with zero guesswork."), /*#__PURE__*/React.createElement("div", {
+  }, "Join The Jam Session for ongoing strategy, community, and a room that gets it."), /*#__PURE__*/React.createElement("div", {
     className: "contact-cta-btns"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn contact-cta-btn",
@@ -1044,16 +1929,7 @@ function ContactCTA({
     style: {
       background: 'var(--c3)'
     }
-  }, "\u2726 Apply for The Jam Session \u2014 $249/mo"), /*#__PURE__*/React.createElement("button", {
-    className: "btn alt contact-cta-btn",
-    onClick: () => onBook && onBook(audit)
-  }, "Book The Audit \u2014 $475 (trial price)"), /*#__PURE__*/React.createElement("button", {
-    className: "btn contact-cta-btn",
-    onClick: () => onBook && onBook(auditPlus),
-    style: {
-      background: 'var(--c4)'
-    }
-  }, "Book Audit + Reviews \u2014 $550 (trial price)")), /*#__PURE__*/React.createElement("a", {
+  }, "\u2726 Apply for The Jam Session \xB7 $249/mo")), /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link",
     style: {
@@ -1421,7 +2297,7 @@ function MastermindModal({
     className: "display booking-aside-title"
   }, service.title), /*#__PURE__*/React.createElement("div", {
     className: "booking-aside-blurb"
-  }, "A small-group mastermind for food and lifestyle creators who are serious about building something real \u2014 and want a room full of people who actually get it."), /*#__PURE__*/React.createElement("div", {
+  }, "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it."), /*#__PURE__*/React.createElement("div", {
     className: "booking-aside-total"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mono booking-aside-total-eyebrow"
@@ -1539,15 +2415,15 @@ function MastermindDetailsModal({
     className: "details-section"
   }, /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Once a month we get on a call together \u2014 your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits."), /*#__PURE__*/React.createElement("p", {
+  }, "Once a month we get on a call together, your people, your questions. Hot seat style. We dig into what's actually happening in your account, what's working, what's not, and what to do next. Nothing is off-limits."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
   }, "Every week you get fresh hook ideas dropped into your Discord channel so you're never starting from scratch on a caption again."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "In between calls, Discord is where it all lives. The community is full of creators at your exact stage \u2014 not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up."), /*#__PURE__*/React.createElement("p", {
+  }, "In between calls, Discord is where it all lives. The community is full of creators at your exact stage, not a mixed bag of everyone, just your people. Ask questions, share wins, get feedback, hype each other up."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
   }, "And I'm in there too. Actually responding."), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Once a quarter we bring in a guest speaker \u2014 someone doing something you want to do, who can tell you exactly how they got there.")), /*#__PURE__*/React.createElement("section", {
+  }, "Once a quarter we bring in a guest speaker, someone doing something you want to do, who can tell you exactly how they got there.")), /*#__PURE__*/React.createElement("section", {
     className: "details-section jam-fit-section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "jam-fit-col"
@@ -1555,7 +2431,7 @@ function MastermindDetailsModal({
     className: "mono details-section-eyebrow"
   }, "this is for you if"), /*#__PURE__*/React.createElement("ul", {
     className: "details-list"
-  }, ["You're a food or lifestyle creator who is done piecing together a strategy from random viral tips", "You're not opposed to showing up — on calls, in Discord, in your content — but you want the research and strategy done for you", "You're a \"tell me what to focus on and I'll go do it\" kind of person — but you also want to understand the why behind it", "You're ready to actually commit to figuring this out"].map((it, i) => /*#__PURE__*/React.createElement("li", {
+  }, ["You're a food or lifestyle creator who is done piecing together a strategy from random viral tips", "You're not opposed to showing up (on calls, in Discord, in your content) but you want the research and strategy done for you", "You're a \"tell me what to focus on and I'll go do it\" kind of person, but you also want to understand the why behind it", "You're ready to actually commit to figuring this out"].map((it, i) => /*#__PURE__*/React.createElement("li", {
     key: i,
     className: "details-list-item"
   }, /*#__PURE__*/React.createElement("span", {
@@ -1583,7 +2459,7 @@ function MastermindDetailsModal({
     className: "mono details-section-eyebrow"
   }, "how it works"), /*#__PURE__*/React.createElement("p", {
     className: "jam-prose"
-  }, "Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit \u2014 you'll hear back within a few days. If it's a yes, you'll get added at the next opening."), /*#__PURE__*/React.createElement("div", {
+  }, "Fill out a quick application and Mika will review it personally. Group members are selected based on availability and fit, so you'll hear back within a few days. If it's a yes, you'll get added at the next opening."), /*#__PURE__*/React.createElement("div", {
     className: "jam-price-block"
   }, /*#__PURE__*/React.createElement("span", {
     className: "display jam-price"
@@ -1610,7 +2486,7 @@ window.MastermindDetailsModal = MastermindDetailsModal;
 
 "use strict";
 
-/* global React, ReactDOM, Wordmark, Nav, HeroBigType, HeroImageGrid, ProofBar, Strip, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio */
+/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof, WhyNow, HowItWorks, WeekArc, ForNotFor, ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
 var {
   useState,
   useEffect
@@ -1665,6 +2541,8 @@ function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [bookingService, setBookingService] = useState(null);
   const [detailsService, setDetailsService] = useState(null);
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const phase = usePhase();
   useEffect(() => {
     const p = PALETTES[tweaks.palette] || PALETTES.Confetti;
     const root = document.documentElement;
@@ -1677,14 +2555,42 @@ function App() {
     root.style.setProperty('--bg-alt', p.bgAlt);
     root.style.setProperty('--ink', p.ink);
   }, [tweaks.palette]);
-  const Hero = tweaks.hero === 'ImageGrid' ? HeroImageGrid : HeroBigType;
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(Hero, {
-    onBook: setBookingService
-  }), /*#__PURE__*/React.createElement(ProofBar, null), /*#__PURE__*/React.createElement(Strip, null), /*#__PURE__*/React.createElement(Services, {
+
+  // Single CTA handler — open Kit Commerce in open phase, else waitlist modal
+  function handleCta(ph) {
+    if (ph === 'open') {
+      window.location.href = LAUNCH.kitCommerceUrl;
+    } else {
+      setWaitlistOpen(true);
+    }
+  }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(AnnouncementBar, {
+    phase: phase,
+    onCta: () => handleCta(phase)
+  }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, {
+    phase: phase,
+    onCta: handleCta
+  }), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(ValueStack, {
+    phase: phase,
+    onCta: handleCta
+  }), /*#__PURE__*/React.createElement(Timeline, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {
+    phase: phase,
+    onCta: handleCta
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-services-bridge"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "gwj-bridge-text"
+  }, "already established and want me 1:1? I've got you over here too \u2192"))), /*#__PURE__*/React.createElement(Services, {
     onBook: setBookingService,
     onSeeDetails: setDetailsService
-  }), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Testimonials, null), /*#__PURE__*/React.createElement(Speaking, null), /*#__PURE__*/React.createElement(ContactCTA, {
+  }), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Speaking, null), /*#__PURE__*/React.createElement(ContactCTA, {
     onBook: setBookingService
+  }), /*#__PURE__*/React.createElement(WaitlistModal, {
+    open: waitlistOpen,
+    onClose: () => setWaitlistOpen(false),
+    phase: phase
   }), bookingService && bookingService.id === 'mastermind' && /*#__PURE__*/React.createElement(MastermindModal, {
     service: bookingService,
     onClose: () => setBookingService(null)
@@ -1707,12 +2613,6 @@ function App() {
     value: tweaks.palette,
     options: ['Confetti', 'Citrus', 'Berry', 'Sunset'],
     onChange: v => setTweak('palette', v)
-  })), /*#__PURE__*/React.createElement(TweakSection, {
-    title: "Hero layout"
-  }, /*#__PURE__*/React.createElement(TweakRadio, {
-    value: tweaks.hero,
-    options: ['BigType', 'ImageGrid'],
-    onChange: v => setTweak('hero', v)
   }))));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(App, null));
