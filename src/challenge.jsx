@@ -734,7 +734,7 @@ function WhoMikaIs() {
         </div>
         <div className="gwj-who-photo">
           <div className="photo has-image gwj-who-img-wrap">
-            <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
+            <img src="images/about-your-host.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
           </div>
         </div>
       </div>

@@ -934,7 +934,7 @@ function WhoMikaIs() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "photo has-image gwj-who-img-wrap"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "images/mika-headshot.jpg",
+    src: "images/about-your-host.jpg",
     alt: "Mika Kinney",
     className: "photo-img",
     loading: "lazy"
