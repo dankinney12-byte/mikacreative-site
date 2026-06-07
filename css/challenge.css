@@ -5,7 +5,7 @@
 
 /* ── shared section scaffolding ───────────────────────────── */
 .gwj-section {
-  padding: 72px 0;
+  padding: 48px 0;
 }
 .gwj-section-alt {
   background: var(--bg-alt);
@@ -85,11 +85,8 @@
 
 /* ── hero ─────────────────────────────────────────────────── */
 .gwj-hero {
-  padding: 56px 0 72px;
+  padding: 56px 0 48px;
   background: var(--bg);
-}
-.gwj-hero-inner {
-  max-width: none;
 }
 .gwj-hero-eyebrow {
   display: block;
@@ -187,9 +184,6 @@
 }
 
 /* ── why now ──────────────────────────────────────────────── */
-.gwj-why-inner {
-  max-width: 720px;
-}
 .gwj-why-inner .gwj-section-headline {
   max-width: 640px;
 }
