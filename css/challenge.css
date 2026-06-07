@@ -868,11 +868,11 @@
 .gwj-final-cta-inner {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
   gap: 20px;
   max-width: 600px;
-  margin: 0;
+  margin: 0 auto;
 }
 .gwj-final-headline {
   font-size: clamp(36px, 7vw, 64px);

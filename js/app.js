@@ -1982,9 +1982,8 @@ function Speaking() {
 // CONTACT / FOOTER
 // ============================================================
 function ContactCTA({
-  onBook
+  onWaitlist
 }) {
-  const mastermind = SERVICES.find(s => s.id === 'mastermind');
   return /*#__PURE__*/React.createElement("section", {
     id: "contact",
     className: "contact-cta"
@@ -2007,15 +2006,15 @@ function ContactCTA({
     }
   }, "fix that.")), /*#__PURE__*/React.createElement("p", {
     className: "contact-cta-sub"
-  }, "Join The Jam Session for ongoing strategy, community, and a room that gets it."), /*#__PURE__*/React.createElement("div", {
+  }, "Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators."), /*#__PURE__*/React.createElement("div", {
     className: "contact-cta-btns"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn contact-cta-btn",
-    onClick: () => onBook && onBook(mastermind),
+    onClick: () => onWaitlist && onWaitlist(),
     style: {
       background: 'var(--c3)'
     }
-  }, "\u2726 Apply for The Jam Session \xB7 $249/mo")), /*#__PURE__*/React.createElement("a", {
+  }, "join the waitlist (sign ups open June 15th!)")), /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link",
     style: {
@@ -2675,7 +2674,7 @@ function App() {
     onBook: setBookingService,
     onSeeDetails: setDetailsService
   }), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Speaking, null), /*#__PURE__*/React.createElement(ContactCTA, {
-    onBook: setBookingService
+    onWaitlist: () => handleCta(phase)
   }), /*#__PURE__*/React.createElement(WaitlistModal, {
     open: waitlistOpen,
     onClose: () => setWaitlistOpen(false),

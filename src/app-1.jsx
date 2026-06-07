@@ -790,8 +790,7 @@ function Speaking() {
 // ============================================================
 // CONTACT / FOOTER
 // ============================================================
-function ContactCTA({ onBook }) {
-  const mastermind = SERVICES.find(s => s.id === 'mastermind');
+function ContactCTA({ onWaitlist }) {
   return (
     <section id="contact" className="contact-cta">
       <div className="container contact-cta-inner">
@@ -801,11 +800,11 @@ function ContactCTA({ onBook }) {
           let's <span style={{ color: 'var(--c3)' }}>fix that.</span>
         </h2>
         <p className="contact-cta-sub">
-          Join The Jam Session for ongoing strategy, community, and a room that gets it.
+          Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators.
         </p>
         <div className="contact-cta-btns">
-          <button className="btn contact-cta-btn" onClick={() => onBook && onBook(mastermind)} style={{ background: 'var(--c3)' }}>
-            ✦ Apply for The Jam Session · $249/mo
+          <button className="btn contact-cta-btn" onClick={() => onWaitlist && onWaitlist()} style={{ background: 'var(--c3)' }}>
+            join the waitlist (sign ups open June 15th!)
           </button>
         </div>
         <a href="mailto:mika@joytothefood.com" className="link" style={{

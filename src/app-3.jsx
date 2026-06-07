@@ -72,7 +72,7 @@ function App() {
       <Services onBook={setBookingService} onSeeDetails={setDetailsService} />
       <About />
       <Speaking />
-      <ContactCTA onBook={setBookingService} />
+      <ContactCTA onWaitlist={() => handleCta(phase)} />
 
       {/* ── Modals ── */}
       <WaitlistModal
