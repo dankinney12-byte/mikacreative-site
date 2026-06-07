@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof, WhyNow, HowItWorks, WeekArc, ForNotFor, ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
+/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof, WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor, ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, CtaBand, WaitlistModal */
 const { useState, useEffect } = React;
 
 const PALETTES = {
@@ -47,14 +47,17 @@ function App() {
       {/* ── Challenge launch page ── */}
       <AnnouncementBar phase={phase} onCta={() => handleCta(phase)} />
       <Nav />
-      <ChallengeHero phase={phase} onCta={handleCta} />
-      <ChallengeProofBar />
-      <HowItWorks />
+      <ChallengeHero />
       <WhyNow />
+      <ChallengeProofBar />
       <ReelProof />
+      <CtaBand phase={phase} onCta={handleCta} />
+      <WhoMikaIs />
+      <HowItWorks />
       <WeekArc />
       <ForNotFor />
       <ChallengeTestimonials />
+      <CtaBand phase={phase} onCta={handleCta} />
       <ValueStack phase={phase} onCta={handleCta} />
       <Timeline />
       <FAQ />

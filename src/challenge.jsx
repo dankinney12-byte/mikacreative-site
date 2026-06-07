@@ -93,13 +93,7 @@ function AnnouncementBar({ phase, onCta }) {
 // ============================================================
 // CHALLENGE HERO
 // ============================================================
-function ChallengeHero({ phase, onCta }) {
-  const ctaLabel = {
-    waitlist: 'join the waitlist →',
-    open:     'enroll now ($249) →',
-    closed:   'join the list for round two →',
-  }[phase];
-
+function ChallengeHero() {
   return (
     <section className="gwj-hero">
       <div className="container gwj-hero-inner">
@@ -118,25 +112,18 @@ function ChallengeHero({ phase, onCta }) {
             <p className="gwj-hero-body">
               Hi, I'm Mika! I grew{' '}
               <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
-              from 1,001 to 500K followers in two years, and I tracked exactly what worked. This 30-day challenge hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!
+              from 1,001 to 500K followers in two years, and I tracked exactly what worked. Now I'm excited to share it all in a 30-day challenge that we'd love to have you join! This course hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!
             </p>
             <p className="gwj-hero-outcome">
               By day 30 you'll have a posting system you understand and a feed you're proud of.
             </p>
             <div className="gwj-hero-cta-wrap">
-              <button className="btn gwj-hero-btn btn-shadow-c2" onClick={() => onCta(phase)}>
-                {ctaLabel}
+              <button
+                className="btn gwj-hero-btn btn-shadow-c2"
+                onClick={() => document.getElementById('gwj-why')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                see what's inside ↓
               </button>
-              {phase === 'waitlist' && (
-                <p className="gwj-hero-microcopy">
-                  Be first through the door when enrollment opens June 15! No spam, just updates.
-                </p>
-              )}
-              {phase === 'open' && (
-                <p className="gwj-hero-microcopy">
-                  Doors close June 30 · <Countdown target={LAUNCH.enrollCloses} />
-                </p>
-              )}
             </div>
           </div>
         </div>
@@ -215,7 +202,7 @@ function ReelProof() {
 // ============================================================
 function WhyNow() {
   return (
-    <section className="gwj-section gwj-why-section">
+    <section id="gwj-why" className="gwj-section gwj-why-section">
       <div className="container gwj-why-inner">
         <h2 className="display gwj-section-headline">
           why now?
@@ -254,7 +241,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section className="gwj-section gwj-section-alt">
+    <section className="gwj-section">
       <div className="container">
         <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>the schedule</span>
         <h2 className="display gwj-section-headline">here's how the 30 days actually go!</h2>
@@ -723,10 +710,65 @@ function WaitlistModal({ open, onClose, phase }) {
   );
 }
 
+// ============================================================
+// ABOUT MIKA
+// ============================================================
+function WhoMikaIs() {
+  return (
+    <section className="gwj-section gwj-section-alt">
+      <div className="container gwj-who-inner">
+        <div className="gwj-who-content">
+          <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>about your host</span>
+          <h2 className="display gwj-section-headline">okay but who even am I!</h2>
+          <p className="gwj-prose">
+            I'm Mika: engineer turned food creator, NASM nutrition coach, and the face of{' '}
+            <span className="mono">@_joytothefood_</span>. I grew it the boring, honest way: post, study what works, do more of that. I'm not special, just stubborn! I'll even show you my flops, because the fastest to fall is the fastest to learn.
+          </p>
+          <div className="gwj-heard-on">
+            <span className="mono gwj-heard-label">as heard on</span>
+            <div className="gwj-heard-pills">
+              <span className="gwj-heard-pill">Food Blogger Pro</span>
+              <span className="gwj-heard-pill">Eat Blog Talk</span>
+            </div>
+          </div>
+        </div>
+        <div className="gwj-who-photo">
+          <div className="photo has-image gwj-who-img-wrap">
+            <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
+// CTA BAND — repeated waitlist CTA at conversion points
+// ============================================================
+function CtaBand({ phase, onCta }) {
+  const label = {
+    waitlist: 'join the waitlist →',
+    open:     'enroll now ($249) →',
+    closed:   'join the list for round two →',
+  }[phase];
+  return (
+    <div className="gwj-cta-band">
+      <div className="container gwj-cta-band-inner">
+        <button className="btn btn-shadow-c2 gwj-cta-band-btn" onClick={() => onCta(phase)}>
+          {label}
+        </button>
+        {phase === 'waitlist' && (
+          <span className="mono gwj-cta-band-note">free to join · enrollment opens June 15</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // expose to window (bundle consistency)
 Object.assign(window, {
   usePhase,
   AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof,
-  WhyNow, HowItWorks, WeekArc, ForNotFor,
-  ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal,
+  WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor,
+  ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, CtaBand, WaitlistModal,
 });

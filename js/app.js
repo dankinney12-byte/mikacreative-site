@@ -169,15 +169,7 @@ function AnnouncementBar({
 // ============================================================
 // CHALLENGE HERO
 // ============================================================
-function ChallengeHero({
-  phase,
-  onCta
-}) {
-  const ctaLabel = {
-    waitlist: 'join the waitlist →',
-    open: 'enroll now ($249) →',
-    closed: 'join the list for round two →'
-  }[phase];
+function ChallengeHero() {
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-hero"
   }, /*#__PURE__*/React.createElement("div", {
@@ -208,20 +200,16 @@ function ChallengeHero({
     style: {
       fontSize: '0.88em'
     }
-  }, "@_joytothefood_"), ' ', "from 1,001 to 500K followers in two years, and I tracked exactly what worked. This 30-day challenge hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!"), /*#__PURE__*/React.createElement("p", {
+  }, "@_joytothefood_"), ' ', "from 1,001 to 500K followers in two years, and I tracked exactly what worked. Now I'm excited to share it all in a 30-day challenge that we'd love to have you join! This course hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-outcome"
   }, "By day 30 you'll have a posting system you understand and a feed you're proud of."), /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-cta-wrap"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn gwj-hero-btn btn-shadow-c2",
-    onClick: () => onCta(phase)
-  }, ctaLabel), phase === 'waitlist' && /*#__PURE__*/React.createElement("p", {
-    className: "gwj-hero-microcopy"
-  }, "Be first through the door when enrollment opens June 15! No spam, just updates."), phase === 'open' && /*#__PURE__*/React.createElement("p", {
-    className: "gwj-hero-microcopy"
-  }, "Doors close June 30 \xB7 ", /*#__PURE__*/React.createElement(Countdown, {
-    target: LAUNCH.enrollCloses
-  })))))));
+    onClick: () => document.getElementById('gwj-why')?.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }, "see what's inside \u2193"))))));
 }
 
 // ============================================================
@@ -324,6 +312,7 @@ function ReelProof() {
 // ============================================================
 function WhyNow() {
   return /*#__PURE__*/React.createElement("section", {
+    id: "gwj-why",
     className: "gwj-section gwj-why-section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container gwj-why-inner"
@@ -355,7 +344,7 @@ function HowItWorks() {
     body: "One idea, one real post of mine with the numbers, and one small dare to go do it. Rest days built in, because growth shouldn't burn you out."
   }];
   return /*#__PURE__*/React.createElement("section", {
-    className: "gwj-section gwj-section-alt"
+    className: "gwj-section"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("span", {
@@ -909,6 +898,73 @@ function WaitlistModal({
   }, "mika@joytothefood.com"))))));
 }
 
+// ============================================================
+// ABOUT MIKA
+// ============================================================
+function WhoMikaIs() {
+  return /*#__PURE__*/React.createElement("section", {
+    className: "gwj-section gwj-section-alt"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container gwj-who-inner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-who-content"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "eyebrow",
+    style: {
+      justifyContent: 'flex-start'
+    }
+  }, "about your host"), /*#__PURE__*/React.createElement("h2", {
+    className: "display gwj-section-headline"
+  }, "okay but who even am I!"), /*#__PURE__*/React.createElement("p", {
+    className: "gwj-prose"
+  }, "I'm Mika: engineer turned food creator, NASM nutrition coach, and the face of", ' ', /*#__PURE__*/React.createElement("span", {
+    className: "mono"
+  }, "@_joytothefood_"), ". I grew it the boring, honest way: post, study what works, do more of that. I'm not special, just stubborn! I'll even show you my flops, because the fastest to fall is the fastest to learn."), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-heard-on"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-heard-label"
+  }, "as heard on"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-heard-pills"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-heard-pill"
+  }, "Food Blogger Pro"), /*#__PURE__*/React.createElement("span", {
+    className: "gwj-heard-pill"
+  }, "Eat Blog Talk")))), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-who-photo"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "photo has-image gwj-who-img-wrap"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "images/mika-headshot.jpg",
+    alt: "Mika Kinney",
+    className: "photo-img",
+    loading: "lazy"
+  })))));
+}
+
+// ============================================================
+// CTA BAND — repeated waitlist CTA at conversion points
+// ============================================================
+function CtaBand({
+  phase,
+  onCta
+}) {
+  const label = {
+    waitlist: 'join the waitlist →',
+    open: 'enroll now ($249) →',
+    closed: 'join the list for round two →'
+  }[phase];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "gwj-cta-band"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container gwj-cta-band-inner"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-shadow-c2 gwj-cta-band-btn",
+    onClick: () => onCta(phase)
+  }, label), phase === 'waitlist' && /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-cta-band-note"
+  }, "free to join \xB7 enrollment opens June 15")));
+}
+
 // expose to window (bundle consistency)
 Object.assign(window, {
   usePhase,
@@ -919,12 +975,14 @@ Object.assign(window, {
   WhyNow,
   HowItWorks,
   WeekArc,
+  WhoMikaIs,
   ForNotFor,
   ChallengeTestimonials,
   ValueStack,
   Timeline,
   FAQ,
   ChallengeCTA,
+  CtaBand,
   WaitlistModal
 });
 
@@ -2486,7 +2544,7 @@ window.MastermindDetailsModal = MastermindDetailsModal;
 
 "use strict";
 
-/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof, WhyNow, HowItWorks, WeekArc, ForNotFor, ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, WaitlistModal */
+/* global React, ReactDOM, Wordmark, Nav, Services, About, Freebie, Testimonials, Speaking, ContactCTA, BookingFlow, ServiceDetailsModal, MastermindModal, MastermindDetailsModal, useTweaks, TweaksPanel, TweakSection, TweakRadio, usePhase, AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof, WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor, ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, CtaBand, WaitlistModal */
 var {
   useState,
   useEffect
@@ -2567,10 +2625,13 @@ function App() {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(AnnouncementBar, {
     phase: phase,
     onCta: () => handleCta(phase)
-  }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, {
+  }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(CtaBand, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(ValueStack, {
+  }), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(CtaBand, {
+    phase: phase,
+    onCta: handleCta
+  }), /*#__PURE__*/React.createElement(ValueStack, {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement(Timeline, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {
