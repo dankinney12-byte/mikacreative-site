@@ -495,13 +495,10 @@ function ChallengeTestimonials() {
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow",
     style: {
-      justifyContent: 'center'
+      justifyContent: 'flex-start'
     }
   }, "what people say"), /*#__PURE__*/React.createElement("h2", {
-    className: "display gwj-section-headline",
-    style: {
-      textAlign: 'center'
-    }
+    className: "display gwj-section-headline"
   }, "don't just take my word for it!"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-testi-grid"
   }, testimonials.map((t, i) => /*#__PURE__*/React.createElement("div", {

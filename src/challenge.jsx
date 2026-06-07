@@ -383,8 +383,8 @@ function ChallengeTestimonials() {
   return (
     <section className="gwj-section gwj-testimonials">
       <div className="container">
-        <span className="eyebrow" style={{ justifyContent: 'center' }}>what people say</span>
-        <h2 className="display gwj-section-headline" style={{ textAlign: 'center' }}>
+        <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>what people say</span>
+        <h2 className="display gwj-section-headline">
           don't just take my word for it!
         </h2>
         <div className="gwj-testi-grid">

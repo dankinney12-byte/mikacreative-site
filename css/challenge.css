@@ -188,14 +188,11 @@
 
 /* ── why now (centered bubble) ────────────────────────────── */
 .gwj-why-bubble {
-  max-width: 760px;
-  margin: 0 auto;
   background: var(--c2);
   border: 2px solid var(--ink);
   border-radius: 24px;
   box-shadow: 6px 6px 0 var(--ink);
   padding: 36px 40px;
-  text-align: center;
 }
 .gwj-why-headline {
   font-size: clamp(28px, 5vw, 42px);
@@ -410,9 +407,9 @@
 .gwj-cta-band-inner {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
-  text-align: center;
+  text-align: left;
 }
 .gwj-cta-band-btn {
   font-size: 17px;
@@ -673,9 +670,6 @@
   grid-template-columns: 1fr;
   gap: 16px;
   margin-top: 32px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
 }
 .gwj-testi-card {
   padding: 28px;
@@ -737,7 +731,7 @@
   flex-direction: column;
   gap: 0;
   max-width: 860px;
-  margin: 0 auto;
+  margin: 0;
 }
 .gwj-timeline-step {
   display: flex;
@@ -874,11 +868,11 @@
 .gwj-final-cta-inner {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   gap: 20px;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0;
 }
 .gwj-final-headline {
   font-size: clamp(36px, 7vw, 64px);
