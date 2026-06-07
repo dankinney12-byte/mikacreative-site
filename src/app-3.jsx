@@ -49,17 +49,15 @@ function App() {
       <Nav />
       <ChallengeHero />
       <WhyNow />
-      <ChallengeProofBar />
-      <ReelProof />
-      <CtaBand phase={phase} onCta={handleCta} />
       <WhoMikaIs />
+      <ReelProof />
+      <ChallengeTestimonials />
+      <CtaBand phase={phase} onCta={handleCta} />
       <HowItWorks />
       <WeekArc />
       <ForNotFor />
-      <ChallengeTestimonials />
       <CtaBand phase={phase} onCta={handleCta} />
       <ValueStack phase={phase} onCta={handleCta} />
-      <Timeline />
       <FAQ />
       <ChallengeCTA phase={phase} onCta={handleCta} />
 

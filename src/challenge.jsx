@@ -106,7 +106,7 @@ function ChallengeHero() {
 
         <div className="gwj-hero-row">
           <div className="gwj-hero-photo">
-            <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
+            <img src="images/about-your-host.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
           </div>
           <div className="gwj-hero-col">
             <p className="gwj-hero-body">
@@ -203,13 +203,13 @@ function ReelProof() {
 function WhyNow() {
   return (
     <section id="gwj-why" className="gwj-section gwj-why-section">
-      <div className="container gwj-why-inner">
-        <h2 className="display gwj-section-headline">
-          why now?
-        </h2>
-        <p className="gwj-prose">
-          Google is answering recipe searches with AI, so search engine traffic is drying up. More and more people find food on TikTok, Facebook, and Instagram, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.
-        </p>
+      <div className="container">
+        <div className="gwj-why-bubble">
+          <h2 className="display gwj-why-headline">why now?</h2>
+          <p className="gwj-why-prose">
+            Google is answering recipe searches with AI, so search engine traffic is drying up. More and more people find food on TikTok, Facebook, and Instagram, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -244,8 +244,9 @@ function HowItWorks() {
     <section className="gwj-section">
       <div className="container">
         <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>the schedule</span>
-        <h2 className="display gwj-section-headline">here's how the 30 days actually go!</h2>
-        <div className="gwj-how-grid">
+        <h2 className="display gwj-section-headline">how this all shakes out!</h2>
+        <Timeline />
+        <div className="gwj-how-grid gwj-how-grid-spaced">
           {cards.map((c, i) => (
             <div key={i} className="card gwj-how-card" style={{ background: c.color }}>
               <span className="mono gwj-how-num">{c.num}</span>
@@ -294,7 +295,7 @@ function WeekArc() {
     <section className="gwj-section">
       <div className="container">
         <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>what's inside</span>
-        <h2 className="display gwj-section-headline">the 4-week arc!</h2>
+        <h2 className="display gwj-section-headline">what's in the daily drops</h2>
         <div className="gwj-weeks-grid">
           {weeks.map((w, i) => (
             <div key={i} className="card gwj-week-card" style={{ background: w.color }}>
@@ -483,29 +484,22 @@ function Timeline() {
   ];
 
   return (
-    <section className="gwj-section">
-      <div className="container">
-        <h2 className="display gwj-section-headline" style={{ textAlign: 'center' }}>
-          how this all shakes out!
-        </h2>
-        <div className="gwj-timeline">
-          {steps.map((s, i) => (
-            <div key={i} className="gwj-timeline-step">
-              <div className="gwj-timeline-dot-wrap">
-                <div
-                  className={`gwj-timeline-dot${s.active ? ' is-active' : ''}`}
-                  style={{ background: s.active ? s.color : 'var(--bg)', borderColor: s.active ? s.color : 'var(--ink)' }}
-                />
-                {i < steps.length - 1 && <div className="gwj-timeline-line" />}
-              </div>
-              <span className="mono gwj-timeline-label" style={{ color: s.active ? s.color : 'var(--ink)' }}>
-                {s.label}
-              </span>
-            </div>
-          ))}
+    <div className="gwj-timeline">
+      {steps.map((s, i) => (
+        <div key={i} className="gwj-timeline-step">
+          <div className="gwj-timeline-dot-wrap">
+            <div
+              className={`gwj-timeline-dot${s.active ? ' is-active' : ''}`}
+              style={{ background: s.active ? s.color : 'var(--bg)', borderColor: s.active ? s.color : 'var(--ink)' }}
+            />
+            {i < steps.length - 1 && <div className="gwj-timeline-line" />}
+          </div>
+          <span className="mono gwj-timeline-label" style={{ color: s.active ? s.color : 'var(--ink)' }}>
+            {s.label}
+          </span>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 }
 
@@ -732,9 +726,27 @@ function WhoMikaIs() {
             </div>
           </div>
         </div>
-        <div className="gwj-who-photo">
+        <div className="gwj-who-media">
           <div className="photo has-image gwj-who-img-wrap">
-            <img src="images/about-your-host.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
+            <img src="images/mika-headshot.jpg" alt="Mika Kinney" className="photo-img" loading="lazy" />
+          </div>
+          <div className="gwj-who-stats">
+            <div className="gwj-who-stat">
+              <span className="display gwj-who-stat-num" style={{ color: 'var(--c1)' }}>500K</span>
+              <span className="mono gwj-who-stat-label">followers</span>
+            </div>
+            <div className="gwj-who-stat">
+              <span className="display gwj-who-stat-num" style={{ color: 'var(--c2)' }}>10M</span>
+              <span className="mono gwj-who-stat-label">monthly views</span>
+            </div>
+            <div className="gwj-who-stat">
+              <span className="display gwj-who-stat-num" style={{ color: 'var(--c3)' }}>38M</span>
+              <span className="mono gwj-who-stat-label">views from one reel</span>
+            </div>
+            <div className="gwj-who-stat">
+              <span className="display gwj-who-stat-num" style={{ color: 'var(--c4)' }}>157K+</span>
+              <span className="mono gwj-who-stat-label">from a single post</span>
+            </div>
           </div>
         </div>
       </div>

@@ -187,7 +187,7 @@ function ChallengeHero() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-photo"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "images/mika-headshot.jpg",
+    src: "images/about-your-host.jpg",
     alt: "Mika Kinney",
     className: "photo-img",
     loading: "lazy"
@@ -315,12 +315,14 @@ function WhyNow() {
     id: "gwj-why",
     className: "gwj-section gwj-why-section"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "container gwj-why-inner"
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-why-bubble"
   }, /*#__PURE__*/React.createElement("h2", {
-    className: "display gwj-section-headline"
+    className: "display gwj-why-headline"
   }, "why now?"), /*#__PURE__*/React.createElement("p", {
-    className: "gwj-prose"
-  }, "Google is answering recipe searches with AI, so search engine traffic is drying up. More and more people find food on TikTok, Facebook, and Instagram, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years.")));
+    className: "gwj-why-prose"
+  }, "Google is answering recipe searches with AI, so search engine traffic is drying up. More and more people find food on TikTok, Facebook, and Instagram, and they follow creators they trust. The food bloggers who build a real presence on social right now are the ones who win the next few years."))));
 }
 
 // ============================================================
@@ -354,8 +356,8 @@ function HowItWorks() {
     }
   }, "the schedule"), /*#__PURE__*/React.createElement("h2", {
     className: "display gwj-section-headline"
-  }, "here's how the 30 days actually go!"), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-how-grid"
+  }, "how this all shakes out!"), /*#__PURE__*/React.createElement(Timeline, null), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-how-grid gwj-how-grid-spaced"
   }, cards.map((c, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     className: "card gwj-how-card",
@@ -407,7 +409,7 @@ function WeekArc() {
     }
   }, "what's inside"), /*#__PURE__*/React.createElement("h2", {
     className: "display gwj-section-headline"
-  }, "the 4-week arc!"), /*#__PURE__*/React.createElement("div", {
+  }, "what's in the daily drops"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-weeks-grid"
   }, weeks.map((w, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
@@ -635,16 +637,7 @@ function Timeline() {
     label: '30 days of drops',
     color: 'var(--c5)'
   }];
-  return /*#__PURE__*/React.createElement("section", {
-    className: "gwj-section"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("h2", {
-    className: "display gwj-section-headline",
-    style: {
-      textAlign: 'center'
-    }
-  }, "how this all shakes out!"), /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "gwj-timeline"
   }, steps.map((s, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
@@ -664,7 +657,7 @@ function Timeline() {
     style: {
       color: s.active ? s.color : 'var(--ink)'
     }
-  }, s.label))))));
+  }, s.label))));
 }
 
 // ============================================================
@@ -930,15 +923,53 @@ function WhoMikaIs() {
   }, "Food Blogger Pro"), /*#__PURE__*/React.createElement("span", {
     className: "gwj-heard-pill"
   }, "Eat Blog Talk")))), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-who-photo"
+    className: "gwj-who-media"
   }, /*#__PURE__*/React.createElement("div", {
     className: "photo has-image gwj-who-img-wrap"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "images/about-your-host.jpg",
+    src: "images/mika-headshot.jpg",
     alt: "Mika Kinney",
     className: "photo-img",
     loading: "lazy"
-  })))));
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-who-stats"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-who-stat"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "display gwj-who-stat-num",
+    style: {
+      color: 'var(--c1)'
+    }
+  }, "500K"), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-who-stat-label"
+  }, "followers")), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-who-stat"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "display gwj-who-stat-num",
+    style: {
+      color: 'var(--c2)'
+    }
+  }, "10M"), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-who-stat-label"
+  }, "monthly views")), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-who-stat"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "display gwj-who-stat-num",
+    style: {
+      color: 'var(--c3)'
+    }
+  }, "38M"), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-who-stat-label"
+  }, "views from one reel")), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-who-stat"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "display gwj-who-stat-num",
+    style: {
+      color: 'var(--c4)'
+    }
+  }, "157K+"), /*#__PURE__*/React.createElement("span", {
+    className: "mono gwj-who-stat-label"
+  }, "from a single post"))))));
 }
 
 // ============================================================
@@ -2625,16 +2656,16 @@ function App() {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(AnnouncementBar, {
     phase: phase,
     onCta: () => handleCta(phase)
-  }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(ChallengeProofBar, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(CtaBand, {
+  }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(CtaBand, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(CtaBand, {
+  }), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(CtaBand, {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement(ValueStack, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(Timeline, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {
+  }), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement("div", {
