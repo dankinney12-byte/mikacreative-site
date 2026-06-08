@@ -804,7 +804,7 @@ function ContactCTA({ onWaitlist }) {
         </p>
         <div className="contact-cta-btns">
           <button className="btn contact-cta-btn" onClick={() => onWaitlist && onWaitlist()} style={{ background: 'var(--c3)' }}>
-            join the waitlist (sign ups open June 15th!)
+            sign me up!
           </button>
         </div>
         <a href="mailto:mika@joytothefood.com" className="link" style={{

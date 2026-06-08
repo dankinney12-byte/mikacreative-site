@@ -59,10 +59,10 @@ function AnnouncementBar({ phase, onCta }) {
       fg: 'var(--ink)',
     },
     open: {
-      msg: 'enrollment is OPEN! doors close in',
-      target: LAUNCH.enrollCloses,
-      cta: 'enroll now →',
-      bg: 'var(--c1)',
+      msg: 'grow with joy is coming! 30 day challenge starts July 1',
+      target: LAUNCH.challengeStarts,
+      cta: 'sign me up!',
+      bg: 'var(--c3)',
       fg: 'var(--ink)',
     },
     closed: {
@@ -425,7 +425,7 @@ function ValueStack({ phase, onCta }) {
 
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open:     'enroll now ($249) →',
+    open:     'sign me up!',
     closed:   'join the list for round two →',
   }[phase];
 
@@ -476,11 +476,10 @@ function ValueStack({ phase, onCta }) {
 // ============================================================
 function Timeline() {
   const steps = [
-    { label: 'waitlist open now',       color: 'var(--c3)', active: true },
-    { label: 'enrollment opens june 15', color: 'var(--c2)' },
-    { label: 'doors close june 30',      color: 'var(--c1)' },
-    { label: 'we start july 1',          color: 'var(--c4)' },
-    { label: '30 days of drops',         color: 'var(--c5)' },
+    { label: 'enrollment opens June 7th', color: 'var(--c2)', active: true },
+    { label: 'doors close June 30',       color: 'var(--c1)' },
+    { label: 'we start July 1',           color: 'var(--c4)' },
+    { label: '30 days of drops',          color: 'var(--c5)' },
   ];
 
   return (
@@ -556,12 +555,10 @@ function FAQ() {
 function ChallengeCTA({ phase, onCta }) {
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open:     'enroll now ($249) →',
+    open:     'sign me up!',
     closed:   'join the list for round two →',
   }[phase];
-  const target = phase === 'waitlist' ? LAUNCH.enrollOpens
-               : phase === 'open'     ? LAUNCH.enrollCloses
-               : null;
+  const target = phase === 'closed' ? null : LAUNCH.challengeStarts;
 
   return (
     <section className="gwj-final-cta">
@@ -577,8 +574,7 @@ function ChallengeCTA({ phase, onCta }) {
         </button>
         {target && (
           <p className="mono gwj-final-countdown">
-            {phase === 'waitlist' ? 'enrollment opens in ' : 'doors close in '}
-            <Countdown target={target} />
+            the 30 day challenge starts in <Countdown target={target} />
           </p>
         )}
       </div>
@@ -760,7 +756,7 @@ function WhoMikaIs() {
 function CtaBand({ phase, onCta }) {
   const label = {
     waitlist: 'join the waitlist →',
-    open:     'enroll now ($249) →',
+    open:     'sign me up!',
     closed:   'join the list for round two →',
   }[phase];
   return (

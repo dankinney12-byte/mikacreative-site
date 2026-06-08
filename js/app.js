@@ -35,11 +35,10 @@ var LAUNCH = {
   name: "Grow with Joy",
   price: 249,
   timezone: "America/Chicago",
-  enrollOpens: "2026-06-15T00:00:00-05:00",
+  enrollOpens: "2026-06-07T00:00:00-05:00",
   enrollCloses: "2026-06-30T23:59:59-05:00",
   challengeStarts: "2026-07-01T00:00:00-05:00",
-  kitCommerceUrl: "#",
-  // <<KIT_COMMERCE_CHECKOUT_URL>>
+  kitCommerceUrl: "https://joy-to-the-food.kit.com/products/grow-with-joy",
   kitWaitlistUrl: "#" // fallback href if Netlify function not available
 };
 function getPhase(now) {
@@ -132,10 +131,10 @@ function AnnouncementBar({
       fg: 'var(--ink)'
     },
     open: {
-      msg: 'enrollment is OPEN! doors close in',
-      target: LAUNCH.enrollCloses,
-      cta: 'enroll now →',
-      bg: 'var(--c1)',
+      msg: 'grow with joy is coming! 30 day challenge starts July 1',
+      target: LAUNCH.challengeStarts,
+      cta: 'sign me up!',
+      bg: 'var(--c3)',
       fg: 'var(--ink)'
     },
     closed: {
@@ -567,7 +566,7 @@ function ValueStack({
   }];
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open: 'enroll now ($249) →',
+    open: 'sign me up!',
     closed: 'join the list for round two →'
   }[phase];
   return /*#__PURE__*/React.createElement("section", {
@@ -618,17 +617,14 @@ function ValueStack({
 // ============================================================
 function Timeline() {
   const steps = [{
-    label: 'waitlist open now',
-    color: 'var(--c3)',
+    label: 'enrollment opens June 7th',
+    color: 'var(--c2)',
     active: true
   }, {
-    label: 'enrollment opens june 15',
-    color: 'var(--c2)'
-  }, {
-    label: 'doors close june 30',
+    label: 'doors close June 30',
     color: 'var(--c1)'
   }, {
-    label: 'we start july 1',
+    label: 'we start July 1',
     color: 'var(--c4)'
   }, {
     label: '30 days of drops',
@@ -714,10 +710,10 @@ function ChallengeCTA({
 }) {
   const ctaLabel = {
     waitlist: 'join the waitlist →',
-    open: 'enroll now ($249) →',
+    open: 'sign me up!',
     closed: 'join the list for round two →'
   }[phase];
-  const target = phase === 'waitlist' ? LAUNCH.enrollOpens : phase === 'open' ? LAUNCH.enrollCloses : null;
+  const target = phase === 'closed' ? null : LAUNCH.challengeStarts;
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-final-cta"
   }, /*#__PURE__*/React.createElement("div", {
@@ -735,7 +731,7 @@ function ChallengeCTA({
     onClick: () => onCta(phase)
   }, ctaLabel), target && /*#__PURE__*/React.createElement("p", {
     className: "mono gwj-final-countdown"
-  }, phase === 'waitlist' ? 'enrollment opens in ' : 'doors close in ', /*#__PURE__*/React.createElement(Countdown, {
+  }, "the 30 day challenge starts in ", /*#__PURE__*/React.createElement(Countdown, {
     target: target
   }))));
 }
@@ -978,7 +974,7 @@ function CtaBand({
 }) {
   const label = {
     waitlist: 'join the waitlist →',
-    open: 'enroll now ($249) →',
+    open: 'sign me up!',
     closed: 'join the list for round two →'
   }[phase];
   return /*#__PURE__*/React.createElement("div", {
@@ -2014,7 +2010,7 @@ function ContactCTA({
     style: {
       background: 'var(--c3)'
     }
-  }, "join the waitlist (sign ups open June 15th!)")), /*#__PURE__*/React.createElement("a", {
+  }, "sign me up!")), /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link",
     style: {
