@@ -666,7 +666,7 @@ function FAQ() {
     a: "30 days!"
   }, {
     q: "How is it delivered?",
-    a: "Day 1 is a live video where I explain my Instagram framework. The video will be recorded to rewatch anytime. Day 2 is a pre-recorded video showing my masterclass on how to make reels. Day 3-30 are the daily drops, which are emails sent straight to your inbox. This is where the challenge part happens! Each email sets you up with actions you can take to grow your account. We will also keep a group chat throughout the course so we can all grow together!"
+    a: "Day 1 is a live video where I explain my whole Instagram strategy (engineered by an engineer ;)). The video will be recorded to rewatch anytime! Day 2 is a pre-recorded masterclass showing how I make my viral reels from setup to editing, to hooks and sound choice. Day 3-30 are the daily drops, which are emails sent straight to your inbox (including downloadable PDFs). This is where the challenge part happens! Each email sets you up with actions you can take to grow your account. We will also keep a group chat throughout the course so we can all grow together!"
   }, {
     q: "Is this for total beginners or people who already have an account?",
     a: "Both! I'll tell you which parts to nail first depending on where you're at."
