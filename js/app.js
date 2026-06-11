@@ -373,7 +373,7 @@ function HowItWorks() {
     className: "gwj-how-chat"
   }, /*#__PURE__*/React.createElement("h3", {
     className: "display gwj-how-chat-title"
-  }, "we grow together!"), /*#__PURE__*/React.createElement("p", {
+  }, "let's grow together!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-how-chat-body"
   }, "The whole 30 days, we'll keep a live group chat going. It's where you can share ideas, ask questions, swap wins, and grow right alongside everyone else. We're all in this together!"))));
 }

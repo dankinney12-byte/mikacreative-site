@@ -256,7 +256,7 @@ function HowItWorks() {
           ))}
         </div>
         <div className="gwj-how-chat">
-          <h3 className="display gwj-how-chat-title">we grow together!</h3>
+          <h3 className="display gwj-how-chat-title">let's grow together!</h3>
           <p className="gwj-how-chat-body">
             The whole 30 days, we'll keep a live group chat going. It's where you can share ideas, ask questions, swap wins, and grow right alongside everyone else. We're all in this together!
           </p>

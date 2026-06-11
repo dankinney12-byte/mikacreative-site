@@ -236,7 +236,6 @@
   line-height: 1.7;
   font-weight: 500;
   margin: 0;
-  max-width: 760px;
 }
 @media (max-width: 600px) {
   .gwj-how-chat { padding: 24px; }
