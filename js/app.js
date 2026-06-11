@@ -666,7 +666,7 @@ function FAQ() {
     a: "30 days!"
   }, {
     q: "How is it delivered?",
-    a: "Day 1 is a live video where I explain my whole Instagram strategy (engineered by an engineer ;)). The video will be recorded to rewatch anytime! Day 2 is a pre-recorded masterclass showing how I make my viral reels from setup to editing, to hooks and sound choice. Day 3-30 are the daily drops, which are emails sent straight to your inbox (including downloadable PDFs). This is where the challenge part happens! Each email sets you up with actions you can take to grow your account. We will also keep a group chat throughout the course so we can all grow together!"
+    a: "Day 1 is a live video where I explain my whole Instagram strategy (engineered by an engineer 😉). The video will be recorded to rewatch anytime! Day 2 is a pre-recorded masterclass showing how I make my viral reels from setup to editing, to hooks and sound choice. Day 3-30 are the daily drops, which are emails sent straight to your inbox (including downloadable PDFs). This is where the challenge part happens! Each email sets you up with actions you can take to grow your account. We will also keep a group chat throughout the course so we can all grow together!"
   }, {
     q: "Is this for total beginners or people who already have an account?",
     a: "Both! I'll tell you which parts to nail first depending on where you're at."
@@ -682,9 +682,6 @@ function FAQ() {
   }, {
     q: "Does the strategy change for YouTube Shorts and Facebook Reels?",
     a: "The core framework is built around Instagram but the principles translate directly to Facebook and YouTube Shorts. Repurposing across platforms is something we touch on. The goal is to help you work smarter, not spend all your energy on one platform."
-  }, {
-    q: "Do I have to post every single day?",
-    a: "Nope! But the more you actually do the dares, the more this works. That's just the honest truth."
   }, {
     q: "What if I can't keep up with the daily drops over the summer (for example, you're traveling or life just gets busy)?",
     a: "You'll have lifetime access to the course so you can go at your own pace or come back to it whenever. Follow along with the group in July or work through it on your own timeline 🙂"
