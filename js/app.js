@@ -665,17 +665,29 @@ function FAQ() {
     q: "How long is it?",
     a: "30 days!"
   }, {
-    q: "What if I fall behind?",
-    a: "There are rest days built in and everything lives in your inbox to come back to. No shame ever."
+    q: "How is it delivered?",
+    a: "Day 1 is live (and recorded if you can't make it!), day 2 is a masterclass, and days 3–30 land right in your email."
   }, {
     q: "Is this for total beginners or people who already have an account?",
     a: "Both! I'll tell you which parts to nail first depending on where you're at."
   }, {
-    q: "How is it delivered?",
-    a: "Day 1 is live (and recorded if you can't make it!), day 2 is a masterclass, and days 3–30 land right in your email."
+    q: "Is this only for food creators or can I join if I post other content too?",
+    a: "Totally works for mixed content creators! I personally think a mix is actually better for overall growth. The framework applies whether you're 100% food or more like 30% food and 70% other stuff, it's about building a system, not a niche requirement."
+  }, {
+    q: "What if my account has been stuck at the same follower count for years?",
+    a: "This is exactly who the challenge is built for. The algorithm has changed a lot and what worked a few years ago isn't what works now. It's less about your content being wrong and more about rethinking the system, and that's what we do for 30 days."
+  }, {
+    q: "Will you cover how to shoot and film content, not just strategy?",
+    a: "Yes!! Day 2 is a full production masterclass where I walk through exactly how I think about shooting: angles, b-roll, lighting, the whole thing. Strategy and production go hand in hand and we cover both."
+  }, {
+    q: "Does the strategy change for YouTube Shorts and Facebook Reels?",
+    a: "The core framework is built around Instagram but the principles translate directly to Facebook and YouTube Shorts. Repurposing across platforms is something we touch on. The goal is to help you work smarter, not spend all your energy on one platform."
   }, {
     q: "Do I have to post every single day?",
     a: "Nope! But the more you actually do the dares, the more this works. That's just the honest truth."
+  }, {
+    q: "What if I can't keep up with the daily drops over the summer (for example, you're traveling or life just gets busy)?",
+    a: "You'll have lifetime access to the course so you can go at your own pace or come back to it whenever. Follow along with the group in July or work through it on your own timeline 🙂"
   }, {
     q: "What if I can't make the live workshop?",
     a: "It's recorded, you're completely covered."
