@@ -337,7 +337,7 @@ function HowItWorks() {
     color: 'var(--c3)',
     num: 'day 2',
     title: 'the masterclass!',
-    body: "The deep-dive you can rewatch anytime. Zero judgment."
+    body: "A video tutorial showing my whole setup for how I make Instagram reels. From video settings to lighting, editing, hooks, and more!"
   }, {
     color: 'var(--c4)',
     num: 'days 3–30',
@@ -666,7 +666,7 @@ function FAQ() {
     a: "30 days!"
   }, {
     q: "How is it delivered?",
-    a: "Day 1 is live (and recorded if you can't make it!), day 2 is a masterclass, and days 3–30 land right in your email."
+    a: "Day 1 is a live video where I explain my Instagram framework. The video will be recorded to rewatch anytime. Day 2 is a pre-recorded video showing my masterclass on how to make reels. Day 3-30 are the daily drops, which are emails sent straight to your inbox. This is where the challenge part happens! Each email sets you up with actions you can take to grow your account. We will also keep a group chat throughout the course so we can all grow together!"
   }, {
     q: "Is this for total beginners or people who already have an account?",
     a: "Both! I'll tell you which parts to nail first depending on where you're at."
