@@ -926,9 +926,15 @@ function WhoMikaIs() {
     className: "mono gwj-heard-label"
   }, "as heard on"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-heard-pills"
-  }, /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "https://www.foodbloggerpro.com/podcast/turn-instagram-followers-into-site-traffic-and-revenue/",
+    target: "_blank",
+    rel: "noopener noreferrer",
     className: "gwj-heard-pill"
-  }, "Food Blogger Pro"), /*#__PURE__*/React.createElement("span", {
+  }, "Food Blogger Pro"), /*#__PURE__*/React.createElement("a", {
+    href: "https://eatblogtalk.com/joytothefood4/",
+    target: "_blank",
+    rel: "noopener noreferrer",
     className: "gwj-heard-pill"
   }, "Eat Blog Talk")))), /*#__PURE__*/React.createElement("div", {
     className: "gwj-who-media"

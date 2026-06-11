@@ -729,8 +729,22 @@ function WhoMikaIs() {
           <div className="gwj-heard-on">
             <span className="mono gwj-heard-label">as heard on</span>
             <div className="gwj-heard-pills">
-              <span className="gwj-heard-pill">Food Blogger Pro</span>
-              <span className="gwj-heard-pill">Eat Blog Talk</span>
+              <a
+                href="https://www.foodbloggerpro.com/podcast/turn-instagram-followers-into-site-traffic-and-revenue/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gwj-heard-pill"
+              >
+                Food Blogger Pro
+              </a>
+              <a
+                href="https://eatblogtalk.com/joytothefood4/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gwj-heard-pill"
+              >
+                Eat Blog Talk
+              </a>
             </div>
           </div>
         </div>

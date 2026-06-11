@@ -362,12 +362,22 @@
   flex-wrap: wrap;
 }
 .gwj-heard-pill {
+  display: inline-block;
   padding: 8px 16px;
   border: 2px solid var(--ink);
   border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   background: var(--bg);
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.gwj-heard-pill:hover {
+  background: var(--c2);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 var(--ink);
 }
 .gwj-who-media {
   display: flex;
