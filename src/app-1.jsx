@@ -193,8 +193,9 @@ const SERVICES = [
     title: 'The Jam Session',
     price: '$249/mo',
     sub: '3 month commitment',
-    badge: '3 spots left · July–September',
-    badgeLines: ['3 spots', 'left', 'Jul–Sep'],
+    badge: 'session 1 closed',
+    badgeLines: ['session 1', 'closed'],
+    closed: true,
     shadowClass: 'btn-shadow-c2',
     blurb: "A small-group mastermind for food and lifestyle creators who are serious about building something real, and want a room full of people who actually get it. Monthly calls. Weekly hook ideas. Discord community. Me, actually in there with you!",
     bullets: ['Monthly group call (live, recorded, nothing off-limits)', 'Weekly hook ideas dropped straight into your Discord channel', 'A Discord community of creators at your exact stage', 'Direct access to Mika in Discord', 'Guest speaker once a quarter', 'Capped at 10 members'],
@@ -440,6 +441,13 @@ function ServiceCard({ s, featured, compact, onBook, onSeeDetails, onWaitlist })
             borderTop: featured ? '1.5px dashed var(--ink)' : '1.5px dashed var(--ink-soft)',
           }}>
             Launching soon
+          </div>
+        ) : s.closed ? (
+          <div className="mono service-card-coming-note" style={{
+            color: featured ? 'var(--ink)' : 'var(--ink-soft)',
+            borderTop: featured ? '1.5px dashed var(--ink)' : '1.5px dashed var(--ink-soft)',
+          }}>
+            Enrollment closed for this session
           </div>
         ) : (
           <div className="service-card-cta-row">
