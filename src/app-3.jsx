@@ -47,17 +47,17 @@ function App() {
       {/* ── Challenge launch page ── */}
       <AnnouncementBar phase={phase} onCta={() => handleCta(phase)} />
       <Nav />
-      <ChallengeHero />
+      <ChallengeHero phase={phase} />
       <WhyNow />
       <WhoMikaIs />
       <ReelProof />
       <ChallengeTestimonials />
-      <CtaBand phase={phase} onCta={handleCta} />
+      {phase !== 'closed' && <CtaBand phase={phase} onCta={handleCta} />}
       <HowItWorks />
       <WeekArc />
       <ForNotFor />
-      <CtaBand phase={phase} onCta={handleCta} />
-      <ValueStack phase={phase} onCta={handleCta} />
+      {phase !== 'closed' && <CtaBand phase={phase} onCta={handleCta} />}
+      {phase !== 'closed' && <ValueStack phase={phase} onCta={handleCta} />}
       <FAQ />
       <ChallengeCTA phase={phase} onCta={handleCta} />
 
@@ -72,7 +72,7 @@ function App() {
       <Services onBook={setBookingService} onSeeDetails={setDetailsService} />
       <About />
       <Speaking />
-      <ContactCTA onWaitlist={() => handleCta(phase)} />
+      <ContactCTA onWaitlist={() => handleCta(phase)} phase={phase} />
 
       {/* ── Modals ── */}
       <WaitlistModal

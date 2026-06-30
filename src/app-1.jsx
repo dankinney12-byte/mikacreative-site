@@ -790,22 +790,35 @@ function Speaking() {
 // ============================================================
 // CONTACT / FOOTER
 // ============================================================
-function ContactCTA({ onWaitlist }) {
+function ContactCTA({ onWaitlist, phase }) {
+  const closed = phase === 'closed';
   return (
     <section id="contact" className="contact-cta">
       <div className="container contact-cta-inner">
         <span className="eyebrow" style={{ justifyContent: 'center' }}>let's go</span>
         <h2 className="display contact-cta-headline">
-          done <span style={{ color: 'var(--c1)' }}>guessing?</span><br />
-          let's <span style={{ color: 'var(--c3)' }}>fix that.</span>
+          {closed ? (
+            <>the challenge has <span style={{ color: 'var(--c1)' }}>started!</span></>
+          ) : (
+            <>done <span style={{ color: 'var(--c1)' }}>guessing?</span><br />
+            let's <span style={{ color: 'var(--c3)' }}>fix that.</span></>
+          )}
         </h2>
         <p className="contact-cta-sub">
-          Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators.
+          {closed
+            ? "Enrollment for this round is closed. Follow along on Instagram and keep an eye out for the next one!"
+            : "Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators."}
         </p>
         <div className="contact-cta-btns">
-          <button className="btn contact-cta-btn" onClick={() => onWaitlist && onWaitlist()} style={{ background: 'var(--c3)' }}>
-            sign me up!
-          </button>
+          {closed ? (
+            <a href="https://instagram.com/_joytothefood_" target="_blank" rel="noopener noreferrer" className="btn contact-cta-btn" style={{ background: 'var(--c3)' }}>
+              follow on Instagram →
+            </a>
+          ) : (
+            <button className="btn contact-cta-btn" onClick={() => onWaitlist && onWaitlist()} style={{ background: 'var(--c3)' }}>
+              sign me up!
+            </button>
+          )}
         </div>
         <a href="mailto:mika@joytothefood.com" className="link" style={{
           fontSize: 14,

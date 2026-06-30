@@ -36,7 +36,7 @@ var LAUNCH = {
   price: 249,
   timezone: "America/Chicago",
   enrollOpens: "2026-06-07T00:00:00-05:00",
-  enrollCloses: "2026-06-30T23:59:59-05:00",
+  enrollCloses: "2026-07-01T02:00:00-07:00",
   challengeStarts: "2026-07-01T00:00:00-05:00",
   kitCommerceUrl: "https://joy-to-the-food.kit.com/products/grow-with-joy",
   kitWaitlistUrl: "#" // fallback href if Netlify function not available
@@ -138,10 +138,10 @@ function AnnouncementBar({
       fg: 'var(--ink)'
     },
     closed: {
-      msg: "doors are closed for this round!",
+      msg: "the grow with joy challenge has started! enrollment is now closed.",
       target: null,
-      cta: 'join the list for round two →',
-      bg: 'var(--bg-alt)',
+      cta: null,
+      bg: 'var(--c3)',
       fg: 'var(--ink)'
     }
   }[phase];
@@ -159,7 +159,7 @@ function AnnouncementBar({
     className: "gwj-bar-dash"
   }, "\xB7 "), /*#__PURE__*/React.createElement(Countdown, {
     target: cfg.target
-  })), /*#__PURE__*/React.createElement("button", {
+  })), cfg.cta && /*#__PURE__*/React.createElement("button", {
     className: "gwj-bar-cta",
     onClick: () => onCta(phase)
   }, cfg.cta));
@@ -168,12 +168,18 @@ function AnnouncementBar({
 // ============================================================
 // CHALLENGE HERO
 // ============================================================
-function ChallengeHero() {
+function ChallengeHero({
+  phase
+}) {
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-hero"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container gwj-hero-inner"
-  }, /*#__PURE__*/React.createElement("h1", {
+  }, phase === 'closed' && /*#__PURE__*/React.createElement("div", {
+    className: "gwj-started-banner"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-started-banner-emoji"
+  }, "\uD83C\uDF31"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "The challenge has started!"), " Enrollment is closed for this round. Keep an eye out for the next one!")), /*#__PURE__*/React.createElement("h1", {
     className: "display gwj-hero-headline"
   }, "grow with ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -723,6 +729,26 @@ function ChallengeCTA({
   phase,
   onCta
 }) {
+  if (phase === 'closed') {
+    return /*#__PURE__*/React.createElement("section", {
+      className: "gwj-final-cta"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "container gwj-final-cta-inner"
+    }, /*#__PURE__*/React.createElement("h2", {
+      className: "display gwj-final-headline"
+    }, "the challenge has ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: 'var(--c1)'
+      }
+    }, "started!")), /*#__PURE__*/React.createElement("p", {
+      className: "gwj-final-sub"
+    }, "Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!"), /*#__PURE__*/React.createElement("a", {
+      href: "https://instagram.com/_joytothefood_",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "btn btn-shadow-c2 gwj-final-btn"
+    }, "follow on Instagram \u2192")));
+  }
   const ctaLabel = {
     waitlist: 'join the waitlist →',
     open: 'sign me up!',
@@ -1999,8 +2025,10 @@ function Speaking() {
 // CONTACT / FOOTER
 // ============================================================
 function ContactCTA({
-  onWaitlist
+  onWaitlist,
+  phase
 }) {
+  const closed = phase === 'closed';
   return /*#__PURE__*/React.createElement("section", {
     id: "contact",
     className: "contact-cta"
@@ -2013,7 +2041,11 @@ function ContactCTA({
     }
   }, "let's go"), /*#__PURE__*/React.createElement("h2", {
     className: "display contact-cta-headline"
-  }, "done ", /*#__PURE__*/React.createElement("span", {
+  }, closed ? /*#__PURE__*/React.createElement(React.Fragment, null, "the challenge has ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--c1)'
+    }
+  }, "started!")) : /*#__PURE__*/React.createElement(React.Fragment, null, "done ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
@@ -2021,11 +2053,19 @@ function ContactCTA({
     style: {
       color: 'var(--c3)'
     }
-  }, "fix that.")), /*#__PURE__*/React.createElement("p", {
+  }, "fix that."))), /*#__PURE__*/React.createElement("p", {
     className: "contact-cta-sub"
-  }, "Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators."), /*#__PURE__*/React.createElement("div", {
+  }, closed ? "Enrollment for this round is closed. Follow along on Instagram and keep an eye out for the next one!" : "Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators."), /*#__PURE__*/React.createElement("div", {
     className: "contact-cta-btns"
-  }, /*#__PURE__*/React.createElement("button", {
+  }, closed ? /*#__PURE__*/React.createElement("a", {
+    href: "https://instagram.com/_joytothefood_",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "btn contact-cta-btn",
+    style: {
+      background: 'var(--c3)'
+    }
+  }, "follow on Instagram \u2192") : /*#__PURE__*/React.createElement("button", {
     className: "btn contact-cta-btn",
     onClick: () => onWaitlist && onWaitlist(),
     style: {
@@ -2669,13 +2709,15 @@ function App() {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(AnnouncementBar, {
     phase: phase,
     onCta: () => handleCta(phase)
-  }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), /*#__PURE__*/React.createElement(CtaBand, {
+  }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, {
+    phase: phase
+  }), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(ChallengeTestimonials, null), phase !== 'closed' && /*#__PURE__*/React.createElement(CtaBand, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(CtaBand, {
+  }), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), phase !== 'closed' && /*#__PURE__*/React.createElement(CtaBand, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(ValueStack, {
+  }), phase !== 'closed' && /*#__PURE__*/React.createElement(ValueStack, {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {
@@ -2691,7 +2733,8 @@ function App() {
     onBook: setBookingService,
     onSeeDetails: setDetailsService
   }), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Speaking, null), /*#__PURE__*/React.createElement(ContactCTA, {
-    onWaitlist: () => handleCta(phase)
+    onWaitlist: () => handleCta(phase),
+    phase: phase
   }), /*#__PURE__*/React.createElement(WaitlistModal, {
     open: waitlistOpen,
     onClose: () => setWaitlistOpen(false),

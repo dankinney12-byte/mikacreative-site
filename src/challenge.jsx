@@ -66,10 +66,10 @@ function AnnouncementBar({ phase, onCta }) {
       fg: 'var(--ink)',
     },
     closed: {
-      msg: "doors are closed for this round!",
+      msg: "the grow with joy challenge has started! enrollment is now closed.",
       target: null,
-      cta: 'join the list for round two →',
-      bg: 'var(--bg-alt)',
+      cta: null,
+      bg: 'var(--c3)',
       fg: 'var(--ink)',
     },
   }[phase];
@@ -83,9 +83,11 @@ function AnnouncementBar({ phase, onCta }) {
           <Countdown target={cfg.target} />
         </span>
       )}
-      <button className="gwj-bar-cta" onClick={() => onCta(phase)}>
-        {cfg.cta}
-      </button>
+      {cfg.cta && (
+        <button className="gwj-bar-cta" onClick={() => onCta(phase)}>
+          {cfg.cta}
+        </button>
+      )}
     </div>
   );
 }
@@ -93,10 +95,18 @@ function AnnouncementBar({ phase, onCta }) {
 // ============================================================
 // CHALLENGE HERO
 // ============================================================
-function ChallengeHero() {
+function ChallengeHero({ phase }) {
   return (
     <section className="gwj-hero">
       <div className="container gwj-hero-inner">
+        {phase === 'closed' && (
+          <div className="gwj-started-banner">
+            <span className="gwj-started-banner-emoji">🌱</span>
+            <div>
+              <strong>The challenge has started!</strong> Enrollment is closed for this round. Keep an eye out for the next one!
+            </div>
+          </div>
+        )}
         <h1 className="display gwj-hero-headline">
           grow with <span style={{ color: 'var(--c1)' }}>joy.</span>
         </h1>
@@ -565,6 +575,29 @@ function FAQ() {
 // FINAL CTA BAND
 // ============================================================
 function ChallengeCTA({ phase, onCta }) {
+  if (phase === 'closed') {
+    return (
+      <section className="gwj-final-cta">
+        <div className="container gwj-final-cta-inner">
+          <h2 className="display gwj-final-headline">
+            the challenge has <span style={{ color: 'var(--c1)' }}>started!</span>
+          </h2>
+          <p className="gwj-final-sub">
+            Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!
+          </p>
+          <a
+            href="https://instagram.com/_joytothefood_"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-shadow-c2 gwj-final-btn"
+          >
+            follow on Instagram →
+          </a>
+        </div>
+      </section>
+    );
+  }
+
   const ctaLabel = {
     waitlist: 'join the waitlist →',
     open:     'sign me up!',

@@ -91,6 +91,24 @@
 @media (max-width: 768px) {
   .gwj-hero { padding-top: 20px; }
 }
+.gwj-started-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--c3);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.gwj-started-banner-emoji {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
 .gwj-hero-eyebrow {
   display: block;
   font-size: 11px;
