@@ -971,29 +971,40 @@ function WhoMikaIs() {
 // MEMBER WINS — real (anonymized) messages from the round 1 group
 // ============================================================
 function MemberWins() {
+  // `m` controls mobile-only order (single-column flex); desktop masonry uses array order
   const wins = [{
+    m: 1,
     stat: '110K views · 5,150 follows',
     quote: "I looked at my analytics from the last 2 years, and the piece of content that got the 2nd highest number of follows got 2,997 follows. This one was WAY easier to put together, is literally only 8 seconds long, and has blown that out of the water already."
   }, {
+    m: 2,
     quote: "Just filmed 2 recipes, and OMG I feel so much more confident in filming! Hands down this is one of the best courses I have done and it's just getting started 🎉"
   }, {
+    m: 6,
     quote: "This is the first carousel I've posted that's ever done ANYTHING. Good saves and 29 new followers so far. I've even seen folks clicking over to the blog! 🎉"
   }, {
+    m: 4,
     quote: "I've taken other reel courses but this one by far is the most actionable. And I actually filmed my first reel!!! I'm also an engineer so I love all the formulas 😆"
   }, {
+    m: 7,
     stat: '2K followers from one reel',
     quote: "I've gotten almost 2k followers just from this reel!! I would usually always start with the hero shot but experimented this time."
   }, {
+    m: 8,
     quote: "I was a bit skeptical because I've tried other social media courses and they just don't work for the food blogging niche. You gave me lots of little actionable tweaks, and I feel less overwhelmed by social media these days. Not even half way done but so good!"
   }, {
+    m: 9,
     stat: '37K views in 8 hours',
     quote: "I have never seen these numbers in my trial reels before. Excited to see what happens after I post it to everyone."
   }, {
+    m: 3,
     stat: '54K views in 24 hours',
     quote: "I did a video with the 'I can't stop making this' text hook and it already has 54k views!!! It hasn't even been up for 24 hours yet. Most of my videos get 2-3k views. Thanks Mika!!"
   }, {
+    m: 5,
     quote: "Big #win for me! I've never had this much success with any post on my account. My highest performing reel yet! Wow wowww!"
   }, {
+    m: 10,
     quote: "I made this video right after the day 1 livestream and it doubled the likes from last time. I'd call that a win!!"
   }];
   const colors = ['var(--c2)', 'var(--c3)', 'var(--c4)', 'var(--c5)', 'var(--c1)'];
@@ -1016,7 +1027,8 @@ function MemberWins() {
     key: i,
     className: "card gwj-win-card",
     style: {
-      background: colors[i % colors.length]
+      background: colors[i % colors.length],
+      order: w.m
     }
   }, w.stat && /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-win-stat"

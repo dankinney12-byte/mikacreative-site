@@ -129,6 +129,13 @@
   columns: 1;
   column-gap: 16px;
 }
+/* mobile: single-column flex so cards can use their mobile-only order */
+@media (max-width: 639px) {
+  .gwj-wins-masonry {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .gwj-win-card {
   display: inline-block;
   width: 100%;
