@@ -48,9 +48,9 @@ function App() {
       <AnnouncementBar phase={phase} onCta={() => handleCta(phase)} />
       <Nav />
       <ChallengeHero phase={phase} onCta={handleCta} />
+      <MemberWins />
       <WhyNow />
       <WhoMikaIs />
-      <MemberWins />
       <ReelProof />
       <CtaBand phase={phase} onCta={handleCta} />
       <HowItWorks />
