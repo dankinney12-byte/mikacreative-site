@@ -78,17 +78,26 @@ exports.handler = async (event) => {
       return json(502, { error: 'could not reach the mailing list' });
     }
 
-    // 2) Subscribe to the form — this is what fires the welcome email /
-    //    automation you set up in Kit. Skipped if KIT_FORM_ID isn't set.
+    console.log('Kit create subscriber:', create.status);
+
+    // 2) Subscribe to the form — this is what fires a form-triggered welcome
+    //    automation in Kit. Skipped if KIT_FORM_ID isn't set.
+    //    Note: Kit returns 201 on a NEW form join, but 200 if this email was
+    //    ever on the form before — and a 200 does NOT re-fire "joins form"
+    //    automations. Tag-triggered automations are more reliable here.
     if (process.env.KIT_FORM_ID) {
       const form = await kit(`/forms/${process.env.KIT_FORM_ID}/subscribers`, apiKey, {
         email_address: email,
       });
       if (!form.ok) {
-        console.error('Kit form subscribe failed', form.status, form.data);
+        console.error('Kit form subscribe failed', form.status, JSON.stringify(form.data));
         // Non-fatal: the subscriber exists; surface a soft error only if
         // nothing else succeeded.
+      } else {
+        console.log('Kit form subscribe:', form.status, form.status === 200 ? '(was already on form; no join event fired)' : '(new form join)');
       }
+    } else {
+      console.warn('KIT_FORM_ID is not set; skipping form subscribe');
     }
 
     // 3) Apply the waitlist tag (segmentation). Skipped if not set.
@@ -97,8 +106,12 @@ exports.handler = async (event) => {
         email_address: email,
       });
       if (!tag.ok) {
-        console.error('Kit tag apply failed', tag.status, tag.data);
+        console.error('Kit tag apply failed', tag.status, JSON.stringify(tag.data));
+      } else {
+        console.log('Kit tag apply:', tag.status);
       }
+    } else {
+      console.warn('KIT_WAITLIST_TAG_ID is not set; skipping tag');
     }
 
     return json(200, { ok: true });
