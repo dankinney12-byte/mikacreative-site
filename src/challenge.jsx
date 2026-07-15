@@ -380,54 +380,6 @@ function ForNotFor() {
 }
 
 // ============================================================
-// CHALLENGE TESTIMONIALS
-// ============================================================
-function ChallengeTestimonials() {
-  const testimonials = [
-    {
-      quote: "Mika Kinney spoke to my mastermind group and instantly lit a fire under every single person on the call. Her approach to Instagram growth is not just inspiring, it's incredibly actionable. She is deep in the details, testing what works in real time, and it shows. Our group walked away with clarity, excitement and a desire to grow their accounts. Mika truly knows her stuff and delivers it in a way that makes you want to take action immediately.",
-      name: "Megan Porta",
-      role: "Food creator · Pip & Ebby · Eat Blog Talk podcast",
-      image: "images/megan-porta.jpeg",
-    },
-    {
-      quote: "I cannot stop talking about WHAT A FREAKIN INSPIRATION you are!!! I have SO SO SO enjoyed seeing your journey over the years, and seeing you absolutely CRUSH it here on IG. You have totally cracked the code!!!",
-      name: "Lindsey",
-      role: "Food creator · A Recipe for Fun",
-      image: "images/lindsey.jpg",
-    },
-  ];
-  const accents = ['var(--c3)', 'var(--c2)'];
-
-  return (
-    <section className="gwj-section gwj-testimonials">
-      <div className="container">
-        <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>what people say</span>
-        <h2 className="display gwj-section-headline">
-          don't just take my word for it!
-        </h2>
-        <div className="gwj-testi-grid">
-          {testimonials.map((t, i) => (
-            <div key={i} className="card gwj-testi-card" style={{ background: accents[i] }}>
-              <p className="gwj-testi-quote">"{t.quote}"</p>
-              <div className="gwj-testi-attr">
-                {t.image && (
-                  <img src={t.image} alt={t.name} className="gwj-testi-avatar" loading="lazy" />
-                )}
-                <div className="gwj-testi-attr-text">
-                  <span className="gwj-testi-name">{t.name}</span>
-                  <span className="mono gwj-testi-role">{t.role}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================
 // VALUE STACK + PRICE
 // ============================================================
 function ValueStack({ phase, onCta }) {
@@ -815,15 +767,14 @@ function MemberWins() {
   const wins = [
     { stat: '110K views · 5,150 follows', quote: "I looked at my analytics from the last 2 years, and the piece of content that got the 2nd highest number of follows got 2,997 follows. This one was WAY easier to put together, is literally only 8 seconds long, and has blown that out of the water already." },
     { quote: "Just filmed 2 recipes, and OMG I feel so much more confident in filming! Hands down this is one of the best courses I have done and it's just getting started 🎉" },
-    { stat: '54K views in 24 hours', quote: "I did a video with the 'I can't stop making this' text hook and it already has 54k views!!! It hasn't even been up for 24 hours yet. Most of my videos get 2-3k views. Thanks Mika!!" },
+    { quote: "This is the first carousel I've posted that's ever done ANYTHING. Good saves and 29 new followers so far. I've even seen folks clicking over to the blog! 🎉" },
     { quote: "I've taken other reel courses but this one by far is the most actionable. And I actually filmed my first reel!!! I'm also an engineer so I love all the formulas 😆" },
     { stat: '2K followers from one reel', quote: "I've gotten almost 2k followers just from this reel!! I would usually always start with the hero shot but experimented this time." },
     { quote: "I was a bit skeptical because I've tried other social media courses and they just don't work for the food blogging niche. You gave me lots of little actionable tweaks, and I feel less overwhelmed by social media these days. Not even half way done but so good!" },
     { stat: '37K views in 8 hours', quote: "I have never seen these numbers in my trial reels before. Excited to see what happens after I post it to everyone." },
-    { quote: "This is the first carousel I've posted that's ever done ANYTHING. Good saves and 29 new followers so far. I've even seen folks clicking over to the blog! 🎉" },
+    { stat: '54K views in 24 hours', quote: "I did a video with the 'I can't stop making this' text hook and it already has 54k views!!! It hasn't even been up for 24 hours yet. Most of my videos get 2-3k views. Thanks Mika!!" },
     { quote: "Big #win for me! I've never had this much success with any post on my account. My highest performing reel yet! Wow wowww!" },
     { quote: "I made this video right after the day 1 livestream and it doubled the likes from last time. I'd call that a win!!" },
-    { quote: "Thanks a mill, loving the emails!" },
   ];
   const colors = ['var(--c2)', 'var(--c3)', 'var(--c4)', 'var(--c5)', 'var(--c1)'];
 
@@ -878,5 +829,5 @@ Object.assign(window, {
   usePhase,
   AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof,
   WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor,
-  ChallengeTestimonials, MemberWins, ValueStack, Timeline, FAQ, ChallengeCTA, CtaBand, WaitlistModal,
+  MemberWins, ValueStack, Timeline, FAQ, ChallengeCTA, CtaBand, WaitlistModal,
 });

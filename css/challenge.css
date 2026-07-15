@@ -773,67 +773,6 @@
   }
 }
 
-/* ── challenge testimonials ───────────────────────────────── */
-.gwj-testi-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  margin-top: 32px;
-}
-.gwj-testi-card {
-  padding: 28px;
-  border: 2px solid var(--ink);
-  border-radius: 20px;
-  box-shadow: 5px 5px 0 var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.gwj-testi-quote {
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 0;
-  font-weight: 500;
-}
-.gwj-testi-attr {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-  margin-top: auto;
-}
-.gwj-testi-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--ink);
-  flex-shrink: 0;
-}
-.gwj-testi-attr-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-.gwj-testi-name {
-  font-weight: 700;
-  font-size: 14px;
-}
-.gwj-testi-role {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.7;
-}
-
-@media (min-width: 720px) {
-  .gwj-testi-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 /* ── timeline ─────────────────────────────────────────────── */
 .gwj-timeline {
   display: flex;
