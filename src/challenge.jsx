@@ -766,7 +766,7 @@ function WhoMikaIs() {
 function MemberWins() {
   // `m` controls mobile-only order (single-column flex); desktop masonry uses array order
   const wins = [
-    { m: 1,  stat: '110K views · 5,150 follows from one reel', quote: "This one was WAY easier to put together, is literally only 8 seconds long, and it blew my previous best (2,997 follows in 2 years of posting) out of the water!" },
+    { m: 1,  stat: '110K views · 5,150 follows from one reel', quote: "My 2nd-best post in 2 years of posting got 2,997 follows. This one was WAY easier to put together, is literally only 8 seconds long, and blew that out of the water!" },
     { m: 2,  quote: "Just filmed 2 recipes, and OMG I feel so much more confident in filming! Hands down this is one of the best courses I have done and it's just getting started 🎉" },
     { m: 6,  quote: "This is the first carousel I've posted that's ever done ANYTHING. Good saves and 29 new followers so far. I've even seen folks clicking over to the blog! 🎉" },
     { m: 4,  quote: "I've taken other reel courses but this one by far is the most actionable. And I actually filmed my first reel!!! I'm also an engineer so I love all the formulas 😆" },

@@ -975,7 +975,7 @@ function MemberWins() {
   const wins = [{
     m: 1,
     stat: '110K views · 5,150 follows from one reel',
-    quote: "This one was WAY easier to put together, is literally only 8 seconds long, and it blew my previous best (2,997 follows in 2 years of posting) out of the water!"
+    quote: "My 2nd-best post in 2 years of posting got 2,997 follows. This one was WAY easier to put together, is literally only 8 seconds long, and blew that out of the water!"
   }, {
     m: 2,
     quote: "Just filmed 2 recipes, and OMG I feel so much more confident in filming! Hands down this is one of the best courses I have done and it's just getting started 🎉"
