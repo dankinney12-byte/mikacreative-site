@@ -66,9 +66,9 @@ function AnnouncementBar({ phase, onCta }) {
       fg: 'var(--ink)',
     },
     closed: {
-      msg: "the grow with joy challenge has started! enrollment is now closed.",
+      msg: "round 1 is underway! grow with joy round 2 is coming early fall",
       target: null,
-      cta: null,
+      cta: 'join the waitlist →',
       bg: 'var(--c3)',
       fg: 'var(--ink)',
     },
@@ -95,16 +95,19 @@ function AnnouncementBar({ phase, onCta }) {
 // ============================================================
 // CHALLENGE HERO
 // ============================================================
-function ChallengeHero({ phase }) {
+function ChallengeHero({ phase, onCta }) {
   return (
     <section className="gwj-hero">
       <div className="container gwj-hero-inner">
         {phase === 'closed' && (
           <div className="gwj-started-banner">
             <span className="gwj-started-banner-emoji">🌱</span>
-            <div>
-              <strong>The challenge has started!</strong> Enrollment is closed for this round. Keep an eye out for the next one!
+            <div className="gwj-started-banner-text">
+              <strong>Round 1 is underway!</strong> Grow with Joy round 2 is coming early fall. Join the waitlist to be first through the door!
             </div>
+            <button className="btn sm btn-shadow-c2 gwj-started-banner-btn" onClick={() => onCta && onCta(phase)}>
+              join the waitlist →
+            </button>
           </div>
         )}
         <h1 className="display gwj-hero-headline">
@@ -492,10 +495,11 @@ function ValueStack({ phase, onCta }) {
 // ============================================================
 function Timeline() {
   const steps = [
-    { label: 'enrollment opens June 7th', color: 'var(--c2)', active: true },
-    { label: 'doors close June 30',       color: 'var(--c1)' },
-    { label: 'we start July 1',           color: 'var(--c4)' },
-    { label: '30 days of drops',          color: 'var(--c5)' },
+    { label: 'round 1 underway now',       color: 'var(--c3)', active: true },
+    { label: 'round 2 waitlist open',      color: 'var(--c2)', active: true },
+    { label: 'enrollment opens early fall', color: 'var(--c1)' },
+    { label: 'round 2 starts',             color: 'var(--c4)' },
+    { label: '30 days of drops',           color: 'var(--c5)' },
   ];
 
   return (
@@ -525,7 +529,7 @@ function FAQ() {
   const [openIdx, setOpenIdx] = useState(null);
   const faqs = [
     { q: "When does it start?",
-      a: "July 1! Mark your calendar!" },
+      a: "Round 1 kicked off July 1 and is underway right now! Round 2 is coming early fall. Join the waitlist and you'll be the first to know the exact date." },
     { q: "How long is it?",
       a: "30 days!" },
     { q: "How is it delivered?",
@@ -541,7 +545,7 @@ function FAQ() {
     { q: "Does the strategy change for YouTube Shorts and Facebook Reels?",
       a: "The core framework is built around Instagram but the principles translate directly to Facebook and YouTube Shorts. Repurposing across platforms is something we touch on. The goal is to help you work smarter, not spend all your energy on one platform." },
     { q: "What if I can't keep up with the daily drops over the summer (for example, you're traveling or life just gets busy)?",
-      a: "You'll have lifetime access to the course so you can go at your own pace or come back to it whenever. Follow along with the group in July or work through it on your own timeline 🙂" },
+      a: "You'll have lifetime access to the course so you can go at your own pace or come back to it whenever. Follow along with the group or work through it on your own timeline 🙂" },
     { q: "What if I can't make the live workshop?",
       a: "It's recorded, you're completely covered." },
   ];
@@ -580,19 +584,14 @@ function ChallengeCTA({ phase, onCta }) {
       <section className="gwj-final-cta">
         <div className="container gwj-final-cta-inner">
           <h2 className="display gwj-final-headline">
-            the challenge has <span style={{ color: 'var(--c1)' }}>started!</span>
+            round 2 is coming <span style={{ color: 'var(--c1)' }}>early fall!</span>
           </h2>
           <p className="gwj-final-sub">
-            Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!
+            Round 1 is underway right now, and it's going so well we're doing it again. Join the waitlist and you'll be the first to know when doors open.
           </p>
-          <a
-            href="https://instagram.com/_joytothefood_"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-shadow-c2 gwj-final-btn"
-          >
-            follow on Instagram →
-          </a>
+          <button className="btn btn-shadow-c2 gwj-final-btn" onClick={() => onCta(phase)}>
+            join the round 2 waitlist →
+          </button>
         </div>
       </section>
     );
@@ -673,9 +672,9 @@ function WaitlistModal({ open, onClose, phase }) {
   };
 
   const isRoundTwo = phase === 'closed';
-  const title = isRoundTwo ? "join the list for round two!" : "you're almost in!";
+  const title = isRoundTwo ? "join the round 2 waitlist!" : "you're almost in!";
   const sub   = isRoundTwo
-    ? "leave your email and you'll be first to know when round two opens."
+    ? "Grow with Joy round 2 is coming early fall! Drop your email and you'll be the first to know when doors open. No spam, just updates."
     : "drop your email and you'll be first through the door when enrollment opens june 15! no spam, just updates.";
 
   return (
@@ -810,13 +809,52 @@ function WhoMikaIs() {
 }
 
 // ============================================================
+// MEMBER WINS — real (anonymized) messages from the round 1 group
+// ============================================================
+function MemberWins() {
+  const wins = [
+    { stat: '110K views · 5,150 follows', quote: "I looked at my analytics from the last 2 years, and the piece of content that got the 2nd highest number of follows got 2,997 follows. This one was WAY easier to put together, is literally only 8 seconds long, and has blown that out of the water already." },
+    { quote: "Just filmed 2 recipes, and OMG I feel so much more confident in filming! Hands down this is one of the best courses I have done and it's just getting started 🎉" },
+    { stat: '54K views in 24 hours', quote: "I did a video with the 'I can't stop making this' text hook and it already has 54k views!!! It hasn't even been up for 24 hours yet. Most of my videos get 2-3k views. Thanks Mika!!" },
+    { quote: "I've taken other reel courses but this one by far is the most actionable. And I actually filmed my first reel!!! I'm also an engineer so I love all the formulas 😆" },
+    { stat: '2K followers from one reel', quote: "I've gotten almost 2k followers just from this reel!! I would usually always start with the hero shot but experimented this time." },
+    { quote: "I was a bit skeptical because I've tried other social media courses and they just don't work for the food blogging niche. You gave me lots of little actionable tweaks, and I feel less overwhelmed by social media these days. Not even half way done but so good!" },
+    { stat: '37K views in 8 hours', quote: "I have never seen these numbers in my trial reels before. Excited to see what happens after I post it to everyone." },
+    { quote: "This is the first carousel I've posted that's ever done ANYTHING. Good saves and 29 new followers so far. I've even seen folks clicking over to the blog! 🎉" },
+    { quote: "Big #win for me! I've never had this much success with any post on my account. My highest performing reel yet! Wow wowww!" },
+    { quote: "I made this video right after the day 1 livestream and it doubled the likes from last time. I'd call that a win!!" },
+    { quote: "Thanks a mill, loving the emails!" },
+  ];
+  const colors = ['var(--c2)', 'var(--c3)', 'var(--c4)', 'var(--c5)', 'var(--c1)'];
+
+  return (
+    <section className="gwj-section gwj-wins">
+      <div className="container">
+        <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>receipts from round 1</span>
+        <h2 className="display gwj-section-headline">round 1 members are already growing!</h2>
+        <p className="gwj-wins-note">Real messages from the first two weeks of the challenge, shared anonymously.</p>
+        <div className="gwj-wins-masonry">
+          {wins.map((w, i) => (
+            <div key={i} className="card gwj-win-card" style={{ background: colors[i % colors.length] }}>
+              {w.stat && <span className="mono gwj-win-stat">{w.stat}</span>}
+              <p className="gwj-win-quote">"{w.quote}"</p>
+              <span className="mono gwj-win-attr">round 1 member</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // CTA BAND — repeated waitlist CTA at conversion points
 // ============================================================
 function CtaBand({ phase, onCta }) {
   const label = {
     waitlist: 'join the waitlist →',
     open:     'sign me up!',
-    closed:   'join the list for round two →',
+    closed:   'join the round 2 waitlist →',
   }[phase];
   return (
     <div className="gwj-cta-band">
@@ -826,6 +864,9 @@ function CtaBand({ phase, onCta }) {
         </button>
         {phase === 'waitlist' && (
           <span className="mono gwj-cta-band-note">free to join · enrollment opens June 15</span>
+        )}
+        {phase === 'closed' && (
+          <span className="mono gwj-cta-band-note">round 2 coming early fall · free to join</span>
         )}
       </div>
     </div>
@@ -837,5 +878,5 @@ Object.assign(window, {
   usePhase,
   AnnouncementBar, ChallengeHero, ChallengeProofBar, ReelProof,
   WhyNow, HowItWorks, WeekArc, WhoMikaIs, ForNotFor,
-  ChallengeTestimonials, ValueStack, Timeline, FAQ, ChallengeCTA, CtaBand, WaitlistModal,
+  ChallengeTestimonials, MemberWins, ValueStack, Timeline, FAQ, ChallengeCTA, CtaBand, WaitlistModal,
 });
