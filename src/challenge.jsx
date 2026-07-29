@@ -133,7 +133,7 @@ function ChallengeHero({ phase, onCta }) {
             <p className="gwj-hero-body">
               Hi, I'm Mika! I grew{' '}
               <span className="mono" style={{ fontSize: '0.88em' }}>@_joytothefood_</span>{' '}
-              from 1,001 to 582K followers in two years, and I tracked exactly what worked. Now I'm excited to share it all in a 30-day challenge that we'd love to have you join! This course hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!
+              from 1,001 to 600K followers in two years, and I tracked exactly what worked. Now I'm excited to share it all in a 30-day challenge that we'd love to have you join! This course hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!
             </p>
             <p className="gwj-hero-outcome">
               By day 30 you'll have a posting system you understand and a feed you're proud of.
@@ -158,7 +158,7 @@ function ChallengeHero({ phase, onCta }) {
 // ============================================================
 function ChallengeProofBar() {
   const stats = [
-    { num: '582K',  label: 'followers' },
+    { num: '600K',  label: 'followers' },
     { num: '10M',   label: 'monthly views' },
     { num: '38M',   label: 'views from one reel' },
     { num: '157K+', label: 'followers from a single post' },
@@ -753,7 +753,7 @@ function WhoMikaIs() {
           </div>
           <div className="gwj-who-stats">
             <div className="gwj-who-stat">
-              <span className="display gwj-who-stat-num" style={{ color: 'var(--c1)' }}>582K</span>
+              <span className="display gwj-who-stat-num" style={{ color: 'var(--c1)' }}>600K</span>
               <span className="mono gwj-who-stat-label">followers</span>
             </div>
             <div className="gwj-who-stat">

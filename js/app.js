@@ -218,7 +218,7 @@ function ChallengeHero({
     style: {
       fontSize: '0.88em'
     }
-  }, "@_joytothefood_"), ' ', "from 1,001 to 582K followers in two years, and I tracked exactly what worked. Now I'm excited to share it all in a 30-day challenge that we'd love to have you join! This course hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!"), /*#__PURE__*/React.createElement("p", {
+  }, "@_joytothefood_"), ' ', "from 1,001 to 600K followers in two years, and I tracked exactly what worked. Now I'm excited to share it all in a 30-day challenge that we'd love to have you join! This course hands you that whole system: how to gain followers, keep engagement high, and build a real business on Instagram. Let's gooo!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-hero-outcome"
   }, "By day 30 you'll have a posting system you understand and a feed you're proud of."), /*#__PURE__*/React.createElement("div", {
     className: "gwj-hero-cta-wrap"
@@ -235,7 +235,7 @@ function ChallengeHero({
 // ============================================================
 function ChallengeProofBar() {
   const stats = [{
-    num: '582K',
+    num: '600K',
     label: 'followers'
   }, {
     num: '10M',
@@ -947,7 +947,7 @@ function WhoMikaIs() {
     style: {
       color: 'var(--c1)'
     }
-  }, "582K"), /*#__PURE__*/React.createElement("span", {
+  }, "600K"), /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-who-stat-label"
   }, "followers")), /*#__PURE__*/React.createElement("div", {
     className: "gwj-who-stat"
@@ -1195,12 +1195,12 @@ function HeroBigType({
     className: "hero-tags"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag"
-  }, "@_joytothefood_ \xB7 582K"), /*#__PURE__*/React.createElement("span", {
+  }, "@_joytothefood_ \xB7 600K"), /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
       background: 'var(--c2)'
     }
-  }, "1,001 to 582K in 24 months"), /*#__PURE__*/React.createElement("span", {
+  }, "1,001 to 600K in 24 months"), /*#__PURE__*/React.createElement("span", {
     className: "tag",
     style: {
       background: 'var(--c5)'
@@ -1224,7 +1224,7 @@ function HeroBigType({
     style: {
       fontSize: '0.85em'
     }
-  }, "@_joytothefood_"), " from 1,001 to 582K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "I'll show you exactly what moved the needle."), /*#__PURE__*/React.createElement("div", {
+  }, "@_joytothefood_"), " from 1,001 to 600K in two years, in the current algorithm, in a saturated niche, with a two-person team. Not in 2016 when Instagram was easy. Now.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "I'll show you exactly what moved the needle."), /*#__PURE__*/React.createElement("div", {
     className: "hero-cta-stack"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
@@ -1248,7 +1248,7 @@ function HeroImageGrid({
     label: 'mika filming'
   }, {
     c: 'var(--c4)',
-    label: '582K screenshot · now'
+    label: '600K screenshot · now'
   }, {
     c: 'var(--c5)',
     label: 'mika + dan'
@@ -1275,7 +1275,7 @@ function HeroImageGrid({
     className: "hero-image-grid-content"
   }, /*#__PURE__*/React.createElement("span", {
     className: "eyebrow"
-  }, "@_joytothefood_ \xB7 582K followers \xB7 10M monthly views"), /*#__PURE__*/React.createElement("h1", {
+  }, "@_joytothefood_ \xB7 600K followers \xB7 10M monthly views"), /*#__PURE__*/React.createElement("h1", {
     className: "display hero-image-grid-headline"
   }, /*#__PURE__*/React.createElement("span", {
     style: {
@@ -1287,7 +1287,7 @@ function HeroImageGrid({
     }
   }, "actually"), " works."), /*#__PURE__*/React.createElement("p", {
     className: "hero-image-grid-sub"
-  }, "I grew @_joytothefood_ from 1K to 582K in 24 months, in the current algorithm, in a saturated niche. I'll show you how."), /*#__PURE__*/React.createElement("div", {
+  }, "I grew @_joytothefood_ from 1K to 600K in 24 months, in the current algorithm, in a saturated niche. I'll show you how."), /*#__PURE__*/React.createElement("div", {
     className: "hero-image-grid-cta"
   }, /*#__PURE__*/React.createElement("button", {
     className: "btn alt",
@@ -1302,7 +1302,7 @@ function HeroImageGrid({
 // ============================================================
 function ProofBar() {
   const stats = [{
-    num: '582K',
+    num: '600K',
     label: 'IG followers'
   }, {
     num: '10M',
@@ -1341,7 +1341,7 @@ function ProofBar() {
 // MARQUEE STRIP
 // ============================================================
 function Strip() {
-  const items = ['the mastermind', 'account audit', 'in your pocket day', 'client management', 'the playbook ebook', '1k → 582K in 24 months'];
+  const items = ['the mastermind', 'account audit', 'in your pocket day', 'client management', 'the playbook ebook', '1k → 600K in 24 months'];
   const Set = () => /*#__PURE__*/React.createElement("span", null, items.map((t, i) => /*#__PURE__*/React.createElement("span", {
     key: i,
     style: {
@@ -1757,7 +1757,7 @@ function About() {
     style: {
       color: 'var(--ink)'
     }
-  }, "Joy to the Food"), " from my kitchen in Minneapolis. In two years it went from 1,001 followers to 582K. Now we run it from wherever we want, with a toddler underfoot."), /*#__PURE__*/React.createElement("p", {
+  }, "Joy to the Food"), " from my kitchen in Minneapolis. In two years it went from 1,001 followers to 600K. Now we run it from wherever we want, with a toddler underfoot."), /*#__PURE__*/React.createElement("p", {
     className: "about-text-emph"
   }, "My philosophy: ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -1816,7 +1816,7 @@ function Freebie() {
     style: {
       color: 'var(--c1)'
     }
-  }, "582K.")), /*#__PURE__*/React.createElement("p", {
+  }, "600K.")), /*#__PURE__*/React.createElement("p", {
     className: "freebie-sub"
   }, "The exact hook stacking method I use on every reel. 12 page PDF. No newsletter, no sales sequence. Drop your email, get the file."), /*#__PURE__*/React.createElement("form", {
     className: "freebie-form",
