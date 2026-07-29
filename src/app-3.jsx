@@ -52,11 +52,11 @@ function App() {
       <WhyNow />
       <WhoMikaIs />
       <ReelProof />
-      <CtaBand phase={phase} onCta={handleCta} />
+      {phase !== 'closed' && <CtaBand phase={phase} onCta={handleCta} />}
       <HowItWorks />
       <WeekArc />
       <ForNotFor />
-      <CtaBand phase={phase} onCta={handleCta} />
+      {phase !== 'closed' && <CtaBand phase={phase} onCta={handleCta} />}
       {phase !== 'closed' && <ValueStack phase={phase} onCta={handleCta} />}
       <FAQ />
       <ChallengeCTA phase={phase} onCta={handleCta} />

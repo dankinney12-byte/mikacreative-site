@@ -806,7 +806,7 @@ function ContactCTA({ onWaitlist, phase }) {
         <span className="eyebrow" style={{ justifyContent: 'center' }}>let's go</span>
         <h2 className="display contact-cta-headline">
           {closed ? (
-            <>missed round 1?<br />round 2 is <span style={{ color: 'var(--c1)' }}>coming!</span></>
+            <>round 2 is <span style={{ color: 'var(--c1)' }}>underway!</span></>
           ) : (
             <>done <span style={{ color: 'var(--c1)' }}>guessing?</span><br />
             let's <span style={{ color: 'var(--c3)' }}>fix that.</span></>
@@ -814,17 +814,17 @@ function ContactCTA({ onWaitlist, phase }) {
         </h2>
         <p className="contact-cta-sub">
           {closed
-            ? "Grow with Joy round 2 lands early fall. Join the waitlist for first dibs. For food creators by food creators."
+            ? "Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!"
             : "Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators."}
         </p>
         <div className="contact-cta-btns">
           {closed ? (
-            <button className="btn contact-cta-btn" onClick={() => onWaitlist && onWaitlist()} style={{ background: 'var(--c3)' }}>
-              join the round 2 waitlist →
-            </button>
+            <a href="https://instagram.com/_joytothefood_" target="_blank" rel="noopener noreferrer" className="btn contact-cta-btn" style={{ background: 'var(--c3)' }}>
+              follow on Instagram →
+            </a>
           ) : (
             <button className="btn contact-cta-btn" onClick={() => onWaitlist && onWaitlist()} style={{ background: 'var(--c3)' }}>
-              sign me up!
+              {phase === 'open' ? 'sign me up!' : 'join the round 2 waitlist →'}
             </button>
           )}
         </div>

@@ -52,23 +52,23 @@ function Countdown({ target }) {
 function AnnouncementBar({ phase, onCta }) {
   const cfg = {
     waitlist: {
-      msg: 'grow with joy is coming! enrollment opens june 15',
+      msg: 'grow with joy round 2 is coming! doors open august 24',
       target: LAUNCH.enrollOpens,
       cta: 'join the waitlist →',
       bg: 'var(--c3)',
       fg: 'var(--ink)',
     },
     open: {
-      msg: 'grow with joy is coming! 30 day challenge starts July 1',
+      msg: 'round 2 enrollment is OPEN! the challenge starts september 14',
       target: LAUNCH.challengeStarts,
       cta: 'sign me up!',
       bg: 'var(--c3)',
       fg: 'var(--ink)',
     },
     closed: {
-      msg: "round 1 is underway! grow with joy round 2 is coming early fall",
+      msg: "round 2 is underway! enrollment is closed for this round.",
       target: null,
-      cta: 'join the waitlist →',
+      cta: null,
       bg: 'var(--c3)',
       fg: 'var(--ink)',
     },
@@ -99,15 +99,23 @@ function ChallengeHero({ phase, onCta }) {
   return (
     <section className="gwj-hero">
       <div className="container gwj-hero-inner">
-        {phase === 'closed' && (
+        {phase === 'waitlist' && (
           <div className="gwj-started-banner">
             <span className="gwj-started-banner-emoji">🌱</span>
             <div className="gwj-started-banner-text">
-              <strong>Round 1 is underway!</strong> Grow with Joy round 2 is coming early fall. Join the waitlist to be first through the door!
+              <strong>Round 2 starts September 14!</strong> Doors open August 24. Join the waitlist to be first through the door!
             </div>
             <button className="btn sm btn-shadow-c2 gwj-started-banner-btn" onClick={() => onCta && onCta(phase)}>
               join the waitlist →
             </button>
+          </div>
+        )}
+        {phase === 'closed' && (
+          <div className="gwj-started-banner">
+            <span className="gwj-started-banner-emoji">🌱</span>
+            <div className="gwj-started-banner-text">
+              <strong>Round 2 is underway!</strong> Enrollment is closed for this round. Keep an eye out for the next one!
+            </div>
           </div>
         )}
         <h1 className="display gwj-hero-headline">
@@ -427,9 +435,9 @@ function ValueStack({ phase, onCta }) {
           </p>
           <div className="gwj-price-compare">
             <span className="display gwj-price-was">$2,556</span>
-            <span className="display gwj-price-amount">$249</span>
+            <span className="display gwj-price-amount">$389</span>
           </div>
-          <span className="mono gwj-price-savings">that's over 90% off</span>
+          <span className="mono gwj-price-savings">that's almost 85% off</span>
           <p className="gwj-price-note">
             That's the whole thing, all of it, for way less than it's worth!
           </p>
@@ -447,11 +455,11 @@ function ValueStack({ phase, onCta }) {
 // ============================================================
 function Timeline() {
   const steps = [
-    { label: 'round 1 underway now',       color: 'var(--c3)', active: true },
-    { label: 'round 2 waitlist open',      color: 'var(--c2)', active: true },
-    { label: 'enrollment opens early fall', color: 'var(--c1)' },
-    { label: 'round 2 starts',             color: 'var(--c4)' },
-    { label: '30 days of drops',           color: 'var(--c5)' },
+    { label: 'round 1 wrapped',              color: 'var(--c3)', active: true },
+    { label: 'round 2 waitlist open now',    color: 'var(--c2)', active: true },
+    { label: 'doors open august 24',         color: 'var(--c1)' },
+    { label: 'round 2 starts september 14',  color: 'var(--c4)' },
+    { label: '30 days of drops',             color: 'var(--c5)' },
   ];
 
   return (
@@ -481,7 +489,9 @@ function FAQ() {
   const [openIdx, setOpenIdx] = useState(null);
   const faqs = [
     { q: "When does it start?",
-      a: "Round 1 kicked off July 1 and is underway right now! Round 2 is coming early fall. Join the waitlist and you'll be the first to know the exact date." },
+      a: "Round 2 starts September 14! Enrollment opens August 24 and closes the night before we kick off. Join the waitlist and you'll get first dibs the moment doors open." },
+    { q: "How much is it?",
+      a: "$389 for the whole thing: the live workshop, the production masterclass, 28 daily drops with downloadable guides, the group chat, and lifetime access." },
     { q: "How long is it?",
       a: "30 days!" },
     { q: "How is it delivered?",
@@ -536,14 +546,19 @@ function ChallengeCTA({ phase, onCta }) {
       <section className="gwj-final-cta">
         <div className="container gwj-final-cta-inner">
           <h2 className="display gwj-final-headline">
-            round 2 is coming <span style={{ color: 'var(--c1)' }}>early fall!</span>
+            round 2 is <span style={{ color: 'var(--c1)' }}>underway!</span>
           </h2>
           <p className="gwj-final-sub">
-            Round 1 is underway right now, and it's going so well we're doing it again. Join the waitlist and you'll be the first to know when doors open.
+            Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!
           </p>
-          <button className="btn btn-shadow-c2 gwj-final-btn" onClick={() => onCta(phase)}>
-            join the round 2 waitlist →
-          </button>
+          <a
+            href="https://instagram.com/_joytothefood_"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-shadow-c2 gwj-final-btn"
+          >
+            follow on Instagram →
+          </a>
         </div>
       </section>
     );
@@ -624,10 +639,10 @@ function WaitlistModal({ open, onClose, phase }) {
   };
 
   const isRoundTwo = phase === 'closed';
-  const title = isRoundTwo ? "join the round 2 waitlist!" : "you're almost in!";
+  const title = isRoundTwo ? "join the list for the next round!" : "you're almost in!";
   const sub   = isRoundTwo
-    ? "Grow with Joy round 2 is coming early fall! Drop your email and you'll be the first to know when doors open. No spam, just updates."
-    : "drop your email and you'll be first through the door when enrollment opens june 15! no spam, just updates.";
+    ? "Round 2 is underway! Drop your email and you'll be the first to know when the next round opens. No spam, just updates."
+    : "Drop your email and you'll be first through the door when round 2 enrollment opens August 24! No spam, just updates.";
 
   return (
     <div
@@ -783,8 +798,8 @@ function MemberWins() {
     <section className="gwj-section gwj-wins">
       <div className="container">
         <span className="eyebrow" style={{ justifyContent: 'flex-start' }}>receipts from round 1</span>
-        <h2 className="display gwj-section-headline">round 1 members are already growing!</h2>
-        <p className="gwj-wins-note">Real messages from the first two weeks of the challenge, shared anonymously.</p>
+        <h2 className="display gwj-section-headline">round 1 members grew, a lot!</h2>
+        <p className="gwj-wins-note">Real messages from the round 1 group chat, shared anonymously.</p>
         <div className="gwj-wins-masonry">
           {wins.map((w, i) => (
             <div key={i} className="card gwj-win-card" style={{ background: colors[i % colors.length], order: w.m }}>
@@ -815,10 +830,10 @@ function CtaBand({ phase, onCta }) {
           {label}
         </button>
         {phase === 'waitlist' && (
-          <span className="mono gwj-cta-band-note">free to join · enrollment opens June 15</span>
+          <span className="mono gwj-cta-band-note">free to join · round 2 doors open August 24</span>
         )}
-        {phase === 'closed' && (
-          <span className="mono gwj-cta-band-note">round 2 coming early fall · free to join</span>
+        {phase === 'open' && (
+          <span className="mono gwj-cta-band-note">round 2 starts September 14 · doors close the night before</span>
         )}
       </div>
     </div>

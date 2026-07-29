@@ -29,15 +29,16 @@ function TweakRadio() {
 
 // Grow with Joy — launch configuration (single source of truth)
 // No import/export — compiled into the global bundle.
-// Kit URLs are placeholders; replace with real values before go-live.
+// ROUND 2: public enrollment opens Aug 24, closes the night before the
+// Sept 14 start (2am Pacific). The page flips phases automatically.
 
 var LAUNCH = {
   name: "Grow with Joy",
-  price: 249,
+  price: 389,
   timezone: "America/Chicago",
-  enrollOpens: "2026-06-07T00:00:00-05:00",
-  enrollCloses: "2026-07-01T02:00:00-07:00",
-  challengeStarts: "2026-07-01T00:00:00-05:00",
+  enrollOpens: "2026-08-24T00:00:00-05:00",
+  enrollCloses: "2026-09-14T02:00:00-07:00",
+  challengeStarts: "2026-09-14T00:00:00-05:00",
   kitCommerceUrl: "https://joy-to-the-food.kit.com/products/grow-with-joy",
   kitWaitlistUrl: "#" // fallback href if Netlify function not available
 };
@@ -124,23 +125,23 @@ function AnnouncementBar({
 }) {
   const cfg = {
     waitlist: {
-      msg: 'grow with joy is coming! enrollment opens june 15',
+      msg: 'grow with joy round 2 is coming! doors open august 24',
       target: LAUNCH.enrollOpens,
       cta: 'join the waitlist →',
       bg: 'var(--c3)',
       fg: 'var(--ink)'
     },
     open: {
-      msg: 'grow with joy is coming! 30 day challenge starts July 1',
+      msg: 'round 2 enrollment is OPEN! the challenge starts september 14',
       target: LAUNCH.challengeStarts,
       cta: 'sign me up!',
       bg: 'var(--c3)',
       fg: 'var(--ink)'
     },
     closed: {
-      msg: "round 1 is underway! grow with joy round 2 is coming early fall",
+      msg: "round 2 is underway! enrollment is closed for this round.",
       target: null,
-      cta: 'join the waitlist →',
+      cta: null,
       bg: 'var(--c3)',
       fg: 'var(--ink)'
     }
@@ -176,16 +177,22 @@ function ChallengeHero({
     className: "gwj-hero"
   }, /*#__PURE__*/React.createElement("div", {
     className: "container gwj-hero-inner"
-  }, phase === 'closed' && /*#__PURE__*/React.createElement("div", {
+  }, phase === 'waitlist' && /*#__PURE__*/React.createElement("div", {
     className: "gwj-started-banner"
   }, /*#__PURE__*/React.createElement("span", {
     className: "gwj-started-banner-emoji"
   }, "\uD83C\uDF31"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-started-banner-text"
-  }, /*#__PURE__*/React.createElement("strong", null, "Round 1 is underway!"), " Grow with Joy round 2 is coming early fall. Join the waitlist to be first through the door!"), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Round 2 starts September 14!"), " Doors open August 24. Join the waitlist to be first through the door!"), /*#__PURE__*/React.createElement("button", {
     className: "btn sm btn-shadow-c2 gwj-started-banner-btn",
     onClick: () => onCta && onCta(phase)
-  }, "join the waitlist \u2192")), /*#__PURE__*/React.createElement("h1", {
+  }, "join the waitlist \u2192")), phase === 'closed' && /*#__PURE__*/React.createElement("div", {
+    className: "gwj-started-banner"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "gwj-started-banner-emoji"
+  }, "\uD83C\uDF31"), /*#__PURE__*/React.createElement("div", {
+    className: "gwj-started-banner-text"
+  }, /*#__PURE__*/React.createElement("strong", null, "Round 2 is underway!"), " Enrollment is closed for this round. Keep an eye out for the next one!")), /*#__PURE__*/React.createElement("h1", {
     className: "display gwj-hero-headline"
   }, "grow with ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -567,9 +574,9 @@ function ValueStack({
     className: "display gwj-price-was"
   }, "$2,556"), /*#__PURE__*/React.createElement("span", {
     className: "display gwj-price-amount"
-  }, "$249")), /*#__PURE__*/React.createElement("span", {
+  }, "$389")), /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-price-savings"
-  }, "that's over 90% off"), /*#__PURE__*/React.createElement("p", {
+  }, "that's almost 85% off"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-price-note"
   }, "That's the whole thing, all of it, for way less than it's worth!"), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-shadow-c2 gwj-stack-cta",
@@ -582,18 +589,18 @@ function ValueStack({
 // ============================================================
 function Timeline() {
   const steps = [{
-    label: 'round 1 underway now',
+    label: 'round 1 wrapped',
     color: 'var(--c3)',
     active: true
   }, {
-    label: 'round 2 waitlist open',
+    label: 'round 2 waitlist open now',
     color: 'var(--c2)',
     active: true
   }, {
-    label: 'enrollment opens early fall',
+    label: 'doors open august 24',
     color: 'var(--c1)'
   }, {
-    label: 'round 2 starts',
+    label: 'round 2 starts september 14',
     color: 'var(--c4)'
   }, {
     label: '30 days of drops',
@@ -629,7 +636,10 @@ function FAQ() {
   const [openIdx, setOpenIdx] = useState(null);
   const faqs = [{
     q: "When does it start?",
-    a: "Round 1 kicked off July 1 and is underway right now! Round 2 is coming early fall. Join the waitlist and you'll be the first to know the exact date."
+    a: "Round 2 starts September 14! Enrollment opens August 24 and closes the night before we kick off. Join the waitlist and you'll get first dibs the moment doors open."
+  }, {
+    q: "How much is it?",
+    a: "$389 for the whole thing: the live workshop, the production masterclass, 28 daily drops with downloadable guides, the group chat, and lifetime access."
   }, {
     q: "How long is it?",
     a: "30 days!"
@@ -693,16 +703,18 @@ function ChallengeCTA({
       className: "container gwj-final-cta-inner"
     }, /*#__PURE__*/React.createElement("h2", {
       className: "display gwj-final-headline"
-    }, "round 2 is coming ", /*#__PURE__*/React.createElement("span", {
+    }, "round 2 is ", /*#__PURE__*/React.createElement("span", {
       style: {
         color: 'var(--c1)'
       }
-    }, "early fall!")), /*#__PURE__*/React.createElement("p", {
+    }, "underway!")), /*#__PURE__*/React.createElement("p", {
       className: "gwj-final-sub"
-    }, "Round 1 is underway right now, and it's going so well we're doing it again. Join the waitlist and you'll be the first to know when doors open."), /*#__PURE__*/React.createElement("button", {
-      className: "btn btn-shadow-c2 gwj-final-btn",
-      onClick: () => onCta(phase)
-    }, "join the round 2 waitlist \u2192")));
+    }, "Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!"), /*#__PURE__*/React.createElement("a", {
+      href: "https://instagram.com/_joytothefood_",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "btn btn-shadow-c2 gwj-final-btn"
+    }, "follow on Instagram \u2192")));
   }
   const ctaLabel = {
     waitlist: 'join the waitlist →',
@@ -790,8 +802,8 @@ function WaitlistModal({
     }
   };
   const isRoundTwo = phase === 'closed';
-  const title = isRoundTwo ? "join the round 2 waitlist!" : "you're almost in!";
-  const sub = isRoundTwo ? "Grow with Joy round 2 is coming early fall! Drop your email and you'll be the first to know when doors open. No spam, just updates." : "drop your email and you'll be first through the door when enrollment opens june 15! no spam, just updates.";
+  const title = isRoundTwo ? "join the list for the next round!" : "you're almost in!";
+  const sub = isRoundTwo ? "Round 2 is underway! Drop your email and you'll be the first to know when the next round opens. No spam, just updates." : "Drop your email and you'll be first through the door when round 2 enrollment opens August 24! No spam, just updates.";
   return /*#__PURE__*/React.createElement("div", {
     className: "booking-overlay",
     onClick: e => {
@@ -1019,9 +1031,9 @@ function MemberWins() {
     }
   }, "receipts from round 1"), /*#__PURE__*/React.createElement("h2", {
     className: "display gwj-section-headline"
-  }, "round 1 members are already growing!"), /*#__PURE__*/React.createElement("p", {
+  }, "round 1 members grew, a lot!"), /*#__PURE__*/React.createElement("p", {
     className: "gwj-wins-note"
-  }, "Real messages from the first two weeks of the challenge, shared anonymously."), /*#__PURE__*/React.createElement("div", {
+  }, "Real messages from the round 1 group chat, shared anonymously."), /*#__PURE__*/React.createElement("div", {
     className: "gwj-wins-masonry"
   }, wins.map((w, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
@@ -1060,9 +1072,9 @@ function CtaBand({
     onClick: () => onCta(phase)
   }, label), phase === 'waitlist' && /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-cta-band-note"
-  }, "free to join \xB7 enrollment opens June 15"), phase === 'closed' && /*#__PURE__*/React.createElement("span", {
+  }, "free to join \xB7 round 2 doors open August 24"), phase === 'open' && /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-cta-band-note"
-  }, "round 2 coming early fall \xB7 free to join")));
+  }, "round 2 starts September 14 \xB7 doors close the night before")));
 }
 
 // expose to window (bundle consistency)
@@ -2077,11 +2089,11 @@ function ContactCTA({
     }
   }, "let's go"), /*#__PURE__*/React.createElement("h2", {
     className: "display contact-cta-headline"
-  }, closed ? /*#__PURE__*/React.createElement(React.Fragment, null, "missed round 1?", /*#__PURE__*/React.createElement("br", null), "round 2 is ", /*#__PURE__*/React.createElement("span", {
+  }, closed ? /*#__PURE__*/React.createElement(React.Fragment, null, "round 2 is ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
-  }, "coming!")) : /*#__PURE__*/React.createElement(React.Fragment, null, "done ", /*#__PURE__*/React.createElement("span", {
+  }, "underway!")) : /*#__PURE__*/React.createElement(React.Fragment, null, "done ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--c1)'
     }
@@ -2091,21 +2103,23 @@ function ContactCTA({
     }
   }, "fix that."))), /*#__PURE__*/React.createElement("p", {
     className: "contact-cta-sub"
-  }, closed ? "Grow with Joy round 2 lands early fall. Join the waitlist for first dibs. For food creators by food creators." : "Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators."), /*#__PURE__*/React.createElement("div", {
+  }, closed ? "Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!" : "Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators."), /*#__PURE__*/React.createElement("div", {
     className: "contact-cta-btns"
-  }, closed ? /*#__PURE__*/React.createElement("button", {
+  }, closed ? /*#__PURE__*/React.createElement("a", {
+    href: "https://instagram.com/_joytothefood_",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "btn contact-cta-btn",
+    style: {
+      background: 'var(--c3)'
+    }
+  }, "follow on Instagram \u2192") : /*#__PURE__*/React.createElement("button", {
     className: "btn contact-cta-btn",
     onClick: () => onWaitlist && onWaitlist(),
     style: {
       background: 'var(--c3)'
     }
-  }, "join the round 2 waitlist \u2192") : /*#__PURE__*/React.createElement("button", {
-    className: "btn contact-cta-btn",
-    onClick: () => onWaitlist && onWaitlist(),
-    style: {
-      background: 'var(--c3)'
-    }
-  }, "sign me up!")), /*#__PURE__*/React.createElement("a", {
+  }, phase === 'open' ? 'sign me up!' : 'join the round 2 waitlist →')), /*#__PURE__*/React.createElement("a", {
     href: "mailto:mika@joytothefood.com",
     className: "link",
     style: {
@@ -2746,10 +2760,10 @@ function App() {
   }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(MemberWins, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(ReelProof, null), /*#__PURE__*/React.createElement(CtaBand, {
+  }), /*#__PURE__*/React.createElement(MemberWins, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(ReelProof, null), phase !== 'closed' && /*#__PURE__*/React.createElement(CtaBand, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), /*#__PURE__*/React.createElement(CtaBand, {
+  }), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), phase !== 'closed' && /*#__PURE__*/React.createElement(CtaBand, {
     phase: phase,
     onCta: handleCta
   }), phase !== 'closed' && /*#__PURE__*/React.createElement(ValueStack, {
