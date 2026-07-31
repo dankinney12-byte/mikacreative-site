@@ -29,6 +29,14 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
+# Hosted files (PDF guides linked from emails): keep out of search
+# engines — anyone with the link can still open them.
+[[headers]]
+  for = "/files/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+    Cache-Control = "public, max-age=3600"
+
 [[headers]]
   for = "/index.html"
   [headers.values]
