@@ -52,14 +52,14 @@ function Countdown({ target }) {
 function AnnouncementBar({ phase, onCta }) {
   const cfg = {
     waitlist: {
-      msg: 'grow with joy round 2 is coming! doors open august 24',
-      target: LAUNCH.enrollOpens,
+      msg: 'grow with joy round 2 is coming! dates TBD',
+      target: null,
       cta: 'join the waitlist →',
       bg: 'var(--c3)',
       fg: 'var(--ink)',
     },
     open: {
-      msg: 'round 2 enrollment is OPEN! the challenge starts september 14',
+      msg: 'round 2 enrollment is OPEN!',
       target: LAUNCH.challengeStarts,
       cta: 'sign me up!',
       bg: 'var(--c3)',
@@ -103,7 +103,7 @@ function ChallengeHero({ phase, onCta }) {
           <div className="gwj-started-banner">
             <span className="gwj-started-banner-emoji">🌱</span>
             <div className="gwj-started-banner-text">
-              <strong>Round 2 starts September 14!</strong> Doors open August 24. Join the waitlist to be first through the door!
+              <strong>Round 2 is coming!</strong> Dates are still TBD. Join the waitlist and you'll be the first to know the moment we lock them in!
             </div>
             <button className="btn sm btn-shadow-c2 gwj-started-banner-btn" onClick={() => onCta && onCta(phase)}>
               join the waitlist →
@@ -457,8 +457,8 @@ function Timeline() {
   const steps = [
     { label: 'round 1 wrapped',              color: 'var(--c3)', active: true },
     { label: 'round 2 waitlist open now',    color: 'var(--c2)', active: true },
-    { label: 'doors open august 24',         color: 'var(--c1)' },
-    { label: 'round 2 starts september 14',  color: 'var(--c4)' },
+    { label: 'dates announced soon',         color: 'var(--c1)' },
+    { label: 'round 2 starts',               color: 'var(--c4)' },
     { label: '30 days of drops',             color: 'var(--c5)' },
   ];
 
@@ -489,9 +489,7 @@ function FAQ() {
   const [openIdx, setOpenIdx] = useState(null);
   const faqs = [
     { q: "When does it start?",
-      a: "Round 2 starts September 14! Enrollment opens August 24 and closes the night before we kick off. Join the waitlist and you'll get first dibs the moment doors open." },
-    { q: "How much is it?",
-      a: "$389 for the whole thing: the live workshop, the production masterclass, 28 daily drops with downloadable guides, the group chat, and lifetime access." },
+      a: "Round 2 dates are still TBD while we lock in the schedule. Join the waitlist and you'll be the first to know the moment we announce them!" },
     { q: "How long is it?",
       a: "30 days!" },
     { q: "How is it delivered?",
@@ -569,7 +567,9 @@ function ChallengeCTA({ phase, onCta }) {
     open:     'sign me up!',
     closed:   'join the list for round two →',
   }[phase];
-  const target = phase === 'closed' ? null : LAUNCH.challengeStarts;
+  // TBD: countdown suppressed while round 2 dates are placeholders.
+  // Restore to `phase === 'closed' ? null : LAUNCH.challengeStarts` when scheduled.
+  const target = null;
 
   return (
     <section className="gwj-final-cta">
@@ -642,7 +642,7 @@ function WaitlistModal({ open, onClose, phase }) {
   const title = isRoundTwo ? "join the list for the next round!" : "you're almost in!";
   const sub   = isRoundTwo
     ? "Round 2 is underway! Drop your email and you'll be the first to know when the next round opens. No spam, just updates."
-    : "Drop your email and you'll be first through the door when round 2 enrollment opens August 24! No spam, just updates.";
+    : "Round 2 dates are still TBD. Drop your email and you'll be the first to know the moment enrollment opens! No spam, just updates.";
 
   return (
     <div
@@ -831,10 +831,10 @@ function CtaBand({ phase, onCta }) {
           {label}
         </button>
         {phase === 'waitlist' && (
-          <span className="mono gwj-cta-band-note">free to join · round 2 doors open August 24</span>
+          <span className="mono gwj-cta-band-note">free to join · be the first to know when dates drop</span>
         )}
         {phase === 'open' && (
-          <span className="mono gwj-cta-band-note">round 2 starts September 14 · doors close the night before</span>
+          <span className="mono gwj-cta-band-note">doors close the night before we start</span>
         )}
       </div>
     </div>

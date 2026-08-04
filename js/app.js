@@ -29,16 +29,22 @@ function TweakRadio() {
 
 // Grow with Joy — launch configuration (single source of truth)
 // No import/export — compiled into the global bundle.
-// ROUND 2: public enrollment opens Aug 24, closes the night before the
-// Sept 14 start (2am Pacific). The page flips phases automatically.
+// ROUND 2 IS POSTPONED (dates TBD, possibly Jan 2027). The dates below are
+// far-future placeholders so the site stays in the waitlist phase and can
+// NOT auto-flip to open/closed. When round 2 is scheduled: set the real
+// dates here AND sweep the copy (banner, hero strip, timeline, FAQ,
+// CtaBand notes, waitlist modal) plus re-enable the ValueStack in app-3.
 
 var LAUNCH = {
   name: "Grow with Joy",
   price: 389,
   timezone: "America/Chicago",
-  enrollOpens: "2026-08-24T00:00:00-05:00",
-  enrollCloses: "2026-09-14T02:00:00-07:00",
-  challengeStarts: "2026-09-14T00:00:00-05:00",
+  enrollOpens: "2099-01-01T00:00:00-06:00",
+  // TBD placeholder
+  enrollCloses: "2099-02-01T00:00:00-06:00",
+  // TBD placeholder
+  challengeStarts: "2099-02-01T00:00:00-06:00",
+  // TBD placeholder
   kitCommerceUrl: "https://joy-to-the-food.kit.com/products/grow-with-joy",
   kitWaitlistUrl: "#" // fallback href if Netlify function not available
 };
@@ -125,14 +131,14 @@ function AnnouncementBar({
 }) {
   const cfg = {
     waitlist: {
-      msg: 'grow with joy round 2 is coming! doors open august 24',
-      target: LAUNCH.enrollOpens,
+      msg: 'grow with joy round 2 is coming! dates TBD',
+      target: null,
       cta: 'join the waitlist →',
       bg: 'var(--c3)',
       fg: 'var(--ink)'
     },
     open: {
-      msg: 'round 2 enrollment is OPEN! the challenge starts september 14',
+      msg: 'round 2 enrollment is OPEN!',
       target: LAUNCH.challengeStarts,
       cta: 'sign me up!',
       bg: 'var(--c3)',
@@ -183,7 +189,7 @@ function ChallengeHero({
     className: "gwj-started-banner-emoji"
   }, "\uD83C\uDF31"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-started-banner-text"
-  }, /*#__PURE__*/React.createElement("strong", null, "Round 2 starts September 14!"), " Doors open August 24. Join the waitlist to be first through the door!"), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Round 2 is coming!"), " Dates are still TBD. Join the waitlist and you'll be the first to know the moment we lock them in!"), /*#__PURE__*/React.createElement("button", {
     className: "btn sm btn-shadow-c2 gwj-started-banner-btn",
     onClick: () => onCta && onCta(phase)
   }, "join the waitlist \u2192")), phase === 'closed' && /*#__PURE__*/React.createElement("div", {
@@ -597,10 +603,10 @@ function Timeline() {
     color: 'var(--c2)',
     active: true
   }, {
-    label: 'doors open august 24',
+    label: 'dates announced soon',
     color: 'var(--c1)'
   }, {
-    label: 'round 2 starts september 14',
+    label: 'round 2 starts',
     color: 'var(--c4)'
   }, {
     label: '30 days of drops',
@@ -636,10 +642,7 @@ function FAQ() {
   const [openIdx, setOpenIdx] = useState(null);
   const faqs = [{
     q: "When does it start?",
-    a: "Round 2 starts September 14! Enrollment opens August 24 and closes the night before we kick off. Join the waitlist and you'll get first dibs the moment doors open."
-  }, {
-    q: "How much is it?",
-    a: "$389 for the whole thing: the live workshop, the production masterclass, 28 daily drops with downloadable guides, the group chat, and lifetime access."
+    a: "Round 2 dates are still TBD while we lock in the schedule. Join the waitlist and you'll be the first to know the moment we announce them!"
   }, {
     q: "How long is it?",
     a: "30 days!"
@@ -721,7 +724,9 @@ function ChallengeCTA({
     open: 'sign me up!',
     closed: 'join the list for round two →'
   }[phase];
-  const target = phase === 'closed' ? null : LAUNCH.challengeStarts;
+  // TBD: countdown suppressed while round 2 dates are placeholders.
+  // Restore to `phase === 'closed' ? null : LAUNCH.challengeStarts` when scheduled.
+  const target = null;
   return /*#__PURE__*/React.createElement("section", {
     className: "gwj-final-cta"
   }, /*#__PURE__*/React.createElement("div", {
@@ -803,7 +808,7 @@ function WaitlistModal({
   };
   const isRoundTwo = phase === 'closed';
   const title = isRoundTwo ? "join the list for the next round!" : "you're almost in!";
-  const sub = isRoundTwo ? "Round 2 is underway! Drop your email and you'll be the first to know when the next round opens. No spam, just updates." : "Drop your email and you'll be first through the door when round 2 enrollment opens August 24! No spam, just updates.";
+  const sub = isRoundTwo ? "Round 2 is underway! Drop your email and you'll be the first to know when the next round opens. No spam, just updates." : "Round 2 dates are still TBD. Drop your email and you'll be the first to know the moment enrollment opens! No spam, just updates.";
   return /*#__PURE__*/React.createElement("div", {
     className: "booking-overlay",
     onClick: e => {
@@ -1079,9 +1084,9 @@ function CtaBand({
     onClick: () => onCta(phase)
   }, label), phase === 'waitlist' && /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-cta-band-note"
-  }, "free to join \xB7 round 2 doors open August 24"), phase === 'open' && /*#__PURE__*/React.createElement("span", {
+  }, "free to join \xB7 be the first to know when dates drop"), phase === 'open' && /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-cta-band-note"
-  }, "round 2 starts September 14 \xB7 doors close the night before")));
+  }, "doors close the night before we start")));
 }
 
 // expose to window (bundle consistency)
@@ -2771,9 +2776,6 @@ function App() {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement(HowItWorks, null), /*#__PURE__*/React.createElement(WeekArc, null), /*#__PURE__*/React.createElement(ForNotFor, null), phase !== 'closed' && /*#__PURE__*/React.createElement(CtaBand, {
-    phase: phase,
-    onCta: handleCta
-  }), phase !== 'closed' && /*#__PURE__*/React.createElement(ValueStack, {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {

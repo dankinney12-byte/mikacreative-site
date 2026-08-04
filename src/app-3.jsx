@@ -57,7 +57,8 @@ function App() {
       <WeekArc />
       <ForNotFor />
       {phase !== 'closed' && <CtaBand phase={phase} onCta={handleCta} />}
-      {phase !== 'closed' && <ValueStack phase={phase} onCta={handleCta} />}
+      {/* ValueStack hidden while round 2 dates + pricing are TBD.
+          Restore: {phase !== 'closed' && <ValueStack phase={phase} onCta={handleCta} />} */}
       <FAQ />
       <ChallengeCTA phase={phase} onCta={handleCta} />
 
