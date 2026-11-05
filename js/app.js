@@ -1181,7 +1181,7 @@ function Nav() {
     className: "link",
     onClick: close
   }, "Speaking"), /*#__PURE__*/React.createElement("a", {
-    href: "#services",
+    href: "#contact",
     className: "btn sm",
     onClick: close
   }, /*#__PURE__*/React.createElement("span", {
@@ -2781,15 +2781,6 @@ function App() {
   }), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(ChallengeCTA, {
     phase: phase,
     onCta: handleCta
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "gwj-services-bridge"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "gwj-bridge-text"
-  }, "already established and want me 1:1? I've got you over here too \u2192"))), /*#__PURE__*/React.createElement(Services, {
-    onBook: setBookingService,
-    onSeeDetails: setDetailsService
   }), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Speaking, null), /*#__PURE__*/React.createElement(ContactCTA, {
     onWaitlist: () => handleCta(phase),
     phase: phase

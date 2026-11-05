@@ -62,7 +62,9 @@ function App() {
       <FAQ />
       <ChallengeCTA phase={phase} onCta={handleCta} />
 
-      {/* ── Existing services, relocated below the challenge ── */}
+      {/* ── Services ("find your fit") hidden — Grow with Joy only for now.
+          Restore by uncommenting the bridge + <Services /> below, and point
+          the Nav "Work with me" button back at #services in app-1.jsx.
       <div className="gwj-services-bridge">
         <div className="container">
           <p className="gwj-bridge-text">
@@ -71,6 +73,7 @@ function App() {
         </div>
       </div>
       <Services onBook={setBookingService} onSeeDetails={setDetailsService} />
+      */}
       <About />
       <Speaking />
       <ContactCTA onWaitlist={() => handleCta(phase)} phase={phase} />

@@ -42,7 +42,7 @@ function Nav() {
         <div className={`nav-links ${open ? 'is-open' : ''}`}>
           <a href="#about" className="link" onClick={close}>About</a>
           <a href="#speaking" className="link" onClick={close}>Speaking</a>
-          <a href="#services" className="btn sm" onClick={close}>
+          <a href="#contact" className="btn sm" onClick={close}>
             <span style={{ fontSize: 16 }}>✦</span> Work with me
           </a>
         </div>
