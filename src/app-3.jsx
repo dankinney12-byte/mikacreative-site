@@ -33,6 +33,17 @@ function App() {
     root.style.setProperty('--ink', p.ink);
   }, [tweaks.palette]);
 
+  // Sticky header height drives `scroll-margin-top` so anchor jumps clear it
+  useEffect(() => {
+    const el = document.querySelector('.gwj-sticky-top');
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const set = () => document.documentElement.style.setProperty('--gwj-header-h', el.offsetHeight + 'px');
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   // Single CTA handler — open Kit Commerce in open phase, else waitlist modal
   function handleCta(ph) {
     if (ph === 'open') {
@@ -45,8 +56,10 @@ function App() {
   return (
     <>
       {/* ── Challenge launch page ── */}
-      <AnnouncementBar phase={phase} onCta={() => handleCta(phase)} />
-      <Nav />
+      <div className="gwj-sticky-top">
+        <AnnouncementBar phase={phase} onCta={() => handleCta(phase)} />
+        <Nav />
+      </div>
       <ChallengeHero phase={phase} onCta={handleCta} />
       <MemberWins />
       <WhyNow />

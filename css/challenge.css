@@ -39,9 +39,6 @@
   color: var(--ink);
   font-size: 13px;
   font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 200;
 }
 .gwj-bar-msg {
   line-height: 1.4;
@@ -1002,15 +999,20 @@
   }
 }
 
-/* ── nav offset: announcement bar pushes nav down ─────────── */
-/* When .gwj-bar is sticky at top:0 with z-index:200,
-   the nav (sticky, z-index:100) should sit below it.
-   The bar is ~40px tall; we adjust nav top dynamically via JS
-   or simply accept the overlap on scroll (bar scrolls away first
-   since it has higher z-index and comes first in DOM).         */
-.gwj-bar ~ * .nav,
-.gwj-bar + .nav {
-  top: 40px;
+/* ── sticky header stack: announcement bar + nav ──────────── */
+/* The bar and the nav stick together as one unit, so the nav always
+   sits directly below the bar whatever height the bar wraps to on
+   narrow screens. z-index stays below .booking-overlay (100) so the
+   stack never shows above a modal backdrop. */
+.gwj-sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+.gwj-sticky-top .nav {
+  position: relative;
+  top: auto;
+  z-index: auto;
 }
 
 /* ── mobile tweaks ────────────────────────────────────────── */

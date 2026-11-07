@@ -2759,6 +2759,17 @@ function App() {
     root.style.setProperty('--ink', p.ink);
   }, [tweaks.palette]);
 
+  // Sticky header height drives `scroll-margin-top` so anchor jumps clear it
+  useEffect(() => {
+    const el = document.querySelector('.gwj-sticky-top');
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const set = () => document.documentElement.style.setProperty('--gwj-header-h', el.offsetHeight + 'px');
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   // Single CTA handler — open Kit Commerce in open phase, else waitlist modal
   function handleCta(ph) {
     if (ph === 'open') {
@@ -2767,10 +2778,12 @@ function App() {
       setWaitlistOpen(true);
     }
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(AnnouncementBar, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "gwj-sticky-top"
+  }, /*#__PURE__*/React.createElement(AnnouncementBar, {
     phase: phase,
     onCta: () => handleCta(phase)
-  }), /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(ChallengeHero, {
+  }), /*#__PURE__*/React.createElement(Nav, null)), /*#__PURE__*/React.createElement(ChallengeHero, {
     phase: phase,
     onCta: handleCta
   }), /*#__PURE__*/React.createElement(MemberWins, null), /*#__PURE__*/React.createElement(WhyNow, null), /*#__PURE__*/React.createElement(WhoMikaIs, null), /*#__PURE__*/React.createElement(ReelProof, null), phase !== 'closed' && /*#__PURE__*/React.createElement(CtaBand, {
