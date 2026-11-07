@@ -815,7 +815,7 @@ function ContactCTA({ onWaitlist, phase }) {
         <p className="contact-cta-sub">
           {closed
             ? "Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!"
-            : "Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators."}
+            : "Round 2 of the Grow with Joy 30 day challenge kicks off in January. Join the waitlist for a jump start on your Instagram growth. For food creators by food creators."}
         </p>
         <div className="contact-cta-btns">
           {closed ? (

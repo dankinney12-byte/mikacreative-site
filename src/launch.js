@@ -1,10 +1,11 @@
 // Grow with Joy — launch configuration (single source of truth)
 // No import/export — compiled into the global bundle.
-// ROUND 2 IS POSTPONED (dates TBD, possibly Jan 2027). The dates below are
-// far-future placeholders so the site stays in the waitlist phase and can
-// NOT auto-flip to open/closed. When round 2 is scheduled: set the real
-// dates here AND sweep the copy (banner, hero strip, timeline, FAQ,
-// CtaBand notes, waitlist modal) plus re-enable the ValueStack in app-3.
+// ROUND 2 IS JANUARY 2027, exact date TBD (likely 2nd week, unconfirmed).
+// The dates below are far-future placeholders so the site stays in the
+// waitlist phase and can NOT auto-flip to open/closed. When the date is set:
+// put the real dates here AND sweep the copy (banner, hero strip, timeline,
+// FAQ, CtaBand notes, waitlist modal, ContactCTA in app-1, ChallengeCTA
+// `target`) plus re-enable the ValueStack in app-3.
 
 var LAUNCH = {
   name:            "Grow with Joy",

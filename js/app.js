@@ -29,11 +29,12 @@ function TweakRadio() {
 
 // Grow with Joy — launch configuration (single source of truth)
 // No import/export — compiled into the global bundle.
-// ROUND 2 IS POSTPONED (dates TBD, possibly Jan 2027). The dates below are
-// far-future placeholders so the site stays in the waitlist phase and can
-// NOT auto-flip to open/closed. When round 2 is scheduled: set the real
-// dates here AND sweep the copy (banner, hero strip, timeline, FAQ,
-// CtaBand notes, waitlist modal) plus re-enable the ValueStack in app-3.
+// ROUND 2 IS JANUARY 2027, exact date TBD (likely 2nd week, unconfirmed).
+// The dates below are far-future placeholders so the site stays in the
+// waitlist phase and can NOT auto-flip to open/closed. When the date is set:
+// put the real dates here AND sweep the copy (banner, hero strip, timeline,
+// FAQ, CtaBand notes, waitlist modal, ContactCTA in app-1, ChallengeCTA
+// `target`) plus re-enable the ValueStack in app-3.
 
 var LAUNCH = {
   name: "Grow with Joy",
@@ -131,7 +132,7 @@ function AnnouncementBar({
 }) {
   const cfg = {
     waitlist: {
-      msg: 'grow with joy round 2 is coming! dates TBD',
+      msg: 'grow with joy round 2 is coming in january!',
       target: null,
       cta: 'join the waitlist →',
       bg: 'var(--c3)',
@@ -189,7 +190,7 @@ function ChallengeHero({
     className: "gwj-started-banner-emoji"
   }, "\uD83C\uDF31"), /*#__PURE__*/React.createElement("div", {
     className: "gwj-started-banner-text"
-  }, /*#__PURE__*/React.createElement("strong", null, "Round 2 is coming!"), " Dates are still TBD. Join the waitlist and you'll be the first to know the moment we lock them in!"), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Round 2 is coming in January!"), " We're locking in the exact date now. Join the waitlist and you'll be the first to know the moment it's set!"), /*#__PURE__*/React.createElement("button", {
     className: "btn sm btn-shadow-c2 gwj-started-banner-btn",
     onClick: () => onCta && onCta(phase)
   }, "join the waitlist \u2192")), phase === 'closed' && /*#__PURE__*/React.createElement("div", {
@@ -603,10 +604,10 @@ function Timeline() {
     color: 'var(--c2)',
     active: true
   }, {
-    label: 'dates announced soon',
+    label: 'exact date announced soon',
     color: 'var(--c1)'
   }, {
-    label: 'round 2 starts',
+    label: 'round 2 starts in january',
     color: 'var(--c4)'
   }, {
     label: '30 days of drops',
@@ -642,7 +643,7 @@ function FAQ() {
   const [openIdx, setOpenIdx] = useState(null);
   const faqs = [{
     q: "When does it start?",
-    a: "Round 2 dates are still TBD while we lock in the schedule. Join the waitlist and you'll be the first to know the moment we announce them!"
+    a: "January 2027! We're finalizing the exact start date and will update this page the second it's locked in. Join the waitlist and you'll hear first."
   }, {
     q: "How long is it?",
     a: "30 days!"
@@ -808,7 +809,7 @@ function WaitlistModal({
   };
   const isRoundTwo = phase === 'closed';
   const title = isRoundTwo ? "join the list for the next round!" : "you're almost in!";
-  const sub = isRoundTwo ? "Round 2 is underway! Drop your email and you'll be the first to know when the next round opens. No spam, just updates." : "Round 2 dates are still TBD. Drop your email and you'll be the first to know the moment enrollment opens! No spam, just updates.";
+  const sub = isRoundTwo ? "Round 2 is underway! Drop your email and you'll be the first to know when the next round opens. No spam, just updates." : "Round 2 kicks off in January! Drop your email and you'll be the first to know the exact date and the moment enrollment opens. No spam, just updates.";
   return /*#__PURE__*/React.createElement("div", {
     className: "booking-overlay",
     onClick: e => {
@@ -1084,7 +1085,7 @@ function CtaBand({
     onClick: () => onCta(phase)
   }, label), phase === 'waitlist' && /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-cta-band-note"
-  }, "free to join \xB7 be the first to know when dates drop"), phase === 'open' && /*#__PURE__*/React.createElement("span", {
+  }, "free to join \xB7 be the first to know the january start date"), phase === 'open' && /*#__PURE__*/React.createElement("span", {
     className: "mono gwj-cta-band-note"
   }, "doors close the night before we start")));
 }
@@ -2115,7 +2116,7 @@ function ContactCTA({
     }
   }, "fix that."))), /*#__PURE__*/React.createElement("p", {
     className: "contact-cta-sub"
-  }, closed ? "Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!" : "Join our Grow with Joy 30 day challenge for a jump start on your Instagram growth. For food creators by food creators."), /*#__PURE__*/React.createElement("div", {
+  }, closed ? "Enrollment is closed for this round. Follow along on Instagram and keep an eye out for the next one!" : "Round 2 of the Grow with Joy 30 day challenge kicks off in January. Join the waitlist for a jump start on your Instagram growth. For food creators by food creators."), /*#__PURE__*/React.createElement("div", {
     className: "contact-cta-btns"
   }, closed ? /*#__PURE__*/React.createElement("a", {
     href: "https://instagram.com/_joytothefood_",
