@@ -2759,14 +2759,18 @@ function App() {
     root.style.setProperty('--ink', p.ink);
   }, [tweaks.palette]);
 
-  // Sticky header height drives `scroll-margin-top` so anchor jumps clear it
+  // Pinned header height drives `scroll-margin-top` so anchor jumps clear it.
+  // On phones the wrapper is display: contents (no box, offsetHeight 0) and
+  // only the nav is pinned, so fall back to the nav's height there.
   useEffect(() => {
-    const el = document.querySelector('.gwj-sticky-top');
-    if (!el || typeof ResizeObserver === 'undefined') return;
-    const set = () => document.documentElement.style.setProperty('--gwj-header-h', el.offsetHeight + 'px');
+    const wrap = document.querySelector('.gwj-sticky-top');
+    const nav = document.querySelector('.nav');
+    if (!wrap || !nav || typeof ResizeObserver === 'undefined') return;
+    const set = () => document.documentElement.style.setProperty('--gwj-header-h', (wrap.offsetHeight || nav.offsetHeight) + 'px');
     set();
     const ro = new ResizeObserver(set);
-    ro.observe(el);
+    ro.observe(wrap);
+    ro.observe(nav);
     return () => ro.disconnect();
   }, []);
 

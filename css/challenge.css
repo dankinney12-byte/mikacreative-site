@@ -1014,6 +1014,18 @@
   top: auto;
   z-index: auto;
 }
+/* On phones the bar scrolls away and only the nav stays pinned. The wrapper
+   becomes display: contents so the nav's sticky range is the whole page
+   rather than the wrapper's own box (breakpoint matches the nav's mobile
+   styles in styles.css). */
+@media (max-width: 768px) {
+  .gwj-sticky-top { display: contents; }
+  .gwj-sticky-top .nav {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+  }
+}
 
 /* ── mobile tweaks ────────────────────────────────────────── */
 @media (max-width: 480px) {
